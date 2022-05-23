@@ -33,8 +33,7 @@ namespace BecomeSifu.MartialArts
             "9 Shaped block"
         };
 
-        private Dictionary<int, string> _Kicks = new Dictionary<int, string>();
-        public Dictionary<int, string> Kicks { get => _Kicks; }
+        public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
 
         private List<string> _KicksList = new List<string>{
             "Front Kick",
@@ -67,7 +66,7 @@ namespace BecomeSifu.MartialArts
             }
             for (int i = 0; i < _KicksList.Count; i++)
             {
-                _Kicks[i] = _KicksList[i];
+                Kicks[i] = _KicksList[i];
             }
             for (int i = 0; i < _SpecialsList.Count; i++)
             {

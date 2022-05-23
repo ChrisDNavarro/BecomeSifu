@@ -1,4 +1,5 @@
 ﻿using BecomeSifu.MartialArts;
+using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,6 @@ namespace BecomeSifu.Controls
                 TabItem tabItem = new TabItem();
                 if (type.Name.Contains("Attacks"))
                 {
-                    tabItem.Name = "AttacksTabItem";
                     tabItem.Header = "Attacks";
                     if (TabColor)
                     {
@@ -47,7 +47,10 @@ namespace BecomeSifu.Controls
                 }
                 else
                 {
-                    tabItem.Name = $"{type.Name}TabItem";
+                    if (Dojos.Dojo.IsBoxing && type.Name.Contains("Kicks"))
+                    {
+                        tabItem.Header = "To The Body";
+                    }
                     tabItem.Header = type.Name;
                     if (TabColor)
                     {
@@ -71,13 +74,13 @@ namespace BecomeSifu.Controls
         {
             foreach (TabItem tab in Tabs)
             {
-                if (tab.Name.Contains("Attacks"))
+                if (tab.Header.ToString().Contains("Attacks"))
                 {
                     BuildBottomTabs(tab);
                 }
                 else
-                {
-                    UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.{tab.Header}").Unwrap();
+                {                   
+                    UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.{string.Concat(tab.Header.ToString().Where(c => !char.IsWhiteSpace(c)))}").Unwrap();
                     tab.Content = control;
                 }
             }
@@ -99,7 +102,6 @@ namespace BecomeSifu.Controls
                     TabItem bottomTab = new TabItem
                     {
                         Header = name,
-                        Name = name + "AttackTab"
                     };
                     UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.Attacks{bottomTab.Header}").Unwrap();
                     bottomTab.Content = control;

@@ -29,6 +29,9 @@
     <Compile Update="UserControls\Fights.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControls\ToTheBody.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="App.xaml">
@@ -62,6 +65,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\Fights.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\ToTheBody.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

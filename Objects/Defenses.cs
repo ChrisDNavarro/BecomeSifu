@@ -5,17 +5,10 @@ using System.Windows.Media;
 
 namespace BecomeSifu.Objects
 {
-    public class Defenses
-    {
-        public SolidColorBrush BackgroundColor { get; set; }
+    public class Defenses : Buttons
+    {        
         public string DefenseName { get; set; }
-
-        public string LevelUp { get; set; }
-        public int Step { get; set; }
         public bool DefenseEnabled { get; set; }
-        public string Level { get; set; } = "0";
-        public ulong ExpToNext { get; set; } = 10;
-
 
         public Defenses(string name, int step)
         {
