@@ -31,6 +31,7 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
+using BecomeSifu;
 
 
 namespace BecomeSifu {
@@ -64,6 +65,7 @@ namespace BecomeSifu {
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.14.0")]
         public static void Main() {
             BecomeSifu.App app = new BecomeSifu.App();
+            app.InitializeComponent();
             app.Run();
         }
     }

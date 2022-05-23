@@ -1,5 +1,4 @@
-﻿using BecomeSifu.Objects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -15,14 +14,13 @@ using System.Windows.Shapes;
 namespace BecomeSifu.UserControls
 {
     /// <summary>
-    /// Interaction logic for Defense.xaml
+    /// Interaction logic for ToTheBody.xaml
     /// </summary>
-    public partial class Defense : UserControl
+    public partial class ToTheBody : UserControl
     {
-        public Defense()
+        public ToTheBody()
         {
             InitializeComponent();
-            DefensesIC.ItemsSource = Dojos.Defenses;
         }
     }
 }

@@ -14,7 +14,7 @@ namespace BecomeSifu.Controls
         private ItemCollection Tabs;
         private bool Attacks;
         private bool TabColor;
-        private bool contentcolor;
+        private bool ContentColor;
 
         public GenerateTabs(ItemCollection tabs)
         {
@@ -103,15 +103,17 @@ namespace BecomeSifu.Controls
                     };
                     UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.Attacks{bottomTab.Header}").Unwrap();
                     bottomTab.Content = control;
-                    if (TabColor)
+                    if (ContentColor)
                     {
                         bottomTab.Background = new SolidColorBrush(Colors.Crimson);
-                        TabColor = false;
+                        control.Background = bottomTab.Background;
+                        ContentColor = false;
                     }
                     else
                     {
                         bottomTab.Background = new SolidColorBrush(Colors.Goldenrod);
-                        TabColor = true;
+                        control.Background = bottomTab.Background;
+                        ContentColor = true;
                     }
                     attackTabs.Items.Add(bottomTab);
                 }

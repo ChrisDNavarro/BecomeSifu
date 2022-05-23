@@ -35,3 +35,4 @@ C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksSpecials.g.cs
 C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksKicks.baml
 C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksSpecials.baml
 C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\Templates\TabItem.g.cs
+C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\Templates\TabItem.baml

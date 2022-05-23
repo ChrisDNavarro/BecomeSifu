@@ -31,24 +31,44 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Shell;
+using BecomeSifu;
 
 
-namespace BecomeSifu {
-    
-    
+namespace BecomeSifu
+{
+
+
     /// <summary>
     /// App
     /// </summary>
-    public partial class App : System.Windows.Controls.UserControl {
-        
+    public partial class App : System.Windows.Application
+    {
+
+        /// <summary>
+        /// InitializeComponent
+        /// </summary>
+        [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.14.0")]
+        public void InitializeComponent()
+        {
+
+#line 5 "..\..\..\App.xaml"
+            this.StartupUri = new System.Uri("MainWindow.xaml", System.UriKind.Relative);
+
+#line default
+#line hidden
+        }
+
         /// <summary>
         /// Application Entry Point.
         /// </summary>
         [System.STAThreadAttribute()]
         [System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [System.CodeDom.Compiler.GeneratedCodeAttribute("PresentationBuildTasks", "5.0.14.0")]
-        public static void Main() {
+        public static void Main()
+        {
             BecomeSifu.App app = new BecomeSifu.App();
+            app.InitializeComponent();
             app.Run();
         }
     }

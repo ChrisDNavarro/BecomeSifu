@@ -8,15 +8,14 @@ namespace BecomeSifu.MartialArts
 {
     public class Taekwondo : Arts, IDojo
     {
-        private Dictionary<int, string> _Punches = new Dictionary<int, string>();
-        public Dictionary<int, string> Punches { get => _Punches;}
+        public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
 
         private List<string> _PunchesList = new List<string>{
             "Fore fist",
             "Hammer fist",
             "Back fist",
             "Knifehand",
-            "Four Kknuckle Strike",
+            "Four Knuckle Strike",
             "Eagle Strike",
             "Tiger Claw",
             "Pincer Hand",
@@ -24,20 +23,14 @@ namespace BecomeSifu.MartialArts
             "Chestnut Fist"
         };
 
-        private Dictionary<int, string> _Defenses = new Dictionary<int, string>();
-        public Dictionary<int, string> Defenses { get => _Defenses; }
+        public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
 
         private List<string> _DefensesList = new List<string>{
-            "Fore fist",
-            "Hammer fist",
-            "Back fist",
-            "Knifehand",
-            "Four Kknuckle Strike",
-            "Eagle Strike",
-            "Tiger Claw",
-            "Pincer Hand",
-            "Scissor Finger",
-            "Chestnut Fist"
+            "Inside block",
+            "Otside block",
+            "Palm Block",
+            "Scissors block",
+            "9 Shaped block"
         };
 
         private Dictionary<int, string> _Kicks = new Dictionary<int, string>();
@@ -56,8 +49,7 @@ namespace BecomeSifu.MartialArts
             "Flying Side Kick"
         };
 
-        private Dictionary<int, string> _Specials = new Dictionary<int, string>();
-        public Dictionary<int, string> Specials { get => _Specials; }
+        public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
 
         private List<string> _SpecialsList = new List<string>{
             "Flying Side Kick",
@@ -71,7 +63,7 @@ namespace BecomeSifu.MartialArts
         {
             for (int i = 0; i < _PunchesList.Count; i++ )
             {
-                _Punches[i] = _PunchesList[i];
+                Punches[i] = _PunchesList[i];
             }
             for (int i = 0; i < _KicksList.Count; i++)
             {
@@ -79,12 +71,15 @@ namespace BecomeSifu.MartialArts
             }
             for (int i = 0; i < _SpecialsList.Count; i++)
             {
-                _Specials[i] = _SpecialsList[i];
+                Specials[i] = _SpecialsList[i];
             }
             for (int i = 0; i < _DefensesList.Count; i++)
             {
-                _Defenses[i] = _DefensesList[i];
+                Defenses[i] = _DefensesList[i];
             }
         }
+
+        public bool IsBoxing { get; } = false;
+
     }
 }

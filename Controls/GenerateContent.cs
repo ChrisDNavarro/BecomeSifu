@@ -5,14 +5,14 @@ using System.Text;
 
 namespace BecomeSifu.Controls
 {
-    public class GenerateAttacks
+    public class GenerateContent
     {
-
-        public GenerateAttacks()
+        public GenerateContent()
         {
             Punches();
             Kicks();
             Specials();
+            Defenses();
         }
 
         private void Punches()
@@ -42,6 +42,16 @@ namespace BecomeSifu.Controls
             {
                 Specials punch = new Specials(specials[key], key);
                 Dojos.AddSpecial(punch);
+            }
+        }
+
+        private void Defenses()
+        {
+            Dictionary<int, string> Defenses = Dojos.Dojo.Defenses;
+            foreach (int key in Defenses.Keys)
+            {
+                Defenses defense = new Defenses(Defenses[key], key);
+                Dojos.AddDefense(defense);
             }
         }
 

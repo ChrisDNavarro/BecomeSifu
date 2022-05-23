@@ -10,6 +10,7 @@ namespace BecomeSifu.MartialArts
         Dictionary<int, string> Kicks { get; }
         Dictionary<int, string> Specials { get; }
         Dictionary<int, string> Defenses { get; }
+        bool IsBoxing { get; }
 
     }
 }
