@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Pages\DojoPicker.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\MainClient.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\MessagePopUp.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Templates\TabItem.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\AttacksKicks.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\AttacksPunches.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\AttacksSpecials.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\Defense.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UserControls\Fights.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="App.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\DojoPicker.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\MainClient.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\MessagePopUp.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Templates\TabItem.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\AttacksKicks.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\AttacksPunches.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\AttacksSpecials.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\Defense.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControls\Fights.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
