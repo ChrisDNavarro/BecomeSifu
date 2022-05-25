@@ -53,7 +53,7 @@ namespace BecomeSifu.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V1.0.0.0;component/usercontrols/tothebody.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BecomeSifu;component/usercontrols/tothebody.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UserControls\ToTheBody.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -11,14 +11,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BecomeSifu.UserControls
+namespace BecomeSifu.Pages
 {
     /// <summary>
-    /// Interaction logic for ToTheBody.xaml
+    /// Interaction logic for Growth.xaml
     /// </summary>
-    public partial class ToTheBody : UserControl
+    public partial class Growth : UserControl
     {
-        public ToTheBody()
+        public Growth()
         {
             InitializeComponent();
         }

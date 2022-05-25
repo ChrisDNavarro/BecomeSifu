@@ -10,61 +10,41 @@ namespace BecomeSifu.MartialArts
         public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
 
         private List<string> _PunchesList = new List<string>{
-            "Forefist",
-            "Hammerfist",
-            "Backfist",
-            "Knifehand",
-            "FourKknuckleStrike",
-            "EagleStrike",
-            "TigerClaw",
-            "PincerHand",
-            "ScissorFinger",
-            "ChestnutFist"
+            "Jab",
+            "Cross",
+            "Lead Hook",
+            "Rear Hook",
+            "Lead Uppercut",
+            "Rear Uppercut"
         };
 
         public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
 
         private List<string> _DefensesList = new List<string>{
-            "Forefist",
-            "Hammerfist",
-            "Backfist",
-            "Knifehand",
-            "FourKknuckleStrike",
-            "EagleStrike",
-            "TigerClaw",
-            "PincerHand",
-            "ScissorFinger",
-            "ChestnutFist"
+            "FootWork",
+            "Guard",
+            "Slip",
+            "Parry",
+            "Counter"
         };
 
         public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
 
+        /// <summary>
+        /// To The Body for Boxing
+        /// </summary>
         private List<string> _KicksList = new List<string>{
-            "Forefist",
-            "Hammerfist",
-            "Backfist",
-            "Knifehand",
-            "FourKknuckleStrike",
-            "EagleStrike",
-            "TigerClaw",
-            "PincerHand",
-            "ScissorFinger",
-            "ChestnutFist"
+            "Body Blows",
         };
 
         public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
 
         private List<string> _SpecialsList = new List<string>{
-            "Forefist",
-            "Hammerfist",
-            "Backfist",
-            "Knifehand",
-            "FourKknuckleStrike",
-            "EagleStrike",
-            "TigerClaw",
-            "PincerHand",
-            "ScissorFinger",
-            "ChestnutFist"
+            "1 2",
+            "1 2 3",
+            "3 4 3 4",
+            "1 2 5 2",
+            "1 6 3 2"
         };
 
         public Boxing()

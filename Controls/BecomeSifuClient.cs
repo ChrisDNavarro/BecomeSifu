@@ -16,8 +16,10 @@ namespace BecomeSifu.Controls
         public BecomeSifuClient()
         {
             Tabs = PageHolder.MainClient.ActionTabControl.Items;
+            _ = new GenerateFights();
             _ = new GenerateContent();
             _ = new GenerateTabs(Tabs);
+
         }
 
        

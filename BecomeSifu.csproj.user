@@ -5,6 +5,9 @@
     <Compile Update="Pages\DojoPicker.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\Growth.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\MainClient.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -29,9 +32,6 @@
     <Compile Update="UserControls\Fights.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="UserControls\ToTheBody.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="App.xaml">
@@ -41,6 +41,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\DojoPicker.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Growth.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\MainClient.xaml">
@@ -65,9 +68,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\Fights.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="UserControls\ToTheBody.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

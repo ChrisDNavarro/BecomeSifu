@@ -10,61 +10,51 @@ namespace BecomeSifu.MartialArts
         public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
 
         private List<string> _PunchesList = new List<string>{
-            "Forefist",
-            "Hammerfist",
-            "Backfist",
-            "Knifehand",
-            "FourKknuckleStrike",
-            "EagleStrike",
-            "TigerClaw",
-            "PincerHand",
-            "ScissorFinger",
-            "ChestnutFist"
+             "Jab Punch",
+            "Lunge Punch",
+            "Rising punch",
+            "Hook punch",
+            "Back Fist Strike",
+            "Finger Thrust",
+            "Ridge Hand",
+            "Two Handed Punch",
+            "Circular Punch",
+            "Scissor Punch"
         };
 
         public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
 
         private List<string> _DefensesList = new List<string>{
-            "Forefist",
-            "Hammerfist",
-            "Backfist",
-            "Knifehand",
-            "FourKknuckleStrike",
-            "EagleStrike",
-            "TigerClaw",
-            "PincerHand",
-            "ScissorFinger",
-            "ChestnutFist"
+            "Side block",
+            "Inside circular block",
+            "Sweeping block",
+            "Bow & Arrow block",
+            "Tiger Mouth"
         };
 
         public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
 
         private List<string> _KicksList = new List<string>{
-            "Forefist",
-            "Hammerfist",
-            "Backfist",
-            "Knifehand",
-            "FourKknuckleStrike",
-            "EagleStrike",
-            "TigerClaw",
-            "PincerHand",
-            "ScissorFinger",
-            "ChestnutFist"
+            "Front kick (snap)",
+            "Front kick (thrust)",
+            "Back kick",
+            "Round kick",
+            "Jump kick",
+            "Swing kick",
+            "Side kick (snap)",
+            "Side kick (thrust)",
+            "Heel drop",
+            "Stomp"
         };
 
         public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
 
         private List<string> _SpecialsList = new List<string>{
-            "Forefist",
-            "Hammerfist",
-            "Backfist",
-            "Knifehand",
-            "FourKknuckleStrike",
-            "EagleStrike",
-            "TigerClaw",
-            "PincerHand",
-            "ScissorFinger",
-            "ChestnutFist"
+            "Double Front Kick",
+            "Mountain Punch",
+            "Eagle Hand",
+            "Sweep The Leg",
+            "Crane Kick"
         };
 
         public Karate()

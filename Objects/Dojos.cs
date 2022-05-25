@@ -8,6 +8,7 @@ using System.Runtime.Remoting;
 using BecomeSifu.Objects;
 using BecomeSifu.UserControls;
 using System.Collections.ObjectModel;
+using BecomeSifu.FightObjects;
 
 namespace BecomeSifu.Objects
 
@@ -24,12 +25,15 @@ namespace BecomeSifu.Objects
 
         public static ObservableCollection<Defenses> Defenses = new ObservableCollection<Defenses>();
 
+        public static ObservableCollection<IFights> Fights = new ObservableCollection<IFights>();
+
 
 
         public static void PickDojo(IDojo dojo)
         {
             Dojo = dojo;
-            PageHolder.MainWindow.Start();            
+            Dojo.CurrentArt = true;
+            PageHolder.MainWindow.Start();
         }
 
         public static void AddPunch(Punches newPunch)
@@ -50,6 +54,11 @@ namespace BecomeSifu.Objects
         public static void AddDefense(Defenses newDefense)
         {
             Defenses.Add(newDefense);
+        }
+
+        public static void AddFight(IFights fight)
+        {
+            Fights.Add(fight);
         }
 
 

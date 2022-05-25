@@ -14,8 +14,6 @@ namespace BecomeSifu.Controls
     {
         private ItemCollection Tabs;
         private bool Attacks;
-        private bool TabColor;
-        private bool ContentColor;
 
         public GenerateTabs(ItemCollection tabs)
         {
@@ -29,16 +27,6 @@ namespace BecomeSifu.Controls
                 if (type.Name.Contains("Attacks"))
                 {
                     tabItem.Header = "Attacks";
-                    if (TabColor)
-                    {
-                        tabItem.Background = new SolidColorBrush(Colors.Crimson);
-                        TabColor = false;
-                    }
-                    else
-                    {
-                        tabItem.Background = new SolidColorBrush(Colors.Goldenrod);
-                        TabColor = true;
-                    }
                     if (!Attacks)
                     {
                         Tabs.Add(tabItem);
@@ -46,22 +34,8 @@ namespace BecomeSifu.Controls
                     }
                 }
                 else
-                {
-                    if (Dojos.Dojo.IsBoxing && type.Name.Contains("Kicks"))
-                    {
-                        tabItem.Header = "To The Body";
-                    }
+                {                                      
                     tabItem.Header = type.Name;
-                    if (TabColor)
-                    {
-                        tabItem.Background = new SolidColorBrush(Colors.Crimson);                        
-                        TabColor = false;
-                    }
-                    else
-                    {
-                        tabItem.Background = new SolidColorBrush(Colors.Goldenrod);
-                        TabColor = true;
-                    }
                     Tabs.Add(tabItem);
                 }
 
@@ -80,7 +54,7 @@ namespace BecomeSifu.Controls
                 }
                 else
                 {                   
-                    UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.{string.Concat(tab.Header.ToString().Where(c => !char.IsWhiteSpace(c)))}").Unwrap();
+                    UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.{tab.Header}").Unwrap();
                     tab.Content = control;
                 }
             }
@@ -103,20 +77,12 @@ namespace BecomeSifu.Controls
                     {
                         Header = name,
                     };
-                    UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.Attacks{bottomTab.Header}").Unwrap();
+                    if (Dojos.Dojo.IsBoxing && name.Contains("Kicks"))
+                    {
+                        bottomTab.Header = "To The Body";
+                    }
+                    UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.Attacks{name}").Unwrap();
                     bottomTab.Content = control;
-                    if (ContentColor)
-                    {
-                        bottomTab.Background = new SolidColorBrush(Colors.Crimson);
-                        control.Background = bottomTab.Background;
-                        ContentColor = false;
-                    }
-                    else
-                    {
-                        bottomTab.Background = new SolidColorBrush(Colors.Goldenrod);
-                        control.Background = bottomTab.Background;
-                        ContentColor = true;
-                    }
                     attackTabs.Items.Add(bottomTab);
                 }
             }

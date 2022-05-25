@@ -12,9 +12,9 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\NCRDev\BecomeSifu\App.xaml
 108070865
 
-281339340957
+37-1201702275
 192-1533232326
 MainWindow.xaml;Pages\DojoPicker.xaml;Pages\MainClient.xaml;Pages\MessagePopUp.xaml;Templates\TabItem.xaml;UserControls\AttacksKicks.xaml;UserControls\AttacksPunches.xaml;UserControls\AttacksSpecials.xaml;UserControls\Defense.xaml;UserControls\Fights.xaml;
 
-True
+False
 

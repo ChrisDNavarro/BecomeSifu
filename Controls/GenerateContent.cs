@@ -13,6 +13,7 @@ namespace BecomeSifu.Controls
             Kicks();
             Specials();
             Defenses();
+            
         }
 
         private void Punches()
