@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BecomeSifu.Objects
+namespace BecomeSifu.Controls
 {
     public static class PageHolder
     {

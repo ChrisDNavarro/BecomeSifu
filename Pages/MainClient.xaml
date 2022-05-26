@@ -5,10 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="750" d:DesignWidth="1100">
+    <UserControl.Background>
+        <RadialGradientBrush RadiusX="0.6" RadiusY="0.7">
+            <RadialGradientBrush.RelativeTransform>
+                <TransformGroup>
+                    <ScaleTransform CenterY="0.5" CenterX="0.3"/>
+                    <SkewTransform AngleY="80" CenterY="0.5" CenterX="0.3" AngleX="-50"/>
+                    <RotateTransform CenterY="0.5" CenterX="0.3"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </RadialGradientBrush.RelativeTransform>
+            <GradientStop Color="Crimson"/>
+            <GradientStop Color="Crimson" Offset="0.801"/>
+            <GradientStop Color="Goldenrod" Offset="0.125"/>
+            <GradientStop Color="Crimson" Offset="0.281"/>
+            <GradientStop Color="Goldenrod" Offset="0.525"/>
+            <GradientStop Color="Goldenrod" Offset="1"/>
+        </RadialGradientBrush>
+    </UserControl.Background>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -16,8 +34,8 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <ContentControl x:Name="TopLeftContent" Grid.Row="0" Grid.Column="0"/>
-        <ContentControl x:Name="TopRightContent" Grid.Row="0" Grid.Column="1"/>
-        <TabControl x:Name="ActionTabControl" Grid.Row="1" Grid.Column="0" Height="450"/>
+        <TabControl x:Name="PracticeTabControl" Grid.Row="0" Grid.Column="1" TabStripPlacement="Bottom" Height="325"/>
+        <TabControl x:Name="ActionTabControl" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="450"/>
         <ContentControl x:Name="BottomRightContent" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </UserControl>

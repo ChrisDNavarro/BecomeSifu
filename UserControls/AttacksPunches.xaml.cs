@@ -25,6 +25,5 @@ namespace BecomeSifu.UserControls
             InitializeComponent();
             PunchesIC.ItemsSource = Dojos.Punches;
         }
-
     }
 }

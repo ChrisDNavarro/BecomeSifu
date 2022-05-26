@@ -8,9 +8,7 @@ namespace BecomeSifu.MartialArts
 {
     public class Taekwondo : Arts, IDojo
     {
-        public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
-
-        private List<string> _PunchesList = new List<string>{
+       private List<string> _PunchesList = new List<string>{
             "Fore fist",
             "Hammer fist",
             "Back fist",
@@ -23,8 +21,6 @@ namespace BecomeSifu.MartialArts
             "Chestnut Fist"
         };
 
-        public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
-
         private List<string> _DefensesList = new List<string>{
             "Inside block",
             "Otside block",
@@ -32,8 +28,6 @@ namespace BecomeSifu.MartialArts
             "Scissors block",
             "9 Shaped block"
         };
-
-        public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
 
         private List<string> _KicksList = new List<string>{
             "Front Kick",
@@ -47,8 +41,6 @@ namespace BecomeSifu.MartialArts
             "Scissor Kick",
             "Flying Side Kick"
         };
-
-        public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
 
         private List<string> _SpecialsList = new List<string>{
             "Flying Side Kick",

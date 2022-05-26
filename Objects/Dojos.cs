@@ -9,6 +9,7 @@ using BecomeSifu.Objects;
 using BecomeSifu.UserControls;
 using System.Collections.ObjectModel;
 using BecomeSifu.FightObjects;
+using BecomeSifu.Controls;
 
 namespace BecomeSifu.Objects
 
@@ -27,12 +28,16 @@ namespace BecomeSifu.Objects
 
         public static ObservableCollection<IFights> Fights = new ObservableCollection<IFights>();
 
+        public static ObservableCollection<Practicing> Practicing = new ObservableCollection<Practicing>();
+        public static ObservableCollection<IDojo> BoundDojo = new ObservableCollection<IDojo>();
+
 
 
         public static void PickDojo(IDojo dojo)
         {
             Dojo = dojo;
             Dojo.CurrentArt = true;
+            BoundDojo.Add(Dojo);
             PageHolder.MainWindow.Start();
         }
 

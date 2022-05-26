@@ -12,16 +12,16 @@ namespace BecomeSifu.FightObjects
         public AStreetFight()
         {
             Wins = 0;
-            Health = ((ulong)Wins + 1) * 1000;
-            Attack = ((ulong)Wins + 1) * 100;
+            Health = ((decimal)Wins + 1) * 1000;
+            Attack = ((decimal)Wins + 1) * 100;
             FightName = "Street Fight";
             Background = new SolidColorBrush(Colors.PaleGoldenrod);
         }
         public AStreetFight(int wins)
         {
             Wins = wins;
-            Health = ((ulong)Wins + 1) * 100;
-            Attack = ((ulong)Wins + 1) * 1000;
+            Health = ((decimal)Wins + 1) * 100;
+            Attack = ((decimal)Wins + 1) * 1000;
         }
 
         private AStreetFight Won(int win)

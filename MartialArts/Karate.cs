@@ -7,7 +7,6 @@ namespace BecomeSifu.MartialArts
 {
     public class Karate : Arts, IDojo
     {
-        public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
 
         private List<string> _PunchesList = new List<string>{
              "Jab Punch",
@@ -22,8 +21,6 @@ namespace BecomeSifu.MartialArts
             "Scissor Punch"
         };
 
-        public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
-
         private List<string> _DefensesList = new List<string>{
             "Side block",
             "Inside circular block",
@@ -31,8 +28,6 @@ namespace BecomeSifu.MartialArts
             "Bow & Arrow block",
             "Tiger Mouth"
         };
-
-        public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
 
         private List<string> _KicksList = new List<string>{
             "Front kick (snap)",
@@ -46,8 +41,6 @@ namespace BecomeSifu.MartialArts
             "Heel drop",
             "Stomp"
         };
-
-        public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
 
         private List<string> _SpecialsList = new List<string>{
             "Double Front Kick",

@@ -1,14 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup>
+    <ShowAllFiles>false</ShowAllFiles>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Update="Pages\DojoPicker.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Pages\Growth.xaml.cs">
+    <Compile Update="Pages\EmptyCup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Practice.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\MainClient.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Meditate.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Pages\MessagePopUp.xaml.cs">
@@ -43,10 +51,16 @@
     <Page Update="Pages\DojoPicker.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Growth.xaml">
+    <Page Update="Pages\EmptyCup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Practice.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\MainClient.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Meditate.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\MessagePopUp.xaml">

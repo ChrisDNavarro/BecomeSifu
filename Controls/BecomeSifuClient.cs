@@ -13,15 +13,17 @@ namespace BecomeSifu.Controls
     public class BecomeSifuClient
     {
         private ItemCollection Tabs;
+        private ItemCollection PracticeTabs;
         public BecomeSifuClient()
         {
             Tabs = PageHolder.MainClient.ActionTabControl.Items;
+            PracticeTabs = PageHolder.MainClient.PracticeTabControl.Items;
+
             _ = new GenerateFights();
             _ = new GenerateContent();
             _ = new GenerateTabs(Tabs);
+            _ = new GeneratePracticeTabs(PracticeTabs);
 
         }
-
-       
     }
 }

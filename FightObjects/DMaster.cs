@@ -10,16 +10,16 @@ namespace BecomeSifu.FightObjects
         public DMaster()
         {
             Wins = 0;
-            Health = ((ulong)Wins + 1) * 100;
-            Attack = ((ulong)Wins + 1) * 1000;
+            Health = ((decimal)Wins + 1) * 100;
+            Attack = ((decimal)Wins + 1) * 1000;
             FightName = "Master";
             Background = new SolidColorBrush(Colors.IndianRed);
         }
         public DMaster(int wins)
         {
             Wins = wins;
-            Health = ((ulong)Wins + 1) * 100;
-            Attack = ((ulong)Wins + 1) * 1000;
+            Health = ((decimal)Wins + 1) * 100;
+            Attack = ((decimal)Wins + 1) * 1000;
         }
 
         private DMaster Won(int win)

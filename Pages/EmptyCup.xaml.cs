@@ -14,11 +14,11 @@ using System.Windows.Shapes;
 namespace BecomeSifu.Pages
 {
     /// <summary>
-    /// Interaction logic for Growth.xaml
+    /// Interaction logic for EmptyCup.xaml
     /// </summary>
-    public partial class Growth : UserControl
+    public partial class EmptyCup : UserControl
     {
-        public Growth()
+        public EmptyCup()
         {
             InitializeComponent();
         }

@@ -10,16 +10,16 @@ namespace BecomeSifu.FightObjects
         public GrandMaster()
         {
             Wins = 0;
-            Health = ((ulong)Wins + 1) * 100;
-            Attack = ((ulong)Wins + 1) * 1000;
+            Health = ((decimal)Wins + 1) * 100;
+            Attack = ((decimal)Wins + 1) * 1000;
             FightName = this.GetType().Name;
             Background = new SolidColorBrush(Colors.PaleGoldenrod);
         }
         public GrandMaster(int wins)
         {
             Wins = wins;
-            Health = ((ulong)Wins + 1) * 100;
-            Attack = ((ulong)Wins + 1) * 1000;
+            Health = ((decimal)Wins + 1) * 100;
+            Attack = ((decimal)Wins + 1) * 1000;
         }
 
         private GrandMaster Won(int win)

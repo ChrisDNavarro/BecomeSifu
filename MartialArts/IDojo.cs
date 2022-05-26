@@ -13,5 +13,31 @@ namespace BecomeSifu.MartialArts
         bool IsBoxing { get; }
         bool CurrentArt { get; set; }
 
+        decimal AttacksExpToNext(int step, decimal previousExp);
+        decimal EnergyToUnlock(int step);
+
+        decimal TotalSteps { get; set; }
+        decimal TotalLevels { get; set; }
+
+
+        decimal Energy { get; set; }
+        decimal Exp { get; set; }
+        decimal Attack { get; set; }
+        decimal Defense { get; set; }
+        decimal Health { get; set; }
+        bool IsMeditating { get; set; }
+        void Practice()
+        {
+
+        }
+        void Meditate()
+        {
+
+        }
+        void EmptyCup()
+        {
+
+        }
+
     }
 }

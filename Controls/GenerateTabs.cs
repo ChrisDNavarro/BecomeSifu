@@ -77,7 +77,7 @@ namespace BecomeSifu.Controls
                     {
                         Header = name,
                     };
-                    if (Dojos.Dojo.IsBoxing && name.Contains("Kicks"))
+                    if (Dojos.BoundDojo[0].IsBoxing && name.Contains("Kicks"))
                     {
                         bottomTab.Header = "To The Body";
                     }

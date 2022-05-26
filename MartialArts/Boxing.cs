@@ -7,8 +7,6 @@ namespace BecomeSifu.MartialArts
 {
     public class Boxing : Arts, IDojo
     {
-        public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
-
         private List<string> _PunchesList = new List<string>{
             "Jab",
             "Cross",
@@ -18,8 +16,6 @@ namespace BecomeSifu.MartialArts
             "Rear Uppercut"
         };
 
-        public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
-
         private List<string> _DefensesList = new List<string>{
             "FootWork",
             "Guard",
@@ -28,16 +24,12 @@ namespace BecomeSifu.MartialArts
             "Counter"
         };
 
-        public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
-
         /// <summary>
         /// To The Body for Boxing
         /// </summary>
         private List<string> _KicksList = new List<string>{
             "Body Blows",
         };
-
-        public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
 
         private List<string> _SpecialsList = new List<string>{
             "1 2",
