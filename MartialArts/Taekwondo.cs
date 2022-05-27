@@ -1,14 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using BecomeSifu.Controls;
 using BecomeSifu.Objects;
+using GalaSoft.MvvmLight.Command;
 
 namespace BecomeSifu.MartialArts
 {
     public class Taekwondo : Arts, IDojo
     {
-       private List<string> _PunchesList = new List<string>{
+        public ICommand PracticeClick => new RelayCommand(() => Dojos.BoundDojo[0].Practice());
+
+        public ICommand MeditateClick => new RelayCommand(() => Dojos.BoundDojo[0].Meditation());
+
+        public ICommand AutoPracticeCheck => new RelayCommand(() => Dojos.BoundDojo[0].StartStopAutoPractice());
+
+        public ICommand AutoMeditateCheck => new RelayCommand(() => Dojos.BoundDojo[0].StartStopAutoMeditate());
+
+        private List<string> _PunchesList = new List<string>{
             "Fore fist",
             "Hammer fist",
             "Back fist",

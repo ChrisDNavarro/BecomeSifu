@@ -21,8 +21,11 @@ namespace BecomeSifu.Objects
             AttackName = name;
             Step = step + 1;
 
+            LevelInt = 0;
+            Level = "Lvl " + (LevelInt + 1).ToString();
+
             ExpToNext = Dojos.BoundDojo[0].EnergyToUnlock(Step);
-            ExpString = ConvertExpToString(ExpToNext);
+            ExpString = ExpToNext.ConvertToString();
             LevelUp = $"Learn\r\n{ExpString} Eng";
 
             if (Step % 2 == 0)
@@ -45,6 +48,8 @@ namespace BecomeSifu.Objects
                 {
                     Learned = true;
                     Dojos.BoundDojo[0].TotalSteps++;
+                    Dojos.BoundDojo[0].Energy -= ExpToNext;
+                    Dojos.BoundDojo.Refresh();
                     CompleteLevelUp();
                 }
             }
@@ -52,6 +57,8 @@ namespace BecomeSifu.Objects
             {
                 if (Dojos.BoundDojo[0].Exp >= ExpToNext && !MaxLevel)
                 {
+                    Dojos.BoundDojo[0].Exp -= ExpToNext;
+                    Dojos.BoundDojo.Refresh();
                     CompleteLevelUp();
                 }
             }
@@ -59,14 +66,15 @@ namespace BecomeSifu.Objects
 
         private void CompleteLevelUp()
         {
-            if (Convert.ToInt32(Level) <= 500)
+            if (LevelInt <= 500)
             {
-                Dojos.BoundDojo[0].Energy -= ExpToNext;
+                
 
-                ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step+1, ExpToNext);
-                ExpString = ConvertExpToString(ExpToNext);
+                ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step+1, LevelInt);
+                ExpString = ExpToNext.ConvertToString();
 
-                Level = "Lvl " + (Convert.ToInt32(Level) + 1).ToString();
+                LevelInt++;
+                Level = "Lvl " + LevelInt.ToString();
 
                 Dojos.BoundDojo[0].TotalLevels++;
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
@@ -81,15 +89,5 @@ namespace BecomeSifu.Objects
             }
         }
 
-        private string ConvertExpToString(decimal exp)
-        {
-            return exp < 1000
-                ? exp.ToString("#.##")
-                : exp < 1000000
-                ? (exp / 1000).ToString("#.##") + "k"
-                : exp < 1000000000
-                ? (exp / 1000000).ToString("#.##") + "M"
-                : (exp / 1000000000).ToString("#.##") + "B";
-        }
     }
 }

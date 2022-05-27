@@ -34,7 +34,7 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
         <ContentControl x:Name="TopLeftContent" Grid.Row="0" Grid.Column="0"/>
-        <TabControl x:Name="PracticeTabControl" Grid.Row="0" Grid.Column="1" TabStripPlacement="Bottom" Height="325"/>
+        <TabControl x:Name="PracticeTabControl" Grid.Row="0" Grid.Column="1" TabStripPlacement="Bottom" Width="300" Height="325"/>
         <TabControl x:Name="ActionTabControl" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Height="450"/>
         <ContentControl x:Name="BottomRightContent" Grid.Row="1" Grid.Column="1"/>
     </Grid>

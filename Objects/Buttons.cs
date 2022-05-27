@@ -19,7 +19,8 @@ namespace BecomeSifu.Objects
         public bool Learned { get; set; }
         public bool AllDefense { get; set; }
         public bool AllKicks { get; set; }
-        public string Level { get; set; } = "0";
+        public string Level { get; set; }
+        public int LevelInt { get; set; }
         public decimal ExpToNext { get; set; } = 10;
         public string ExpString { get; set; }
     

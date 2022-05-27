@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace BecomeSifu.MartialArts
 {
@@ -13,31 +16,65 @@ namespace BecomeSifu.MartialArts
         bool IsBoxing { get; }
         bool CurrentArt { get; set; }
 
-        decimal AttacksExpToNext(int step, decimal previousExp);
+        decimal AttacksExpToNext(int step, int level);
         decimal EnergyToUnlock(int step);
+
+        ICommand PracticeClick { get; }
+        ICommand MeditateClick { get; }
+        ICommand AutoPracticeCheck { get; }
+
+        ICommand AutoMeditateCheck { get; }
+
+        void Practice();
+        void CalculateHealthGain();
+        void CalculateDefenseGain();
+        void CalculateAttackGain();
+        void CalculateExpGain();
+        void CalculateEnergyGain();
+        void StartStopMeditation();
+        void Meditation();
+        void StartStopAutoPractice();
+        void Timer_Tick(object source, EventArgs e);
+        void StartStopAutoMeditate();
+        Task RunAutoMeditate(decimal multiplier);
+
 
         decimal TotalSteps { get; set; }
         decimal TotalLevels { get; set; }
 
 
         decimal Energy { get; set; }
+        decimal EnergyGain { get; set; }
+        string EnergyString { get; set; }
+        string EnergyGainString { get; set; }
+
         decimal Exp { get; set; }
+        decimal ExpGain { get; set; }
+        string ExpString { get; set; }
+        string ExpGainString { get; set; }
+
         decimal Attack { get; set; }
+        decimal AttackGain { get; set; }
+        string AttackString { get; set; }
+        string AttackGainString { get; set; }
+
+
         decimal Defense { get; set; }
+        decimal DefenseGain { get; set; }
+        string DefenseString { get; set; }
+        string DefenseGainString { get; set; }
+
         decimal Health { get; set; }
+        decimal HealthGain { get; set; }
+        string HealthString { get; set; }
+        string HealthGainString { get; set; }
+
         bool IsMeditating { get; set; }
-        void Practice()
-        {
-
-        }
-        void Meditate()
-        {
-
-        }
-        void EmptyCup()
-        {
-
-        }
+        bool AutoMeditate { get; set; }
+        bool AutoPractice { get; set; }
+        decimal Multiplier { get; set; }
+        string Rate { get; set; }
+        DispatcherTimer Timer { get; set; }
 
     }
 }

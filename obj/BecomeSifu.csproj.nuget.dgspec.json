@@ -49,6 +49,10 @@
             "MvvmLightLibs": {
               "target": "Package",
               "version": "[5.4.1.1, )"
+            },
+            "System.Threading.Timer": {
+              "target": "Package",
+              "version": "[4.3.0, )"
             }
           },
           "imports": [

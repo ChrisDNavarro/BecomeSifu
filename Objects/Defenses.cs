@@ -31,10 +31,12 @@ namespace BecomeSifu.Objects
             {
                 Step = (step + 1) * 2;
             }
-            
+
+            LevelInt = 0;
+            Level = "Lvl " + (LevelInt + 1).ToString();
 
             ExpToNext = Dojos.BoundDojo[0].EnergyToUnlock(Step);
-            ExpString = ConvertExpToString(ExpToNext);
+            ExpString = ExpToNext.ConvertToString();
             LevelUp = $"Learn\r\n{ExpString} Eng";
 
             if (Step % 2 == 0)
@@ -75,14 +77,15 @@ namespace BecomeSifu.Objects
 
         private void CompleteLevelUp()
         {
-            if (Convert.ToInt32(Level) <= 500)
+            if (LevelInt <= 500)
             {
                 Dojos.BoundDojo[0].Energy -= ExpToNext;
 
-                ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step, decimal.Multiply(ExpToNext,1.1M));
-                ExpString = ConvertExpToString(ExpToNext);
+                ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step, LevelInt);
+                ExpString = ExpToNext.ConvertToString();
 
-                Level = "Lvl " + (Convert.ToInt32(Level) + 1).ToString();
+                LevelInt++;
+                Level = "Lvl " + LevelInt.ToString();
 
                 Dojos.BoundDojo[0].TotalLevels++;
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
@@ -97,15 +100,5 @@ namespace BecomeSifu.Objects
             }
         }
 
-        private string ConvertExpToString(decimal exp)
-        {
-            return exp < 1000
-                ? exp.ToString("#.##")
-                : exp < 1000000
-                ? (exp / 1000).ToString("#.##") + "k"
-                : exp < 1000000000
-                ? (exp / 1000000).ToString("#.##") + "M"
-                : (exp / 1000000000).ToString("#.##") + "B";
-        }
     }
 }

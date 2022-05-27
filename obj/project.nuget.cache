@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "Oh+QlfG/qZ46ahFB9gUg+j1aI1tQIcyg1jW8rO/F61oPIOsWPw8lvYL/x5t34Sm4nCiSnbKSaZBzwmlNct3GmQ==",
+  "dgSpecHash": "Z/OjnwnwcJrKjX2YAIl6Y6rx2gpkZ4M/yJz8NlLHPYDs6N/M/eb3El07MPhiBeLZxnfyFyBfuFtFWG8lFhKF8A==",
   "success": true,
   "projectFilePath": "C:\\NCRDev\\BecomeSifu\\BecomeSifu.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\CN250039\\.nuget\\packages\\mvvmlightlibs\\5.4.1.1\\mvvmlightlibs.5.4.1.1.nupkg.sha512"
+    "C:\\Users\\CN250039\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\CN250039\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\CN250039\\.nuget\\packages\\mvvmlightlibs\\5.4.1.1\\mvvmlightlibs.5.4.1.1.nupkg.sha512",
+    "C:\\Users\\CN250039\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\CN250039\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512"
   ],
   "logs": [
     {

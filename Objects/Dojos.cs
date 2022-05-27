@@ -28,7 +28,6 @@ namespace BecomeSifu.Objects
 
         public static ObservableCollection<IFights> Fights = new ObservableCollection<IFights>();
 
-        public static ObservableCollection<Practicing> Practicing = new ObservableCollection<Practicing>();
         public static ObservableCollection<IDojo> BoundDojo = new ObservableCollection<IDojo>();
 
 

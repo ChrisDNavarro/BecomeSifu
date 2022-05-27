@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BecomeSifu.Objects;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,6 +22,7 @@ namespace BecomeSifu.Pages
         public Meditate()
         {
             InitializeComponent();
+            MeditateIC.ItemsSource = Dojos.BoundDojo;
         }
     }
 }
