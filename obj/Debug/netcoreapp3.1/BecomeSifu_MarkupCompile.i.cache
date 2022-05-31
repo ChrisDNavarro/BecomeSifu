@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\NCRDev\BecomeSifu\App.xaml
-13427633712
+151619580638
 
-44-1590074920
+471871253081
 196682178752
-MainWindow.xaml;Pages\DojoPicker.xaml;Pages\EmptyCup.xaml;Pages\MainClient.xaml;Pages\Meditate.xaml;Pages\MessagePopUp.xaml;Pages\Practice.xaml;Templates\TabItem.xaml;UserControls\AttacksKicks.xaml;UserControls\AttacksPunches.xaml;UserControls\AttacksSpecials.xaml;UserControls\Defense.xaml;UserControls\Fights.xaml;
+MainWindow.xaml;Pages\Boosts.xaml;Pages\Debug.xaml;Pages\DojoPicker.xaml;Pages\EmptyCup.xaml;Pages\MainClient.xaml;Pages\Meditate.xaml;Pages\MessagePopUp.xaml;Pages\Practice.xaml;Templates\TabItem.xaml;UserControls\AttacksKicks.xaml;UserControls\AttacksPunches.xaml;UserControls\AttacksSpecials.xaml;UserControls\Defense.xaml;UserControls\Fights.xaml;
 
 False
 

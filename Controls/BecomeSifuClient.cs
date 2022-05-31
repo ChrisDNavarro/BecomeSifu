@@ -14,15 +14,19 @@ namespace BecomeSifu.Controls
     {
         private ItemCollection Tabs;
         private ItemCollection PracticeTabs;
+        private ItemCollection AdvancedTabs;
         public BecomeSifuClient()
         {
             Tabs = PageHolder.MainClient.ActionTabControl.Items;
             PracticeTabs = PageHolder.MainClient.PracticeTabControl.Items;
+            AdvancedTabs = PageHolder.MainClient.AdvancedTabControl.Items;
+            
 
             _ = new GenerateFights();
             _ = new GenerateContent();
             _ = new GenerateTabs(Tabs);
             _ = new GeneratePracticeTabs(PracticeTabs);
+            _ = new GenerateAdvancedTabs(AdvancedTabs);
 
         }
     }

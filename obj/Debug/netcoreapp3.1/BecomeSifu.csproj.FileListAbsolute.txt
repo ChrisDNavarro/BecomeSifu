@@ -47,3 +47,7 @@ C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\BecomeSifu.csproj.CopyComplete
 C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\BecomeSifu.dll
 C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\BecomeSifu.pdb
 C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\BecomeSifu.genruntimeconfig.cache
+C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\Boosts.g.cs
+C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\Debug.g.cs
+C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\Boosts.baml
+C:\NCRDev\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\Debug.baml

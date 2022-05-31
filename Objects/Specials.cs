@@ -68,18 +68,20 @@ namespace BecomeSifu.Objects
         {
             if (LevelInt <= 500)
             {
-                
+                LevelInt++;
 
                 ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step+1, LevelInt);
                 ExpString = ExpToNext.ConvertToString();
 
-                LevelInt++;
+                
                 Level = "Lvl " + LevelInt.ToString();
 
                 Dojos.BoundDojo[0].TotalLevels++;
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
                 Dojos.BoundDojo.Refresh();
                 Dojos.Specials.Refresh();
+
+                Extensions.UpdateActives();
             }
             else
             {

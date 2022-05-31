@@ -55,7 +55,17 @@ namespace BecomeSifu.Objects
                     Learned = true;
                     Dojos.BoundDojo[0].TotalSteps++;
                     Dojos.BoundDojo[0].Energy -= ExpToNext;
-                    CompleteLevelUp();                    
+                    if (Step == 1)
+                    {
+                        Dojos.Kicks[0].AttackEnabled = true;
+                        Dojos.Kicks.Refresh();
+                    }
+                    if (Step == 5 && !Dojos.Defenses[0].Learned)
+                    {
+                        Dojos.Defenses[0].DefenseEnabled = true;
+                        Dojos.Defenses.Refresh();
+                    }
+                    CompleteLevelUp();
                 }
             }
             else
@@ -73,6 +83,7 @@ namespace BecomeSifu.Objects
             if (LevelInt <= 500)
             {
                 LevelInt++;
+
                 ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step, LevelInt);
                 ExpString = ExpToNext.ConvertToString();
 
@@ -81,15 +92,8 @@ namespace BecomeSifu.Objects
 
                 Dojos.BoundDojo[0].TotalLevels++;
 
-
-                if (!AllDefense || !AllKicks)
-                {
-                    ActivateDefense();
-                }
-
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
-
-                
+                               
 
                 Dojos.BoundDojo.Refresh();
                 Dojos.Punches.Refresh();
@@ -101,48 +105,6 @@ namespace BecomeSifu.Objects
                 MaxLevel = true;
                 LevelUp = "Max Level";
                 Dojos.Punches.Refresh();
-            }
-        }
-
-        private void ActivateDefense()
-        {
-            if (!Dojos.BoundDojo[0].IsBoxing)
-            {
-                if (Step == 1 && !Dojos.Kicks[Step - 1].AttackEnabled && !AllKicks)
-                {
-                    Dojos.Kicks[Step - 1].AttackEnabled = true;
-                    Dojos.Kicks.Refresh();
-                }
-
-                if (Step % 2 == 0 && Step / 2 < +Dojos.Defenses.Count && !Dojos.Defenses[Step - (Step / 2) - 1].DefenseEnabled && !AllDefense)
-                {
-                    Dojos.Defenses[Step - (Step / 2 - 1)].DefenseEnabled = true;
-                }
-            }
-            else
-            {
-                if (!AllKicks)
-                {
-                    foreach (Kicks kick in Dojos.Kicks)
-                    {
-                        if (Step >= 10 && AttackEnabled)
-                        {
-                            kick.AttackEnabled = true;
-                            Dojos.Kicks.Refresh();
-                        }
-                    }
-                }
-                if (!AllDefense)
-                {
-                    foreach (Defenses defense in Dojos.Defenses)
-                    {
-                        if (Step > 3 && AttackEnabled)
-                        {
-                            defense.DefenseEnabled = true;
-                            Dojos.Defenses.Refresh();
-                        }
-                    } 
-                }
             }
         }
     }

@@ -50,7 +50,7 @@ namespace BecomeSifu
             {
                 for (int i = 0; i < Dojos.Defenses.Count; i++)
                 {
-                    Dojos.Defenses[i].AttackEnabled = Dojos.Defenses[i].Learned
+                    Dojos.Defenses[i].DefenseEnabled = Dojos.Defenses[i].Learned
                         ? Dojos.BoundDojo[0].Exp >= Dojos.Defenses[i].ExpToNext
                         : Dojos.Defenses[i - 1].LevelInt >= 5 && Dojos.BoundDojo[0].Energy >= Dojos.Defenses[i].ExpToNext;
                     Dojos.Defenses.Refresh();

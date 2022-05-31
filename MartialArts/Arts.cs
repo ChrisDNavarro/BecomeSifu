@@ -29,56 +29,12 @@ namespace BecomeSifu.MartialArts
         public virtual decimal AttacksExpToNext(int step, int level)
         {
             return step <= 3
-                ? LowStep(level)
+                ? (decimal)(4 * Math.Pow(level + 1, 3) / 5)
                 : step == 4 || step == 5
-                ? LowMidStep(level)
+                ? (decimal)Math.Pow(level + 2, 3)
                 : step == 6 || step == 7
-                ? HighMidStep(level)
-                : HighStep(level);
-        }
-
-        private decimal LowStep(int level)
-        {
-            return level < 50
-                ? (decimal)Math.Pow(.8 * level, 3) + 10 + 1
-                : level < 68
-                ? (decimal)Math.Pow(level, 3) + 10
-                : level < 98
-                ? decimal.Subtract((decimal)Math.Pow(1.2 * level, 3), (decimal)Math.Pow(15 * level, 2)) - 100 * level - 140 + 10
-                : (decimal)Math.Pow(1.25 * level, 3) + 10;
-        }
-
-        private decimal LowMidStep(int level)
-        {
-            return level < 50
-                ? decimal.Multiply((decimal)Math.Pow(.8 * level, 3), (decimal)1.5)
-                : level < 68
-                ? decimal.Multiply((decimal)Math.Pow(level, 3), (decimal)1.5)
-                : level < 98
-                ? decimal.Multiply(decimal.Subtract((decimal)Math.Pow(1.2 * level, 3), (decimal)Math.Pow(15 * level, 2)) - 100 * level - 140, (decimal)1.5)
-                : decimal.Multiply((decimal)Math.Pow(1.25 * level, 3), (decimal)1.5);
-        }
-
-        private decimal HighMidStep(int level)
-        {
-            return level < 50
-                ? decimal.Multiply((decimal)Math.Pow(.8 * level, 3), (decimal)3)
-                : level < 68
-                ? decimal.Multiply((decimal)Math.Pow(level, 3), (decimal)3)
-                : level < 98
-                ? decimal.Multiply(decimal.Subtract((decimal)Math.Pow(1.2 * level, 3), (decimal)Math.Pow(15 * level, 2)) - 100 * level - 140, (decimal)3)
-                : decimal.Multiply((decimal)Math.Pow(1.25 * level, 3), (decimal)3);
-        }
-
-        private decimal HighStep(int level)
-        {
-            return level < 50
-                ? decimal.Multiply((decimal)Math.Pow(.8 * level, 3), (decimal)9)
-                : level < 68
-                ? decimal.Multiply((decimal)Math.Pow(level, 3), (decimal)9)
-                : level < 98
-                ? decimal.Multiply(decimal.Subtract((decimal)Math.Pow(1.2 * level, 3), (decimal)Math.Pow(15 * level, 2)) - 100 * level - 140, (decimal)9)
-                : decimal.Multiply((decimal)Math.Pow(1.25 * level, 3), (decimal)9);
+                ? (decimal)((1.2 * Math.Pow(level + 3, 3)) - (15 * Math.Pow(level + 3, 2)) + (100 * (level + 3)) - 140)
+                : (decimal)(5 * Math.Pow(level + 4, 3) / 4);
         }
 
 
@@ -142,22 +98,25 @@ namespace BecomeSifu.MartialArts
             Dojos.BoundDojo.Refresh();
         }
 
-        public void StartStopAutoPractice()
+        public async void StartStopAutoPractice()
         {
-            if (Dojos.BoundDojo[0].AutoPractice)
+            await Task.Run(() =>
             {
-                Dojos.BoundDojo[0].AutoPractice = !Dojos.BoundDojo[0].AutoPractice;
-                Dojos.BoundDojo[0].Timer.Stop();
-                Dojos.BoundDojo.Refresh();
-            }
-            else
-            {
-                Dojos.BoundDojo[0].AutoPractice = !Dojos.BoundDojo[0].AutoPractice;
-                Dojos.BoundDojo[0].Timer.Tick += Dojos.BoundDojo[0].Timer_Tick;
-                Dojos.BoundDojo[0].Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Dojos.BoundDojo[0].Multiplier));
-                Dojos.BoundDojo.Refresh();
-                Dojos.BoundDojo[0].Timer.Start();
-            }
+                if (Dojos.BoundDojo[0].AutoPractice)
+                {
+                    Dojos.BoundDojo[0].AutoPractice = !Dojos.BoundDojo[0].AutoPractice;
+                    Dojos.BoundDojo[0].Timer.Stop();
+                    Dojos.BoundDojo.Refresh();
+                }
+                else
+                {
+                    Dojos.BoundDojo[0].AutoPractice = !Dojos.BoundDojo[0].AutoPractice;
+                    Dojos.BoundDojo[0].Timer.Tick += Dojos.BoundDojo[0].Timer_Tick;
+                    Dojos.BoundDojo[0].Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Dojos.BoundDojo[0].Multiplier));
+                    Dojos.BoundDojo.Refresh();
+                    Dojos.BoundDojo[0].Timer.Start();
+                }
+            });
         }
 
         public void Timer_Tick(object source, EventArgs e)
@@ -231,14 +190,7 @@ namespace BecomeSifu.MartialArts
 
         public virtual void CalculateExpGain()
         {
-            decimal x = Dojos.BoundDojo[0].TotalSteps * Dojos.BoundDojo[0].TotalLevels;
-            Dojos.BoundDojo[0].ExpGain = x < 50
-                ? (decimal)Math.Pow(.8 * (double)x/1.75, 3)
-                : x < 68
-                ? (decimal)Math.Pow((double)x, 3)
-                : x < 98
-                ? decimal.Subtract((decimal)Math.Pow(15 * (double)x, 2), (decimal)Math.Pow(1.2 * (double)x, 3)) - 100 * x - 140
-                : (decimal)Math.Pow(1.25 * (double)x, 3);
+            Dojos.BoundDojo[0].ExpGain = Dojos.BoundDojo[0].TotalSteps * Dojos.BoundDojo[0].TotalLevels;
         }
 
         public virtual void CalculateEnergyGain()

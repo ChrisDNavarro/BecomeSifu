@@ -39,7 +39,7 @@ namespace BecomeSifu.Objects
             ExpString = ExpToNext.ConvertToString();
             LevelUp = $"Learn\r\n{ExpString} Eng";
 
-            if (Step % 2 == 0)
+            if (step % 2 != 0)
             {
                 BackgroundColor = new SolidColorBrush(Colors.IndianRed);
                 ForegroundColor = new SolidColorBrush(Colors.PaleGoldenrod);
@@ -63,6 +63,7 @@ namespace BecomeSifu.Objects
                     {
                         AllDefense = true;
                     }
+                    Dojos.BoundDojo[0].Energy -= ExpToNext;
                     CompleteLevelUp();
                 }
             }
@@ -70,6 +71,7 @@ namespace BecomeSifu.Objects
             {
                 if (Dojos.BoundDojo[0].Exp >= ExpToNext && !MaxLevel)
                 {
+                    Dojos.BoundDojo[0].Exp -= ExpToNext;
                     CompleteLevelUp();
                 }
             }
@@ -79,18 +81,20 @@ namespace BecomeSifu.Objects
         {
             if (LevelInt <= 500)
             {
-                Dojos.BoundDojo[0].Energy -= ExpToNext;
+                LevelInt++;
+                
 
                 ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step, LevelInt);
                 ExpString = ExpToNext.ConvertToString();
 
-                LevelInt++;
+                
                 Level = "Lvl " + LevelInt.ToString();
 
                 Dojos.BoundDojo[0].TotalLevels++;
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
                 Dojos.BoundDojo.Refresh();
                 Dojos.Defenses.Refresh();
+                Extensions.UpdateActives();
             }
             else
             {
