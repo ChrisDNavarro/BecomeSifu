@@ -37,13 +37,13 @@ namespace BecomeSifu.Objects
 
             if (Step % 2 == 0)
             {
-                BackgroundColor = new SolidColorBrush(Colors.IndianRed);
-                ForegroundColor = new SolidColorBrush(Colors.PaleGoldenrod);
+                BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
+                ForegroundColor = new SolidColorBrush(Colors.DimGray);
             }
             else
             {
-                ForegroundColor = new SolidColorBrush(Colors.IndianRed);
-                BackgroundColor = new SolidColorBrush(Colors.PaleGoldenrod);
+                ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
+                BackgroundColor = new SolidColorBrush(Colors.Silver);
             }
         }
 

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BecomeSifu.Objects;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace BecomeSifu.FightObjects
@@ -10,21 +12,32 @@ namespace BecomeSifu.FightObjects
         public BTournament()
         {
             Wins = 0;
-            Health = ((decimal)Wins + 1) * 100;
+            Health = ((decimal)Wins + 1) * 10000;
             Attack = ((decimal)Wins + 1) * 1000;
+            HealthString = Health.ConvertToString();
+            AttackString = Attack.ConvertToString();
             FightName = "Tournament Bout";
-            Background = new SolidColorBrush(Colors.IndianRed);
+            Background = new SolidColorBrush(Colors.LightSteelBlue);
         }
-        public BTournament(int wins)
+        public void Won(int win)
         {
-            Wins = wins;
-            Health = ((decimal)Wins + 1) * 100;
+            Wins = win;
+            Health = ((decimal)Wins + 1) * 10000;
             Attack = ((decimal)Wins + 1) * 1000;
+            HealthString = Health.ConvertToString();
+            AttackString = Attack.ConvertToString();
+            if (Wins > 0 && Wins % 5 == 0)
+            {
+                Dojos.Fights[2].IsActive = true;
+            }
+            Dojos.Fights.Refresh();
         }
 
-        private BTournament Won(int win)
+        public async void Begin()
         {
-            return new BTournament(win);
+            bool first = Convert.ToBoolean(RNG.Next(0, 2));
+            Won(await Task.Run(() => Fight(first)));
+            
         }
     }
 }

@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace BecomeSifu.Pages
 {
@@ -22,6 +23,7 @@ namespace BecomeSifu.Pages
         public Meditate()
         {
             InitializeComponent();
+            Dojos.BoundDojo[0].MeditateTimer = new DispatcherTimer();
             MeditateIC.ItemsSource = Dojos.BoundDojo;
         }
     }

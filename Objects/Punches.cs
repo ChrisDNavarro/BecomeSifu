@@ -34,15 +34,15 @@ namespace BecomeSifu.Objects
                 AttackEnabled = true;
             }
 
-            if (Step % 2 == 0) 
+            if (Step % 2 == 0)
             {
-                BackgroundColor = new SolidColorBrush(Colors.IndianRed);
-                ForegroundColor = new SolidColorBrush(Colors.PaleGoldenrod); 
+                BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
+                ForegroundColor = new SolidColorBrush(Colors.DimGray);
             }
             else
             {
-                ForegroundColor = new SolidColorBrush(Colors.IndianRed);
-                BackgroundColor = new SolidColorBrush(Colors.PaleGoldenrod);
+                ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
+                BackgroundColor = new SolidColorBrush(Colors.Silver);
             }
         }
 
@@ -93,7 +93,8 @@ namespace BecomeSifu.Objects
                 Dojos.BoundDojo[0].TotalLevels++;
 
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
-                               
+
+                Dojos.BoundDojo[0].CalculateAll();
 
                 Dojos.BoundDojo.Refresh();
                 Dojos.Punches.Refresh();

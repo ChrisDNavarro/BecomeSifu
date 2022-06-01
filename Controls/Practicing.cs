@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Timers;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace BecomeSifu.Controls
@@ -39,12 +40,17 @@ namespace BecomeSifu.Controls
         public string HealthGainString { get; set; } = "0";
 
         public bool IsMeditating { get; set; }
+        public Visibility MeditateOption { get; set; } = Visibility.Collapsed;
+        public string IsMeditatingString { get; set; } = "Start Mediation";
         public bool AutoMeditate { get; set; }
         public bool AutoPractice { get; set; }
+        public Visibility CanAutoMeditate { get; set; } = Visibility.Collapsed;
+        public Visibility CanAutoPractice { get; set; } = Visibility.Visible;
         public decimal Multiplier { get; set; } = 1;
-        public string Rate { get; set; } = "1 click(s)/s";
+        public string Rate { get; set; } = "Auto";
 
         public DispatcherTimer Timer { get; set; }
+        public DispatcherTimer MeditateTimer { get; set; }
 
     }
 }

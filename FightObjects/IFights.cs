@@ -11,10 +11,11 @@ namespace BecomeSifu.FightObjects
         int Wins { get; set; }
         decimal Health { get; set; }
         decimal Attack { get; set; }
+        string HealthString { get; set; }
+        string AttackString { get; set; }
         bool IsActive { get; set; }
-        string FightName { get; }
-        SolidColorBrush Background { get; }
-
-
+        string FightName { get; set; }
+        SolidColorBrush Background { get; set; }
+        void Begin();
     }
 }

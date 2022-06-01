@@ -10,6 +10,7 @@ using System.Timers;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using System.Threading;
+using System.Windows;
 
 namespace BecomeSifu.MartialArts
 {
@@ -46,115 +47,152 @@ namespace BecomeSifu.MartialArts
 
         public void Practice()
         {
-            if (!Dojos.BoundDojo[0].IsMeditating)
+            if (!IsMeditating)
             {
-                Dojos.BoundDojo[0].CalculateEnergyGain();
-                Dojos.BoundDojo[0].Energy += Dojos.BoundDojo[0].EnergyGain;
-                Dojos.BoundDojo[0].EnergyString = Dojos.BoundDojo[0].Energy.ConvertToString();
-                Dojos.BoundDojo[0].EnergyGainString = Dojos.BoundDojo[0].EnergyGain.ConvertToString();
+                CalculateEnergyGain();
+                Energy += EnergyGain;
+                EnergyString = Energy.ConvertToString();
+                EnergyGainString = EnergyGain.ConvertToString();
 
-                Dojos.BoundDojo[0].CalculateExpGain();
-                Dojos.BoundDojo[0].Exp += Dojos.BoundDojo[0].ExpGain;
-                Dojos.BoundDojo[0].ExpString = Dojos.BoundDojo[0].Exp.ConvertToString();
-                Dojos.BoundDojo[0].ExpGainString = Dojos.BoundDojo[0].ExpGain.ConvertToString();
+                CalculateExpGain();
+                Exp += ExpGain;
+                ExpString = Exp.ConvertToString();
+                ExpGainString = ExpGain.ConvertToString();
 
-                Dojos.BoundDojo[0].CalculateAttackGain();
-                Dojos.BoundDojo[0].Attack += Dojos.BoundDojo[0].AttackGain;
-                Dojos.BoundDojo[0].AttackString = Dojos.BoundDojo[0].Attack.ConvertToString();
-                Dojos.BoundDojo[0].AttackGainString = Dojos.BoundDojo[0].AttackGain.ConvertToString();
+                CalculateAttackGain();
+                Attack += AttackGain;
+                AttackString = Attack.ConvertToString();
+                AttackGainString = AttackGain.ConvertToString();
 
-                Dojos.BoundDojo[0].CalculateDefenseGain();
-                Dojos.BoundDojo[0].Defense += Dojos.BoundDojo[0].DefenseGain;
-                Dojos.BoundDojo[0].DefenseString = Dojos.BoundDojo[0].Defense.ConvertToString();
-                Dojos.BoundDojo[0].DefenseGainString = Dojos.BoundDojo[0].DefenseGain.ConvertToString();
+                CalculateDefenseGain();
+                Defense += DefenseGain;
+                DefenseString = Defense.ConvertToString();
+                DefenseGainString = DefenseGain.ConvertToString();
 
                 Dojos.BoundDojo.Refresh();
 
                 Extensions.UpdateActives();
             }
         }
+
+        public void CalculateAll()
+        {
+            CalculateEnergyGain();
+            EnergyGainString = EnergyGain.ConvertToString();
+
+            CalculateExpGain();
+            ExpGainString = ExpGain.ConvertToString();
+
+            CalculateAttackGain();
+            AttackGainString = AttackGain.ConvertToString();
+
+            CalculateDefenseGain();
+            DefenseGainString = DefenseGain.ConvertToString();
+
+            CalculateHealthGain();
+            HealthGainString = HealthGain.ConvertToString();
+        }
+
         public void StartStopMeditation()
         {
-            if (Dojos.BoundDojo[0].IsMeditating)
+            if (IsMeditating)
             {
-                Dojos.BoundDojo[0].IsMeditating = false;
+                IsMeditating = !IsMeditating;
+                IsMeditatingString = "Start Meditating";
+                MeditateOption = Visibility.Collapsed;
+                Dojos.BoundDojo.Refresh();
+                Extensions.UpdateActives();
             }
             else
             {
-                Dojos.BoundDojo[0].IsMeditating = true;
+                IsMeditating = !IsMeditating;
+                IsMeditatingString = "Stop Meditating";
+                MeditateOption = Visibility.Visible;
+                Dojos.BoundDojo.Refresh();
+                Extensions.UpdateActives();
             }
         }
 
         public void Meditation()
         {
-            Dojos.BoundDojo[0].CalculateHealthGain();
-            Dojos.BoundDojo[0].Health += Dojos.BoundDojo[0].HealthGain;
-            Dojos.BoundDojo[0].HealthString = Dojos.BoundDojo[0].HealthGain.ConvertToString();
+            CalculateHealthGain();
+            Health += HealthGain;
+            HealthString = Health.ConvertToString();
+            HealthGainString = HealthGain.ConvertToString();
 
-            Dojos.BoundDojo[0].CalculateEnergyGain();
-            Dojos.BoundDojo[0].Energy += Dojos.BoundDojo[0].EnergyGain / 2;
-            Dojos.BoundDojo[0].EnergyString = Dojos.BoundDojo[0].EnergyGain.ConvertToString();
+            CalculateEnergyGain();
+            Energy += EnergyGain;
+            EnergyString = Energy.ConvertToString();
+            EnergyGainString = EnergyGain.ConvertToString();
 
             Dojos.BoundDojo.Refresh();
+            Extensions.UpdateActives();
         }
 
         public async void StartStopAutoPractice()
         {
             await Task.Run(() =>
             {
-                if (Dojos.BoundDojo[0].AutoPractice)
+                if (AutoPractice)
                 {
-                    Dojos.BoundDojo[0].AutoPractice = !Dojos.BoundDojo[0].AutoPractice;
-                    Dojos.BoundDojo[0].Timer.Stop();
+                    AutoPractice = !AutoPractice;
+                    Rate = "Auto";
+                    Dojos.BoundDojo.Refresh();
+                    Timer.Stop();
                     Dojos.BoundDojo.Refresh();
                 }
                 else
                 {
-                    Dojos.BoundDojo[0].AutoPractice = !Dojos.BoundDojo[0].AutoPractice;
-                    Dojos.BoundDojo[0].Timer.Tick += Dojos.BoundDojo[0].Timer_Tick;
-                    Dojos.BoundDojo[0].Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Dojos.BoundDojo[0].Multiplier));
+                    AutoPractice = !AutoPractice;
+                    Rate = (1 / Multiplier).ConvertToString() + " click(s)/s";
+                    Timer.Tick += Timer_Tick;
+                    Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Multiplier));
                     Dojos.BoundDojo.Refresh();
-                    Dojos.BoundDojo[0].Timer.Start();
+                    Timer.Start();
+                    Dojos.BoundDojo.Refresh();
                 }
             });
         }
 
         public void Timer_Tick(object source, EventArgs e)
         {
-            Dojos.BoundDojo[0].Practice();
-        }
-
-        public void StartStopAutoMeditate()
-        {
-            if (Dojos.BoundDojo[0].AutoMeditate)
+            if (!IsMeditating)
             {
-                Dojos.BoundDojo[0].AutoMeditate = !Dojos.BoundDojo[0].AutoMeditate;
-            }
-            else
-            {
-                Dojos.BoundDojo[0].AutoMeditate = !Dojos.BoundDojo[0].AutoMeditate;
-                Dojos.BoundDojo[0].Rate = (1 / Dojos.BoundDojo[0].Multiplier).ConvertToString() + " click(s)/s";
-                _ = Dojos.BoundDojo[0].RunAutoMeditate(Dojos.BoundDojo[0].Multiplier);
+                Practice();
             }
         }
 
-        public async Task RunAutoMeditate(decimal multiplier)
+        public void MeditateTimer_Tick(object source, EventArgs e)
         {
-            while (Dojos.BoundDojo[0].AutoMeditate)
+            Meditation();
+        }
+
+        public async void StartStopAutoMeditate()
+        {
+            await Task.Run(() =>
             {
-                await Task.Run(() =>
+                if (AutoMeditate)
                 {
-                    Dojos.BoundDojo[0].Meditation();
-                    Thread.Sleep((int)decimal.Multiply(1000, multiplier));
-                });
-            }
+                    AutoMeditate = !AutoMeditate;
+                    Rate = "Auto";
+                }
+                else
+                {
+                    AutoMeditate = !AutoMeditate;
+                    Rate = (1 / Multiplier).ConvertToString() + " click(s)/s";
+                    MeditateTimer.Tick += MeditateTimer_Tick;
+                    MeditateTimer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Multiplier));
+                    Dojos.BoundDojo.Refresh();
+                    MeditateTimer.Start();
+                }
+            });
         }
 
         public virtual void CalculateHealthGain()
         {
-            decimal x = Dojos.BoundDojo[0].TotalSteps * Dojos.BoundDojo[0].TotalLevels / 1000;
-            Dojos.BoundDojo[0].HealthGain = x < 50
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 / 2
+            decimal x = TotalSteps * TotalLevels;
+            HealthGain = x < 50
+                ? decimal.Add((decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 / 2, 0.01M)
                 : x < 68
                 ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100 / 2
                 : x < 98
@@ -166,7 +204,7 @@ namespace BecomeSifu.MartialArts
         {
             foreach (Defenses defense in Dojos.Defenses)
             {
-                Dojos.BoundDojo[0].DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt);
+                DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt);
             }
         }
 
@@ -185,31 +223,30 @@ namespace BecomeSifu.MartialArts
             {
                 total += special.Step * 10 * special.LevelInt;
             }
-            Dojos.BoundDojo[0].AttackGain = total;
+            AttackGain = total;
         }
 
         public virtual void CalculateExpGain()
         {
-            Dojos.BoundDojo[0].ExpGain = Dojos.BoundDojo[0].TotalSteps * Dojos.BoundDojo[0].TotalLevels;
+            ExpGain = TotalSteps * TotalLevels;
         }
 
         public virtual void CalculateEnergyGain()
         {
-            
-            decimal x = Dojos.BoundDojo[0].TotalSteps * Dojos.BoundDojo[0].TotalLevels;
-            if (!Dojos.BoundDojo[0].IsMeditating)
+            decimal x = TotalSteps * TotalLevels;
+            if (IsMeditating)
             {
-                Dojos.BoundDojo[0].EnergyGain = x < 50
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50
+                EnergyGain = x < 50
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 * 1.5M
                 : x < 68
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100 * 1.5M
                 : x < 98
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100
-                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100);
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100 * 1.5M
+                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100) * 1.5M;
             }
             else
             {
-                Dojos.BoundDojo[0].EnergyGain = x < 50
+                EnergyGain = x < 50
                 ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 / 2
                 : x < 68
                 ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100 / 2

@@ -1,6 +1,8 @@
-﻿using System;
+﻿using BecomeSifu.Objects;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Media;
 
 namespace BecomeSifu.FightObjects
@@ -10,21 +12,28 @@ namespace BecomeSifu.FightObjects
         public GrandMaster()
         {
             Wins = 0;
-            Health = ((decimal)Wins + 1) * 100;
-            Attack = ((decimal)Wins + 1) * 1000;
+            Health = ((decimal)Wins + 1) * 10000000;
+            Attack = ((decimal)Wins + 1) * 1000000;
+            HealthString = Health.ConvertToString();
+            AttackString = Attack.ConvertToString();
             FightName = this.GetType().Name;
-            Background = new SolidColorBrush(Colors.PaleGoldenrod);
+            Background = new SolidColorBrush(Colors.Silver);
         }
-        public GrandMaster(int wins)
+        public void Won(int win)
         {
-            Wins = wins;
-            Health = ((decimal)Wins + 1) * 100;
-            Attack = ((decimal)Wins + 1) * 1000;
-        }
+            Wins = win;
+            Health = ((decimal)Wins + 1) * 10000000;
+            Attack = ((decimal)Wins + 1) * 1000000;
+            HealthString = Health.ConvertToString();
+            AttackString = Attack.ConvertToString();
 
-        private GrandMaster Won(int win)
+            IsActive = false;
+            Dojos.Fights.Refresh();
+        }
+        public async void Begin()
         {
-            return new GrandMaster(win);
+            bool first = Convert.ToBoolean(RNG.Next(0, 2));
+            Won(await Task.Run(() => Fight(first)));
         }
     }
 }

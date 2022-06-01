@@ -1,6 +1,8 @@
 ﻿
 
 FC:\NCRDev\BecomeSifu\MainWindow.xaml;;
+FC:\NCRDev\BecomeSifu\Pages\Boosts.xaml;;
+FC:\NCRDev\BecomeSifu\Pages\Debug.xaml;;
 FC:\NCRDev\BecomeSifu\Pages\DojoPicker.xaml;;
 FC:\NCRDev\BecomeSifu\Pages\EmptyCup.xaml;;
 FC:\NCRDev\BecomeSifu\Pages\MainClient.xaml;;
@@ -13,6 +15,4 @@ FC:\NCRDev\BecomeSifu\UserControls\AttacksPunches.xaml;;
 FC:\NCRDev\BecomeSifu\UserControls\AttacksSpecials.xaml;;
 FC:\NCRDev\BecomeSifu\UserControls\Defense.xaml;;
 FC:\NCRDev\BecomeSifu\UserControls\Fights.xaml;;
-FC:\NCRDev\BecomeSifu\Pages\Boosts.xaml;;
-FC:\NCRDev\BecomeSifu\Pages\Debug.xaml;;
 

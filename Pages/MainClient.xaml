@@ -16,12 +16,12 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </RadialGradientBrush.RelativeTransform>
-            <GradientStop Color="Crimson"/>
-            <GradientStop Color="Crimson" Offset="0.801"/>
-            <GradientStop Color="Goldenrod" Offset="0.125"/>
-            <GradientStop Color="Crimson" Offset="0.281"/>
-            <GradientStop Color="Goldenrod" Offset="0.525"/>
-            <GradientStop Color="Goldenrod" Offset="1"/>
+            <GradientStop Color="Black"/>
+            <GradientStop Color="Black" Offset="0.801"/>
+            <GradientStop Color="SteelBlue" Offset="0.125"/>
+            <GradientStop Color="Black" Offset="0.281"/>
+            <GradientStop Color="SteelBlue" Offset="0.525"/>
+            <GradientStop Color="SteelBlue" Offset="1"/>
         </RadialGradientBrush>
     </UserControl.Background>
     <Grid>
@@ -33,7 +33,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <ContentControl x:Name="TopLeftContent" Grid.Row="0" Grid.Column="0"/>
+        <Image x:Name="IamgeControl" Grid.Row="0" Grid.Column="0" Stretch="Uniform"/>
         <TabControl x:Name="PracticeTabControl" Grid.Row="0" Grid.Column="1" TabStripPlacement="Bottom" Width="300" Height="325"/>
         <TabControl x:Name="ActionTabControl" Grid.Row="1" Grid.Column="0" Height="450"/>
         <TabControl x:Name="AdvancedTabControl" Grid.Row="1" Grid.Column="1" TabStripPlacement="Bottom" Width="300" Height="450"/>

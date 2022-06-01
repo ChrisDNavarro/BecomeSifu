@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -24,8 +25,10 @@ namespace BecomeSifu.MartialArts
         ICommand AutoPracticeCheck { get; }
 
         ICommand AutoMeditateCheck { get; }
+        ICommand StartStopMeditationCommand { get; }
 
         void Practice();
+        void CalculateAll();
         void CalculateHealthGain();
         void CalculateDefenseGain();
         void CalculateAttackGain();
@@ -36,7 +39,7 @@ namespace BecomeSifu.MartialArts
         void StartStopAutoPractice();
         void Timer_Tick(object source, EventArgs e);
         void StartStopAutoMeditate();
-        Task RunAutoMeditate(decimal multiplier);
+        void MeditateTimer_Tick(object source, EventArgs e);
 
 
         decimal TotalSteps { get; set; }
@@ -70,11 +73,16 @@ namespace BecomeSifu.MartialArts
         string HealthGainString { get; set; }
 
         bool IsMeditating { get; set; }
+        Visibility MeditateOption { get; set; }
+        string IsMeditatingString { get; set; }
         bool AutoMeditate { get; set; }
         bool AutoPractice { get; set; }
+        Visibility CanAutoMeditate { get; set; }
+        Visibility CanAutoPractice { get; set; }
         decimal Multiplier { get; set; }
         string Rate { get; set; }
         DispatcherTimer Timer { get; set; }
+        DispatcherTimer MeditateTimer { get; set; }
 
     }
 }

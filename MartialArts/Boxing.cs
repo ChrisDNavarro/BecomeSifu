@@ -10,13 +10,15 @@ namespace BecomeSifu.MartialArts
 {
     public class Boxing : Arts, IDojo
     {
-        public ICommand PracticeClick => new RelayCommand(() => Dojos.BoundDojo[0].Practice());
+        public ICommand PracticeClick => new RelayCommand(() => Practice());
 
-        public ICommand MeditateClick => new RelayCommand(() => Dojos.BoundDojo[0].Meditation());
+        public ICommand MeditateClick => new RelayCommand(() => Meditation());
 
-        public ICommand AutoPracticeCheck => new RelayCommand(() => Dojos.BoundDojo[0].StartStopAutoPractice());
+        public ICommand AutoPracticeCheck => new RelayCommand(() => StartStopAutoPractice());
 
-        public ICommand AutoMeditateCheck => new RelayCommand(() => Dojos.BoundDojo[0].StartStopAutoMeditate());
+        public ICommand AutoMeditateCheck => new RelayCommand(() => StartStopAutoMeditate());
+
+        public ICommand StartStopMeditationCommand => new RelayCommand(() => StartStopMeditation());
 
         private List<string> _PunchesList = new List<string>{
             "Jab",

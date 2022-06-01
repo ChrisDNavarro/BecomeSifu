@@ -20,14 +20,14 @@ namespace BecomeSifu.Controls
         private List<Type> GetFightTypes()
         {
             return Assembly.GetExecutingAssembly().GetTypes()
-                .Where(t => t.Name != "IFights" && t.Name != "AllFights" && t.Namespace == typeof(IFights).Namespace)
+                .Where(t => t.Namespace == typeof(IFights).Namespace && t.BaseType.Name == "AllFights")
                 .ToList();
         }
 
         private void CreateFights(List<Type> types)
         {
             foreach (Type type in types)
-            {
+            {               
                 Dojos.AddFight((IFights)Activator.CreateInstance(type.Assembly.ToString(), type.FullName).Unwrap());
             }
         }
