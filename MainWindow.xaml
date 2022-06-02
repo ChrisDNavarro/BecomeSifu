@@ -14,5 +14,6 @@
             </MenuItem>
         </Menu>
         <ContentControl x:Name="ContentArea" />
+        <ContentControl x:Name="Popup"/>
     </DockPanel>
 </Window>

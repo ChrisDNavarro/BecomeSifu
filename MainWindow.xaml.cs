@@ -46,6 +46,12 @@ namespace BecomeSifu
             ContentArea.Content = PageHolder.DojoPicker;
         }
 
+        public void MessagePopUp(string message)
+        {
+            PageHolder.MessagePopUp.
+            Popup.Content = PageHolder.MessagePopUp;
+        }
+
         public void Start()
         {
             ContentArea.Content = PageHolder.MainClient;
