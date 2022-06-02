@@ -1,14 +1,17 @@
 ﻿using BecomeSifu.Objects;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace BecomeSifu.FightObjects
 {
     public class GrandMaster : AllFights , IFights
     {
+        public ICommand StartFighting => new RelayCommand(async () => await Task.Run(() => Begin()));
         public GrandMaster()
         {
             Wins = 0;
@@ -33,7 +36,7 @@ namespace BecomeSifu.FightObjects
         public async void Begin()
         {
             bool first = Convert.ToBoolean(RNG.Next(0, 2));
-            Won(await Task.Run(() => Fight(first)));
+            Won(await Task.Run(() => Fight()));
         }
     }
 }

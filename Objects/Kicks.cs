@@ -59,6 +59,16 @@ namespace BecomeSifu.Objects
                     {
                         AllKicks = true;
                     }
+                    if (Step == 1)
+                    {
+                        if (Dojos.BoundDojo[0].IsTaekwondo)
+                        {
+                            Dojos.Specials[0].AttackEnabled = true;
+                            Dojos.Specials.Refresh();
+                        }
+                        Dojos.Fights[1].IsActive = true;
+                        Dojos.Fights.Refresh(); 
+                    }
                     if (Step == 5 && !Dojos.Defenses[0].Learned)
                     {
                         Dojos.Defenses[0].DefenseEnabled = true;

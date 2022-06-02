@@ -6,24 +6,31 @@
              xmlns:local="clr-namespace:BecomeSifu.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200" Background="Silver">
-    <Grid>
-        <Grid.RowDefinitions >
-            <RowDefinition Height="*"/>
-            <RowDefinition Height ="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="0"/>
-        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="1"/>
-        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="2"/>
-        <Button Content="Empty Your Cup"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Black" RenderTransformOrigin="0.5,0.5">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="LightBlue"/>
-                    <GradientStop Color="LightSteelBlue" Offset="1"/>
-                    <GradientStop Color="SteelBlue" Offset="0.391"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-
-    </Grid>
+    <!--<ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ItemsControl x:Name="CupIC">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>-->
+                    <Grid>
+                        <Grid.RowDefinitions >
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height ="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="0"/>
+                        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="1"/>
+                        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="2"/>
+                        <Button Content="Empty Your Cup"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Black" RenderTransformOrigin="0.5,0.5">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="LightBlue"/>
+                                    <GradientStop Color="LightSteelBlue" Offset="1"/>
+                                    <GradientStop Color="SteelBlue" Offset="0.391"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </Grid>
+                <!--</DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </ScrollViewer>-->
 </UserControl>

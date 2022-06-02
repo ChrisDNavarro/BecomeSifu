@@ -20,28 +20,17 @@ namespace BecomeSifu.FightObjects
         public Random RNG = new Random();
         private decimal FighterHealth;
 
-        public async Task<int> Fight(bool goesFirst)
+        public async Task<int> Fight()
         {
             await Task.Run(async () =>
             {
                 FighterHealth = Dojos.BoundDojo[0].Health;
-                if (goesFirst)
+                while (FighterHealth > 0 || Health > 0)
                 {
-                    while (FighterHealth > 0 || Health > 0)
-                    {
-                        FighterAttack();
-                        await Task.Delay(10);
-                        EnemyAttack();
-                    }
-                }
-                else
-                {
-                    while (FighterHealth > 0 || Health > 0)
-                    {
-                        EnemyAttack();
-                        await Task.Delay(10);
-                        FighterAttack();
-                    }
+                    FighterHealth -=
+                        decimal.Subtract(decimal.Multiply(decimal.Add(3.1M, decimal.Divide((decimal)RNG.NextDouble(), 4M)), Attack), Dojos.BoundDojo[0].Defense);
+                    Health -= Dojos.BoundDojo[0].Attack * (1 + Dojos.BoundDojo[0].AttackSpeedModifier);
+                    await Task.Delay(10);
                 }
             });
 
@@ -53,17 +42,6 @@ namespace BecomeSifu.FightObjects
             return FighterHealth <= 0
                 ? 0
                 : 1;
-        }
-
-        private void EnemyAttack()
-        {
-            FighterHealth -=
-                decimal.Subtract(decimal.Multiply(decimal.Add(3.01M, (decimal)RNG.NextDouble()) / 4 , Attack) , Dojos.BoundDojo[0].Defense);
-        }
-
-        private void FighterAttack()
-        {
-            Health -= Dojos.BoundDojo[0].Attack;
         }
     }
 }

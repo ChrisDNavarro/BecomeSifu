@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace BecomeSifu.FightObjects
@@ -17,5 +18,6 @@ namespace BecomeSifu.FightObjects
         string FightName { get; set; }
         SolidColorBrush Background { get; set; }
         void Begin();
+        ICommand StartFighting { get; }
     }
 }

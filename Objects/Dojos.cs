@@ -30,6 +30,8 @@ namespace BecomeSifu.Objects
 
         public static ObservableCollection<IDojo> BoundDojo = new ObservableCollection<IDojo>();
 
+        public static ObservableCollection<EmptyCupControl> Cup = new ObservableCollection<EmptyCupControl>();
+
 
 
         public static void PickDojo(IDojo dojo)
@@ -37,6 +39,7 @@ namespace BecomeSifu.Objects
             Dojo = dojo;
             Dojo.CurrentArt = true;
             BoundDojo.Add(Dojo);
+            AddCup(new EmptyCupControl());
             PageHolder.MainWindow.Start();
         }
 
@@ -65,9 +68,29 @@ namespace BecomeSifu.Objects
             Fights.Add(fight);
         }
 
+        public static void AddCup(EmptyCupControl cup)
+        {
+            Cup.Add(cup);
+        }
 
+        public static void CleanOut()
+        {
+            Punches.Clear();
+            Kicks.Clear();
+            Specials.Clear();
+            Defenses.Clear();
+            BoundDojo.Clear();
+            Cup.Clear();
+            Fights.Clear();
 
-
+            Punches.Refresh();
+            Kicks.Refresh();
+            Specials.Refresh();
+            Defenses.Refresh();
+            BoundDojo.Refresh();
+            Cup.Refresh();
+            Fights.Refresh();
+        }
 
     }
 }

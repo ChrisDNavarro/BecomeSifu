@@ -19,6 +19,7 @@ namespace BecomeSifu.MartialArts
         public bool CurrentArt { get; set; }
         public decimal TotalSteps { get; set; }
         public decimal TotalLevels { get; set; }
+        public decimal AttackSpeedModifier { get; set; }
 
 
         public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
@@ -113,7 +114,7 @@ namespace BecomeSifu.MartialArts
             }
         }
 
-        public void Meditation()
+        public virtual void Meditation()
         {
             CalculateHealthGain();
             Health += HealthGain;
@@ -204,7 +205,7 @@ namespace BecomeSifu.MartialArts
         {
             foreach (Defenses defense in Dojos.Defenses)
             {
-                DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt);
+                DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt) * 10;
             }
         }
 

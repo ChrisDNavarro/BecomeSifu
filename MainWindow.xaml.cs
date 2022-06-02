@@ -28,16 +28,22 @@ namespace BecomeSifu
         public MainWindow()
         {
             InitializeComponent();
+            Setup();
+        }
+
+        private void OnExitMenuItemClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        public void Setup()
+        {
             PageHolder.MainWindow = this;
             PageHolder.MainClient = new MainClient();
             PageHolder.DojoPicker = new DojoPicker();
             PageHolder.MessagePopUp = new MessagePopUp();
 
             ContentArea.Content = PageHolder.DojoPicker;
-        }
-        private void OnExitMenuItemClick(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
 
         public void Start()

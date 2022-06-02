@@ -15,7 +15,9 @@ namespace BecomeSifu.MartialArts
         Dictionary<int, string> Specials { get; }
         Dictionary<int, string> Defenses { get; }
         bool IsBoxing { get; }
+        bool IsTaekwondo { get; }
         bool CurrentArt { get; set; }
+        decimal AttackSpeedModifier { get; set; }
 
         decimal AttacksExpToNext(int step, int level);
         decimal EnergyToUnlock(int step);

@@ -7,8 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\BoxingRing.png" />
+    <None Remove="Resources\KarateGate.png" />
+    <None Remove="Resources\TKDTrigrams.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\BoxingRing.png" />
+    <Resource Include="Resources\KarateGate.png" />
+    <Resource Include="Resources\TKDTrigrams.png" />
   </ItemGroup>
 
 </Project>

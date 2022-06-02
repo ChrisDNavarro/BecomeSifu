@@ -20,7 +20,7 @@ namespace BecomeSifu.Controls
         private List<Type> GetFightTypes()
         {
             return Assembly.GetExecutingAssembly().GetTypes()
-                .Where(t => t.Namespace == typeof(IFights).Namespace && t.BaseType.Name == "AllFights")
+                .Where(t => t.Name != "IFights" && t.Name != "AllFights" && t.Namespace == typeof(IFights).Namespace && t.BaseType.Name == "AllFights")
                 .ToList();
         }
 

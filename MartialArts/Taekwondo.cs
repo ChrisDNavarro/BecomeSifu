@@ -83,6 +83,33 @@ namespace BecomeSifu.MartialArts
         }
 
         public bool IsBoxing { get; } = false;
+        public bool IsTaekwondo { get; } = true;
+
+        public override void CalculateAttackGain()
+        {
+            decimal total = 0;
+            foreach (Punches punch in Dojos.Punches)
+            {
+                total += punch.Step * punch.LevelInt;
+            }
+            foreach (Kicks kick in Dojos.Kicks)
+            {
+                total += kick.Step * kick.LevelInt * 1.5M;
+            }
+            foreach (Specials special in Dojos.Specials)
+            {
+                total += special.Step * 10 * special.LevelInt;
+            }
+            AttackGain = total;
+        }
+
+        public override void CalculateDefenseGain()
+        {
+            foreach (Defenses defense in Dojos.Defenses)
+            {
+                DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt) * 9.9M;
+            }
+        }
 
     }
 }

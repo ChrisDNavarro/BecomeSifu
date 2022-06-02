@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BecomeSifu.Controls
 {
-    class Modifiers
+    public class EmptyCupControl
     {
 
     }

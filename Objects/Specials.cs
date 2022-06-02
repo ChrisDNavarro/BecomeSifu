@@ -77,6 +77,10 @@ namespace BecomeSifu.Objects
                 Level = "Lvl " + LevelInt.ToString();
 
                 Dojos.BoundDojo[0].TotalLevels++;
+                if (Dojos.BoundDojo[0].IsBoxing)
+                {
+                    Dojos.BoundDojo[0].AttackSpeedModifier = .2M * Dojos.BoundDojo[0].TotalLevels++;
+                }
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
                 Dojos.BoundDojo.Refresh();
                 Dojos.Specials.Refresh();

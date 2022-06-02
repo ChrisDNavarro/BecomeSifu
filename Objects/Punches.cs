@@ -59,6 +59,8 @@ namespace BecomeSifu.Objects
                     {
                         Dojos.Kicks[0].AttackEnabled = true;
                         Dojos.Kicks.Refresh();
+                        Dojos.Fights[0].IsActive = true;
+                        Dojos.Fights.Refresh();
                     }
                     if (Step == 5 && !Dojos.Defenses[0].Learned)
                     {
