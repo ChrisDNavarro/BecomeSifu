@@ -44,9 +44,8 @@
                                 <DropShadowEffect ShadowDepth="0" Color="Blue" BlurRadius="5"/>
                             </Image.Effect>
                         </Image>
-                        <Button Content="Empty Your Cup"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Black" RenderTransformOrigin="0.5,0.5" Command="{Binding EmptyYourCup}">
+                        <Button Content="Empty Your Cup"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Black" RenderTransformOrigin="0.5,0.5" Command="{Binding EmptyYourCup}">    
                             <Button.Background>
-
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="LightBlue"/>
                                     <GradientStop Color="LightSteelBlue" Offset="1"/>
