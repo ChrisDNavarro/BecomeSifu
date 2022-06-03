@@ -1,4 +1,5 @@
-﻿using BecomeSifu.Objects;
+﻿using BecomeSifu.Controls;
+using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -68,6 +69,10 @@ namespace BecomeSifu
                 : exp < 1000000000
                 ? (exp / 1000000).ToString("#.##") + "M"
                 : (exp / 1000000000).ToString("#.##") + "B";
+        }
+
+        public static void SendMessage(string message)
+        {
         }
     }
 }

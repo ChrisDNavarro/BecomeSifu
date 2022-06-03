@@ -11,7 +11,7 @@ namespace BecomeSifu.FightObjects
 {
     public class BTournament : AllFights , IFights
     {
-        public ICommand StartFighting => new RelayCommand(async () => await Task.Run(() => Begin()));
+        public ICommand StartFighting => new RelayCommand(() => Begin());
         public BTournament()
         {
             Wins = 0;
@@ -40,7 +40,6 @@ namespace BecomeSifu.FightObjects
         {
             bool first = Convert.ToBoolean(RNG.Next(0, 2));
             Won(await Task.Run(() => Fight()));
-            
         }
     }
 }

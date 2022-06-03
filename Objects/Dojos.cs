@@ -41,6 +41,7 @@ namespace BecomeSifu.Objects
             BoundDojo.Add(Dojo);
             AddCup(new EmptyCupControl());
             PageHolder.MainWindow.Start();
+            PageHolder.MainWindow.Client.StartingMessages();
         }
 
         public static void AddPunch(Punches newPunch)

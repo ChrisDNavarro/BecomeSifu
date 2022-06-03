@@ -11,7 +11,7 @@ namespace BecomeSifu.FightObjects
 {
     public class AStreetFight : AllFights, IFights
     {
-        public ICommand StartFighting => new RelayCommand(async () => await Task.Run(() => Begin()));
+        public ICommand StartFighting => new RelayCommand(() => Begin());
 
         public new bool IsActive = true;
 
@@ -33,13 +33,12 @@ namespace BecomeSifu.FightObjects
             Attack = ((decimal)Wins + 1) * 100;
             HealthString = Health.ConvertToString();
             AttackString = Attack.ConvertToString();
+            Dojos.Fights.Refresh();
         }
-
         public async void Begin()
         {
             bool first = Convert.ToBoolean(RNG.Next(0, 2));
-            Won(await Task.Run(() => Fight()));
-            Dojos.Fights.Refresh();
+            Won(await Task.Run(() => Fight()));            
         }
     }
 }

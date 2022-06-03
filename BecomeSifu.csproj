@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <None Remove="Resources\BoxingRing.png" />
+    <None Remove="Resources\CupIsEmpty.png" />
+    <None Remove="Resources\CupIsFull.png" />
+    <None Remove="Resources\CupIsHalf.png" />
     <None Remove="Resources\KarateGate.png" />
     <None Remove="Resources\TKDTrigrams.png" />
   </ItemGroup>
@@ -19,6 +22,9 @@
 
   <ItemGroup>
     <Resource Include="Resources\BoxingRing.png" />
+    <Resource Include="Resources\CupIsEmpty.png" />
+    <Resource Include="Resources\CupIsFull.png" />
+    <Resource Include="Resources\CupIsHalf.png" />
     <Resource Include="Resources\KarateGate.png" />
     <Resource Include="Resources\TKDTrigrams.png" />
   </ItemGroup>

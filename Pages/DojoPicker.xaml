@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.Pages" DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="832" d:DesignWidth="800">
     <UserControl.Background>
         <RadialGradientBrush RadiusX="0.6" RadiusY="0.7">
             <RadialGradientBrush.RelativeTransform>
@@ -37,9 +37,9 @@
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
         
-        <Image x:Name ="TKDTrigrams" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/TKDTrigrams.png" Stretch="Fill" Opacity="0.25" Visibility="Hidden" />
-        <Image x:Name ="KarateLogo" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/KarateGate.png" Stretch="Fill" Opacity="0.25" StretchDirection="Both" Margin="-258,-175,-253,-228" Visibility="Hidden"/>
-        <Image x:Name ="BoxingRing" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/BoxingRing.png" Stretch="Fill" Opacity="0.25" StretchDirection="Both" Visibility="Hidden"/>
+        <Image x:Name ="TKDTrigrams" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/TKDTrigrams.png" Stretch="Fill" Opacity="0.25" Visibility="Collapsed" />
+        <Image x:Name ="KarateLogo" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/KarateGate.png" Stretch="Fill" Opacity="0.25" StretchDirection="Both" Margin="-218,-186,-208,-217" Visibility="Collapsed"/>
+        <Image x:Name ="BoxingRing" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/BoxingRing.png" Stretch="Fill" Opacity="0.25" StretchDirection="Both" Visibility="Collapsed"/>
         
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
@@ -58,7 +58,8 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="TaeKwonDo" Content="TaeKwonDo" Grid.Row="2" HorizontalAlignment="Center" MinWidth="100" Click="Button_Click" Background="#3F4682B4" FontWeight="Bold" Foreground="White" BorderBrush="#FF090000" MouseEnter="TaeKwonDo_MouseEnter" MouseLeave="TaeKwonDo_MouseLeave"/>
             <Button x:Name="Boxing" Content="Boxing" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" MinWidth="100" Click="Button_Click" MouseEnter="Boxing_MouseEnter" MouseLeave="Boxing_MouseLeave" Background="#3F4682B4" FontWeight="Bold" Foreground="White" BorderBrush="#FF090000"/>
-            <Button x:Name="Karate" Content="Karate" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" MinWidth="100" Click="Button_Click" MouseEnter="Karate_MouseEnter" MouseLeave="Karate_MouseLeave" Background="#3F4682B4" FontWeight="Bold" Foreground="White" BorderBrush="#FF090000"/>
+            <Button x:Name="Karate" Content="Karate" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" MinWidth="100" Click="Button_Click" MouseEnter="Karate_MouseEnter" MouseLeave="Karate_MouseLeave" Background="#3F4682B4" FontWeight="Bold" Foreground="White" BorderBrush="#FF090000"/>             
+            
         </Grid>
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="73" Foreground="Black" FontWeight="Bold">
             <TextBlock.Effect>

@@ -12,7 +12,7 @@
                 <DataTemplate>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="auto" />
@@ -22,13 +22,13 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Rectangle Fill="{Binding Background}" Grid.ColumnSpan="8"/>
-                        <Button Content="{Binding FightName}" Margin="25,5,0,5" Width="100" IsEnabled="{Binding IsActive}" Command="{Binding StartFighting}"/>
+                        <Button Content="{Binding FightName}" Margin="5,5,0,5" Width="100" IsEnabled="{Binding IsActive}" Command="{Binding StartFighting}"/>
                         <Label Content="Attack Power:" Grid.Column="1" FontWeight="Bold"/>
                         <Label Content="{Binding AttackString}" Grid.Column="2"/>
                         <Label Content="Health:" Grid.Column="3" FontWeight="Bold"/>
                         <Label Content="{Binding HealthString}" Grid.Column="4" />
                         <Label Content="Wins:" Grid.Column="5" FontWeight="Bold"/>
-                        <Label Content="{Binding Wins}" Grid.Column="6"/>
+                        <Label Content="{Binding Wins}" Grid.Column="6" />
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

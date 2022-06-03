@@ -27,7 +27,11 @@ namespace BecomeSifu.Controls
             _ = new GenerateTabs(Tabs);
             _ = new GeneratePracticeTabs(PracticeTabs);
             _ = new GenerateAdvancedTabs(AdvancedTabs);
+        }
 
+        public void StartingMessages()
+        {
+            Extensions.SendMessage("Test Message");
         }
     }
 }

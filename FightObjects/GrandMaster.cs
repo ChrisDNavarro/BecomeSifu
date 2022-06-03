@@ -11,7 +11,7 @@ namespace BecomeSifu.FightObjects
 {
     public class GrandMaster : AllFights , IFights
     {
-        public ICommand StartFighting => new RelayCommand(async () => await Task.Run(() => Begin()));
+        public ICommand StartFighting => new RelayCommand(() => Begin());
         public GrandMaster()
         {
             Wins = 0;

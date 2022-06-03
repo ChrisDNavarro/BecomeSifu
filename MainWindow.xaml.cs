@@ -24,16 +24,11 @@ namespace BecomeSifu
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static BecomeSifuClient Client;
+        public BecomeSifuClient Client { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             Setup();
-        }
-
-        private void OnExitMenuItemClick(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
         }
 
         public void Setup()
@@ -43,20 +38,18 @@ namespace BecomeSifu
             PageHolder.DojoPicker = new DojoPicker();
             PageHolder.MessagePopUp = new MessagePopUp();
 
+            
+            PageHolder.DojoPicker.Height = ContentArea.Height;
+            PageHolder.DojoPicker.Width = ContentArea.Width;
             ContentArea.Content = PageHolder.DojoPicker;
-        }
-
-        public void MessagePopUp(string message)
-        {
-            PageHolder.MessagePopUp.
-            Popup.Content = PageHolder.MessagePopUp;
         }
 
         public void Start()
         {
-            ContentArea.Content = PageHolder.MainClient;
+            
             PageHolder.MainClient.Height = ContentArea.Height;
             PageHolder.MainClient.Width = ContentArea.Width;
+            ContentArea.Content = PageHolder.MainClient;
             Client = new BecomeSifuClient();
         }
 

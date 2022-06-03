@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BecomeSifu.Controls;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -16,11 +17,16 @@ namespace BecomeSifu.Pages
     /// <summary>
     /// Interaction logic for MessagePopUp.xaml
     /// </summary>
-    public partial class MessagePopUp : UserControl
+    public partial class MessagePopUp : Window
     {
         public MessagePopUp()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -5,15 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BecomeSifu"
         mc:Ignorable="d"
-        Title="MainWindow" Height="830" Width="1200">
-
-    <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="_File">
-                <MenuItem Header="E_xit" Click="OnExitMenuItemClick" />
-            </MenuItem>
-        </Menu>
+        Title="MainWindow" Height="815" Width="765">
+    
+    <Grid>
         <ContentControl x:Name="ContentArea" />
-        <ContentControl x:Name="Popup"/>
-    </DockPanel>
+    </Grid>
 </Window>
