@@ -28,6 +28,7 @@ namespace BecomeSifu.MartialArts
         public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
         public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
         public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
+        public bool Maxed { get; set; }
 
         public void UpdateBonuses(List<int> bonuses)
         {
@@ -116,6 +117,48 @@ namespace BecomeSifu.MartialArts
 
             CalculateHealthGain();
             HealthGainString = HealthGain.ConvertToString();
+
+            CheckForMaxed();
+        }
+
+        private void CheckForMaxed()
+        {
+            int maxed = 0;
+
+            foreach (Punches punch in Dojos.Punches)
+            {
+                if(punch.LevelInt == 500)
+                {
+                    maxed++;
+                }
+            }
+            foreach (Kicks kick in Dojos.Kicks)
+            {
+                if (kick.LevelInt == 500)
+                {
+                    maxed++;
+                }
+            }
+            foreach (Specials special in Dojos.Specials)
+            {
+                if (special.LevelInt == 500)
+                {
+                    maxed++;
+                }
+            }
+            foreach (Defenses def in Dojos.Defenses)
+            {
+                if (def.LevelInt == 500)
+                {
+                    maxed++;
+                }
+            }
+
+            if (maxed == Dojos.Punches.Count + Dojos.Kicks.Count + Dojos.Specials.Count + Dojos.Defenses.Count)
+            {
+                Maxed= true;
+            }
+
         }
 
         public void StartStopMeditation()
