@@ -23,8 +23,8 @@ namespace BecomeSifu.Pages
         public Practice()
         {
             InitializeComponent();
-            Dojos.BoundDojo[0].Timer = new DispatcherTimer();
-            PracticeIC.ItemsSource = Dojos.BoundDojo;
+            Dojos.Dojo[0].Timer = new DispatcherTimer();
+            PracticeIC.ItemsSource = Dojos.Dojo;
         }
     }
 }

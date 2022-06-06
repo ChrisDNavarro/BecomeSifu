@@ -23,8 +23,8 @@ namespace BecomeSifu.Pages
         public Meditate()
         {
             InitializeComponent();
-            Dojos.BoundDojo[0].MeditateTimer = new DispatcherTimer();
-            MeditateIC.ItemsSource = Dojos.BoundDojo;
+            Dojos.Dojo[0].MeditateTimer = new DispatcherTimer();
+            MeditateIC.ItemsSource = Dojos.Dojo;
         }
     }
 }

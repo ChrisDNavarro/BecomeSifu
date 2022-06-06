@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BecomeSifu.Controls;
+using BecomeSifu.MartialArts;
 using BecomeSifu.Objects;
 using BecomeSifu.Pages;
 
@@ -24,11 +25,26 @@ namespace BecomeSifu
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<int> Bonuses = new List<int>();
+        public string OldDojo { get; set; }
         public BecomeSifuClient Client { get; set; }
         public MainWindow()
         {
             InitializeComponent();
             Setup();
+        }
+
+        public void BonusesCollection(int bonus, bool keep)
+        {
+            if (keep)
+            {
+                Bonuses.Add((int)bonus);
+            }
+            else
+            {
+                Bonuses.Clear();
+                Bonuses.Add((int)bonus);
+            }
         }
 
         public void Setup()
@@ -38,7 +54,7 @@ namespace BecomeSifu
             PageHolder.DojoPicker = new DojoPicker();
             PageHolder.MessagePopUp = new MessagePopUp();
 
-            
+
             PageHolder.DojoPicker.Height = ContentArea.Height;
             PageHolder.DojoPicker.Width = ContentArea.Width;
             ContentArea.Content = PageHolder.DojoPicker;
@@ -50,8 +66,12 @@ namespace BecomeSifu
             PageHolder.MainClient.Height = ContentArea.Height;
             PageHolder.MainClient.Width = ContentArea.Width;
             ContentArea.Content = PageHolder.MainClient;
-            Client = new BecomeSifuClient();
+            Client = new BecomeSifuClient(Bonuses);
         }
 
+        private void BecomeSifu_Closed(object sender, EventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }

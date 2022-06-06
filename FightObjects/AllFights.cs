@@ -24,12 +24,12 @@ namespace BecomeSifu.FightObjects
         {
             await Task.Run(async () =>
             {
-                FighterHealth = Dojos.BoundDojo[0].Health;
+                FighterHealth = Dojos.Dojo[0].Health;
                 while (FighterHealth > 0 && Health > 0)
                 {
-                    decimal z = decimal.Subtract(decimal.Multiply(decimal.Divide(decimal.Add(3.1M, (decimal)RNG.NextDouble()), 4M), Attack), Dojos.BoundDojo[0].Defense);
+                    decimal z = decimal.Subtract(decimal.Multiply(decimal.Divide(decimal.Add(3.1M, (decimal)RNG.NextDouble()), 4M), Attack), Dojos.Dojo[0].Defense);
                     FighterHealth -= z;
-                    Health -= Dojos.BoundDojo[0].Attack * (1 + Dojos.BoundDojo[0].AttackSpeedModifier);
+                    Health -= Dojos.Dojo[0].Attack * (1 + Dojos.Dojo[0].AttackSpeedModifier);
                     await Task.Delay(10);
                 }
             });

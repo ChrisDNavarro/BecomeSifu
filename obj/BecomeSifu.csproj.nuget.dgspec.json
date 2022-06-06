@@ -1,24 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\NCRDev\\BecomeSifu\\BecomeSifu.csproj": {}
+    "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj": {}
   },
   "projects": {
-    "C:\\NCRDev\\BecomeSifu\\BecomeSifu.csproj": {
+    "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\NCRDev\\BecomeSifu\\BecomeSifu.csproj",
+        "projectUniqueName": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
         "projectName": "BecomeSifu",
-        "projectPath": "C:\\NCRDev\\BecomeSifu\\BecomeSifu.csproj",
-        "packagesPath": "C:\\Users\\CN250039\\.nuget\\packages\\",
-        "outputPath": "C:\\NCRDev\\BecomeSifu\\obj\\",
+        "projectPath": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
+        "packagesPath": "C:\\Users\\cn250039\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
           "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\CN250039\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\cn250039\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -73,7 +73,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.405\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

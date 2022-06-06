@@ -121,7 +121,7 @@ namespace BecomeSifu.MartialArts
             EnergyString = Energy.ConvertToString();
             EnergyGainString = (EnergyGain * 1.5M).ConvertToString();
 
-            Dojos.BoundDojo.Refresh();
+            Dojos.Dojo.Refresh();
             Extensions.UpdateActives();
         }
     }

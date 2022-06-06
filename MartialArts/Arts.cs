@@ -20,12 +20,34 @@ namespace BecomeSifu.MartialArts
         public decimal TotalSteps { get; set; }
         public decimal TotalLevels { get; set; }
         public decimal AttackSpeedModifier { get; set; }
-
+        private decimal BonusOne { get; set; }
+        private decimal BonusTwo { get; set; }
+        private bool Bonuses;
 
         public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
         public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
         public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
         public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
+
+        public void UpdateBonuses(List<int> bonuses)
+        {
+            foreach (int bonus in bonuses)
+            {
+                if (bonus == 1)
+                {
+                    BonusOne++;
+                }
+                if (bonus == 2)
+                {
+                    BonusTwo++;
+                }
+            }
+            if (BonusOne > 0 || BonusTwo > 0)
+            {
+                Bonuses = true;
+            }
+            Dojos.Dojo.Refresh();
+        }
 
 
         public virtual decimal AttacksExpToNext(int step, int level)
@@ -43,7 +65,9 @@ namespace BecomeSifu.MartialArts
 
         public virtual decimal EnergyToUnlock(int step)
         {
-            return (decimal)Math.Pow(10, step);
+            return Bonuses && BonusOne > 0 
+                ? (decimal)Math.Pow(10, step) * (1 - (.1M * BonusOne)) 
+                : (decimal)Math.Pow(10, step);
         }
 
         public void Practice()
@@ -70,7 +94,7 @@ namespace BecomeSifu.MartialArts
                 DefenseString = Defense.ConvertToString();
                 DefenseGainString = DefenseGain.ConvertToString();
 
-                Dojos.BoundDojo.Refresh();
+                Dojos.Dojo.Refresh();
 
                 Extensions.UpdateActives();
             }
@@ -101,7 +125,7 @@ namespace BecomeSifu.MartialArts
                 IsMeditating = !IsMeditating;
                 IsMeditatingString = "Start Meditating";
                 MeditateOption = Visibility.Collapsed;
-                Dojos.BoundDojo.Refresh();
+                Dojos.Dojo.Refresh();
                 Extensions.UpdateActives();
             }
             else
@@ -109,7 +133,7 @@ namespace BecomeSifu.MartialArts
                 IsMeditating = !IsMeditating;
                 IsMeditatingString = "Stop Meditating";
                 MeditateOption = Visibility.Visible;
-                Dojos.BoundDojo.Refresh();
+                Dojos.Dojo.Refresh();
                 Extensions.UpdateActives();
             }
         }
@@ -126,7 +150,7 @@ namespace BecomeSifu.MartialArts
             EnergyString = Energy.ConvertToString();
             EnergyGainString = EnergyGain.ConvertToString();
 
-            Dojos.BoundDojo.Refresh();
+            Dojos.Dojo.Refresh();
             Extensions.UpdateActives();
         }
 
@@ -138,9 +162,9 @@ namespace BecomeSifu.MartialArts
                 {
                     AutoPractice = !AutoPractice;
                     Rate = "Auto";
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo.Refresh();
                     Timer.Stop();
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo.Refresh();
                 }
                 else
                 {
@@ -148,9 +172,9 @@ namespace BecomeSifu.MartialArts
                     Rate = (1 / Multiplier).ConvertToString() + " click(s)/s";
                     Timer.Tick += Timer_Tick;
                     Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Multiplier));
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo.Refresh();
                     Timer.Start();
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo.Refresh();
                 }
             });
         }
@@ -183,7 +207,7 @@ namespace BecomeSifu.MartialArts
                     Rate = (1 / Multiplier).ConvertToString() + " click(s)/s";
                     MeditateTimer.Tick += MeditateTimer_Tick;
                     MeditateTimer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Multiplier));
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo.Refresh();
                     MeditateTimer.Start();
                 }
             });
@@ -191,7 +215,7 @@ namespace BecomeSifu.MartialArts
 
         public virtual void CalculateHealthGain()
         {
-            decimal x = TotalSteps * TotalLevels;
+            decimal x = TotalSteps * TotalLevels / 10;
             HealthGain = x < 50
                 ? decimal.Add((decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 / 2, 0.01M)
                 : x < 68
@@ -229,32 +253,29 @@ namespace BecomeSifu.MartialArts
 
         public virtual void CalculateExpGain()
         {
-            ExpGain = TotalSteps * TotalLevels;
+            ExpGain = Bonuses && BonusTwo > 0 
+                ? TotalSteps * TotalLevels * ( 1 + (.5M * BonusTwo)) 
+                : TotalSteps * TotalLevels;
         }
 
         public virtual void CalculateEnergyGain()
         {
-            decimal x = TotalSteps * TotalLevels;
-            if (IsMeditating)
-            {
-                EnergyGain = x < 50
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 * 1.5M
+            decimal x = TotalSteps * TotalLevels / 2;
+            EnergyGain = IsMeditating
+                ? x < 50
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 
                 : x < 68
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100 * 1.5M
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100
                 : x < 98
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100 * 1.5M
-                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100) * 1.5M;
-            }
-            else
-            {
-                EnergyGain = x < 50
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 / 2
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100
+                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100)
+                : x < 50
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 / 3
                 : x < 68
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100 / 2
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100 / 3
                 : x < 98
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100 / 2
-                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100) / 2;
-            }
+                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100 / 3
+                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100) / 3;
         }
 
 

@@ -39,12 +39,17 @@
                                 </RadialGradientBrush>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Image x:Name="CupImage" Source="{Binding Imagesource}" Stretch="Uniform" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity=".4">
+                        <Image x:Name="CupImage" Source="{Binding Imagesource}" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity="1">
                             <Image.Effect>
-                                <DropShadowEffect ShadowDepth="0" Color="Blue" BlurRadius="5"/>
+                                <BlurEffect Radius="10"/>
                             </Image.Effect>
                         </Image>
-                        <Button Content="Empty Your Cup"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Black" RenderTransformOrigin="0.5,0.5" Command="{Binding EmptyYourCup}">    
+                        <Image Source="{Binding Imagesource}" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity="1">
+                            <Image.Effect>
+                                <BlurEffect Radius="2=3"/>
+                            </Image.Effect>
+                        </Image>
+                        <Button x:Name="EmptyCupButton" Content="{Binding ButtonName}"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Black" RenderTransformOrigin="0.5,0.5" Command="{Binding EmptyYourCup}" IsEnabled="{Binding ButtonActive}">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="LightBlue"/>

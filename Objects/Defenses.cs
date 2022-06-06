@@ -23,7 +23,7 @@ namespace BecomeSifu.Objects
         public Defenses(string name, int step)
         {
             DefenseName = name;
-            if (Dojos.BoundDojo[0].IsBoxing)
+            if (Dojos.Dojo[0].IsBoxing)
             {
                 Step = step + 3;
             }
@@ -35,7 +35,7 @@ namespace BecomeSifu.Objects
             LevelInt = 0;
             Level = "Lvl " + (LevelInt + 1).ToString();
 
-            ExpToNext = Dojos.BoundDojo[0].EnergyToUnlock(Step);
+            ExpToNext = Dojos.Dojo[0].EnergyToUnlock(Step);
             ExpString = ExpToNext.ConvertToString();
             LevelUp = $"Learn\r\n{ExpString} Eng";
 
@@ -55,23 +55,23 @@ namespace BecomeSifu.Objects
         {
             if (!Learned)
             {
-                if (Dojos.BoundDojo[0].Energy >= ExpToNext)
+                if (Dojos.Dojo[0].Energy >= ExpToNext)
                 {
                     Learned = true;
-                    Dojos.BoundDojo[0].TotalSteps++;
+                    Dojos.Dojo[0].TotalSteps++;
                     if (Step >= Dojos.Defenses.Count)
                     {
                         AllDefense = true;
                     }
-                    Dojos.BoundDojo[0].Energy -= ExpToNext;
+                    Dojos.Dojo[0].Energy -= ExpToNext;
                     CompleteLevelUp();
                 }
             }
             else
             {
-                if (Dojos.BoundDojo[0].Exp >= ExpToNext && !MaxLevel)
+                if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
                 {
-                    Dojos.BoundDojo[0].Exp -= ExpToNext;
+                    Dojos.Dojo[0].Exp -= ExpToNext;
                     CompleteLevelUp();
                 }
             }
@@ -84,15 +84,15 @@ namespace BecomeSifu.Objects
                 LevelInt++;
                 
 
-                ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step, LevelInt);
+                ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step, LevelInt);
                 ExpString = ExpToNext.ConvertToString();
 
                 
                 Level = "Lvl " + LevelInt.ToString();
 
-                Dojos.BoundDojo[0].TotalLevels++;
+                Dojos.Dojo[0].TotalLevels++;
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
-                Dojos.BoundDojo.Refresh();
+                Dojos.Dojo.Refresh();
                 Dojos.Defenses.Refresh();
                 Extensions.UpdateActives();
             }

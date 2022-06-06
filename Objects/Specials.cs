@@ -24,7 +24,7 @@ namespace BecomeSifu.Objects
             LevelInt = 0;
             Level = "Lvl " + (LevelInt + 1).ToString();
 
-            ExpToNext = Dojos.BoundDojo[0].EnergyToUnlock(Step);
+            ExpToNext = Dojos.Dojo[0].EnergyToUnlock(Step);
             ExpString = ExpToNext.ConvertToString();
             LevelUp = $"Learn\r\n{ExpString} Eng";
 
@@ -44,21 +44,21 @@ namespace BecomeSifu.Objects
         {
             if (!Learned)
             {
-                if (Dojos.BoundDojo[0].Energy >= ExpToNext)
+                if (Dojos.Dojo[0].Energy >= ExpToNext)
                 {
                     Learned = true;
-                    Dojos.BoundDojo[0].TotalSteps++;
-                    Dojos.BoundDojo[0].Energy -= ExpToNext;
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo[0].TotalSteps++;
+                    Dojos.Dojo[0].Energy -= ExpToNext;
+                    Dojos.Dojo.Refresh();
                     CompleteLevelUp();
                 }
             }
             else
             {
-                if (Dojos.BoundDojo[0].Exp >= ExpToNext && !MaxLevel)
+                if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
                 {
-                    Dojos.BoundDojo[0].Exp -= ExpToNext;
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo[0].Exp -= ExpToNext;
+                    Dojos.Dojo.Refresh();
                     CompleteLevelUp();
                 }
             }
@@ -70,19 +70,19 @@ namespace BecomeSifu.Objects
             {
                 LevelInt++;
 
-                ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step+1, LevelInt);
+                ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step+1, LevelInt);
                 ExpString = ExpToNext.ConvertToString();
 
                 
                 Level = "Lvl " + LevelInt.ToString();
 
-                Dojos.BoundDojo[0].TotalLevels++;
-                if (Dojos.BoundDojo[0].IsBoxing)
+                Dojos.Dojo[0].TotalLevels++;
+                if (Dojos.Dojo[0].IsBoxing)
                 {
-                    Dojos.BoundDojo[0].AttackSpeedModifier = .2M * Dojos.BoundDojo[0].TotalLevels++;
+                    Dojos.Dojo[0].AttackSpeedModifier = .2M * Dojos.Dojo[0].TotalLevels++;
                 }
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
-                Dojos.BoundDojo.Refresh();
+                Dojos.Dojo.Refresh();
                 Dojos.Specials.Refresh();
 
                 Extensions.UpdateActives();

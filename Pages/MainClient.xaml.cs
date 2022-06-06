@@ -53,7 +53,7 @@ namespace BecomeSifu.Pages
 
         private void MessagePopUp_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            MessagePopUp.IsOpen = false;
+            Extensions.SendNextMessage();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace BecomeSifu.FightObjects
             AttackString = Attack.ConvertToString();
             if (Wins > 0 && Wins % 5 == 0)
             {
-                if (!Dojos.BoundDojo[0].IsTaekwondo)
+                if (!Dojos.Dojo[0].IsTaekwondo)
                 {
                     Dojos.Specials[0].AttackEnabled = true;
                     Dojos.Specials.Refresh();

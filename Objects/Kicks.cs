@@ -19,7 +19,7 @@ namespace BecomeSifu.Objects
         public Kicks(string name, int step)
         {
             AttackName = name;
-            if (Dojos.BoundDojo[0].IsBoxing)
+            if (Dojos.Dojo[0].IsBoxing)
             {
                 Step = 10;
             }
@@ -31,7 +31,7 @@ namespace BecomeSifu.Objects
             LevelInt = 0;
             Level = "Lvl " + (LevelInt + 1).ToString();
 
-            ExpToNext = Dojos.BoundDojo[0].EnergyToUnlock(Step);
+            ExpToNext = Dojos.Dojo[0].EnergyToUnlock(Step);
             ExpString = ExpToNext.ConvertToString();
             LevelUp = $"Learn\r\n{ExpString} Eng";
 
@@ -51,17 +51,17 @@ namespace BecomeSifu.Objects
         {
             if (!Learned)
             {
-                if (Dojos.BoundDojo[0].Energy >= ExpToNext)
+                if (Dojos.Dojo[0].Energy >= ExpToNext)
                 {
                     Learned = true;
-                    Dojos.BoundDojo[0].TotalSteps++;
+                    Dojos.Dojo[0].TotalSteps++;
                     if(Step >= Dojos.Kicks.Count)
                     {
                         AllKicks = true;
                     }
                     if (Step == 1)
                     {
-                        if (Dojos.BoundDojo[0].IsTaekwondo)
+                        if (Dojos.Dojo[0].IsTaekwondo)
                         {
                             Dojos.Specials[0].AttackEnabled = true;
                             Dojos.Specials.Refresh();
@@ -74,17 +74,17 @@ namespace BecomeSifu.Objects
                         Dojos.Defenses[0].DefenseEnabled = true;
                         Dojos.Defenses.Refresh();
                     }
-                    Dojos.BoundDojo[0].Energy -= ExpToNext;
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo[0].Energy -= ExpToNext;
+                    Dojos.Dojo.Refresh();
                     CompleteLevelUp();
                 }
             }
             else
             {
-                if (Dojos.BoundDojo[0].Exp >= ExpToNext && !MaxLevel)
+                if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
                 {
-                    Dojos.BoundDojo[0].Exp -= ExpToNext;
-                    Dojos.BoundDojo.Refresh();
+                    Dojos.Dojo[0].Exp -= ExpToNext;
+                    Dojos.Dojo.Refresh();
                     CompleteLevelUp();
                 }
             }
@@ -95,19 +95,19 @@ namespace BecomeSifu.Objects
             if (LevelInt <= 500)
             {
                 LevelInt++;
-                ExpToNext = Dojos.BoundDojo[0].AttacksExpToNext(Step, LevelInt);
+                ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step, LevelInt);
                 ExpString = ExpToNext.ConvertToString();
 
                 
                 Level = "Lvl " + LevelInt.ToString();
 
-                Dojos.BoundDojo[0].TotalLevels++;
+                Dojos.Dojo[0].TotalLevels++;
 
                 LevelUp = $"Level Up \r\n{ExpString} Exp";
 
 
 
-                Dojos.BoundDojo.Refresh();
+                Dojos.Dojo.Refresh();
                 Dojos.Punches.Refresh();
 
                 Extensions.UpdateActives();

@@ -3,6 +3,7 @@ using BecomeSifu.Objects;
 using BecomeSifu.UserControls;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,7 +16,8 @@ namespace BecomeSifu.Controls
         private ItemCollection Tabs;
         private ItemCollection PracticeTabs;
         private ItemCollection AdvancedTabs;
-        public BecomeSifuClient()
+        private List<int> Bonuses = new List<int>();
+        public BecomeSifuClient(List<int> bonuses)
         {
             Tabs = PageHolder.MainClient.ActionTabControl.Items;
             PracticeTabs = PageHolder.MainClient.PracticeTabControl.Items;
@@ -27,11 +29,18 @@ namespace BecomeSifu.Controls
             _ = new GenerateTabs(Tabs);
             _ = new GeneratePracticeTabs(PracticeTabs);
             _ = new GenerateAdvancedTabs(AdvancedTabs);
+            Bonuses = bonuses;
         }
 
         public void StartingMessages()
         {
-            Extensions.SendMessage("Test Message");
+            Extensions.CreateMessage("test", true);
+        }
+
+        public void UpdateBonuses()
+        {
+            Dojos.Cup[0].UpdateBonuses(Bonuses);
+            Dojos.Dojo[0].UpdateBonuses(Bonuses);
         }
     }
 }

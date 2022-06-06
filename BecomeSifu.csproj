@@ -12,6 +12,7 @@
     <None Remove="Resources\CupIsFull.png" />
     <None Remove="Resources\CupIsHalf.png" />
     <None Remove="Resources\KarateGate.png" />
+    <None Remove="Resources\test.txt" />
     <None Remove="Resources\TKDTrigrams.png" />
   </ItemGroup>
 
@@ -26,6 +27,7 @@
     <Resource Include="Resources\CupIsFull.png" />
     <Resource Include="Resources\CupIsHalf.png" />
     <Resource Include="Resources\KarateGate.png" />
+    <EmbeddedResource Include="Resources\test.txt" />
     <Resource Include="Resources\TKDTrigrams.png" />
   </ItemGroup>
 

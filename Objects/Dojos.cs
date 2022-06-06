@@ -16,8 +16,6 @@ namespace BecomeSifu.Objects
 {
     public static class Dojos
     {
-        public static IDojo Dojo;
-
         public static ObservableCollection<Punches> Punches = new ObservableCollection<Punches>();
 
         public static ObservableCollection<Kicks> Kicks = new ObservableCollection<Kicks>();
@@ -28,7 +26,7 @@ namespace BecomeSifu.Objects
 
         public static ObservableCollection<IFights> Fights = new ObservableCollection<IFights>();
 
-        public static ObservableCollection<IDojo> BoundDojo = new ObservableCollection<IDojo>();
+        public static ObservableCollection<IDojo> Dojo = new ObservableCollection<IDojo>();
 
         public static ObservableCollection<EmptyCupControl> Cup = new ObservableCollection<EmptyCupControl>();
 
@@ -36,12 +34,28 @@ namespace BecomeSifu.Objects
 
         public static void PickDojo(IDojo dojo)
         {
-            Dojo = dojo;
-            Dojo.CurrentArt = true;
-            BoundDojo.Add(Dojo);
+            if (string.IsNullOrEmpty(PageHolder.MainWindow.OldDojo))
+            {
+                PageHolder.MainWindow.OldDojo = dojo.ToString();
+            }
+            else
+            {
+                if(PageHolder.MainWindow.OldDojo == dojo.ToString())
+                {
+                    PageHolder.MainWindow.BonusesCollection(2, false);
+                    PageHolder.MainWindow.OldDojo = dojo.ToString();
+                }
+                else
+                {
+                    PageHolder.MainWindow.BonusesCollection(1, false);
+                    PageHolder.MainWindow.OldDojo = dojo.ToString();
+                }
+            }
+            Dojo.Add(dojo);
             AddCup(new EmptyCupControl());
             PageHolder.MainWindow.Start();
             PageHolder.MainWindow.Client.StartingMessages();
+            PageHolder.MainWindow.Client.UpdateBonuses();
         }
 
         public static void AddPunch(Punches newPunch)
@@ -80,7 +94,7 @@ namespace BecomeSifu.Objects
             Kicks.Clear();
             Specials.Clear();
             Defenses.Clear();
-            BoundDojo.Clear();
+            Dojo.Clear();
             Cup.Clear();
             Fights.Clear();
 
@@ -88,7 +102,7 @@ namespace BecomeSifu.Objects
             Kicks.Refresh();
             Specials.Refresh();
             Defenses.Refresh();
-            BoundDojo.Refresh();
+            Dojo.Refresh();
             Cup.Refresh();
             Fights.Refresh();
         }

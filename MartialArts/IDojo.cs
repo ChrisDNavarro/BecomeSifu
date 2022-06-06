@@ -18,6 +18,7 @@ namespace BecomeSifu.MartialArts
         bool IsTaekwondo { get; }
         bool CurrentArt { get; set; }
         decimal AttackSpeedModifier { get; set; }
+        void UpdateBonuses(List<int> bonuses);
 
         decimal AttacksExpToNext(int step, int level);
         decimal EnergyToUnlock(int step);
