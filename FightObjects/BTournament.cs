@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -24,11 +25,16 @@ namespace BecomeSifu.FightObjects
         }
         public void Won(int win)
         {
-            Wins = win;
+            Wins += win;
             Health = ((decimal)Wins + 1) * 10000;
             Attack = ((decimal)Wins + 1) * 1000;
             HealthString = Health.ConvertToString();
             AttackString = Attack.ConvertToString();
+            if (Wins >= 1 && Wins < 1000)
+            {
+                Dojos.Dojo[0].Multiplier = 1M - (.001M * Wins);
+                Dojos.Dojo.Refresh();
+            }
             if (Wins > 0 && Wins % 5 == 0)
             {
                 Dojos.Fights[2].IsActive = true;

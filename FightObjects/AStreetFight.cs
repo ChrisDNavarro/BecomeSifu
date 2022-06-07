@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -33,6 +34,14 @@ namespace BecomeSifu.FightObjects
             Attack = ((decimal)Wins + 1) * 100;
             HealthString = Health.ConvertToString();
             AttackString = Attack.ConvertToString();
+
+            if (Wins == 5)
+            {
+                Dojos.Dojo[0].CanAutoMeditate = Visibility.Visible;
+                Dojos.Dojo.Refresh();
+            }
+
+
             Dojos.Fights.Refresh();
         }
         public async void Begin()

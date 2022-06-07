@@ -11,6 +11,7 @@ namespace BecomeSifu.Controls
         public static MainClient MainClient { get; set; }
         public static MessagePopUp MessagePopUp { get; set; }
         public static DojoPicker DojoPicker { get; set; }
+        public static PickArtsBonus PickArtsBonus { get; set; }
 
     }
 }

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace BecomeSifu.FightObjects
 {
@@ -24,14 +25,20 @@ namespace BecomeSifu.FightObjects
         }
         public void Won(int win)
         {
-            Wins = win;
+            Wins += win;
             Health = ((decimal)Wins + 1) * 100000;
             Attack = ((decimal)Wins + 1) * 10000;
             HealthString = Health.ConvertToString();
             AttackString = Attack.ConvertToString();
+            if (Wins == 1)
+            {
+                Dojos.Cup[0].ButtonActive = true;
+                Dojos.Cup[0].ButtonName = "Empty Your Cup";
+                Dojos.Cup[0].Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsFull.png"));
+            }
             if (Wins > 0 && Wins % 5 == 0)
             {
-                if (!Dojos.Dojo[0].IsTaekwondo)
+                if (!Dojos.Dojo[0].Perks[1].Active)
                 {
                     Dojos.Specials[0].AttackEnabled = true;
                     Dojos.Specials.Refresh();

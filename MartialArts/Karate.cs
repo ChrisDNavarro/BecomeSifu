@@ -84,45 +84,11 @@ namespace BecomeSifu.MartialArts
 
         public bool IsBoxing { get; } = false;
 
-        public bool IsTaekwondo { get; } = false;
-
-        public override void CalculateAttackGain()
-        {
-            decimal total = 0;
-            foreach (Punches punch in Dojos.Punches)
-            {
-                total += punch.Step * punch.LevelInt * 1.1M;
-            }
-            foreach (Kicks kick in Dojos.Kicks)
-            {
-                total += kick.Step * kick.LevelInt * 1.1M;
-            }
-            foreach (Specials special in Dojos.Specials)
-            {
-                total += special.Step * 10 * special.LevelInt * 1.1M;
-            }
-            AttackGain = total;
-        }
-
         public override decimal EnergyToUnlock(int step)
         {
             return (decimal)Math.Pow(10, step) * 1.5M;
         }
 
-        public override void Meditation()
-        {
-            CalculateHealthGain();
-            Health += HealthGain * 1.5M;
-            HealthString = Health.ConvertToString();
-            HealthGainString = (HealthGain * 1.5M).ConvertToString();
 
-            CalculateEnergyGain();
-            Energy += EnergyGain * 1.5M;
-            EnergyString = Energy.ConvertToString();
-            EnergyGainString = (EnergyGain * 1.5M).ConvertToString();
-
-            Dojos.Dojo.Refresh();
-            Extensions.UpdateActives();
-        }
     }
 }

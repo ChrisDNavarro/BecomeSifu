@@ -70,29 +70,12 @@ namespace BecomeSifu.MartialArts
             {
                 Defenses[i] = _DefensesList[i];
             }
+            for (int i = 0; i < Perk.Count; i++)
+            {
+                Perks.Add(new Perk(i, false));
+            }
         }
 
         public bool IsBoxing { get; } = true;
-        public bool IsTaekwondo { get; } = false;
-
-        public override void CalculateAttackGain()
-        {
-            decimal total = 0;
-
-            foreach (Kicks kick in Dojos.Kicks)
-            {
-                foreach (Punches punch in Dojos.Punches)
-                {
-                    total += kick.LevelInt != 0
-                        ? total += punch.Step * punch.LevelInt * 2M * .004M * kick.LevelInt
-                        : total += punch.Step * punch.LevelInt * 2M;
-                }
-            }
-            foreach (Specials special in Dojos.Specials)
-            {
-                total += special.Step * 10 * special.LevelInt;
-            }
-            AttackGain = total;
-        }
     }
 }

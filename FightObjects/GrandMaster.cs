@@ -24,7 +24,7 @@ namespace BecomeSifu.FightObjects
         }
         public void Won(int win)
         {
-            Wins = win;
+            Wins += win;
             Health = ((decimal)Wins + 1) * 10000000;
             Attack = ((decimal)Wins + 1) * 1000000;
             HealthString = Health.ConvertToString();

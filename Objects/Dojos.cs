@@ -10,6 +10,7 @@ using BecomeSifu.UserControls;
 using System.Collections.ObjectModel;
 using BecomeSifu.FightObjects;
 using BecomeSifu.Controls;
+using System.Windows;
 
 namespace BecomeSifu.Objects
 
@@ -42,15 +43,23 @@ namespace BecomeSifu.Objects
             {
                 if(PageHolder.MainWindow.OldDojo == dojo.ToString())
                 {
-                    PageHolder.MainWindow.BonusesCollection(2, false);
+                    PageHolder.MainWindow.BonusesCollection(1, false);
                     PageHolder.MainWindow.OldDojo = dojo.ToString();
                 }
                 else
                 {
-                    PageHolder.MainWindow.BonusesCollection(1, false);
+                    PageHolder.MainWindow.BonusesCollection(2, false);
                     PageHolder.MainWindow.OldDojo = dojo.ToString();
                 }
             }
+
+            foreach(int perkID in PageHolder.MainWindow.ActivePerks)
+            {
+                dojo.Perks[perkID].Active = true;
+                dojo.Perks[perkID].Visible = Visibility.Visible;
+                dojo.Perks.Refresh();
+            }
+
             Dojo.Add(dojo);
             AddCup(new EmptyCupControl());
             PageHolder.MainWindow.Start();

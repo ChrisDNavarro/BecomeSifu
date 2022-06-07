@@ -16,6 +16,9 @@
     <Compile Update="Pages\EmptyCup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\PickArtsBonus.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\Practice.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -64,6 +67,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\EmptyCup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\PickArtsBonus.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Practice.xaml">

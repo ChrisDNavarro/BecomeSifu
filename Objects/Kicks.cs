@@ -61,7 +61,7 @@ namespace BecomeSifu.Objects
                     }
                     if (Step == 1)
                     {
-                        if (Dojos.Dojo[0].IsTaekwondo)
+                        if (Dojos.Dojo[0].Perks[1].Active)
                         {
                             Dojos.Specials[0].AttackEnabled = true;
                             Dojos.Specials.Refresh();

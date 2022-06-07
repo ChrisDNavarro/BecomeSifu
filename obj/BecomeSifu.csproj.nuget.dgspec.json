@@ -50,6 +50,10 @@
               "target": "Package",
               "version": "[5.4.1.1, )"
             },
+            "System.ObjectModel": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
             "System.Threading.Timer": {
               "target": "Package",
               "version": "[4.3.0, )"

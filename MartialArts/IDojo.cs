@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,11 +15,12 @@ namespace BecomeSifu.MartialArts
         Dictionary<int, string> Kicks { get; }
         Dictionary<int, string> Specials { get; }
         Dictionary<int, string> Defenses { get; }
+        ObservableCollection<Perk> Perks { get; }
         bool IsBoxing { get; }
-        bool IsTaekwondo { get; }
         bool CurrentArt { get; set; }
         decimal AttackSpeedModifier { get; set; }
         void UpdateBonuses(List<int> bonuses);
+        bool CheckForMaxed();
 
         decimal AttacksExpToNext(int step, int level);
         decimal EnergyToUnlock(int step);

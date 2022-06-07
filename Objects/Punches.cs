@@ -49,10 +49,15 @@ namespace BecomeSifu.Objects
                     Learned = true;
                     Dojos.Dojo[0].TotalSteps++;
                     Dojos.Dojo[0].Energy -= ExpToNext;
+                    Dojos.Dojo[0].EnergyString = Dojos.Dojo[0].Energy.ConvertToString();
+                    Dojos.Dojo.Refresh();
                     if (Step == 1)
                     {
-                        Dojos.Kicks[0].AttackEnabled = true;
-                        Dojos.Kicks.Refresh();
+                        if (Dojos.Dojo[0].Energy >= Dojos.Kicks[0].ExpToNext)
+                        {
+                            Dojos.Kicks[0].AttackEnabled = true;
+                            Dojos.Kicks.Refresh();
+                        }
                         Dojos.Fights[0].IsActive = true;
                         Dojos.Fights.Refresh();
                     }

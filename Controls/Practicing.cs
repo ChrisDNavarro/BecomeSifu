@@ -1,4 +1,5 @@
-﻿using BecomeSifu.Objects;
+﻿using BecomeSifu.MartialArts;
+using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

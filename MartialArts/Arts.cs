@@ -11,6 +11,7 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using System.Threading;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace BecomeSifu.MartialArts
 {
@@ -28,6 +29,7 @@ namespace BecomeSifu.MartialArts
         public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
         public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
         public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
+        public ObservableCollection<Perk> Perks { get; } = new ObservableCollection<Perk>();
         public bool Maxed { get; set; }
 
         public void UpdateBonuses(List<int> bonuses)
@@ -60,13 +62,13 @@ namespace BecomeSifu.MartialArts
                 : step == 6 || step == 7
                 ? (decimal)((1.2 * Math.Pow(level + 3, 3)) - (15 * Math.Pow(level + 3, 2)) + (100 * (level + 3)) - 140)
                 : (decimal)(5 * Math.Pow(level + 4, 3) / 4);
-        }
+        } 
 
 
 
         public virtual decimal EnergyToUnlock(int step)
         {
-            return Bonuses && BonusOne > 0 
+            return Bonuses && BonusTwo > 0 
                 ? (decimal)Math.Pow(10, step) * (1 - (.1M * BonusOne)) 
                 : (decimal)Math.Pow(10, step);
         }
@@ -118,10 +120,10 @@ namespace BecomeSifu.MartialArts
             CalculateHealthGain();
             HealthGainString = HealthGain.ConvertToString();
 
-            CheckForMaxed();
+            
         }
 
-        private void CheckForMaxed()
+        public bool CheckForMaxed()
         {
             int maxed = 0;
 
@@ -154,10 +156,7 @@ namespace BecomeSifu.MartialArts
                 }
             }
 
-            if (maxed == Dojos.Punches.Count + Dojos.Kicks.Count + Dojos.Specials.Count + Dojos.Defenses.Count)
-            {
-                Maxed= true;
-            }
+            return maxed == Dojos.Punches.Count + Dojos.Kicks.Count + Dojos.Specials.Count + Dojos.Defenses.Count;
 
         }
 
@@ -183,15 +182,30 @@ namespace BecomeSifu.MartialArts
 
         public virtual void Meditation()
         {
-            CalculateHealthGain();
-            Health += HealthGain;
-            HealthString = Health.ConvertToString();
-            HealthGainString = HealthGain.ConvertToString();
+            if (Perks[5].Active)
+            {
+                CalculateHealthGain();
+                Health += HealthGain * 1.5M;
+                HealthString = Health.ConvertToString();
+                HealthGainString = (HealthGain * 1.5M).ConvertToString();
 
-            CalculateEnergyGain();
-            Energy += EnergyGain;
-            EnergyString = Energy.ConvertToString();
-            EnergyGainString = EnergyGain.ConvertToString();
+                CalculateEnergyGain();
+                Energy += EnergyGain * 1.5M;
+                EnergyString = Energy.ConvertToString();
+                EnergyGainString = (EnergyGain * 1.5M).ConvertToString();
+            }
+            else
+            {
+                CalculateHealthGain();
+                Health += HealthGain;
+                HealthString = Health.ConvertToString();
+                HealthGainString = HealthGain.ConvertToString();
+
+                CalculateEnergyGain();
+                Energy += EnergyGain;
+                EnergyString = Energy.ConvertToString();
+                EnergyGainString = EnergyGain.ConvertToString();
+            }
 
             Dojos.Dojo.Refresh();
             Extensions.UpdateActives();
@@ -279,48 +293,73 @@ namespace BecomeSifu.MartialArts
         public virtual void CalculateAttackGain()
         {
             decimal total = 0;
-            foreach (Punches punch in Dojos.Punches)
+            if (Perks[2].Active)
             {
-                total += punch.Step * punch.LevelInt;
+                foreach (Kicks kick in Dojos.Kicks)
+                {
+                    foreach (Punches punch in Dojos.Punches)
+                    {
+                        total += kick.LevelInt != 0
+                            ? total += punch.Step * punch.LevelInt * 2M * .004M * kick.LevelInt
+                            : total += punch.Step * punch.LevelInt * 2M;
+                    }
+                }
             }
-            foreach (Kicks kick in Dojos.Kicks)
+            else
             {
-                total += kick.Step * kick.LevelInt;
+                foreach (Punches punch in Dojos.Punches)
+                {
+                    total += punch.Step * punch.LevelInt;
+                }
+                foreach (Kicks kick in Dojos.Kicks)
+                {
+                    if (Perks[0].Active)
+                    {
+                        total += kick.Step * kick.LevelInt * 1.5M;
+                    }
+                    else
+                    {
+                        total += kick.Step * kick.LevelInt;
+                    }
+                }
             }
             foreach (Specials special in Dojos.Specials)
             {
                 total += special.Step * 10 * special.LevelInt;
             }
-            AttackGain = total;
+
+            AttackGain = Perks[4].Active 
+                ? total * 1.1M 
+                : total;
+
         }
 
         public virtual void CalculateExpGain()
         {
-            ExpGain = Bonuses && BonusTwo > 0 
-                ? TotalSteps * TotalLevels * ( 1 + (.5M * BonusTwo)) 
-                : TotalSteps * TotalLevels;
+            ExpGain = Bonuses && BonusOne > 0 
+                ? TotalSteps * TotalLevels * 1.2M * ( 1 + (.5M * BonusTwo)) 
+                : TotalSteps * TotalLevels * 1.2M;
         }
 
         public virtual void CalculateEnergyGain()
         {
-            decimal x = TotalSteps * TotalLevels / 2;
+            decimal percent = TotalLevels / ((Punches.Count * 500) + (Kicks.Count * 500) + (Defenses.Count * 500) + (Specials.Count * 500)) * 100;
+            decimal cubed = (decimal)Math.Pow(Convert.ToDouble(percent), 3);
             EnergyGain = IsMeditating
-                ? x < 50
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 
-                : x < 68
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100
-                : x < 98
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100
-                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100)
-                : x < 50
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 / 3
-                : x < 68
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100 / 3
-                : x < 98
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100 / 3
-                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100) / 3;
+                ? percent < 50
+                    ? cubed * (100 - percent) / 50
+                    : percent < 68
+                    ? cubed * (150 - percent) / 100
+                    : percent < 98
+                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M
+                    : cubed * (160 - percent) / 100M
+                : percent < 50
+                    ? cubed * (100 - percent) / 50 / 3
+                    : percent < 68
+                    ? cubed * (150 - percent) / 100 / 3
+                    : percent < 98
+                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M / 3
+                    : cubed * (160 - percent) / 100M / 3;
         }
-
-
     }
 }

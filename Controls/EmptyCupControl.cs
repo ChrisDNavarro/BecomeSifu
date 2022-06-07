@@ -23,8 +23,14 @@ namespace BecomeSifu.Controls
         {
             if (Emptied)
             {
-                Dojos.CleanOut();
-                PageHolder.MainWindow.Setup();
+                if (Dojos.Dojo[0].CheckForMaxed())
+                {
+                    PageHolder.MainWindow.StorePerk();
+                }
+                else
+                {
+                    PageHolder.MainWindow.Setup();
+                }
                 ButtonName = "Empty Your Cup";
                 Emptied = false;
             }
@@ -57,13 +63,16 @@ namespace BecomeSifu.Controls
 
             if(bonusOne > 0)
             {
-                bonusUpdates.AppendLine($@"Attacks and Defenses cast {10 * bonusOne}% less Energy to learn. ");
+                
+                bonusUpdates.AppendLine($@"You earn {50 * bonusOne}% more experience per practice.");
+                Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsHalf.png"));
                 bonusUpdates.AppendLine("");
             }
 
             if(bonusTwo > 0)
             {
-                bonusUpdates.AppendLine($@"You earn {50 * bonusTwo}% more experience per practice.");
+                bonusUpdates.AppendLine($@"Attacks and Defenses cast {10 * bonusTwo}% less Energy to learn. ");
+                Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsHalf.png"));
             }
 
             CurrentBonus = bonusUpdates.ToString();

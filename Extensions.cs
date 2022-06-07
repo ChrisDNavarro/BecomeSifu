@@ -22,58 +22,56 @@ namespace BecomeSifu
 
         public static void UpdateActives()
         {
-            if (Dojos.Punches[0].Learned)
+            for (int i = 0; i < Dojos.Punches.Count; i++)
             {
-                for (int i = 0; i < Dojos.Punches.Count; i++)
-                {
-                    Dojos.Punches[i].AttackEnabled = Dojos.Punches[i].Learned
+                Dojos.Punches[i].AttackEnabled = i > 0
+                    ? Dojos.Punches[i].Learned
                         ? Dojos.Dojo[0].Exp >= Dojos.Punches[i].ExpToNext
-                        : Dojos.Punches[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Punches[i].ExpToNext;
-                    Dojos.Punches.Refresh();
-                }
+                        : Dojos.Punches[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Punches[i].ExpToNext
+                    : Dojos.Dojo[0].Exp >= Dojos.Punches[i].ExpToNext;
+                Dojos.Punches.Refresh();
             }
-            if (Dojos.Kicks[0].Learned)
+            for (int i = 0; i < Dojos.Kicks.Count; i++)
             {
-                for (int i = 0; i < Dojos.Kicks.Count; i++)
-                {
-                    Dojos.Kicks[i].AttackEnabled = Dojos.Kicks[i].Learned
+                Dojos.Kicks[i].AttackEnabled = i > 0
+                    ? Dojos.Kicks[i].Learned
                         ? Dojos.Dojo[0].Exp >= Dojos.Kicks[i].ExpToNext
-                        : Dojos.Kicks[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Kicks[i].ExpToNext;
-                    Dojos.Kicks.Refresh();
-                }
+                        : Dojos.Kicks[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Kicks[i].ExpToNext
+                    : Dojos.Dojo[0].Exp >= Dojos.Kicks[i].ExpToNext;
+                Dojos.Kicks.Refresh();
             }
-            if (Dojos.Specials[0].Learned)
+            for (int i = 0; i < Dojos.Specials.Count; i++)
             {
-                for (int i = 0; i < Dojos.Specials.Count; i++)
-                {
-                    Dojos.Specials[i].AttackEnabled = Dojos.Specials[i].Learned
+                Dojos.Specials[i].AttackEnabled = i > 0
+                    ? Dojos.Specials[i].Learned
                         ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
-                        : Dojos.Specials[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext;
-                    Dojos.Specials.Refresh();
-                }
+                        : Dojos.Specials[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
+                    : Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext;
+                Dojos.Specials.Refresh();
             }
-            if (Dojos.Defenses[0].Learned)
+            for (int i = 0; i < Dojos.Defenses.Count; i++)
             {
-                for (int i = 0; i < Dojos.Defenses.Count; i++)
-                {
-                    Dojos.Defenses[i].DefenseEnabled = Dojos.Defenses[i].Learned
+                Dojos.Defenses[i].DefenseEnabled = i > 0
+                    ? Dojos.Defenses[i].Learned
                         ? Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext
-                        : Dojos.Defenses[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Defenses[i].ExpToNext;
-                    Dojos.Defenses.Refresh();
-                }
+                        : Dojos.Defenses[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Defenses[i].ExpToNext
+                    : Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext;
+                Dojos.Defenses.Refresh();
             }
         }
 
 
         public static string ConvertToString(this decimal exp)
         {
-             return exp < 1000
-                ? exp.ToString("#.##")
-                : exp < 1000000
-                ? (exp / 1000).ToString("#.##") + "k"
-                : exp < 1000000000
-                ? (exp / 1000000).ToString("#.##") + "M"
-                : (exp / 1000000000).ToString("#.##") + "B";
+            return exp == 0
+                    ? "0"
+                    : exp < 1000
+                    ? exp.ToString("#.##")
+                    : exp < 1000000
+                    ? (exp / 1000).ToString("#.##") + "k"
+                    : exp < 1000000000
+                    ? (exp / 1000000).ToString("#.##") + "M"
+                    : (exp / 1000000000).ToString("#.##") + "B";
         }
 
         public static void SendMessage(string message)

@@ -1,4 +1,5 @@
-﻿using BecomeSifu.MartialArts;
+﻿using BecomeSifu.Controls;
+using BecomeSifu.MartialArts;
 using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
@@ -57,12 +58,36 @@ namespace BecomeSifu.Pages
             switch ((sender as Button).Content.ToString().ToLower())
             {
                 case "taekwondo":
+                    if (!PageHolder.MainWindow.ActivePerks.Contains(0))
+                    {
+                        PageHolder.MainWindow.ActivePerks.Add(0);
+                    }
+                    if (!PageHolder.MainWindow.ActivePerks.Contains(1))
+                    {
+                        PageHolder.MainWindow.ActivePerks.Add(1);
+                    }
                     Dojos.PickDojo(new Taekwondo());
                     break;
                 case "boxing":
+                    if (!PageHolder.MainWindow.ActivePerks.Contains(2))
+                    {
+                        PageHolder.MainWindow.ActivePerks.Add(2);
+                    }
+                    if (!PageHolder.MainWindow.ActivePerks.Contains(3))
+                    {
+                        PageHolder.MainWindow.ActivePerks.Add(3);
+                    }
                     Dojos.PickDojo(new Boxing());
                     break;
                 case "karate":
+                    if (!PageHolder.MainWindow.ActivePerks.Contains(4))
+                    {
+                        PageHolder.MainWindow.ActivePerks.Add(4);
+                    }
+                    if (!PageHolder.MainWindow.ActivePerks.Contains(5))
+                    {
+                        PageHolder.MainWindow.ActivePerks.Add(5);
+                    }
                     Dojos.PickDojo(new Karate());
                     break;
                 default:
