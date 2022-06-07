@@ -12,9 +12,9 @@ TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\App.xaml
 161413787129
 
-491062061696
+50-2048217028
 196-228990012
 MainWindow.xaml;Pages\Boosts.xaml;Pages\Debug.xaml;Pages\DojoPicker.xaml;Pages\EmptyCup.xaml;Pages\MainClient.xaml;Pages\Meditate.xaml;Pages\MessagePopUp.xaml;Pages\PickArtsBonus.xaml;Pages\Practice.xaml;Templates\TabItem.xaml;UserControls\AttacksKicks.xaml;UserControls\AttacksPunches.xaml;UserControls\AttacksSpecials.xaml;UserControls\Defense.xaml;UserControls\Fights.xaml;
 
-False
+True
 
