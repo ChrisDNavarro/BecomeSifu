@@ -32,7 +32,7 @@ namespace BecomeSifu.FightObjects
             AttackString = Attack.ConvertToString();
             if (Wins >= 1 && Wins < 1000)
             {
-                Dojos.Dojo[0].Multiplier = 1M - (.001M * Wins);
+                Dojos.Dojo[0].AutoSpeedMultiplier = 1M - (.001M * Wins);
                 Dojos.Dojo.Refresh();
             }
             if (Wins > 0 && Wins % 5 == 0)

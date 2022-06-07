@@ -42,11 +42,19 @@ namespace BecomeSifu
             }
             for (int i = 0; i < Dojos.Specials.Count; i++)
             {
-                Dojos.Specials[i].AttackEnabled = i > 0
-                    ? Dojos.Specials[i].Learned
-                        ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
-                        : Dojos.Specials[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
-                    : Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext;
+                if (!Dojos.Dojo[0].Perks[1].Active) 
+                {
+                    Dojos.Specials[i].AttackEnabled = i > 0
+                        ? Dojos.Specials[i].Learned
+                            ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
+                            : Dojos.Specials[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
+                        : Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext;
+                }
+                else
+                {
+                    Dojos.Specials[i].AttackEnabled = Dojos.Specials[i].Learned
+                        && Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext;
+                }
                 Dojos.Specials.Refresh();
             }
             for (int i = 0; i < Dojos.Defenses.Count; i++)

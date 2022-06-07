@@ -34,6 +34,7 @@ namespace BecomeSifu.FightObjects
             Attack = ((decimal)Wins + 1) * 100;
             HealthString = Health.ConvertToString();
             AttackString = Attack.ConvertToString();
+            Dojos.Dojo[0].EnergyGainMultiplier += .01M;
 
             if (Wins == 5)
             {
@@ -47,7 +48,7 @@ namespace BecomeSifu.FightObjects
         public async void Begin()
         {
             bool first = Convert.ToBoolean(RNG.Next(0, 2));
-            Won(await Task.Run(() => Fight()));            
+            Won(await Task.Run(() => Fight()));
         }
     }
 }

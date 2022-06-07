@@ -38,9 +38,9 @@ namespace BecomeSifu.FightObjects
             }
             if (Wins > 0 && Wins % 5 == 0)
             {
-                if (!Dojos.Dojo[0].Perks[1].Active)
+                if (!Dojos.Dojo[0].Perks[1].Active && ((Wins / 5) - 1) < Dojos.Specials.Count)
                 {
-                    Dojos.Specials[0].AttackEnabled = true;
+                    Dojos.Specials[(Wins / 5) - 1].AttackEnabled = true;
                     Dojos.Specials.Refresh();
                 }
                 Dojos.Fights[2].IsActive = true;

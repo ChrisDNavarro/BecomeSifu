@@ -47,7 +47,9 @@ namespace BecomeSifu.Controls
         public bool AutoPractice { get; set; }
         public Visibility CanAutoMeditate { get; set; } = Visibility.Collapsed;
         public Visibility CanAutoPractice { get; set; } = Visibility.Visible;
-        public decimal Multiplier { get; set; } = 1;
+        public decimal AutoSpeedMultiplier { get; set; } = 1;
+        public decimal EnergyGainMultiplier { get; set; } = 1;
+        public decimal ExpGainMultiplier { get; set; } = 1;
         public string Rate { get; set; } = "Auto";
 
         public DispatcherTimer Timer { get; set; }

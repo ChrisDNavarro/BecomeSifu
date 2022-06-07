@@ -29,6 +29,7 @@ namespace BecomeSifu.FightObjects
             Attack = ((decimal)Wins + 1) * 100000;
             HealthString = Health.ConvertToString();
             AttackString = Attack.ConvertToString();
+            Dojos.Dojo[0].ExpGainMultiplier += .1M;
             if (Wins > 0 && Wins % 5 == 0)
             {
                 Dojos.Fights[2].IsActive = true;

@@ -23,6 +23,7 @@ namespace BecomeSifu.MartialArts
         public decimal AttackSpeedModifier { get; set; }
         private decimal BonusOne { get; set; }
         private decimal BonusTwo { get; set; }
+
         private bool Bonuses;
 
         public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
@@ -226,9 +227,9 @@ namespace BecomeSifu.MartialArts
                 else
                 {
                     AutoPractice = !AutoPractice;
-                    Rate = (1 / Multiplier).ConvertToString() + " click(s)/s";
+                    Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
                     Timer.Tick += Timer_Tick;
-                    Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Multiplier));
+                    Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * AutoSpeedMultiplier));
                     Dojos.Dojo.Refresh();
                     Timer.Start();
                     Dojos.Dojo.Refresh();
@@ -261,9 +262,9 @@ namespace BecomeSifu.MartialArts
                 else
                 {
                     AutoMeditate = !AutoMeditate;
-                    Rate = (1 / Multiplier).ConvertToString() + " click(s)/s";
+                    Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
                     MeditateTimer.Tick += MeditateTimer_Tick;
-                    MeditateTimer.Interval = TimeSpan.FromMilliseconds((double)(1000 * Multiplier));
+                    MeditateTimer.Interval = TimeSpan.FromMilliseconds((double)(1000 * AutoSpeedMultiplier));
                     Dojos.Dojo.Refresh();
                     MeditateTimer.Start();
                 }
@@ -337,8 +338,8 @@ namespace BecomeSifu.MartialArts
         public virtual void CalculateExpGain()
         {
             ExpGain = Bonuses && BonusOne > 0 
-                ? TotalSteps * TotalLevels * 1.2M * ( 1 + (.5M * BonusTwo)) 
-                : TotalSteps * TotalLevels * 1.2M;
+                ? TotalSteps * TotalLevels * 1.2M * ( 1 + (.5M * BonusTwo)) * ExpGainMultiplier
+                : TotalSteps * TotalLevels * 1.2M * ExpGainMultiplier;
         }
 
         public virtual void CalculateEnergyGain()
@@ -347,19 +348,19 @@ namespace BecomeSifu.MartialArts
             decimal cubed = (decimal)Math.Pow(Convert.ToDouble(percent), 3);
             EnergyGain = IsMeditating
                 ? percent < 50
-                    ? cubed * (100 - percent) / 50
+                    ? cubed * (100 - percent) / 50 * EnergyGainMultiplier
                     : percent < 68
-                    ? cubed * (150 - percent) / 100
+                    ? cubed * (150 - percent) / 100 * EnergyGainMultiplier
                     : percent < 98
-                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M
-                    : cubed * (160 - percent) / 100M
+                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M * EnergyGainMultiplier
+                    : cubed * (160 - percent) / 100M * EnergyGainMultiplier
                 : percent < 50
-                    ? cubed * (100 - percent) / 50 / 3
+                    ? cubed * (100 - percent) / 50 / 3 * EnergyGainMultiplier
                     : percent < 68
-                    ? cubed * (150 - percent) / 100 / 3
+                    ? cubed * (150 - percent) / 100 / 3 * EnergyGainMultiplier
                     : percent < 98
-                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M / 3
-                    : cubed * (160 - percent) / 100M / 3;
+                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M / 3 * EnergyGainMultiplier
+                    : cubed * (160 - percent) / 100M / 3 * EnergyGainMultiplier;
         }
     }
 }

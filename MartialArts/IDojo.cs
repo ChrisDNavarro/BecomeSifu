@@ -84,7 +84,9 @@ namespace BecomeSifu.MartialArts
         bool AutoPractice { get; set; }
         Visibility CanAutoMeditate { get; set; }
         Visibility CanAutoPractice { get; set; }
-        decimal Multiplier { get; set; }
+        decimal AutoSpeedMultiplier { get; set; }
+        decimal EnergyGainMultiplier { get; set; }
+        decimal ExpGainMultiplier { get; set; }
         string Rate { get; set; }
         DispatcherTimer Timer { get; set; }
         DispatcherTimer MeditateTimer { get; set; }
