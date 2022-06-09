@@ -38,6 +38,10 @@ namespace BecomeSifu.FightObjects
             if (Wins > 0 && Wins % 5 == 0)
             {
                 Dojos.Fights[2].IsActive = true;
+                if (Wins / 5 == 1)
+                {
+                    Extensions.CreateMessage("Championship", true);
+                }
             }
             Dojos.Fights.Refresh();
         }

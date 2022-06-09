@@ -119,9 +119,7 @@ namespace BecomeSifu.MartialArts
             DefenseGainString = DefenseGain.ConvertToString();
 
             CalculateHealthGain();
-            HealthGainString = HealthGain.ConvertToString();
-
-            
+            HealthGainString = HealthGain.ConvertToString();            
         }
 
         public bool CheckForMaxed()

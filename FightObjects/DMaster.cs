@@ -32,7 +32,11 @@ namespace BecomeSifu.FightObjects
             Dojos.Dojo[0].ExpGainMultiplier += .1M;
             if (Wins > 0 && Wins % 5 == 0)
             {
-                Dojos.Fights[2].IsActive = true;
+                Dojos.Fights[4].IsActive = true;
+                if (Wins / 5 == 1)
+                {
+                    Extensions.CreateMessage("GrandMaster", true);
+                }
             }
             IsActive = false;
 

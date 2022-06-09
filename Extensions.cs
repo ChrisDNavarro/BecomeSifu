@@ -82,7 +82,7 @@ namespace BecomeSifu
                     : (exp / 1000000000).ToString("#.##") + "B";
         }
 
-        public static void SendMessage(string message)
+        private static void SendMessage(string message)
         {
             PageHolder.MainClient.Message.Text = message;
             PageHolder.MainClient.MessagePopUp.IsOpen = true;

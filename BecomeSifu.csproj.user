@@ -31,9 +31,6 @@
     <Compile Update="Pages\MessagePopUp.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Templates\TabItem.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="UserControls\AttacksKicks.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,9 +79,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\MessagePopUp.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Templates\TabItem.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControls\AttacksKicks.xaml">

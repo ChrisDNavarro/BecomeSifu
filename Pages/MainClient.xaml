@@ -45,8 +45,7 @@
                 <TextBlock x:Name="Message" Background="#AA4682B4" Padding="5" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="50,50 "/>
             </Grid>
         </Popup>
-        <Image x:Name="Aniamtion" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="-75,0,0,0" 
-               gif:ImageBehavior.RepeatBehavior="3x">
+        <Image x:Name="Aniamtion" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="-75,0,0,0" >
             <Image.Effect>
                 <BlurEffect Radius="50"/>
             </Image.Effect>

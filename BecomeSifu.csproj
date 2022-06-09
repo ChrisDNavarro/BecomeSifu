@@ -15,6 +15,7 @@
     <None Remove="Messages\Kicks.txt" />
     <None Remove="Messages\Let us Begin.txt" />
     <None Remove="Messages\Master.txt" />
+    <None Remove="Messages\Specials.txt" />
     <None Remove="Messages\Street Fight.txt" />
     <None Remove="Messages\Tae Kwon Do Championship.txt" />
     <None Remove="Messages\Tae Kwon Do Specials.txt" />
@@ -38,6 +39,7 @@
     <EmbeddedResource Include="Messages\Kicks.txt" />
     <EmbeddedResource Include="Messages\Let us Begin.txt" />
     <EmbeddedResource Include="Messages\Master.txt" />
+    <EmbeddedResource Include="Messages\Specials.txt" />
     <EmbeddedResource Include="Messages\Street Fight.txt" />
     <EmbeddedResource Include="Messages\Tae Kwon Do Championship.txt" />
     <EmbeddedResource Include="Messages\Tae Kwon Do Specials.txt" />
@@ -62,6 +64,10 @@
     <Resource Include="Resources\CupIsHalf.png" />
     <Resource Include="Resources\KarateGate.png" />
     <Resource Include="Resources\TKDTrigrams.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logging\" />
   </ItemGroup>
 
 </Project>

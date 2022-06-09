@@ -23,6 +23,8 @@ namespace BecomeSifu.Controls
         {
             if (Emptied)
             {
+                ButtonName = "Empty Your Cup";
+                Emptied = false;
                 if (Dojos.Dojo[0].CheckForMaxed())
                 {
                     PageHolder.MainWindow.StorePerk();
@@ -31,8 +33,6 @@ namespace BecomeSifu.Controls
                 {
                     PageHolder.MainWindow.Setup();
                 }
-                ButtonName = "Empty Your Cup";
-                Emptied = false;
             }
             else
             {

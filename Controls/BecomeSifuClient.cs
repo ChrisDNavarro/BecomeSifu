@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using WpfAnimatedGif;
@@ -42,9 +43,10 @@ namespace BecomeSifu.Controls
 
             var gif = new BitmapImage();
             gif.BeginInit();
-            gif.UriSource = new Uri("../Animations/Kicks.gif");
+            gif.UriSource = new Uri("pack://application:,,,/Animations/Kicks.gif");
             gif.EndInit();
             ImageBehavior.SetAnimatedSource(PageHolder.MainClient.Aniamtion, gif);
+            ImageBehavior.SetAnimationDuration(PageHolder.MainClient.Aniamtion, Duration.Forever);
         }
 
         public void UpdateBonuses()

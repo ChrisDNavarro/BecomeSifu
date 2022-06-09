@@ -61,11 +61,14 @@ namespace BecomeSifu.Objects
                         }
                         Dojos.Fights[0].IsActive = true;
                         Dojos.Fights.Refresh();
+                        Extensions.CreateMessage("Kicks", false);
+                        Extensions.CreateMessage("Street Fight", true);
                     }
                     if (Step == 5 && !Dojos.Defenses[0].Learned)
                     {
                         Dojos.Defenses[0].DefenseEnabled = true;
                         Dojos.Defenses.Refresh();
+                        Extensions.CreateMessage("Defense", true);
                     }
                     CompleteLevelUp();
                 }

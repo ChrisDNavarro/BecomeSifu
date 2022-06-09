@@ -42,8 +42,13 @@ namespace BecomeSifu.FightObjects
                 {
                     Dojos.Specials[(Wins / 5) - 1].AttackEnabled = true;
                     Dojos.Specials.Refresh();
+                    Extensions.CreateMessage("Specials", true);
                 }
-                Dojos.Fights[2].IsActive = true;
+                Dojos.Fights[3].IsActive = true;
+                if (Wins / 5 == 1)
+                {
+                    Extensions.CreateMessage("Master", true);
+                }
             }
             IsActive = false;
 

@@ -65,14 +65,17 @@ namespace BecomeSifu.Objects
                         {
                             Dojos.Specials[0].AttackEnabled = true;
                             Dojos.Specials.Refresh();
+                            Extensions.CreateMessage("Tae Kwon Do Specials", false);
                         }
                         Dojos.Fights[1].IsActive = true;
-                        Dojos.Fights.Refresh(); 
+                        Dojos.Fights.Refresh();
+                        Extensions.CreateMessage("Tournament", true);
                     }
                     if (Step == 5 && !Dojos.Defenses[0].Learned)
                     {
                         Dojos.Defenses[0].DefenseEnabled = true;
                         Dojos.Defenses.Refresh();
+                        Extensions.CreateMessage("Defense", true);
                     }
                     Dojos.Dojo[0].Energy -= ExpToNext;
                     Dojos.Dojo.Refresh();
