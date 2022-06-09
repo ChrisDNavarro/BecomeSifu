@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BecomeSifu.Controls;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -20,7 +21,13 @@ namespace BecomeSifu.Pages
     {
         public Boosts()
         {
-            InitializeComponent();
+            InitializeComponent();            
+        }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            BoostsController.Boost = (int)checkBox.Tag;
         }
     }
 }

@@ -1,0 +1,4 @@
+You have unlocked your third Fight: Championship.
+Winning a Championship fight unlocks the Empty Cup
+option. Winning 5 Tournaments unlocks the option to
+fight a Master and a Special Attack.

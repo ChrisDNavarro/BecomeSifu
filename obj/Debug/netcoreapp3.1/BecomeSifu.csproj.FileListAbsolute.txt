@@ -106,3 +106,4 @@ C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Deb
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\BecomeSifu.genruntimeconfig.cache
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\PickArtsBonus.g.cs
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\PickArtsBonus.baml
+C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\bin\Debug\netcoreapp3.1\WpfAnimatedGif.dll

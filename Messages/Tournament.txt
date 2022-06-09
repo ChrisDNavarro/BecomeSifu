@@ -1,0 +1,4 @@
+You have unlocked your second Fight: Tournament.
+Winning a Tournament fight decreases the time
+between auto practice and meditation by 1ms.
+Winning 5 Tournaments unlocks the Championship.

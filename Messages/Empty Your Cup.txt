@@ -1,0 +1,19 @@
+You have unlocked the ability to Empty Your Cup.
+This will reset your current progress and allow
+you to pick a school of Martial Arts again.
+
+If you select the same school, though you forget
+everything you learned, residual memory will 
+allow you to gain 50% more experience as you practice.
+
+If you select a different school, your enthusiam for
+diversify and mastering all Martial Arts will allow
+you to learn skills with 10% less energy.
+
+Navigate to the Cup of Knowledge tab and click on
+Empty Your Cup. Click Are You Sure to confirm.
+
+
+“Empty your cup so that it may be filled; become 
+devoid to gain totality.”
+				- Bruce Lee

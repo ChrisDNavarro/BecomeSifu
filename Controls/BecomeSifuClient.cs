@@ -8,6 +8,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using WpfAnimatedGif;
 
 namespace BecomeSifu.Controls
 {
@@ -34,7 +36,15 @@ namespace BecomeSifu.Controls
 
         public void StartingMessages()
         {
-            Extensions.CreateMessage("test", true);
+            Extensions.CreateMessage("You have chosen well", false);
+            Extensions.CreateMessage("The Basics", false);
+            Extensions.CreateMessage("Let us Begin", true);
+
+            var gif = new BitmapImage();
+            gif.BeginInit();
+            gif.UriSource = new Uri("../Animations/Kicks.gif");
+            gif.EndInit();
+            ImageBehavior.SetAnimatedSource(PageHolder.MainClient.Aniamtion, gif);
         }
 
         public void UpdateBonuses()

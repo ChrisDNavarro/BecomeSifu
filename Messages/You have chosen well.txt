@@ -1,0 +1,6 @@
+		Welcome to Become Sifu!
+
+An idle cliker game inspired by the world of Martial Arts.
+Now that you have joined a school of your choice, it is time
+to start learning the different skills available to you, and winning
+fights along the way to becoming a master of your chosen martial arts.

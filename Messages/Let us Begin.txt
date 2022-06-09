@@ -1,0 +1,7 @@
+You begin your journey of Mastery with enough energy
+to learn your first Attack. The first level Punch attack
+of your chosen school. You can learn the next Punch after
+reaching level 5 on the preivous Punch.
+
+"A journey of thousand miles, begins with a single step"
+					- Chinese Proverb

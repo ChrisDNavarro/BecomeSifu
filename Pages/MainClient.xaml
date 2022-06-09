@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.Pages"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com" 
              mc:Ignorable="d" 
              d:DesignHeight="832" d:DesignWidth="700">
     <UserControl.Background>
@@ -41,10 +42,15 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="3" Fill="#AA000000"/>
-                <TextBlock x:Name="Message" Background="#AA4682B4" Padding="5" Grid.Row="1" TextWrapping="Wrap" MaxWidth="350"/>
+                <TextBlock x:Name="Message" Background="#AA4682B4" Padding="5" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="50,50 "/>
             </Grid>
         </Popup>
-        <Image x:Name="IamgeControl" Grid.Row="0" Grid.Column="0" Stretch="Uniform"/>
+        <Image x:Name="Aniamtion" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="-75,0,0,0" 
+               gif:ImageBehavior.RepeatBehavior="3x">
+            <Image.Effect>
+                <BlurEffect Radius="50"/>
+            </Image.Effect>
+        </Image>
         <TabControl x:Name="PracticeTabControl" Grid.Row="0" Grid.Column="1" TabStripPlacement="Bottom" Width="300" Height="325"/>
         <TabControl x:Name="ActionTabControl" Grid.Row="1" Grid.Column="0" Height="450" Width="450"/>
         <TabControl x:Name="AdvancedTabControl" Grid.Row="1" Grid.Column="1" TabStripPlacement="Bottom" Width="300" Height="450"/>

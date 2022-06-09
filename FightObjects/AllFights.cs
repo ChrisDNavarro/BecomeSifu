@@ -1,9 +1,12 @@
-﻿using BecomeSifu.Objects;
+﻿using BecomeSifu.Controls;
+using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using WpfAnimatedGif;
 
 namespace BecomeSifu.FightObjects
 {
@@ -39,9 +42,31 @@ namespace BecomeSifu.FightObjects
 
         private int EvaluateFight()
         {
-            return FighterHealth <= 0
-                ? 0
-                : 1;
+            RadialGradientBrush background = PageHolder.MainClient.Background as RadialGradientBrush;
+
+            if (FighterHealth <= 0 && FighterHealth < Health)
+            {                
+                background.GradientStops[2].Color = Colors.Green;
+                background.GradientStops[4].Color = Colors.Green;
+                background.GradientStops[5].Color = Colors.Green;
+                Task.Delay(20);
+                background.GradientStops[2].Color = Colors.SteelBlue;
+                background.GradientStops[4].Color = Colors.SteelBlue;
+                background.GradientStops[5].Color = Colors.SteelBlue;
+                return 0;
+            }
+            else
+            {
+                background.GradientStops[2].Color = Colors.Red;
+                background.GradientStops[4].Color = Colors.Red;
+                background.GradientStops[5].Color = Colors.Red;
+                Task.Delay(20);
+                background.GradientStops[2].Color = Colors.SteelBlue;
+                background.GradientStops[4].Color = Colors.SteelBlue;
+                background.GradientStops[5].Color = Colors.SteelBlue;
+                return 1;
+            }
+               
         }
     }
 }

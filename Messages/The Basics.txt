@@ -1,0 +1,34 @@
+Each school of Martial Arts has it's one set of Attack Skills and Defense Skills. All schools,
+however, require that skills be learned in a certain as to provide a proper foundation as you increase
+your mastery. Skills are learned using Energy gained through Practice and Mediation, and can be 
+leveled up with Experience gained through Practice.
+
+
+Practice:
+Practicing increases your stats according to learned skills and skill levels. Practice is performed
+by clicking the practice button. Practice increases your Energy, Experience, Attack, and Defense.
+
+Meditation:
+Meditation increase your Energy and Health according to learned skills and skill levels. When Meditating,
+you cannot practice, and mediations is the only way to increase you health.
+
+Stats:
+
+Energy - Energy is used to learn new abilities. You gain energy through Practice, and through Meditation.
+As meditation is much more calming and relaxing exercise than practicing, you gain 3x the energy when you
+meditate.
+
+Experience - Experience is used to level up skills you have learned. It is only gained through Practice.
+The more skills you have learned, and the higher their levels, the more experience you gain everytime you
+practice.
+
+Attack - Attack determines the damage you deal during a fight. It is only gained through Practice. The 
+more Attack skills you have learned, and the higher their levels, the more experience you gain everytime
+you practice.
+
+Defense - Defense reduces the damage you receive during a fight. It is only gained through Practice. The
+more Defense skills you have learned, and the higher their levels, the more experience you gain everytime 
+you practice.
+
+Health - Health increases the amount of damage you can withsteand during a fight. Healther is only gained
+through Meditation. It increases in relation to your Energy gains.

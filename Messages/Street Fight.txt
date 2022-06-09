@@ -1,0 +1,5 @@
+You have unlocked your first Fight: Street Fight
+Winning a Street Fight increases your energy gain
+by .01%. Winning 5 Street Fights will allow you
+Meditate automatically.
+

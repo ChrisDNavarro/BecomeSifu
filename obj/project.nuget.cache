@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "K3MoYtmAO+TN4R6nOFUnYe2Vg+wiiS3CPNgPJ9PDJsUfkNuDIwQqEwEQTFg+9Y/56hq0dUgqGm9MN5B7+EzgMw==",
+  "dgSpecHash": "VDCalZQ4M5kvBWmlajFWqlf6RVpPtnhd27/6f8Zd/h2/Ybkjs2D8Ihit12L7oellZUcVwKm0r5CDImUrink24w==",
   "success": true,
   "projectFilePath": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
   "expectedPackageFiles": [
@@ -19,7 +19,8 @@
     "C:\\Users\\cn250039\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\cn250039\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\cn250039\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\cn250039\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512"
+    "C:\\Users\\cn250039\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
+    "C:\\Users\\cn250039\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512"
   ],
   "logs": [
     {

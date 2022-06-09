@@ -1,0 +1,5 @@
+You have unlocked your fourth Fight: Master.
+Winning a Master fight increases your 
+experience gain by .1%. Winning against 5
+Masters unlocks the option to fight a 
+GrandMaster.

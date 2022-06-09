@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="BecomeSifu.Pages.Boosts"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.Pages"
+             xmlns:Controls="clr-namespace:BecomeSifu.Controls" x:Class="BecomeSifu.Pages.Boosts"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200" Background="Silver">
     <Grid>
@@ -19,15 +20,12 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <RadioButton Content="1x" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <RadioButton Content="10x" Grid.Column="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <RadioButton Content="100x" Grid.Column="2" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <RadioButton Content="Max" Grid.Column="3" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <RadioButton Tag="1" Content="1x" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" />
+            <RadioButton Tag="10" Content="10x" Grid.Column="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" />
+            <RadioButton Tag="100" Content="100x" Grid.Column="2" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" />
         </Grid>
         <CheckBox Content="Auto Learn / Level Up" Grid.Row="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Label x:Name="AdvacnesLabel"/>
 
     </Grid>
 </UserControl>

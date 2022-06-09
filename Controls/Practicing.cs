@@ -10,14 +10,17 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
 
+
 namespace BecomeSifu.Controls
 {
     public class Practicing
     {
         public decimal Energy { get; set; } = 10;
         public decimal EnergyGain { get; set; }
+        public decimal EnergyMeditationGain { get; set; }
         public string EnergyString { get; set; } = "10";
         public string EnergyGainString { get; set; } = "0";
+        public string EnergyMeditationGainString { get; set; } = "0";
 
         public decimal Exp { get; set; }
         public decimal ExpGain { get; set; }

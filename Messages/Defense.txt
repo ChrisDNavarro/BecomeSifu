@@ -1,0 +1,9 @@
+You have unlocked the first Defense skill. Defense
+skills reduce the damage taken in fights. You can
+learn the next Defense skill when the previous has
+reached level 5.
+
+“Learning defense improves the attack. If the lion 
+knows how the prey can escape, it’ll capture it in 
+a much more precise way”
+				-Rillion Gracie

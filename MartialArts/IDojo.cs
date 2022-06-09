@@ -55,6 +55,8 @@ namespace BecomeSifu.MartialArts
         decimal EnergyGain { get; set; }
         string EnergyString { get; set; }
         string EnergyGainString { get; set; }
+        decimal EnergyMeditationGain { get; set; }
+        string EnergyMeditationGainString { get; set; }
 
         decimal Exp { get; set; }
         decimal ExpGain { get; set; }

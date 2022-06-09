@@ -190,10 +190,10 @@ namespace BecomeSifu.MartialArts
                 HealthString = Health.ConvertToString();
                 HealthGainString = (HealthGain * 1.5M).ConvertToString();
 
-                CalculateEnergyGain();
-                Energy += EnergyGain * 1.5M;
+                CalculateMeditationEnergyGain();
+                Energy += EnergyMeditationGain * 1.5M;
                 EnergyString = Energy.ConvertToString();
-                EnergyGainString = (EnergyGain * 1.5M).ConvertToString();
+                EnergyMeditationGainString = (EnergyMeditationGain * 1.5M).ConvertToString();
             }
             else
             {
@@ -202,10 +202,10 @@ namespace BecomeSifu.MartialArts
                 HealthString = Health.ConvertToString();
                 HealthGainString = HealthGain.ConvertToString();
 
-                CalculateEnergyGain();
-                Energy += EnergyGain;
+                CalculateMeditationEnergyGain();
+                Energy += EnergyMeditationGain;
                 EnergyString = Energy.ConvertToString();
-                EnergyGainString = EnergyGain.ConvertToString();
+                EnergyMeditationGainString = EnergyMeditationGain.ConvertToString();
             }
 
             Dojos.Dojo.Refresh();
@@ -273,14 +273,15 @@ namespace BecomeSifu.MartialArts
 
         public virtual void CalculateHealthGain()
         {
-            decimal x = TotalSteps * TotalLevels / 10;
-            HealthGain = x < 50
-                ? decimal.Add((decimal)Math.Pow(Convert.ToDouble(x), 3) * (100 - x) / 50 / 2, 0.01M)
-                : x < 68
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * (150 - x) / 100 / 2
-                : x < 98
-                ? (decimal)Math.Pow(Convert.ToDouble(x), 3) * ((1911 - 10 * x) / 500) / 100 / 2
-                : (decimal)Math.Pow(Convert.ToDouble(x), 3) * .6M / 100 * (x / 100) / 2;
+            decimal percent = (decimal)decimal.Divide(TotalLevels, ((Punches.Count * 500M) + (Kicks.Count * 500M) + (Defenses.Count * 500M) + (Specials.Count * 500M))) * 100M + 1;
+            decimal cubed = (decimal)Math.Pow(Convert.ToDouble(percent), 3);
+            HealthGain = percent < 50
+                    ? (cubed * (100 - percent) / 50) / 1.5M
+                    : percent < 68
+                    ? cubed * (150 - percent) / 100 / 1.5M
+                    : percent < 98
+                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M / 1.5M
+                    : cubed * (160 - percent) / 100M / 1.5M;
         }
 
         public virtual void CalculateDefenseGain()
@@ -344,23 +345,28 @@ namespace BecomeSifu.MartialArts
 
         public virtual void CalculateEnergyGain()
         {
-            decimal percent = TotalLevels / ((Punches.Count * 500) + (Kicks.Count * 500) + (Defenses.Count * 500) + (Specials.Count * 500)) * 100;
+            decimal percent =(decimal)decimal.Divide(TotalLevels, ((Punches.Count * 500M) + (Kicks.Count * 500M) + (Defenses.Count * 500M) + (Specials.Count * 500M))) * 100M + 1;
             decimal cubed = (decimal)Math.Pow(Convert.ToDouble(percent), 3);
-            EnergyGain = IsMeditating
-                ? percent < 50
-                    ? cubed * (100 - percent) / 50 * EnergyGainMultiplier
-                    : percent < 68
-                    ? cubed * (150 - percent) / 100 * EnergyGainMultiplier
-                    : percent < 98
-                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M * EnergyGainMultiplier
-                    : cubed * (160 - percent) / 100M * EnergyGainMultiplier
-                : percent < 50
+            EnergyGain = percent < 50
                     ? cubed * (100 - percent) / 50 / 3 * EnergyGainMultiplier
                     : percent < 68
                     ? cubed * (150 - percent) / 100 / 3 * EnergyGainMultiplier
                     : percent < 98
                     ? cubed * ((1911 - (10 * percent)) / 3) / 500M / 3 * EnergyGainMultiplier
                     : cubed * (160 - percent) / 100M / 3 * EnergyGainMultiplier;
+        }
+
+        public virtual void CalculateMeditationEnergyGain()
+        {
+            decimal percent = (decimal)decimal.Divide(TotalLevels, ((Punches.Count * 500M) + (Kicks.Count * 500M) + (Defenses.Count * 500M) + (Specials.Count * 500M))) * 100M + 1;
+            decimal cubed = (decimal)Math.Pow(Convert.ToDouble(percent), 3);
+            EnergyMeditationGain = percent < 50
+                    ? cubed * (100 - percent) / 50 * EnergyGainMultiplier
+                    : percent < 68
+                    ? cubed * (150 - percent) / 100 * EnergyGainMultiplier
+                    : percent < 98
+                    ? cubed * ((1911 - (10 * percent)) / 3) / 500M * EnergyGainMultiplier
+                    : cubed * (160 - percent) / 100M * EnergyGainMultiplier;
         }
     }
 }
