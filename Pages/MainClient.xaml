@@ -34,7 +34,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        <Popup x:Name="MessagePopUp" Placement="Center" MinWidth="749" MinHeight="777" IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" Grid.ColumnSpan="2" Grid.RowSpan="2" MouseUp="MessagePopUp_MouseUp">
+        <Popup x:Name="MessagePopUp" Placement="Center" MinWidth="749" MinHeight="777"  IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" Grid.ColumnSpan="2" Grid.RowSpan="2" MouseUp="MessagePopUp_MouseUp">
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -42,7 +42,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="3" Fill="#AA000000"/>
-                <TextBlock x:Name="Message" Background="#AA4682B4" Padding="5" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="50,50 "/>
+                <TextBlock x:Name="Message" Background="#AA4682B4" Foreground="AliceBlue" Padding="5" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="50,50 "/>
             </Grid>
         </Popup>
         <Image x:Name="Aniamtion" Grid.Row="0" Grid.Column="0" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="-75,0,0,0" >

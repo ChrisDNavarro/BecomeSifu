@@ -41,16 +41,16 @@ namespace BecomeSifu.Objects
             }
             else
             {
-                if(PageHolder.MainWindow.OldDojo == dojo.ToString())
+                if (PageHolder.MainWindow.OldDojo == dojo.ToString())
                 {
-                    PageHolder.MainWindow.BonusesCollection(1, false);
-                    PageHolder.MainWindow.OldDojo = dojo.ToString();
+                    PageHolder.MainWindow.BonusesCollection(1, EmptyCupControl.DefeatedGrandMaster);
                 }
                 else
                 {
-                    PageHolder.MainWindow.BonusesCollection(2, false);
-                    PageHolder.MainWindow.OldDojo = dojo.ToString();
+                    PageHolder.MainWindow.BonusesCollection(2, EmptyCupControl.DefeatedGrandMaster);
                 }
+
+                PageHolder.MainWindow.OldDojo = dojo.ToString();
             }
 
             foreach(int perkID in PageHolder.MainWindow.ActivePerks)

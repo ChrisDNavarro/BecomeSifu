@@ -1,4 +1,5 @@
 ﻿using BecomeSifu.Controls;
+using BecomeSifu.Logging;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Threading;
 
 namespace BecomeSifu.Objects
 {
@@ -43,74 +45,117 @@ namespace BecomeSifu.Objects
 
         public void TryLevelUp()
         {
-            if (!Learned)
+            try
             {
-                if (Dojos.Dojo[0].Energy >= ExpToNext)
+                if (!Learned)
                 {
-                    Learned = true;
-                    Dojos.Dojo[0].TotalSteps++;
-                    Dojos.Dojo[0].Energy -= ExpToNext;
-                    Dojos.Dojo[0].EnergyString = Dojos.Dojo[0].Energy.ConvertToString();
-                    Dojos.Dojo.Refresh();
-                    if (Step == 1)
+                    if (Dojos.Dojo[0].Energy >= ExpToNext)
                     {
-                        if (Dojos.Dojo[0].Energy >= Dojos.Kicks[0].ExpToNext)
+                        LogIt.Write($"Learning {AttackName}");
+                        Learned = true;
+
+                        Dojos.Dojo[0].SpendEnergy(ExpToNext);
+
+                        if (Step == 1)
                         {
-                            Dojos.Kicks[0].AttackEnabled = true;
-                            Dojos.Kicks.Refresh();
+                            if (Dojos.Dojo[0].Energy >= Dojos.Kicks[0].ExpToNext)
+                            {
+                                Dojos.Kicks[0].AttackEnabled = true;
+                                Dojos.Kicks.Refresh();
+                            }
+                            Dojos.Fights[0].IsActive = true;
+                            Dojos.Fights.Refresh();
+                            Extensions.CreateMessage("Kicks", false);
+                            Extensions.CreateMessage("Street Fight", true);
                         }
-                        Dojos.Fights[0].IsActive = true;
-                        Dojos.Fights.Refresh();
-                        Extensions.CreateMessage("Kicks", false);
-                        Extensions.CreateMessage("Street Fight", true);
+                        if (Step == 5 && !Dojos.Defenses[0].Learned)
+                        {
+                            Dojos.Defenses[0].DefenseEnabled = true;
+                            Dojos.Defenses.Refresh();
+                            Extensions.CreateMessage("Defense", true);
+                        }
+                        CompleteLevelUp();
                     }
-                    if (Step == 5 && !Dojos.Defenses[0].Learned)
+                }
+                else
+                {
+                    if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
                     {
-                        Dojos.Defenses[0].DefenseEnabled = true;
-                        Dojos.Defenses.Refresh();
-                        Extensions.CreateMessage("Defense", true);
+                        LogIt.Write($"Leveling up {AttackName}");
+                        Dojos.Dojo[0].SpendExp(ExpToNext);
+                        CompleteLevelUp();
                     }
-                    CompleteLevelUp();
                 }
             }
-            else
+            catch (Exception e)
             {
-                if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
-                {
-                    Dojos.Dojo[0].Exp -= ExpToNext;
-                    CompleteLevelUp();
-                }
+                LogIt.Write($"Error Caught: {e}");
+                throw;
             }
         }
 
         private void CompleteLevelUp()
         {
-            if (LevelInt <= 500)
+            try
             {
-                LevelInt++;
-                
+                if (LevelInt <= 500)
+                {
+                    if (500 - LevelInt <= BoostsController.Boost)
+                    {
+                        LevelInt = 500;
+                    }
+                    else
+                    {
+                        LevelInt += BoostsController.Boost;
+                    }
+                    if (LevelInt == 500)
+                    {
+                        LogIt.Write($"{AttackName} has reached Max Level");
+                        Extensions.SendMessage($"{AttackName} has reached Max Level");
+                        MaxLevel = true;
+                        LevelUp = "Max Level";
+                        Dojos.Punches.Refresh();
+                    }
+
+                    LevelUpExp();
+
+                    Level = "Lvl " + LevelInt.ToString();
+
+                    LevelUp = $"Level Up \r\n{ExpString} Exp";
+
+                    Dojos.Dojo[0].CalculateAll();
+
+                    Dojos.Dojo.Refresh();
+                    
+
+                    Dojos.Punches.Refresh();
+
+                    Extensions.UpdateActives();
+                }
+                else
+                {
+                    LogIt.Write($"{AttackName} is at Max Level");
+                    Extensions.SendMessage($"{AttackName} is at Max Level");
+                }
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
+        }
+
+        public void LevelUpExp()
+        {
+            if (Learned)
+            {
                 ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step, LevelInt);
                 ExpString = ExpToNext.ConvertToString();
-                
-                Level = "Lvl " + LevelInt.ToString();
-
-                Dojos.Dojo[0].TotalLevels++;
-
-                LevelUp = $"Level Up \r\n{ExpString} Exp";
-
-                Dojos.Dojo[0].CalculateAll();
-
-                Dojos.Dojo.Refresh();
-                Dojos.Punches.Refresh();
-
                 Extensions.UpdateActives();
-            }
-            else
-            {
-                MaxLevel = true;
-                LevelUp = "Max Level";
                 Dojos.Punches.Refresh();
             }
         }
+
+
     }
 }

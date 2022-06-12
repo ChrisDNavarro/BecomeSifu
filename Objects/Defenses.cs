@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using BecomeSifu.Controls;
+using BecomeSifu.Logging;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,14 +11,7 @@ namespace BecomeSifu.Objects
 {
     public class Defenses : Buttons
     {
-        public ICommand LevelUpCommand
-        {
-            get
-            {
-                return null;
-                //return new RelayCommand(() => TryLevelUp());
-            }
-        }
+        public ICommand LevelUpCommand => new RelayCommand(() => TryLevelUp());
         public string DefenseName { get; set; }
         public bool DefenseEnabled { get; set; }
 
@@ -53,54 +48,86 @@ namespace BecomeSifu.Objects
 
         public void TryLevelUp()
         {
-            if (!Learned)
+            try
             {
-                if (Dojos.Dojo[0].Energy >= ExpToNext)
+                if (!Learned)
                 {
-                    Learned = true;
-                    Dojos.Dojo[0].TotalSteps++;
-                    if (Step >= Dojos.Defenses.Count)
+                    if (Dojos.Dojo[0].Energy >= ExpToNext)
                     {
-                        AllDefense = true;
+                        LogIt.Write($"Learning {DefenseName}");
+                        Learned = true;
+                        Dojos.Dojo[0].TotalSteps++;
+                        if (Step >= Dojos.Defenses.Count)
+                        {
+                            AllDefense = true;
+                        }
+                        Dojos.Dojo[0].Energy -= ExpToNext;
+                        CompleteLevelUp();
                     }
-                    Dojos.Dojo[0].Energy -= ExpToNext;
-                    CompleteLevelUp();
+                }
+                else
+                {
+                    if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
+                    {
+                        LogIt.Write($"Leveling up {DefenseName}");
+                        Dojos.Dojo[0].Exp -= ExpToNext;
+                        CompleteLevelUp();
+                    }
                 }
             }
-            else
+            catch (Exception e)
             {
-                if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
-                {
-                    Dojos.Dojo[0].Exp -= ExpToNext;
-                    CompleteLevelUp();
-                }
+                LogIt.Write($"Error Caught: {e}");
+                throw;
             }
         }
 
         private void CompleteLevelUp()
         {
-            if (LevelInt <= 500)
+            try
             {
-                LevelInt++;
-                
+                if (LevelInt <= 500)
+                {
+                    if (500 - LevelInt <= BoostsController.Boost)
+                    {
+                        LevelInt = 500;
+                    }
+                    else
+                    {
+                        LevelInt += BoostsController.Boost;
+                    }
+                    if (LevelInt == 500)
+                    {
+                        LogIt.Write($"{DefenseName} has reached Max Level");
+                        MaxLevel = true;
+                        LevelUp = "Max Level";
+                        Dojos.Defenses.Refresh();
+                    }
 
-                ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step, LevelInt);
-                ExpString = ExpToNext.ConvertToString();
 
-                
-                Level = "Lvl " + LevelInt.ToString();
+                    ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step, LevelInt);
+                    ExpString = ExpToNext.ConvertToString();
 
-                Dojos.Dojo[0].TotalLevels++;
-                LevelUp = $"Level Up \r\n{ExpString} Exp";
-                Dojos.Dojo.Refresh();
-                Dojos.Defenses.Refresh();
-                Extensions.UpdateActives();
+
+                    Level = "Lvl " + LevelInt.ToString();
+
+                    Dojos.Dojo[0].TotalLevels++;
+                    LevelUp = $"Level Up \r\n{ExpString} Exp";
+                    Dojos.Dojo.Refresh();
+                    Dojos.Defenses.Refresh();
+                    Extensions.UpdateActives();
+
+                }
+                else
+                {
+                    LogIt.Write($"{DefenseName} is at Max Level");
+
+                }
             }
-            else
+            catch (Exception e)
             {
-                MaxLevel = true;
-                LevelUp = "Max Level";
-                Dojos.Defenses.Refresh();
+                LogIt.Write($"Error Caught: {e}");
+                throw;
             }
         }
 

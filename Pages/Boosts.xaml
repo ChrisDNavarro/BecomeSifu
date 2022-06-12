@@ -21,11 +21,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <RadioButton Tag="1" Content="1x" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" />
-            <RadioButton Tag="10" Content="10x" Grid.Column="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" />
-            <RadioButton Tag="100" Content="100x" Grid.Column="2" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" />
+            <RadioButton Tag="1" Content="1x" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" IsChecked="true" Foreground="RoyalBlue" />
+            <RadioButton Tag="10" Content="10x" Grid.Column="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" Foreground="RoyalBlue" />
+            <RadioButton Tag="100" Content="100x" Grid.Column="2" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" Foreground="RoyalBlue" />
         </Grid>
-        <CheckBox Content="Auto Learn / Level Up" Grid.Row="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Content="Auto Level Up" Grid.Row="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="RoyalBlue"/>
 
     </Grid>
 </UserControl>

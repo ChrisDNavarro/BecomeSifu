@@ -1,7 +1,9 @@
 ﻿using BecomeSifu.Controls;
+using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace BecomeSifu.Pages
 {
@@ -21,13 +24,26 @@ namespace BecomeSifu.Pages
     {
         public Boosts()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            BoostsController.AutoPurchase = new DispatcherTimer();
+            BoostsController.InitializeTimer();
         }
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            CheckBox checkBox = sender as CheckBox;
-            BoostsController.Boost = (int)checkBox.Tag;
+            RadioButton radioButton = sender as RadioButton;
+            BoostsController.UpdateBoost(Convert.ToInt32(radioButton.Tag));
+            
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            BoostsController.StartTimer();
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            BoostsController.StopTimer();
         }
     }
 }

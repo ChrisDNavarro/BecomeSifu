@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using BecomeSifu.Controls;
+using BecomeSifu.Logging;
 using BecomeSifu.Objects;
 using GalaSoft.MvvmLight.Command;
 
@@ -64,25 +65,35 @@ namespace BecomeSifu.MartialArts
 
         public Taekwondo()
         {
-            for (int i = 0; i < _PunchesList.Count; i++ )
+            try
             {
-                Punches[i] = _PunchesList[i];
+                for (int i = 0; i < _PunchesList.Count; i++)
+                {
+                    Punches[i] = _PunchesList[i];
+                }
+                for (int i = 0; i < _KicksList.Count; i++)
+                {
+                    Kicks[i] = _KicksList[i];
+                }
+                for (int i = 0; i < _SpecialsList.Count; i++)
+                {
+                    Specials[i] = _SpecialsList[i];
+                }
+                for (int i = 0; i < _DefensesList.Count; i++)
+                {
+                    Defenses[i] = _DefensesList[i];
+                }
+                for (int i = 0; i < Perk.Count; i++)
+                {
+                    Perks.Add(new Perk(i, false));
+                }
+
+                LogIt.Write($"Built dictionaries");
             }
-            for (int i = 0; i < _KicksList.Count; i++)
+            catch (Exception e)
             {
-                Kicks[i] = _KicksList[i];
-            }
-            for (int i = 0; i < _SpecialsList.Count; i++)
-            {
-                Specials[i] = _SpecialsList[i];
-            }
-            for (int i = 0; i < _DefensesList.Count; i++)
-            {
-                Defenses[i] = _DefensesList[i];
-            }
-            for (int i = 0; i < Perk.Count; i++)
-            {
-                Perks.Add(new Perk(i, false));
+                LogIt.Write($"Error Caught: {e}");
+                throw;
             }
         }
 
@@ -90,9 +101,18 @@ namespace BecomeSifu.MartialArts
 
         public override void CalculateDefenseGain()
         {
-            foreach (Defenses defense in Dojos.Defenses)
+            try
             {
-                DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt) * 9.9M;
+                foreach (Defenses defense in Dojos.Defenses)
+                {
+                    DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt) * 9.9M;
+                }
+                LogIt.Write();
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
             }
         }
 

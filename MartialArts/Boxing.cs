@@ -1,4 +1,5 @@
 ﻿using BecomeSifu.Controls;
+using BecomeSifu.Logging;
 using BecomeSifu.Objects;
 using GalaSoft.MvvmLight.Command;
 using System;
@@ -54,25 +55,36 @@ namespace BecomeSifu.MartialArts
 
         public Boxing()
         {
-            for (int i = 0; i < _PunchesList.Count; i++)
+            try
             {
-                Punches[i] = _PunchesList[i];
+
+                for (int i = 0; i < _PunchesList.Count; i++)
+                {
+                    Punches[i] = _PunchesList[i];
+                }
+                for (int i = 0; i < _KicksList.Count; i++)
+                {
+                    Kicks[i] = _KicksList[i];
+                }
+                for (int i = 0; i < _SpecialsList.Count; i++)
+                {
+                    Specials[i] = _SpecialsList[i];
+                }
+                for (int i = 0; i < _DefensesList.Count; i++)
+                {
+                    Defenses[i] = _DefensesList[i];
+                }
+                for (int i = 0; i < Perk.Count; i++)
+                {
+                    Perks.Add(new Perk(i, false));
+                }
+
+                LogIt.Write($"Built dictionaries");
             }
-            for (int i = 0; i < _KicksList.Count; i++)
+            catch (Exception e)
             {
-                Kicks[i] = _KicksList[i];
-            }
-            for (int i = 0; i < _SpecialsList.Count; i++)
-            {
-                Specials[i] = _SpecialsList[i];
-            }
-            for (int i = 0; i < _DefensesList.Count; i++)
-            {
-                Defenses[i] = _DefensesList[i];
-            }
-            for (int i = 0; i < Perk.Count; i++)
-            {
-                Perks.Add(new Perk(i, false));
+                LogIt.Write($"Error Caught: {e}");
+                throw;
             }
         }
 

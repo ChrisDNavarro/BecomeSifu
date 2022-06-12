@@ -71,7 +71,6 @@ C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Deb
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\Meditate.g.cs
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\MessagePopUp.g.cs
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\Practice.g.cs
-C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Templates\TabItem.g.cs
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksKicks.g.cs
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksPunches.g.cs
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksSpecials.g.cs
@@ -89,7 +88,6 @@ C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Deb
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\Meditate.baml
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\MessagePopUp.baml
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Pages\Practice.baml
-C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\Templates\TabItem.baml
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksKicks.baml
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksPunches.baml
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Debug\netcoreapp3.1\UserControls\AttacksSpecials.baml

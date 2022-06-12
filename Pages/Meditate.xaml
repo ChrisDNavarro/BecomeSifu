@@ -45,7 +45,7 @@
                                     </LinearGradientBrush>
                                 </Button.Background>
                             </Button>
-                            <CheckBox x:Name="MeditateCheckBox" Foreground="RoyalBlue" Content="{Binding Rate}" VerticalContentAlignment="Top" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"   Background="#00F01313" Margin="0,0,0,10"
+                            <CheckBox x:Name="MeditateCheckBox" Foreground="RoyalBlue" Content="{Binding Rate}"  IsChecked="{Binding AutoMeditate, Mode=OneWay}"  VerticalContentAlignment="Top" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"   Background="#00F01313" Margin="0,0,0,10"
                                               Command="{Binding AutoMeditateCheck}" Visibility="{Binding CanAutoMeditate}" />
                         </Grid>
 

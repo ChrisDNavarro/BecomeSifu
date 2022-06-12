@@ -1,7 +1,11 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using BecomeSifu.Controls;
+using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -23,6 +27,5 @@ namespace BecomeSifu.Objects
         public int LevelInt { get; set; }
         public decimal ExpToNext { get; set; } = 10;
         public string ExpString { get; set; }
-    
     }
 }

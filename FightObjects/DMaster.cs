@@ -1,4 +1,5 @@
-﻿using BecomeSifu.Objects;
+﻿using BecomeSifu.Logging;
+using BecomeSifu.Objects;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -24,28 +25,48 @@ namespace BecomeSifu.FightObjects
         }
         public void Won(int win)
         {
-            Wins += win;
-            Health = ((decimal)Wins + 1) * 1000000;
-            Attack = ((decimal)Wins + 1) * 100000;
-            HealthString = Health.ConvertToString();
-            AttackString = Attack.ConvertToString();
-            Dojos.Dojo[0].ExpGainMultiplier += .1M;
-            if (Wins > 0 && Wins % 5 == 0)
+            try
             {
-                Dojos.Fights[4].IsActive = true;
-                if (Wins / 5 == 1)
+                Wins += win;
+                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {Wins} wins");
+                Health = ((decimal)Wins + 1) * 1000000;
+                Attack = ((decimal)Wins + 1) * 100000;
+                HealthString = Health.ConvertToString();
+                AttackString = Attack.ConvertToString();
+                LogIt.Write($"Reset Healt and attack for enemy.");
+                Dojos.Dojo[0].ExpGainMultiplier += .1M;
+                if (Wins > 0 && Wins % 5 == 0)
                 {
-                    Extensions.CreateMessage("GrandMaster", true);
+                    Dojos.Fights[4].IsActive = true;
+                    if (Wins / 5 == 1)
+                    {
+                        Extensions.CreateMessage("GrandMaster", true);
+                    }
                 }
-            }
-            IsActive = false;
+                IsActive = false;
 
-            Dojos.Fights.Refresh();
+                Dojos.Fights.Refresh();
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
         public async void Begin()
         {
-            bool first = Convert.ToBoolean(RNG.Next(0, 2));
-            Won(await Task.Run(() => Fight()));
+            try
+            {
+                bool first = Convert.ToBoolean(RNG.Next(0, 2));
+                LogIt.Write($"--------------FIGHT----------------");
+                LogIt.Write($"Starting Master Fight");
+                Won(await Task.Run(() => Fight()));
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
     }
 }

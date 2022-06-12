@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BecomeSifu.Controls;
+using BecomeSifu.Logging;
 using BecomeSifu.MartialArts;
 using BecomeSifu.Objects;
 using BecomeSifu.Pages;
@@ -34,6 +35,8 @@ namespace BecomeSifu
         public MainWindow()
         {
             InitializeComponent();
+            LogIt.Write("***********************************************************************");
+            LogIt.Write("***********************************************************************");
             Setup();
         }
 
@@ -41,56 +44,84 @@ namespace BecomeSifu
         {
             if (keep)
             {
-                Bonuses.Add((int)bonus);
+                Bonuses.Add(bonus);
             }
             else
             {
                 Bonuses.Clear();
-                Bonuses.Add((int)bonus);
+                Bonuses.Add(bonus);
             }
         }
 
         public void Setup()
         {
-            if (ActivePerks.Count > 0)
+            LogIt.Write("***********************************************************************");
+            try
             {
-                foreach (int perkID in PageHolder.MainWindow.ActivePerks)
+                if (ActivePerks.Count > 0)
                 {
-                    if (!Dojos.Dojo[0].Perks[perkID].Stored)
+                    foreach (int perkID in PageHolder.MainWindow.ActivePerks)
                     {
-                        PageHolder.MainWindow.ActivePerks.RemoveAt(PageHolder.MainWindow.ActivePerks.IndexOf(perkID));
+                        if (!Dojos.Dojo[0].Perks[perkID].Stored)
+                        {
+                            PageHolder.MainWindow.ActivePerks.RemoveAt(PageHolder.MainWindow.ActivePerks.IndexOf(perkID));
+                        }
                     }
                 }
+
+                Dojos.CleanOut();
+
+                PageHolder.MainWindow = this;
+                PageHolder.MainClient = new MainClient();
+                PageHolder.DojoPicker = new DojoPicker();
+                PageHolder.MessagePopUp = new MessagePopUp();
+
+
+                PageHolder.DojoPicker.Height = ContentArea.Height;
+                PageHolder.DojoPicker.Width = ContentArea.Width;
+                ContentArea.Content = PageHolder.DojoPicker;
+                LogIt.Write();
             }
-
-            Dojos.CleanOut();
-
-            PageHolder.MainWindow = this;
-            PageHolder.MainClient = new MainClient();
-            PageHolder.DojoPicker = new DojoPicker();
-            PageHolder.MessagePopUp = new MessagePopUp();
-
-
-            PageHolder.DojoPicker.Height = ContentArea.Height;
-            PageHolder.DojoPicker.Width = ContentArea.Width;
-            ContentArea.Content = PageHolder.DojoPicker;
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
 
         public void Start()
         {
-            
-            PageHolder.MainClient.Height = ContentArea.Height;
-            PageHolder.MainClient.Width = ContentArea.Width;
-            ContentArea.Content = PageHolder.MainClient;
-            Client = new BecomeSifuClient(Bonuses);
+
+            try
+            {
+                PageHolder.MainClient.Height = ContentArea.Height;
+                PageHolder.MainClient.Width = ContentArea.Width;
+                ContentArea.Content = PageHolder.MainClient;
+                Client = new BecomeSifuClient(Bonuses);
+                LogIt.Write();
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
 
         public void StorePerk()
         {
-            PageHolder.PickArtsBonus = new PickArtsBonus();
-            PageHolder.PickArtsBonus.Height = ContentArea.Height;
-            PageHolder.PickArtsBonus.Width = ContentArea.Width;
-            ContentArea.Content = PageHolder.PickArtsBonus;
+            try
+            {
+                PageHolder.PickArtsBonus = new PickArtsBonus();
+                PageHolder.PickArtsBonus.Height = ContentArea.Height;
+                PageHolder.PickArtsBonus.Width = ContentArea.Width;
+                ContentArea.Content = PageHolder.PickArtsBonus;
+                LogIt.Write();
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
 
         private void BecomeSifu_Closed(object sender, EventArgs e)

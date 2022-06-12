@@ -1,4 +1,5 @@
-﻿using BecomeSifu.MartialArts;
+﻿using BecomeSifu.Logging;
+using BecomeSifu.MartialArts;
 using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
@@ -17,77 +18,104 @@ namespace BecomeSifu.Controls
 
         public GenerateTabs(ItemCollection tabs)
         {
-            Tabs = tabs;
-
-            IEnumerable<Type> types = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.FullName.Contains("UserControls") && !t.Name.Contains("<>c"));
-
-            foreach (Type type in types)
+            try
             {
-                TabItem tabItem = new TabItem();
-                if (type.Name.Contains("Attacks"))
+                Tabs = tabs;
+
+                IEnumerable<Type> types = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.FullName.Contains("UserControls") && !t.Name.Contains("<>c"));
+
+                foreach (Type type in types)
                 {
-                    tabItem.Header = "Attacks";
-                    if (!Attacks)
+                    TabItem tabItem = new TabItem();
+                    if (type.Name.Contains("Attacks"))
                     {
-                        Tabs.Add(tabItem);
-                        Attacks = true;
+                        tabItem.Header = "Attacks";
+                        if (!Attacks)
+                        {
+                            Tabs.Add(tabItem);
+                            Attacks = true;
+                        }
                     }
-                }
-                else
-                {                                      
-                    tabItem.Header = type.Name;
-                    Tabs.Add(tabItem);
-                }
+                    else
+                    {
+                        tabItem.Header = type.Name;
+                        Tabs.Add(tabItem);
+                    }
 
+                }
+                LogIt.Write($"Created Tabs for Content");
+                PopulateTabs();
             }
-
-            PopulateTabs();
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
 
         private void PopulateTabs()
         {
-            foreach (TabItem tab in Tabs)
+            try
             {
-                if (tab.Header.ToString().Contains("Attacks"))
+                foreach (TabItem tab in Tabs)
                 {
-                    BuildBottomTabs(tab);
+                    if (tab.Header.ToString().Contains("Attacks"))
+                    {
+                        BuildBottomTabs(tab);
+                    }
+                    else
+                    {
+                        UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.{tab.Header}").Unwrap();
+                        tab.Content = control;
+                    }
                 }
-                else
-                {                   
-                    UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.{tab.Header}").Unwrap();
-                    tab.Content = control;
-                }
+                LogIt.Write($"Created top tabs and content");
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
             }
         }
 
         private void BuildBottomTabs(TabItem tab)
         {
-            TabControl attackTabs = new TabControl
+            try
             {
-                TabStripPlacement = Dock.Bottom,
-            };
 
-            List<PropertyInfo> bottomTabs = typeof(IDojo).GetProperties().ToList();
-            foreach (PropertyInfo pI in bottomTabs)
-            {
-                string name = pI.Name;
-                if (!name.Contains("Defenses") && pI.PropertyType.ToString().Contains("Dictionary"))
+                TabControl attackTabs = new TabControl
                 {
-                    TabItem bottomTab = new TabItem
-                    {
-                        Header = name,
-                    };
-                    if (Dojos.Dojo[0].IsBoxing && name.Contains("Kicks"))
-                    {
-                        bottomTab.Header = "To The Body";
-                    }
-                    UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.Attacks{name}").Unwrap();
-                    bottomTab.Content = control;
-                    attackTabs.Items.Add(bottomTab);
-                }
-            }
+                    TabStripPlacement = Dock.Bottom,
+                };
 
-            tab.Content = attackTabs;
+                List<PropertyInfo> bottomTabs = typeof(IDojo).GetProperties().ToList();
+                foreach (PropertyInfo pI in bottomTabs)
+                {
+                    string name = pI.Name;
+                    if (!name.Contains("Defenses") && pI.PropertyType.ToString().Contains("Dictionary"))
+                    {
+                        TabItem bottomTab = new TabItem
+                        {
+                            Header = name,
+                        };
+                        if (Dojos.Dojo[0].IsBoxing && name.Contains("Kicks"))
+                        {
+                            bottomTab.Header = "To The Body";
+                        }
+                        UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.Attacks{name}").Unwrap();
+                        bottomTab.Content = control;
+                        attackTabs.Items.Add(bottomTab);
+                    }
+                }
+                LogIt.Write($"Created bottom tabs and content");
+
+                tab.Content = attackTabs;
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
     }
 }

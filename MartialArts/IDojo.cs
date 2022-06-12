@@ -45,6 +45,8 @@ namespace BecomeSifu.MartialArts
         void Timer_Tick(object source, EventArgs e);
         void StartStopAutoMeditate();
         void MeditateTimer_Tick(object source, EventArgs e);
+        void SpendEnergy(decimal energyCost);
+        public void SpendExp(decimal expCost);
 
 
         decimal TotalSteps { get; set; }

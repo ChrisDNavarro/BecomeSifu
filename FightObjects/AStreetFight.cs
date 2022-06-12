@@ -1,4 +1,5 @@
-﻿using BecomeSifu.Objects;
+﻿using BecomeSifu.Logging;
+using BecomeSifu.Objects;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -29,26 +30,49 @@ namespace BecomeSifu.FightObjects
 
         public void Won(int win)
         {
-            Wins += win;
-            Health = ((decimal)Wins + 1) * 1000;
-            Attack = ((decimal)Wins + 1) * 100;
-            HealthString = Health.ConvertToString();
-            AttackString = Attack.ConvertToString();
-            Dojos.Dojo[0].EnergyGainMultiplier += .01M;
-
-            if (Wins == 5)
+            try
             {
-                Dojos.Dojo[0].CanAutoMeditate = Visibility.Visible;
-                Dojos.Dojo.Refresh();
+                
+                Wins += win;
+                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {Wins} wins");
+                Health = ((decimal)Wins + 1) * 1000;
+                Attack = ((decimal)Wins + 1) * 100;
+                HealthString = Health.ConvertToString();
+                AttackString = Attack.ConvertToString();
+                LogIt.Write($"Reset Healt and attack for enemy.");
+                if (win == 1)
+                {
+                    Dojos.Dojo[0].EnergyGainMultiplier += .01M;
+                }
+                if (Wins == 5)
+                {
+                    Dojos.Dojo[0].CanAutoMeditate = Visibility.Visible;
+                    Dojos.Dojo.Refresh();
+                }
+
+
+                Dojos.Fights.Refresh();
             }
-
-
-            Dojos.Fights.Refresh();
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
         public async void Begin()
         {
-            bool first = Convert.ToBoolean(RNG.Next(0, 2));
-            Won(await Task.Run(() => Fight()));
+            try
+            {
+                bool first = Convert.ToBoolean(RNG.Next(0, 2));
+                LogIt.Write($"--------------FIGHT----------------");
+                LogIt.Write($"Starting Street Fight");
+                Won(await Task.Run(() => Fight()));
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
     }
 }

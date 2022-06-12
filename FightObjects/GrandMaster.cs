@@ -1,4 +1,6 @@
-﻿using BecomeSifu.Objects;
+﻿using BecomeSifu.Controls;
+using BecomeSifu.Logging;
+using BecomeSifu.Objects;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -24,19 +26,43 @@ namespace BecomeSifu.FightObjects
         }
         public void Won(int win)
         {
-            Wins += win;
-            Health = ((decimal)Wins + 1) * 10000000;
-            Attack = ((decimal)Wins + 1) * 1000000;
-            HealthString = Health.ConvertToString();
-            AttackString = Attack.ConvertToString();
+            try
+            {
+                Wins += win;
+                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {Wins} wins");
+                Health = ((decimal)Wins + 1) * 10000000;
+                Attack = ((decimal)Wins + 1) * 1000000;
+                HealthString = Health.ConvertToString();
+                AttackString = Attack.ConvertToString();
+                LogIt.Write($"Reset Healt and attack for enemy.");
+                if(win == 1)
+                {
+                    EmptyCupControl.DefeatedGrandMaster = true;
+                }
 
-            IsActive = false;
-            Dojos.Fights.Refresh();
+                IsActive = false;
+                Dojos.Fights.Refresh();
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
         public async void Begin()
         {
-            bool first = Convert.ToBoolean(RNG.Next(0, 2));
-            Won(await Task.Run(() => Fight()));
+            try
+            {
+                bool first = Convert.ToBoolean(RNG.Next(0, 2));
+                LogIt.Write($"--------------FIGHT----------------");
+                LogIt.Write($"Starting GrandMaster Fight");
+                Won(await Task.Run(() => Fight()));
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
     }
 }

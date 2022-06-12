@@ -1,4 +1,5 @@
-﻿using BecomeSifu.Objects;
+﻿using BecomeSifu.Logging;
+using BecomeSifu.Objects;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -25,39 +26,59 @@ namespace BecomeSifu.FightObjects
         }
         public void Won(int win)
         {
-            Wins += win;
-            Health = ((decimal)Wins + 1) * 100000;
-            Attack = ((decimal)Wins + 1) * 10000;
-            HealthString = Health.ConvertToString();
-            AttackString = Attack.ConvertToString();
-            if (Wins == 1)
+            try
             {
-                Dojos.Cup[0].ButtonActive = true;
-                Dojos.Cup[0].ButtonName = "Empty Your Cup";
-                Dojos.Cup[0].Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsFull.png"));
-            }
-            if (Wins > 0 && Wins % 5 == 0)
-            {
-                if (!Dojos.Dojo[0].Perks[1].Active && ((Wins / 5) - 1) < Dojos.Specials.Count)
+                Wins += win;
+                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {Wins} wins");
+                Health = ((decimal)Wins + 1) * 100000;
+                Attack = ((decimal)Wins + 1) * 10000;
+                HealthString = Health.ConvertToString();
+                AttackString = Attack.ConvertToString();
+                LogIt.Write($"Reset Healt and attack for enemy.");
+                if (Wins == 1)
                 {
-                    Dojos.Specials[(Wins / 5) - 1].AttackEnabled = true;
-                    Dojos.Specials.Refresh();
-                    Extensions.CreateMessage("Specials", true);
+                    Dojos.Cup[0].ButtonActive = true;
+                    Dojos.Cup[0].ButtonName = "Empty Your Cup";
+                    Dojos.Cup[0].Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsFull.png"));
                 }
-                Dojos.Fights[3].IsActive = true;
-                if (Wins / 5 == 1)
+                if (Wins > 0 && Wins % 5 == 0)
                 {
-                    Extensions.CreateMessage("Master", true);
+                    if (!Dojos.Dojo[0].Perks[1].Active && ((Wins / 5) - 1) < Dojos.Specials.Count)
+                    {
+                        Dojos.Specials[(Wins / 5) - 1].AttackEnabled = true;
+                        Dojos.Specials.Refresh();
+                        Extensions.CreateMessage("Specials", true);
+                    }
+                    Dojos.Fights[3].IsActive = true;
+                    if (Wins / 5 == 1)
+                    {
+                        Extensions.CreateMessage("Master", true);
+                    }
                 }
-            }
-            IsActive = false;
+                IsActive = false;
 
-            Dojos.Fights.Refresh();
+                Dojos.Fights.Refresh();
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
         public async void Begin()
         {
-            bool first = Convert.ToBoolean(RNG.Next(0, 2));
-            Won(await Task.Run(() => Fight()));
+            try
+            {
+                bool first = Convert.ToBoolean(RNG.Next(0, 2));
+                LogIt.Write($"--------------FIGHT----------------");
+                LogIt.Write($"Starting Championship");
+                Won(await Task.Run(() => Fight()));
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error Caught: {e}");
+                throw;
+            }
         }
     }
 }

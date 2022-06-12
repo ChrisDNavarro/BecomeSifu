@@ -1,4 +1,5 @@
-﻿using BecomeSifu.Objects;
+﻿using BecomeSifu.Logging;
+using BecomeSifu.Objects;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace BecomeSifu.Controls
 {
     public class EmptyCupControl
     {
+        public static bool DefeatedGrandMaster { get; set; }
         public bool Emptied { get; set; }
         public ICommand EmptyYourCup => new RelayCommand(() => Dojos.Cup[0].EmptyingCup());
         public ImageSource Imagesource { get; set; } =
@@ -21,62 +23,87 @@ namespace BecomeSifu.Controls
 
         public void EmptyingCup()
         {
-            if (Emptied)
+            try
             {
-                ButtonName = "Empty Your Cup";
-                Emptied = false;
-                if (Dojos.Dojo[0].CheckForMaxed())
+                if (Emptied)
                 {
-                    PageHolder.MainWindow.StorePerk();
+                    ButtonName = "Empty Your Cup";
+                    Emptied = false;
+                    LogIt.Write($"Selection confirmed");
+                    if (Dojos.Dojo[0].CheckForMaxed())
+                    {
+                        
+                        LogIt.Write($"Skills are Maxed, Continuing to Perk selection");
+                        PageHolder.MainWindow.StorePerk();
+                    }
+                    else
+                    {
+                        LogIt.Write($"SKills are not Maxed, Reloading Game");
+                        PageHolder.MainWindow.Setup();
+                    }
                 }
                 else
                 {
-                    PageHolder.MainWindow.Setup();
+                    LogIt.Write($"Confirming Selection for EmptyCup");
+                    ButtonName = "Are You Sure?";
+                    Emptied = true;
+                    Dojos.Cup.Refresh();
                 }
             }
-            else
+            catch (Exception e)
             {
-                ButtonName = "Are You Sure?";
-                Emptied = true;
-                Dojos.Cup.Refresh();
+                LogIt.Write($"Error catch: {e}");
+                throw;
             }
         }
 
         public void UpdateBonuses(List<int> bonuses)
         {
-            decimal bonusOne = 0;
-            decimal bonusTwo = 0;
-
-            StringBuilder bonusUpdates = new StringBuilder();
-
-            foreach (int bonus in bonuses)
+            try
             {
-                if(bonus == 1)
+                decimal bonusOne = 0;
+                decimal bonusTwo = 0;
+
+                StringBuilder bonusUpdates = new StringBuilder();
+
+                foreach (int bonus in bonuses)
                 {
-                    bonusOne++;
+                    if (bonus == 1)
+                    {
+                        bonusOne++;
+                        LogIt.Write($"Increasing Bonus One multiplier");
+                    }
+                    if (bonus == 2)
+                    {
+                        bonusTwo++;
+                        LogIt.Write($"Increasing Bonus Two multiplier");
+                    }
                 }
-                if(bonus == 2)
+
+                if (bonusOne > 0)
                 {
-                    bonusTwo++;
+
+                    bonusUpdates.AppendLine($@"You earn {50 * bonusOne}% more experience per practice.");
+                    Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsHalf.png"));
+                    bonusUpdates.AppendLine("");
+                    LogIt.Write($"Displaying Bonus One entry: You earn {50 * bonusOne}% more experience per practice.");
                 }
-            }
 
-            if(bonusOne > 0)
+                if (bonusTwo > 0)
+                {
+                    bonusUpdates.AppendLine($@"Attacks and Defenses cast {10 * bonusTwo}% less Energy to learn. ");
+                    Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsHalf.png"));
+                    LogIt.Write($"Displaying Bonus One entry: Attacks and Defenses cast {10 * bonusTwo}% less Energy to learn.");
+                }
+
+                CurrentBonus = bonusUpdates.ToString();
+                Dojos.Cup.Refresh();
+            }
+            catch (Exception e)
             {
-                
-                bonusUpdates.AppendLine($@"You earn {50 * bonusOne}% more experience per practice.");
-                Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsHalf.png"));
-                bonusUpdates.AppendLine("");
+                LogIt.Write($"Error catch: {e}");
+                throw;
             }
-
-            if(bonusTwo > 0)
-            {
-                bonusUpdates.AppendLine($@"Attacks and Defenses cast {10 * bonusTwo}% less Energy to learn. ");
-                Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsHalf.png"));
-            }
-
-            CurrentBonus = bonusUpdates.ToString();
-            Dojos.Cup.Refresh();
         }
 
     }

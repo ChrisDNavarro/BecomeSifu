@@ -11,48 +11,80 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using WpfAnimatedGif;
+using BecomeSifu.Logging;
+using System.Windows.Media.Animation;
 
 namespace BecomeSifu.Controls
 {
     public class BecomeSifuClient
     {
         private ItemCollection Tabs;
-        private ItemCollection PracticeTabs;
+        public ItemCollection PracticeTabs;
         private ItemCollection AdvancedTabs;
         private List<int> Bonuses = new List<int>();
         public BecomeSifuClient(List<int> bonuses)
         {
-            Tabs = PageHolder.MainClient.ActionTabControl.Items;
-            PracticeTabs = PageHolder.MainClient.PracticeTabControl.Items;
-            AdvancedTabs = PageHolder.MainClient.AdvancedTabControl.Items;
-            
+            try
+            {
+                Tabs = PageHolder.MainClient.ActionTabControl.Items;
+                PracticeTabs = PageHolder.MainClient.PracticeTabControl.Items;
+                AdvancedTabs = PageHolder.MainClient.AdvancedTabControl.Items;
 
-            _ = new GenerateFights();
-            _ = new GenerateContent();
-            _ = new GenerateTabs(Tabs);
-            _ = new GeneratePracticeTabs(PracticeTabs);
-            _ = new GenerateAdvancedTabs(AdvancedTabs);
-            Bonuses = bonuses;
+                
+                _ = new GenerateFights();
+                LogIt.Write($"Generated Fights");
+                _ = new GenerateContent();
+                LogIt.Write($"Generated Content");
+                _ = new GenerateTabs(Tabs);
+                LogIt.Write($"Generated Tabs");
+                _ = new GeneratePracticeTabs(PracticeTabs);
+                LogIt.Write($"Generated Practice Tabs");
+                _ = new GenerateAdvancedTabs(AdvancedTabs);
+                LogIt.Write($"Generated Advanced Tabs");
+                Bonuses = bonuses;
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error catch: {e}");
+                throw;
+            }
         }
 
         public void StartingMessages()
         {
-            Extensions.CreateMessage("You have chosen well", false);
-            Extensions.CreateMessage("The Basics", false);
-            Extensions.CreateMessage("Let us Begin", true);
+            try
+            {
+                Extensions.CreateMessage("You have chosen well", false);
+                Extensions.CreateMessage("The Basics", false);
+                Extensions.CreateMessage("Let us Begin", true);
 
-            var gif = new BitmapImage();
-            gif.BeginInit();
-            gif.UriSource = new Uri("pack://application:,,,/Animations/Kicks.gif");
-            gif.EndInit();
-            ImageBehavior.SetAnimatedSource(PageHolder.MainClient.Aniamtion, gif);
-            ImageBehavior.SetAnimationDuration(PageHolder.MainClient.Aniamtion, Duration.Forever);
+                var gif = new BitmapImage();
+                gif.BeginInit();
+                gif.UriSource = new Uri("pack://application:,,,/Animations/Kicks.gif");
+                gif.EndInit();
+                ImageBehavior.SetAnimatedSource(PageHolder.MainClient.Aniamtion, gif);
+                ImageBehavior.SetRepeatBehavior(PageHolder.MainClient.Aniamtion, RepeatBehavior.Forever);
+                LogIt.Write($"Started Animation");
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error catch: {e}");
+                throw;
+            }
         }
 
         public void UpdateBonuses()
         {
-            Dojos.Cup[0].UpdateBonuses(Bonuses);
-            Dojos.Dojo[0].UpdateBonuses(Bonuses);
+            try
+            {
+                Dojos.Cup[0].UpdateBonuses(Bonuses);
+                Dojos.Dojo[0].UpdateBonuses(Bonuses);
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error catch: {e}");
+                throw;
+            }
         }
     }
 }

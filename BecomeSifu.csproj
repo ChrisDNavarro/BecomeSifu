@@ -66,8 +66,4 @@
     <Resource Include="Resources\TKDTrigrams.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Logging\" />
-  </ItemGroup>
-
 </Project>
