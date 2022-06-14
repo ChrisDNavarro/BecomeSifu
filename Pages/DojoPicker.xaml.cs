@@ -45,7 +45,7 @@ namespace BecomeSifu.Pages
             }
         }
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public DojoPicker()
         {

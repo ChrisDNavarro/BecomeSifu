@@ -13,7 +13,6 @@ namespace BecomeSifu.Logging
     {
         private static readonly string LogPath = string.Format(@$"c:\Program Files (x86)\BecomeSifu\log\{DateTime.Today:yyyyMMdd}BecomeSifu.txt");
         private static bool FromOverload;
-        private static bool Written;
         
         public static void Write(string message)
         {

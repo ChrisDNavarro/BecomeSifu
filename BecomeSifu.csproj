@@ -4,6 +4,14 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>BecomeSifu.ico</ApplicationIcon>
+    <Company>CloudNavarro</Company>
+    <Authors>CloudNavarro</Authors>
+    <Version>0.0.1</Version>
+    <PackageIcon>BecomeSifu.ico</PackageIcon>
+    <PackageIconUrl />
+    <SignAssembly>false</SignAssembly>
+    <StartupObject>BecomeSifu.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +37,10 @@
     <None Remove="Resources\CupIsHalf.png" />
     <None Remove="Resources\KarateGate.png" />
     <None Remove="Resources\TKDTrigrams.png" />
+    <None Include="..\..\..\..\..\..\123\BecomeSifu\BecomeSifu.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

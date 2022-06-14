@@ -1291,7 +1291,7 @@
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "0.0.1",
     "restore": {
       "projectUniqueName": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
       "projectName": "BecomeSifu",
