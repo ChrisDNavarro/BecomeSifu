@@ -1,14 +1,31 @@
-﻿using System;
+﻿using BecomeSifu.Controls;
+using BecomeSifu.Objects;
+using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
+using System.Windows.Input;
+using System.Windows.Media.Animation;
+using WpfAnimatedGif;
 
 namespace BecomeSifu.ViewModels
 {
     public class PracticeViewModel : ViewModelBase
     {
+        public ICommand PracticeClick => new RelayCommand(() => Dojos.Dojo[0].Practice());
 
-        private string _EnergyGainString;
+        public ICommand MeditateClick => new RelayCommand(() => Dojos.Dojo[0].Meditation());
+
+        public ICommand AutoPracticeCheck => new RelayCommand(() => Dojos.Dojo[0].StartStopAutoPractice());
+
+        public ICommand AutoMeditateCheck => new RelayCommand(() => Dojos.Dojo[0].StartStopAutoMeditate());
+
+        public ICommand StartStopMeditationCommand => new RelayCommand(() => Dojos.Dojo[0].StartStopMeditation());
+
+
+
+        private string _EnergyGainString = "0";
         public string EnergyGainString
         {
             get => _EnergyGainString;
@@ -144,6 +161,15 @@ namespace BecomeSifu.ViewModels
             get => _Rate;
             set => SetProperty(ref _Rate, value);
         }
+
+
+        private RepeatBehavior _Repeat = new RepeatBehavior(1);
+        public RepeatBehavior Repeat
+        {
+            get => _Repeat;
+            set => SetProperty(ref _Repeat, value);
+        }
+
 
     }
 }

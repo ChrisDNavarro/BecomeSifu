@@ -14,6 +14,7 @@ using System.Windows;
 using System.Collections.ObjectModel;
 using BecomeSifu.Logging;
 using BecomeSifu.ViewModels;
+using System.Windows.Media.Animation;
 
 namespace BecomeSifu.MartialArts
 {
@@ -140,8 +141,6 @@ namespace BecomeSifu.MartialArts
                     Defense += DefenseGain;
                     DefenseString = Defense.ConvertToString();
                     DefenseGainString = DefenseGain.ConvertToString();
-
-                    Dojos.Dojo.Refresh();
 
                     Extensions.UpdateActives();
                     LogIt.Write();
@@ -272,6 +271,7 @@ namespace BecomeSifu.MartialArts
 
                 if (Perks[5].Active)
                 {
+                    Repeat = RepeatBehavior.Forever;
                     CalculateHealthGain();
                     Health += HealthGain * 1.5M;
                     HealthString = Health.ConvertToString();
@@ -281,9 +281,13 @@ namespace BecomeSifu.MartialArts
                     Energy += EnergyMeditationGain * 1.5M;
                     EnergyString = Energy.ConvertToString();
                     EnergyMeditationGainString = (EnergyMeditationGain * 1.5M).ConvertToString();
+
+                    Repeat = new RepeatBehavior(1);
                 }
                 else
                 {
+                    Repeat = RepeatBehavior.Forever;
+
                     CalculateHealthGain();
                     Health += HealthGain;
                     HealthString = Health.ConvertToString();
@@ -293,6 +297,8 @@ namespace BecomeSifu.MartialArts
                     Energy += EnergyMeditationGain;
                     EnergyString = Energy.ConvertToString();
                     EnergyMeditationGainString = EnergyMeditationGain.ConvertToString();
+
+                    Repeat = new RepeatBehavior(1);
                 }
 
                 Dojos.Dojo.Refresh();

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.UserControls"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" Background="LightSteelBlue">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -11,6 +12,10 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="auto" />
@@ -21,14 +26,15 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding Background}" Grid.ColumnSpan="8"/>
-                        <Button Content="{Binding FightName}" Margin="5,5,0,5" Width="100" IsEnabled="{Binding IsActive}" Command="{Binding StartFighting}"/>
-                        <Label Content="Attack Power:" Grid.Column="1" FontWeight="Bold"/>
-                        <Label Content="{Binding AttackString}" Grid.Column="2"/>
-                        <Label Content="Health:" Grid.Column="3" FontWeight="Bold"/>
-                        <Label Content="{Binding HealthString}" Grid.Column="4" />
-                        <Label Content="Wins:" Grid.Column="5" FontWeight="Bold"/>
-                        <Label Content="{Binding Wins}" Grid.Column="6" />
+                        <Rectangle Fill="{Binding Background}" Grid.ColumnSpan="8" Grid.RowSpan="2"/>
+                        <Image Grid.Column="1" gif:ImageBehavior.AnimatedSource="{Binding FightGif}" gif:ImageBehavior.RepeatBehavior="1" Grid.ColumnSpan="7" Height="35"/>
+                        <Button Content="{Binding FightName}" Margin="5,5,0,5" Width="100" Grid.RowSpan="2" IsEnabled="{Binding IsActive}" Command="{Binding StartFighting}"/>
+                        <Label Content="Attack Power:" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
+                        <Label Content="{Binding AttackString}" Grid.Row="1"  Grid.Column="2"/>
+                        <Label Content="Health:" Grid.Column="3" Grid.Row="1"  FontWeight="Bold"/>
+                        <Label Content="{Binding HealthString}" Grid.Row="1"  Grid.Column="4" />
+                        <Label Content="Wins:" Grid.Column="5" Grid.Row="1"  FontWeight="Bold"/>
+                        <Label Content="{Binding Wins}" Grid.Row="1"  Grid.Column="6" />
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

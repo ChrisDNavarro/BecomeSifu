@@ -1,6 +1,7 @@
 ﻿using BecomeSifu.Controls;
 using BecomeSifu.Logging;
 using BecomeSifu.Objects;
+using BecomeSifu.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -35,46 +36,65 @@ namespace BecomeSifu
                     Dojos.Punches[i].Enabled = i > 0
                         ? Dojos.Punches[i].Learned
                             ? Dojos.Dojo[0].Exp >= Dojos.Punches[i].ExpToNext
-                            : Dojos.Punches[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Punches[i].ExpToNext
-                        : Dojos.Dojo[0].Exp >= Dojos.Punches[i].ExpToNext;
-                    Dojos.Punches.Refresh();
+                            : Dojos.Punches[i-1].LevelInt >= 5
+                                ? Dojos.Dojo[0].Energy >= Dojos.Punches[i].ExpToNext
+                                : false
+                        : Dojos.Punches[i].Learned
+                            ? Dojos.Dojo[0].Exp >= Dojos.Punches[i].ExpToNext
+                            : Dojos.Dojo[0].Energy >= Dojos.Punches[i].ExpToNext;
                 }
                 for (int i = 0; i < Dojos.Kicks.Count; i++)
                 {
                     Dojos.Kicks[i].Enabled = i > 0
                         ? Dojos.Kicks[i].Learned
                             ? Dojos.Dojo[0].Exp >= Dojos.Kicks[i].ExpToNext
-                            : Dojos.Kicks[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Kicks[i].ExpToNext
+                            : Dojos.Kicks[i - 1].LevelInt >= 5
+                                ? Dojos.Dojo[0].Energy >= Dojos.Kicks[i].ExpToNext
+                                : false
                         : Dojos.Kicks[i].Learned
                             ? Dojos.Dojo[0].Exp >= Dojos.Kicks[i].ExpToNext
                             : Dojos.Dojo[0].Energy >= Dojos.Kicks[i].ExpToNext;
-                    Dojos.Kicks.Refresh();
                 }
                 for (int i = 0; i < Dojos.Specials.Count; i++)
                 {
-                    if (!Dojos.Dojo[0].Perks[1].Active)
+                    if (Dojos.Dojo[0].Perks[1].Active)
                     {
-                        Dojos.Specials[i].Enabled = i > 0
+                        if (Dojos.Kicks[0].Learned)
+                        {
+                            Dojos.Specials[i].Enabled = i > 0
                             ? Dojos.Specials[i].Learned
                                 ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
-                                : Dojos.Specials[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
-                            : Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext;
+                                : Dojos.Specials[i - 1].LevelInt >= 5
+                                    ? Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
+                                    : false
+                            : Dojos.Specials[i].Learned
+                                ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
+                                : Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext;
+                        }
                     }
                     else
                     {
-                        Dojos.Specials[i].Enabled = Dojos.Specials[i].Learned
-                            && Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext;
+                        Dojos.Specials[i].Enabled = i > Dojos.Fights[2].Wins
+                            ? Dojos.Specials[i].Learned
+                                ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
+                                : Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
+                            : false;
                     }
-                    Dojos.Specials.Refresh();
                 }
                 for (int i = 0; i < Dojos.Defenses.Count; i++)
                 {
-                    Dojos.Defenses[i].Enabled = i > 0
-                        ? Dojos.Defenses[i].Learned
-                            ? Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext
-                            : Dojos.Defenses[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Defenses[i].ExpToNext
-                        : Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext;
-                    Dojos.Defenses.Refresh();
+                    if (Dojos.Kicks[4].Learned || Dojos.Punches[4].Learned)
+                    {
+                        Dojos.Defenses[i].Enabled = i > 0
+                            ? Dojos.Defenses[i].Learned
+                                ? Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext
+                                : Dojos.Defenses[i - 1].LevelInt >= 5
+                                    ? Dojos.Dojo[0].Energy >= Dojos.Defenses[i].ExpToNext
+                                    : false
+                            : Dojos.Defenses[i].Learned
+                                ? Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext
+                                : Dojos.Dojo[0].Energy >= Dojos.Defenses[i].ExpToNext;
+                    }
                 }
             }
             catch (Exception e)
@@ -86,25 +106,43 @@ namespace BecomeSifu
 
         public static void UpdateBoostedEXP()
         {
-            for (int i = 0; i < Dojos.Punches.Count; i++)
+            foreach (ActionsViewModel punch in Dojos.Punches)
             {
-                Punches.LevelUpExp(Dojos.Punches[i]);
+                if (punch.Learned)
+                {
+                    punch.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(punch.Step, punch.LevelInt);
+                    punch.ExpString = punch.ExpToNext.ConvertToString();
+                    punch.LevelUp = $"Level Up \r\n{punch.ExpString} Exp";
+                }
             }
-            //foreach (Kicks kick in Dojos.Kicks)
-            //{
-            //    kick.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(kick.Step, kick.LevelInt);
-            //    kick.ExpString = kick.ExpToNext.ConvertToString();
-            //}
-            //foreach (Specials special in Dojos.Specials)
-            //{
-            //    special.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(special.Step, special.LevelInt);
-            //    special.ExpString = special.ExpToNext.ConvertToString();
-            //}
-            //foreach (Defenses def in Dojos.Defenses)
-            //{
-            //    def.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(def.Step, def.LevelInt);
-            //    def.ExpString = def.ExpToNext.ConvertToString();
-            //}
+            foreach (ActionsViewModel kick in Dojos.Kicks)
+            {
+                if (kick.Learned)
+                {
+                    kick.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(kick.Step, kick.LevelInt);
+                    kick.ExpString = kick.ExpToNext.ConvertToString();
+                    kick.LevelUp = $"Level Up \r\n{kick.ExpString} Exp";
+                }
+            }
+            foreach (ActionsViewModel special in Dojos.Specials)
+            {
+                if (special.Learned)
+                {
+                    special.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(special.Step, special.LevelInt);
+                    special.ExpString = special.ExpToNext.ConvertToString();
+                    special.LevelUp = $"Level Up \r\n{special.ExpString} Exp";
+                }
+            }
+            foreach (ActionsViewModel def in Dojos.Defenses)
+            {
+                if (def.Learned)
+                {
+                    def.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(def.Step, def.LevelInt);
+                    def.ExpString = def.ExpToNext.ConvertToString();
+                    def.LevelUp = $"Level Up \r\n{def.ExpString} Exp";
+                }
+            }
+            Extensions.UpdateActives();
         }
 
 

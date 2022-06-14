@@ -1,5 +1,6 @@
 ﻿using BecomeSifu.Logging;
 using BecomeSifu.Objects;
+using BecomeSifu.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,20 +11,23 @@ namespace BecomeSifu.Controls
     {
         public GenerateContent()
         {
-            Punches();
+            PunchesContent();
             Kicks();
             Specials();
             Defenses();            
         }
 
-        private void Punches()
+        private void PunchesContent()
         {
             try
             {
                 Dictionary<int, string> punches = Dojos.Dojo[0].Punches;
                 foreach (int key in punches.Keys)
                 {
-                    Punches punch = new Punches(punches[key], key);
+                    ActionsViewModel punch = new ActionsViewModel();
+                    Punches.Create(punches[key], key, punch);
+                    Dojos.AddPunch(punch);
+
                     LogIt.Write($"Populated Punches observale list.");
                 }
             }

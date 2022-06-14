@@ -14,13 +14,13 @@ namespace BecomeSifu.Objects
 {
     public class Punches
     {
-        public Punches(string name, int step)
+        public static void Create(string name, int step, ActionsViewModel punch)
         {
-            ActionsViewModel punch = new ActionsViewModel();
+            
             punch.Name = name;
             punch.Step = step + 1;
             punch.LevelInt = 0;
-            punch.Level = "Lvl " + (punch.LevelInt + 1).ToString();
+            punch.Level = "Lvl " + punch.LevelInt.ToString();
 
             punch.ExpToNext = Dojos.Dojo[0].EnergyToUnlock(punch.Step);
             punch.ExpString = punch.ExpToNext.ConvertToString();
@@ -41,15 +41,13 @@ namespace BecomeSifu.Objects
                 punch.ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
                 punch.BackgroundColor = new SolidColorBrush(Colors.Silver);
             }
-
-            Dojos.AddPunch(punch);
         }
 
         public static void TryLevelUp(ActionsViewModel viewModel)
         {
             try
             {
-                if (viewModel.Learned)
+                if (!viewModel.Learned)
                 {
                     if (Dojos.Dojo[0].Energy >= viewModel.ExpToNext)
                     {

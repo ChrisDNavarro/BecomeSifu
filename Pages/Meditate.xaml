@@ -4,12 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.Pages"
+             xmlns:gif="http://wpfanimatedgif.codeplex.com" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200" Background="LightSteelBlue">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <ItemsControl x:Name="MeditateIC">
             <ItemsControl.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:Name="MeditateDT">
                     <Grid>
                         <Grid.RowDefinitions >
                             <RowDefinition Height="auto"/>
@@ -21,7 +22,7 @@
                         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="1"/>
                         <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2"/>
 
-                        <Button Content="{Binding IsMeditatingString}" FontWeight="Bold" FontSize="20" Grid.Row="0" Margin="10,10" BorderBrush="Black" Foreground="RoyalBlue" Command="{Binding StartStopMeditationCommand}">
+                        <Button Content="{Binding IsMeditatingString}" FontWeight="Bold" FontSize="20" Grid.Row="0" Margin="5,5" BorderBrush="Black" Foreground="RoyalBlue" Command="{Binding StartStopMeditationCommand}">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="Silver"/>
@@ -33,11 +34,14 @@
 
                         <Grid Grid.Row="1" Visibility="{Binding MeditateOption}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="105"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            <Button Content="Meditate" FontWeight="Bold" FontSize="20" Grid.Row="1" Margin="10,10" BorderBrush="Black" Foreground="RoyalBlue" Command="{Binding MeditateClick}">
+                            <Rectangle Fill="MidnightBlue"/>
+                            <Rectangle Fill="Black" Opacity=".6"/>
+                            <Image x:Name="MeditateAnimation1" Grid.Row="0" gif:ImageBehavior.AnimatedSource="../Animations/meditate2.gif" gif:ImageBehavior.RepeatBehavior="{Binding Repeat}"/>
+                            <Button Content="Meditate" FontWeight="Bold" FontSize="20" Grid.Row="1" Margin="5,5" BorderBrush="Black" Foreground="RoyalBlue" Command="{Binding MeditateClick}">
                                 <Button.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                         <GradientStop Color="Silver"/>

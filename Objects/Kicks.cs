@@ -119,20 +119,14 @@ namespace BecomeSifu.Objects
                         Dojos.Kicks.Refresh();
                     }
 
-
+                    LevelUpExp(kick);
 
                     kick.Level = "Lvl " + kick.LevelInt.ToString();
 
-                    Dojos.Dojo[0].TotalLevels++;
-
                     kick.LevelUp = $"Level Up \r\n{kick.ExpString} Exp";
 
-
-
                     Dojos.Dojo.Refresh();
-                    Dojos.Kicks.Refresh();
-
-                    LevelUpExp(kick);
+                    Dojos.Kicks.Refresh();                    
                 }
                 else
                 {

@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Timers;
 using System.Windows;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 
@@ -237,6 +238,17 @@ namespace BecomeSifu.Controls
 
         public DispatcherTimer Timer { get; set; }
         public DispatcherTimer MeditateTimer { get; set; }
+
+        private RepeatBehavior _Repeat = new RepeatBehavior(1);
+        public RepeatBehavior Repeat
+        {
+            get => _Repeat;
+            set
+            {
+                _Repeat = value;
+                Dojos.Practice[0].Repeat = value;
+            }
+        }
 
     }
 }

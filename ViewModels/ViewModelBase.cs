@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BecomeSifu.ViewModels
 {
-    public class ViewModelBase
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
