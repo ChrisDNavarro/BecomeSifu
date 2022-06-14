@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>VMP</Title>
+      <Author>Chris Navarro</Author>
+      <Description>Generate a property for use in the MVVM pattern</Description>
+    <Shortcut>vmp</Shortcut>
+    </Header>    
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[private $Type$ _$Name$;
+                  public $Type$ $Name$
+                  {
+                  get => _$Name$;
+                  set => SetProperty(ref _$Name$, value);
+                  }]]>
+      </Code>
+      <Declarations>
+        <Literal>
+          <ID>Type</ID>
+          <Default>type</Default>    
+        <Function></Function>
+        </Literal> 
+      <Literal>
+          <ID>Name</ID>
+          <Default>name</Default>          
+        </Literal>
+      </Declarations>    
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
+
+
+

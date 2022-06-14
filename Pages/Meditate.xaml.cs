@@ -24,7 +24,7 @@ namespace BecomeSifu.Pages
         {
             InitializeComponent();
             Dojos.Dojo[0].MeditateTimer = new DispatcherTimer();
-            MeditateIC.ItemsSource = Dojos.Dojo;
+            MeditateIC.ItemsSource = Dojos.Practice;
         }
     }
 }

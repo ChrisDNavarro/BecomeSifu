@@ -32,7 +32,7 @@ namespace BecomeSifu
 
                 for (int i = 0; i < Dojos.Punches.Count; i++)
                 {
-                    Dojos.Punches[i].AttackEnabled = i > 0
+                    Dojos.Punches[i].Enabled = i > 0
                         ? Dojos.Punches[i].Learned
                             ? Dojos.Dojo[0].Exp >= Dojos.Punches[i].ExpToNext
                             : Dojos.Punches[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Punches[i].ExpToNext
@@ -41,7 +41,7 @@ namespace BecomeSifu
                 }
                 for (int i = 0; i < Dojos.Kicks.Count; i++)
                 {
-                    Dojos.Kicks[i].AttackEnabled = i > 0
+                    Dojos.Kicks[i].Enabled = i > 0
                         ? Dojos.Kicks[i].Learned
                             ? Dojos.Dojo[0].Exp >= Dojos.Kicks[i].ExpToNext
                             : Dojos.Kicks[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Kicks[i].ExpToNext
@@ -54,7 +54,7 @@ namespace BecomeSifu
                 {
                     if (!Dojos.Dojo[0].Perks[1].Active)
                     {
-                        Dojos.Specials[i].AttackEnabled = i > 0
+                        Dojos.Specials[i].Enabled = i > 0
                             ? Dojos.Specials[i].Learned
                                 ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
                                 : Dojos.Specials[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
@@ -62,14 +62,14 @@ namespace BecomeSifu
                     }
                     else
                     {
-                        Dojos.Specials[i].AttackEnabled = Dojos.Specials[i].Learned
+                        Dojos.Specials[i].Enabled = Dojos.Specials[i].Learned
                             && Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext;
                     }
                     Dojos.Specials.Refresh();
                 }
                 for (int i = 0; i < Dojos.Defenses.Count; i++)
                 {
-                    Dojos.Defenses[i].DefenseEnabled = i > 0
+                    Dojos.Defenses[i].Enabled = i > 0
                         ? Dojos.Defenses[i].Learned
                             ? Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext
                             : Dojos.Defenses[i - 1].LevelInt >= 5 && Dojos.Dojo[0].Energy >= Dojos.Defenses[i].ExpToNext
@@ -88,7 +88,7 @@ namespace BecomeSifu
         {
             for (int i = 0; i < Dojos.Punches.Count; i++)
             {
-                Dojos.Punches[i].LevelUpExp();
+                Punches.LevelUpExp(Dojos.Punches[i]);
             }
             //foreach (Kicks kick in Dojos.Kicks)
             //{
