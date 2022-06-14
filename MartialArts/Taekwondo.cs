@@ -5,6 +5,7 @@ using System.Windows.Input;
 using BecomeSifu.Controls;
 using BecomeSifu.Logging;
 using BecomeSifu.Objects;
+using BecomeSifu.ViewModels;
 using GalaSoft.MvvmLight.Command;
 
 namespace BecomeSifu.MartialArts
@@ -103,7 +104,7 @@ namespace BecomeSifu.MartialArts
         {
             try
             {
-                foreach (Defenses defense in Dojos.Defenses)
+                foreach (ActionsViewModel defense in Dojos.Defenses)
                 {
                     DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt) * 9.9M;
                 }

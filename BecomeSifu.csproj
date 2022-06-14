@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <None Remove="Animations\Kicks.gif" />
+    <None Remove="Animations\meditate.gif" />
+    <None Remove="Animations\meditate2.gif" />
+    <None Remove="Animations\streetfightwin.gif" />
     <None Remove="Messages\Championship.txt" />
     <None Remove="Messages\Defense.txt" />
     <None Remove="Messages\Empty Your Cup.txt" />
@@ -58,6 +61,9 @@
 
   <ItemGroup>
     <Resource Include="Animations\Kicks.gif" />
+    <Resource Include="Animations\meditate.gif" />
+    <Resource Include="Animations\meditate2.gif" />
+    <Resource Include="Animations\streetfightwin.gif" />
     <Resource Include="Resources\BoxingRing.png" />
     <Resource Include="Resources\CupIsEmpty.png" />
     <Resource Include="Resources\CupIsFull.png" />

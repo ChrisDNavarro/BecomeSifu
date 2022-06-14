@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
 namespace BecomeSifu.MartialArts
@@ -94,6 +95,8 @@ namespace BecomeSifu.MartialArts
         string Rate { get; set; }
         DispatcherTimer Timer { get; set; }
         DispatcherTimer MeditateTimer { get; set; }
+
+        RepeatBehavior Repeat { get; set; }
 
     }
 }

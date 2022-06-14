@@ -1,5 +1,6 @@
 ﻿using BecomeSifu.Controls;
 using BecomeSifu.Logging;
+using BecomeSifu.ViewModels;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -9,65 +10,58 @@ using System.Windows.Media;
 
 namespace BecomeSifu.Objects
 {
-    public class Kicks : Buttons
+    public class Kicks
     {
-        public ICommand LevelUpCommand
-        {
-            get
-            {
-                return new RelayCommand(() => TryLevelUp());
-            }
-        }
         public Kicks(string name, int step)
         {
-            AttackName = name;
+            ActionsViewModel kick = new ActionsViewModel();
+            kick.Name = name;
             if (Dojos.Dojo[0].IsBoxing)
             {
-                Step = 10;
+                kick.Step = 10;
             }
             else
             {
-                Step = step + 1;
+                kick.Step = step + 1;
             }
 
-            LevelInt = 0;
-            Level = "Lvl " + (LevelInt + 1).ToString();
+            kick.LevelInt = 0;
+            kick.Level = "Lvl " + kick.LevelInt.ToString();
 
-            ExpToNext = Dojos.Dojo[0].EnergyToUnlock(Step);
-            ExpString = ExpToNext.ConvertToString();
-            LevelUp = $"Learn\r\n{ExpString} Eng";
+            kick.ExpToNext = Dojos.Dojo[0].EnergyToUnlock(kick.Step);
+            kick.ExpString = kick.ExpToNext.ConvertToString();
+            kick.LevelUp = $"Learn\r\n{kick.ExpString} Eng";
 
-            if (Step % 2 == 0)
+            if (kick.Step % 2 == 0)
             {
-                BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
-                ForegroundColor = new SolidColorBrush(Colors.DimGray);
+                kick.BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
+                kick.ForegroundColor = new SolidColorBrush(Colors.DimGray);
             }
             else
             {
-                ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
-                BackgroundColor = new SolidColorBrush(Colors.Silver);
+                kick.ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
+                kick.BackgroundColor = new SolidColorBrush(Colors.Silver);
             }
+
+
+            Dojos.AddKick(kick);
         }
 
-        public void TryLevelUp()
+        public static void TryLevelUp(ActionsViewModel kick)
         {
             try
             {
-                if (!Learned)
+                if (!kick.Learned)
                 {
-                    if (Dojos.Dojo[0].Energy >= ExpToNext)
+                    if (Dojos.Dojo[0].Energy >= kick.ExpToNext)
                     {
-                        LogIt.Write($"Learning {AttackName}");
-                        Learned = true;
-                        if (Step >= Dojos.Kicks.Count)
-                        {
-                            AllKicks = true;
-                        }
-                        if (Step == 1)
+                        LogIt.Write($"Learning {kick.Name}");
+                        kick.Learned = true;
+                        if (kick.Step == 1)
                         {
                             if (Dojos.Dojo[0].Perks[1].Active)
                             {
-                                Dojos.Specials[0].AttackEnabled = true;
+                                Dojos.Specials[0].Enabled = true;
                                 Dojos.Specials.Refresh();
                                 Extensions.CreateMessage("Tae Kwon Do Specials", false);
                             }
@@ -75,23 +69,23 @@ namespace BecomeSifu.Objects
                             Dojos.Fights.Refresh();
                             Extensions.CreateMessage("Tournament", true);
                         }
-                        if (Step == 5 && !Dojos.Defenses[0].Learned)
+                        if (kick.Step == 5 && !Dojos.Defenses[0].Learned)
                         {
-                            Dojos.Defenses[0].DefenseEnabled = true;
+                            Dojos.Defenses[0].Enabled = true;
                             Dojos.Defenses.Refresh();
                             Extensions.CreateMessage("Defense", true);
                         }
-                        Dojos.Dojo[0].SpendEnergy(ExpToNext);
-                        CompleteLevelUp();
+                        Dojos.Dojo[0].SpendEnergy(kick.ExpToNext);
+                        CompleteLevelUp(kick);
                     }
                 }
                 else
                 {
-                    if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
+                    if (Dojos.Dojo[0].Exp >= kick.ExpToNext && !kick.MaxLevel)
                     {
-                        LogIt.Write($"Leveling up {AttackName}");
-                        Dojos.Dojo[0].SpendExp(ExpToNext);
-                        CompleteLevelUp();
+                        LogIt.Write($"Leveling up {kick.Name}");
+                        Dojos.Dojo[0].SpendExp(kick.ExpToNext);
+                        CompleteLevelUp(kick);
                     }
                 }
             }
@@ -102,48 +96,42 @@ namespace BecomeSifu.Objects
             }
         }
 
-        private void CompleteLevelUp()
+        private static void CompleteLevelUp(ActionsViewModel kick)
         {
             try
             {
-                if (LevelInt <= 500)
+                if (kick.LevelInt <= 500)
                 {
-                    if (500 - LevelInt <= BoostsController.Boost)
+                    if (500 - kick.LevelInt <= BoostsController.Boost)
                     {
-                        LevelInt = 500;
+                        kick.LevelInt = 500;
                     }
                     else
                     {
-                        LevelInt += BoostsController.Boost;
+                        kick.LevelInt += BoostsController.Boost;
                     }
-                    if (LevelInt == 500)
+                    if (kick.LevelInt == 500)
                     {
-                        LogIt.Write($"{AttackName} has reached Max Level");
-                        Extensions.SendMessage($"{AttackName} has reached Max Level");
-                        MaxLevel = true;
-                        LevelUp = "Max Level";
+                        LogIt.Write($"{kick.Name} has reached Max Level");
+                        Extensions.SendMessage($"kick.{kick.Name} has reached Max Level");
+                        kick.MaxLevel = true;
+                        kick.LevelUp = "Max Level";
                         Dojos.Kicks.Refresh();
                     }
 
+                    LevelUpExp(kick);
 
+                    kick.Level = "Lvl " + kick.LevelInt.ToString();
 
-                    Level = "Lvl " + LevelInt.ToString();
-
-                    Dojos.Dojo[0].TotalLevels++;
-
-                    LevelUp = $"Level Up \r\n{ExpString} Exp";
-
-
+                    kick.LevelUp = $"Level Up \r\n{kick.ExpString} Exp";
 
                     Dojos.Dojo.Refresh();
-                    Dojos.Kicks.Refresh();
-
-                    LevelUpExp();
+                    Dojos.Kicks.Refresh();                    
                 }
                 else
                 {
-                    LogIt.Write($"{AttackName} is at Max Level");
-                    Extensions.SendMessage($"{AttackName} is at Max Level");
+                    LogIt.Write($"{kick.Name} is at Max Level");
+                    Extensions.SendMessage($"{kick.Name} is at Max Level");
                 }
             }
             catch (Exception e)
@@ -153,13 +141,12 @@ namespace BecomeSifu.Objects
             }
         }
 
-        public void LevelUpExp()
+        public static void LevelUpExp(ActionsViewModel kick)
         {
-            ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step, LevelInt);
-            ExpString = ExpToNext.ConvertToString();
+            kick.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(kick.Step, kick.LevelInt);
+            kick.ExpString = kick.ExpToNext.ConvertToString();
             Extensions.UpdateActives();
-            Dojos.Kicks.Refresh();
-            
+            Dojos.Kicks.Refresh();            
         }
 
     }
