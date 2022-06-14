@@ -18,9 +18,9 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Rectangle Fill="{Binding BackgroundColor}" Grid.ColumnSpan="4"/>
-                        <Label Content="{Binding AttackName}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Margin="25,0,0,0" FontWeight="Bold" Foreground="{Binding ForegroundColor}"/>
+                        <Label Content="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Margin="25,0,0,0" FontWeight="Bold" Foreground="{Binding ForegroundColor}"/>
                         <TextBlock Grid.Column="1" Text="{Binding Level}" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="25,0,0,0 "/>
-                        <Button Grid.Column="2" Content="{Binding LevelUp}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,5,25,5" IsEnabled="{Binding AttackEnabled}" HorizontalContentAlignment="Center" Command="{Binding LevelUpCommand}"/>
+                        <Button Grid.Column="2" Content="{Binding LevelUp}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,5,25,5" IsEnabled="{Binding Enabled}" HorizontalContentAlignment="Center" Command="{Binding SpecialsLevelUpCommand}"/>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

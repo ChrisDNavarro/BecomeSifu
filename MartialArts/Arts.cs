@@ -13,6 +13,8 @@ using System.Threading;
 using System.Windows;
 using System.Collections.ObjectModel;
 using BecomeSifu.Logging;
+using BecomeSifu.ViewModels;
+using System.Windows.Media.Animation;
 
 namespace BecomeSifu.MartialArts
 {
@@ -140,8 +142,6 @@ namespace BecomeSifu.MartialArts
                     DefenseString = Defense.ConvertToString();
                     DefenseGainString = DefenseGain.ConvertToString();
 
-                    Dojos.Dojo.Refresh();
-
                     Extensions.UpdateActives();
                     LogIt.Write();
                 }
@@ -193,28 +193,28 @@ namespace BecomeSifu.MartialArts
             {
                 int maxed = 0;
 
-                foreach (Punches punch in Dojos.Punches)
+                foreach (ActionsViewModel punch in Dojos.Punches)
                 {
                     if (punch.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (Kicks kick in Dojos.Kicks)
+                foreach (ActionsViewModel kick in Dojos.Kicks)
                 {
                     if (kick.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (Specials special in Dojos.Specials)
+                foreach (ActionsViewModel special in Dojos.Specials)
                 {
                     if (special.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (Defenses def in Dojos.Defenses)
+                foreach (ActionsViewModel def in Dojos.Defenses)
                 {
                     if (def.LevelInt == 500)
                     {
@@ -271,6 +271,7 @@ namespace BecomeSifu.MartialArts
 
                 if (Perks[5].Active)
                 {
+                    Repeat = RepeatBehavior.Forever;
                     CalculateHealthGain();
                     Health += HealthGain * 1.5M;
                     HealthString = Health.ConvertToString();
@@ -280,9 +281,13 @@ namespace BecomeSifu.MartialArts
                     Energy += EnergyMeditationGain * 1.5M;
                     EnergyString = Energy.ConvertToString();
                     EnergyMeditationGainString = (EnergyMeditationGain * 1.5M).ConvertToString();
+
+                    Repeat = new RepeatBehavior(1);
                 }
                 else
                 {
+                    Repeat = RepeatBehavior.Forever;
+
                     CalculateHealthGain();
                     Health += HealthGain;
                     HealthString = Health.ConvertToString();
@@ -292,6 +297,8 @@ namespace BecomeSifu.MartialArts
                     Energy += EnergyMeditationGain;
                     EnergyString = Energy.ConvertToString();
                     EnergyMeditationGainString = EnergyMeditationGain.ConvertToString();
+
+                    Repeat = new RepeatBehavior(1);
                 }
 
                 Dojos.Dojo.Refresh();
@@ -414,7 +421,7 @@ namespace BecomeSifu.MartialArts
         {
             try
             {
-                foreach (Defenses defense in Dojos.Defenses)
+                foreach (ActionsViewModel defense in Dojos.Defenses)
                 {
                     DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt) * 10;
                 }
@@ -434,9 +441,9 @@ namespace BecomeSifu.MartialArts
                 decimal total = 0;
                 if (Perks[2].Active)
                 {
-                    foreach (Kicks kick in Dojos.Kicks)
+                    foreach (ActionsViewModel kick in Dojos.Kicks)
                     {
-                        foreach (Punches punch in Dojos.Punches)
+                        foreach (ActionsViewModel punch in Dojos.Punches)
                         {
                             total += kick.LevelInt != 0
                                 ? total += punch.Step * punch.LevelInt * 2M * .004M * kick.LevelInt
@@ -446,11 +453,11 @@ namespace BecomeSifu.MartialArts
                 }
                 else
                 {
-                    foreach (Punches punch in Dojos.Punches)
+                    foreach (ActionsViewModel punch in Dojos.Punches)
                     {
                         total += punch.Step * punch.LevelInt;
                     }
-                    foreach (Kicks kick in Dojos.Kicks)
+                    foreach (ActionsViewModel kick in Dojos.Kicks)
                     {
                         if (Perks[0].Active)
                         {
@@ -462,7 +469,7 @@ namespace BecomeSifu.MartialArts
                         }
                     }
                 }
-                foreach (Specials special in Dojos.Specials)
+                foreach (ActionsViewModel special in Dojos.Specials)
                 {
                     total += special.Step * 10 * special.LevelInt;
                 }

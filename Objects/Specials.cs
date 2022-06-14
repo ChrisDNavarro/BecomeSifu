@@ -1,5 +1,6 @@
 ﻿using BecomeSifu.Controls;
 using BecomeSifu.Logging;
+using BecomeSifu.ViewModels;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -9,63 +10,59 @@ using System.Windows.Media;
 
 namespace BecomeSifu.Objects
 {
-    public class Specials : Buttons
+    public class Specials
     {
-        public ICommand LevelUpCommand
-        {
-            get
-            {
-                return new RelayCommand(() => TryLevelUp());
-            }
-        }
         public Specials(string name, int step)
         {
-            AttackName = name;
-            Step = step + 1;
+            ActionsViewModel special = new ActionsViewModel();
+            special.Name = name;
+            special.Step = step + 1;
 
-            LevelInt = 0;
-            Level = "Lvl " + (LevelInt + 1).ToString();
+            special.LevelInt = 0;
+            special.Level = "Lvl " + (special.LevelInt + 1).ToString();
 
-            ExpToNext = Dojos.Dojo[0].EnergyToUnlock(Step);
-            ExpString = ExpToNext.ConvertToString();
-            LevelUp = $"Learn\r\n{ExpString} Eng";
+            special.ExpToNext = Dojos.Dojo[0].EnergyToUnlock(special.Step);
+            special.ExpString = special.ExpToNext.ConvertToString();
+            special.LevelUp = $"Learn\r\n{special.ExpString} Eng";
 
-            if (Step % 2 == 0)
+            if (special.Step % 2 == 0)
             {
-                BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
-                ForegroundColor = new SolidColorBrush(Colors.DimGray);
+                special.BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
+                special.ForegroundColor = new SolidColorBrush(Colors.DimGray);
             }
             else
             {
-                ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
-                BackgroundColor = new SolidColorBrush(Colors.Silver);
+                special.ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
+                special.BackgroundColor = new SolidColorBrush(Colors.Silver);
             }
+
+            Dojos.AddSpecial(special);
         }
 
-        public void TryLevelUp()
+        public static void TryLevelUp(ActionsViewModel special)
         {
             try
             {
-                if (!Learned)
+                if (!special.Learned)
                 {
-                    if (Dojos.Dojo[0].Energy >= ExpToNext)
+                    if (Dojos.Dojo[0].Energy >= special.ExpToNext)
                     {
-                        LogIt.Write($"Learning {AttackName}");
-                        Learned = true;
+                        LogIt.Write($"Learning {special.Name}");
+                        special.Learned = true;
                         Dojos.Dojo[0].TotalSteps++;
-                        Dojos.Dojo[0].Energy -= ExpToNext;
+                        Dojos.Dojo[0].Energy -= special.ExpToNext;
                         Dojos.Dojo.Refresh();
-                        CompleteLevelUp();
+                        CompleteLevelUp(special);
                     }
                 }
                 else
                 {
-                    if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
+                    if (Dojos.Dojo[0].Exp >= special.ExpToNext && !special.MaxLevel)
                     {
-                        LogIt.Write($"Leveling up {AttackName}");
-                        Dojos.Dojo[0].Exp -= ExpToNext;
+                        LogIt.Write($"Leveling up {special.Name}");
+                        Dojos.Dojo[0].Exp -= special.ExpToNext;
                         Dojos.Dojo.Refresh();
-                        CompleteLevelUp();
+                        CompleteLevelUp(special);
                     }
                 }
             }
@@ -76,41 +73,41 @@ namespace BecomeSifu.Objects
             }
         }
 
-        private void CompleteLevelUp()
+        private static void CompleteLevelUp(ActionsViewModel special)
         {
             try
             {
-                if (LevelInt <= 500)
+                if (special.LevelInt <= 500)
                 {
-                    if (500 - LevelInt <= BoostsController.Boost)
+                    if (500 - special.LevelInt <= BoostsController.Boost)
                     {
-                        LevelInt = 500;
+                        special.LevelInt = 500;
                     }
                     else
                     {
-                        LevelInt += BoostsController.Boost;
+                        special.LevelInt += BoostsController.Boost;
                     }
-                    if (LevelInt == 500)
+                    if (special.LevelInt == 500)
                     {
-                        LogIt.Write($"{AttackName} has reached Max Level");
-                        Extensions.SendMessage($"{AttackName} has reached Max Level");
-                        MaxLevel = true;
-                        LevelUp = "Max Level";
+                        LogIt.Write($"{special.Name} has reached Max Level");
+                        Extensions.SendMessage($"{special.Name} has reached Max Level");
+                        special.MaxLevel = true;
+                        special.LevelUp = "Max Level";
                         Dojos.Specials.Refresh();
                     }
 
-                    ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step + 1, LevelInt);
-                    ExpString = ExpToNext.ConvertToString();
+                    special.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(special.Step + 1, special.LevelInt);
+                    special.ExpString = special.ExpToNext.ConvertToString();
 
 
-                    Level = "Lvl " + LevelInt.ToString();
+                    special.Level = "Lvl " + special.LevelInt.ToString();
 
                     Dojos.Dojo[0].TotalLevels++;
                     if (Dojos.Dojo[0].Perks[3].Active)
                     {
                         Dojos.Dojo[0].AttackSpeedModifier = .0004M * Dojos.Dojo[0].TotalLevels++;
                     }
-                    LevelUp = $"Level Up \r\n{ExpString} Exp";
+                    special.LevelUp = $"Level Up \r\n{special.ExpString} Exp";
                     Dojos.Dojo.Refresh();
                     Dojos.Specials.Refresh();
 
@@ -118,8 +115,8 @@ namespace BecomeSifu.Objects
                 }
                 else
                 {
-                    LogIt.Write($"{AttackName} is at Max Level");
-                    Extensions.SendMessage($"{AttackName} is at Max Level");
+                    LogIt.Write($"{special.Name} is at Max Level");
+                    Extensions.SendMessage($"{special.Name} is at Max Level");
                 }
             }
             catch (Exception e)

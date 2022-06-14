@@ -1,5 +1,6 @@
 ﻿using BecomeSifu.Objects;
 using BecomeSifu.UserControls;
+using BecomeSifu.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,32 +36,32 @@ namespace BecomeSifu.Controls
         {
             await Task.Run(() =>
             {
-                foreach (Punches punch in Dojos.Punches)
+                foreach (ActionsViewModel punch in Dojos.Punches)
                 {
                     if(punch.Learned && punch.ExpToNext <= Dojos.Dojo[0].Exp)
                     {
-                        punch.TryLevelUp();
+                        Punches.TryLevelUp(punch);
                     }
                 }
-                foreach (Kicks kick in Dojos.Kicks)
+                foreach (ActionsViewModel kick in Dojos.Kicks)
                 {
                     if (kick.Learned && kick.ExpToNext <= Dojos.Dojo[0].Exp)
                     {
-                        kick.TryLevelUp();
+                        Kicks.TryLevelUp(kick);
                     }
                 }
-                foreach (Specials special in Dojos.Specials)
+                foreach (ActionsViewModel special in Dojos.Specials)
                 {
                     if (special.Learned && special.ExpToNext <= Dojos.Dojo[0].Exp)
                     {
-                        special.TryLevelUp();
+                        Specials.TryLevelUp(special);
                     }
                 }
-                foreach (Defenses def in Dojos.Defenses)
+                foreach (ActionsViewModel def in Dojos.Defenses)
                 {
                     if (def.Learned && def.ExpToNext <= Dojos.Dojo[0].Exp)
                     {
-                        def.TryLevelUp();
+                        Defenses.TryLevelUp(def);
                     }
                 }
             });

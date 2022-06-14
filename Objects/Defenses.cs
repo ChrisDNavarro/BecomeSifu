@@ -1,5 +1,6 @@
 ﻿using BecomeSifu.Controls;
 using BecomeSifu.Logging;
+using BecomeSifu.ViewModels;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -9,69 +10,64 @@ using System.Windows.Media;
 
 namespace BecomeSifu.Objects
 {
-    public class Defenses : Buttons
+    public class Defenses
     {
-        public ICommand LevelUpCommand => new RelayCommand(() => TryLevelUp());
-        public string DefenseName { get; set; }
-        public bool DefenseEnabled { get; set; }
-
         public Defenses(string name, int step)
         {
-            DefenseName = name;
+            ActionsViewModel defense = new ActionsViewModel();
+            defense.Name = name;
             if (Dojos.Dojo[0].IsBoxing)
             {
-                Step = step + 3;
+                defense.Step = step + 3;
             }
             else
             {
-                Step = (step + 1) * 2;
+                defense.Step = (step + 1) * 2;
             }
 
-            LevelInt = 0;
-            Level = "Lvl " + (LevelInt + 1).ToString();
+            defense.LevelInt = 0;
+            defense.Level = "Lvl " + (defense.LevelInt + 1).ToString();
 
-            ExpToNext = Dojos.Dojo[0].EnergyToUnlock(Step);
-            ExpString = ExpToNext.ConvertToString();
-            LevelUp = $"Learn\r\n{ExpString} Eng";
+            defense.ExpToNext = Dojos.Dojo[0].EnergyToUnlock(defense.Step);
+            defense.ExpString = defense.ExpToNext.ConvertToString();
+            defense.LevelUp = $"Learn\r\n{defense.ExpString} Eng";
 
             if (step % 2 != 0)
             {
-                BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
-                ForegroundColor = new SolidColorBrush(Colors.DimGray);
+                defense.BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
+                defense.ForegroundColor = new SolidColorBrush(Colors.DimGray);
             }
             else
             {
-                ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
-                BackgroundColor = new SolidColorBrush(Colors.Silver);
+                defense.ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
+                defense.BackgroundColor = new SolidColorBrush(Colors.Silver);
             }
+
+            Dojos.AddDefense(defense);
         }
 
-        public void TryLevelUp()
+        public static void TryLevelUp(ActionsViewModel defense)
         {
             try
             {
-                if (!Learned)
+                if (!defense.Learned)
                 {
-                    if (Dojos.Dojo[0].Energy >= ExpToNext)
+                    if (Dojos.Dojo[0].Energy >= defense.ExpToNext)
                     {
-                        LogIt.Write($"Learning {DefenseName}");
-                        Learned = true;
+                        LogIt.Write($"Learning {defense.Name}");
+                        defense.Learned = true;
                         Dojos.Dojo[0].TotalSteps++;
-                        if (Step >= Dojos.Defenses.Count)
-                        {
-                            AllDefense = true;
-                        }
-                        Dojos.Dojo[0].Energy -= ExpToNext;
-                        CompleteLevelUp();
+                        Dojos.Dojo[0].Energy -= defense.ExpToNext;
+                        CompleteLevelUp(defense);
                     }
                 }
                 else
                 {
-                    if (Dojos.Dojo[0].Exp >= ExpToNext && !MaxLevel)
+                    if (Dojos.Dojo[0].Exp >= defense.ExpToNext && !defense.MaxLevel)
                     {
-                        LogIt.Write($"Leveling up {DefenseName}");
-                        Dojos.Dojo[0].Exp -= ExpToNext;
-                        CompleteLevelUp();
+                        LogIt.Write($"Leveling up {defense.Name}");
+                        Dojos.Dojo[0].Exp -= defense.ExpToNext;
+                        CompleteLevelUp(defense);
                     }
                 }
             }
@@ -82,37 +78,37 @@ namespace BecomeSifu.Objects
             }
         }
 
-        private void CompleteLevelUp()
+        private static void CompleteLevelUp(ActionsViewModel defense)
         {
             try
             {
-                if (LevelInt <= 500)
+                if (defense.LevelInt <= 500)
                 {
-                    if (500 - LevelInt <= BoostsController.Boost)
+                    if (500 - defense.LevelInt <= BoostsController.Boost)
                     {
-                        LevelInt = 500;
+                        defense.LevelInt = 500;
                     }
                     else
                     {
-                        LevelInt += BoostsController.Boost;
+                        defense.LevelInt += BoostsController.Boost;
                     }
-                    if (LevelInt == 500)
+                    if (defense.LevelInt == 500)
                     {
-                        LogIt.Write($"{DefenseName} has reached Max Level");
-                        MaxLevel = true;
-                        LevelUp = "Max Level";
+                        LogIt.Write($"{defense.Name} has reached Max Level");
+                        defense.MaxLevel = true;
+                        defense.LevelUp = "Max Level";
                         Dojos.Defenses.Refresh();
                     }
 
 
-                    ExpToNext = Dojos.Dojo[0].AttacksExpToNext(Step, LevelInt);
-                    ExpString = ExpToNext.ConvertToString();
+                    defense.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(defense.Step, defense.LevelInt);
+                    defense.ExpString = defense.ExpToNext.ConvertToString();
 
 
-                    Level = "Lvl " + LevelInt.ToString();
+                    defense.Level = "Lvl " + defense.LevelInt.ToString();
 
                     Dojos.Dojo[0].TotalLevels++;
-                    LevelUp = $"Level Up \r\n{ExpString} Exp";
+                    defense.LevelUp = $"Level Up \r\n{defense.ExpString} Exp";
                     Dojos.Dojo.Refresh();
                     Dojos.Defenses.Refresh();
                     Extensions.UpdateActives();
@@ -120,7 +116,7 @@ namespace BecomeSifu.Objects
                 }
                 else
                 {
-                    LogIt.Write($"{DefenseName} is at Max Level");
+                    LogIt.Write($"{defense.Name} is at Max Level");
 
                 }
             }

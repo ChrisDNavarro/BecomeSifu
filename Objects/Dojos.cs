@@ -11,25 +11,28 @@ using System.Collections.ObjectModel;
 using BecomeSifu.FightObjects;
 using BecomeSifu.Controls;
 using System.Windows;
+using BecomeSifu.ViewModels;
 
 namespace BecomeSifu.Objects
 
 {
     public static class Dojos
     {
-        public static ObservableCollection<Punches> Punches = new ObservableCollection<Punches>();
+        public static ObservableCollection<ActionsViewModel> Punches = new ObservableCollection<ActionsViewModel>();
 
-        public static ObservableCollection<Kicks> Kicks = new ObservableCollection<Kicks>();
+        public static ObservableCollection<ActionsViewModel> Kicks = new ObservableCollection<ActionsViewModel>();
 
-        public static ObservableCollection<Specials> Specials = new ObservableCollection<Specials>();
+        public static ObservableCollection<ActionsViewModel> Specials = new ObservableCollection<ActionsViewModel>();
 
-        public static ObservableCollection<Defenses> Defenses = new ObservableCollection<Defenses>();
+        public static ObservableCollection<ActionsViewModel> Defenses = new ObservableCollection<ActionsViewModel>();
 
         public static ObservableCollection<IFights> Fights = new ObservableCollection<IFights>();
 
         public static ObservableCollection<IDojo> Dojo = new ObservableCollection<IDojo>();
 
         public static ObservableCollection<EmptyCupControl> Cup = new ObservableCollection<EmptyCupControl>();
+
+        public static ObservableCollection<PracticeViewModel> Practice = new ObservableCollection<PracticeViewModel>();
 
 
 
@@ -61,28 +64,29 @@ namespace BecomeSifu.Objects
             }
 
             Dojo.Add(dojo);
+            Practice.Add(new PracticeViewModel());
             AddCup(new EmptyCupControl());
             PageHolder.MainWindow.Start();
             PageHolder.MainWindow.Client.StartingMessages();
             PageHolder.MainWindow.Client.UpdateBonuses();
         }
 
-        public static void AddPunch(Punches newPunch)
+        public static void AddPunch(ActionsViewModel newPunch)
         {
             Punches.Add(newPunch);
         }
 
-        public static void AddKick(Kicks newKick)
+        public static void AddKick(ActionsViewModel newKick)
         {
             Kicks.Add(newKick);
         }
 
-        public static void AddSpecial(Specials newSpecial)
+        public static void AddSpecial(ActionsViewModel newSpecial)
         {
             Specials.Add(newSpecial);
         }
 
-        public static void AddDefense(Defenses newDefense)
+        public static void AddDefense(ActionsViewModel newDefense)
         {
             Defenses.Add(newDefense);
         }
