@@ -21,13 +21,10 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                Dictionary<int, string> punches = Dojos.Dojo[0].Punches;
-                foreach (int key in punches.Keys)
+                List<string> punches = PageHolder.MainWindow.State.Dojo[0].Punches;
+                foreach (string key in punches)
                 {
-                    ActionsViewModel punch = new ActionsViewModel();
-                    Punches.Create(punches[key], key, punch);
-                    Dojos.AddPunch(punch);
-
+                    new Punches(key, punches.IndexOf(key));
                     LogIt.Write($"Populated Punches observale list.");
                 }
             }
@@ -42,10 +39,10 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                Dictionary<int, string> kicks = Dojos.Dojo[0].Kicks;
-                foreach (int key in kicks.Keys)
+                List<string> kicks = PageHolder.MainWindow.State.Dojo[0].Kicks;
+                foreach (string key in kicks)
                 {
-                    Kicks kick = new Kicks(kicks[key], key);
+                    new Kicks(key, kicks.IndexOf(key));
                     LogIt.Write($"Populated Kicks observale list.");
                 }
             }
@@ -60,10 +57,10 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                Dictionary<int, string> specials = Dojos.Dojo[0].Specials;
-                foreach (int key in specials.Keys)
+                List<string> specials = PageHolder.MainWindow.State.Dojo[0].Specials;
+                foreach (string key in specials)
                 {
-                    Specials special = new Specials(specials[key], key);
+                    new Specials(key, specials.IndexOf(key));
                 }
                 LogIt.Write($"Populated Specials observale list.");
             }
@@ -78,10 +75,10 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                Dictionary<int, string> Defenses = Dojos.Dojo[0].Defenses;
-                foreach (int key in Defenses.Keys)
+                List<string> Defenses = PageHolder.MainWindow.State.Dojo[0].Defenses;
+                foreach (string key in Defenses)
                 {
-                    Defenses defense = new Defenses(Defenses[key], key);
+                    new Defenses(key, Defenses.IndexOf(key));
                 }
                 LogIt.Write($"Populated Defenses observale list.");
             }

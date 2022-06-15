@@ -26,7 +26,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _EnergyString = value;
-                Dojos.Practice[0].EnergyString = value;
+                PageHolder.MainWindow.State.Practice[0].EnergyString = value;
             }
         }
 
@@ -37,7 +37,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _EnergyGainString = value;
-                Dojos.Practice[0].EnergyGainString = value;
+                PageHolder.MainWindow.State.Practice[0].EnergyGainString = value;
             }
         }
         private string _EnergyMeditationGainString = "0";
@@ -47,7 +47,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _EnergyMeditationGainString = value;
-                Dojos.Practice[0].EnergyMeditationGainString = value;
+                PageHolder.MainWindow.State.Practice[0].EnergyMeditationGainString = value;
             }
         }
 
@@ -60,7 +60,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _ExpString = value;
-                Dojos.Practice[0].ExpString = value;
+                PageHolder.MainWindow.State.Practice[0].ExpString = value;
             }
         }
         private string _ExpGainString = "0";
@@ -70,7 +70,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _ExpGainString = value;
-                Dojos.Practice[0].ExpGainString = value;
+                PageHolder.MainWindow.State.Practice[0].ExpGainString = value;
             }
         }
 
@@ -83,7 +83,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _AttackString = value;
-                Dojos.Practice[0].AttackString = value;
+                PageHolder.MainWindow.State.Practice[0].AttackString = value;
             }
         }
         private string _AttackGainString = "0";
@@ -93,7 +93,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _AttackGainString = value;
-                Dojos.Practice[0].AttackGainString = value;
+                PageHolder.MainWindow.State.Practice[0].AttackGainString = value;
             }
         }
 
@@ -107,7 +107,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _DefenseString = value;
-                Dojos.Practice[0].DefenseString = value;
+                PageHolder.MainWindow.State.Practice[0].DefenseString = value;
             }
         }
 
@@ -118,7 +118,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _DefenseGainString = value;
-                Dojos.Practice[0].DefenseGainString = value;
+                PageHolder.MainWindow.State.Practice[0].DefenseGainString = value;
             }
         }
 
@@ -131,7 +131,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _HealthString = value;
-                Dojos.Practice[0].HealthString = value;
+                PageHolder.MainWindow.State.Practice[0].HealthString = value;
             }
         }
 
@@ -142,7 +142,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _HealthGainString = value;
-                Dojos.Practice[0].HealthGainString = value;
+                PageHolder.MainWindow.State.Practice[0].HealthGainString = value;
             }
         }
 
@@ -153,7 +153,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _IsMeditating = value;
-                Dojos.Practice[0].IsMeditating = value;
+                PageHolder.MainWindow.State.Practice[0].IsMeditating = value;
             }
         }
         private Visibility _MeditateOption = Visibility.Collapsed;
@@ -163,7 +163,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _MeditateOption = value;
-                Dojos.Practice[0].MeditateOption = value;
+                PageHolder.MainWindow.State.Practice[0].MeditateOption = value;
             }
         }
 
@@ -174,7 +174,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _IsMeditatingString = value;
-                Dojos.Practice[0].IsMeditatingString = value;
+                PageHolder.MainWindow.State.Practice[0].IsMeditatingString = value;
             }
         }
         private bool _AutoMeditate;
@@ -184,7 +184,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _AutoMeditate = value;
-                Dojos.Practice[0].AutoMeditate = value;
+                PageHolder.MainWindow.State.Practice[0].AutoMeditate = value;
             }
         }
 
@@ -195,7 +195,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _AutoPractice = value;
-                Dojos.Practice[0].AutoPractice = value;
+                PageHolder.MainWindow.State.Practice[0].AutoPractice = value;
             }
         }
 
@@ -206,7 +206,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _CanAutoMeditate = value;
-                Dojos.Practice[0].CanAutoMeditate = value;
+                PageHolder.MainWindow.State.Practice[0].CanAutoMeditate = value;
             }
         }
 
@@ -217,7 +217,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _CanAutoPractice = value;
-                Dojos.Practice[0].CanAutoPractice = value;
+                PageHolder.MainWindow.State.Practice[0].CanAutoPractice = value;
             }
         }
 
@@ -228,7 +228,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _Rate = value;
-                Dojos.Practice[0].Rate = value;
+                PageHolder.MainWindow.State.Practice[0].Rate = value;
             }
         }
         public decimal AutoSpeedMultiplier { get; set; } = 1;
@@ -246,7 +246,7 @@ namespace BecomeSifu.Controls
             set
             {
                 _Repeat = value;
-                Dojos.Practice[0].Repeat = value;
+                PageHolder.MainWindow.State.Practice[0].Repeat = value;
             }
         }
 

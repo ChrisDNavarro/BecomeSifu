@@ -6,5 +6,19 @@
              xmlns:local="clr-namespace:BecomeSifu.Pages"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="200" Background="Silver">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="Energy" Content="1,000,000,000 added to Energy" Margin="5,5" Click="Energy_Click" />
+        <Button x:Name="Exp" Grid.Row="1" Content ="1,000,000,000 added to Exp" Margin="5,5" Click="Exp_Click" />
+        <Button x:Name="Attack" Grid.Row="2" Content="1,000,000 added to Attack" Margin="5,5" Click="Attack_Click" />
+        <Button x:Name="Defense" Grid.Row="3" Content="1,000,000 added to Defense" Margin="5,5" Click="Defense_Click" />
+        <Button x:Name="Health" Grid.Row="4" Content="1,000,000 added to Health" Margin="5,5" Click="Health_Click" />
+    </Grid>
 
 </UserControl>

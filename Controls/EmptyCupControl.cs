@@ -1,10 +1,9 @@
-﻿using BecomeSifu.Logging;
+﻿using BecomeSifu.Abstracts;
+using BecomeSifu.Logging;
 using BecomeSifu.Objects;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -14,7 +13,7 @@ namespace BecomeSifu.Controls
     {
         public static bool DefeatedGrandMaster { get; set; }
         public bool Emptied { get; set; }
-        public ICommand EmptyYourCup => new RelayCommand(() => Dojos.Cup[0].EmptyingCup());
+        public CommandAbstract EmptyYourCup => new RelayCommand(x => PageHolder.MainWindow.State.Cup[0].EmptyingCup());
         public ImageSource Imagesource { get; set; } =
                         new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsEmpty.png"));
         public string CurrentBonus { get; set; } = "No Bonus";
@@ -30,7 +29,7 @@ namespace BecomeSifu.Controls
                     ButtonName = "Empty Your Cup";
                     Emptied = false;
                     LogIt.Write($"Selection confirmed");
-                    if (Dojos.Dojo[0].CheckForMaxed())
+                    if (PageHolder.MainWindow.State.Dojo[0].CheckForMaxed())
                     {
                         
                         LogIt.Write($"Skills are Maxed, Continuing to Perk selection");
@@ -47,7 +46,7 @@ namespace BecomeSifu.Controls
                     LogIt.Write($"Confirming Selection for EmptyCup");
                     ButtonName = "Are You Sure?";
                     Emptied = true;
-                    Dojos.Cup.Refresh();
+                    PageHolder.MainWindow.State.Cup.Refresh();
                 }
             }
             catch (Exception e)
@@ -97,7 +96,7 @@ namespace BecomeSifu.Controls
                 }
 
                 CurrentBonus = bonusUpdates.ToString();
-                Dojos.Cup.Refresh();
+                PageHolder.MainWindow.State.Cup.Refresh();
             }
             catch (Exception e)
             {

@@ -19,7 +19,7 @@ namespace BecomeSifu.Controls
     public class BecomeSifuClient
     {
         private ItemCollection Tabs;
-        public ItemCollection PracticeTabs;
+        private ItemCollection PracticeTabs;
         private ItemCollection AdvancedTabs;
         private List<int> Bonuses = new List<int>();
         public BecomeSifuClient(List<int> bonuses)
@@ -77,8 +77,8 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                Dojos.Cup[0].UpdateBonuses(Bonuses);
-                Dojos.Dojo[0].UpdateBonuses(Bonuses);
+                PageHolder.MainWindow.State.Cup[0].UpdateBonuses(Bonuses);
+                PageHolder.MainWindow.State.Dojo[0].UpdateBonuses(Bonuses);
             }
             catch (Exception e)
             {

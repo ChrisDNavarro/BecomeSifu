@@ -1,4 +1,6 @@
-﻿using BecomeSifu.Logging;
+﻿using BecomeSifu.Abstracts;
+using BecomeSifu.Interfaces;
+using BecomeSifu.Logging;
 using BecomeSifu.MartialArts;
 using BecomeSifu.Objects;
 using System;
@@ -65,7 +67,7 @@ namespace BecomeSifu.Controls
                     }
                     else
                     {
-                        UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.{tab.Header}").Unwrap();
+                        UserControl control = (UserControl)Activator.CreateInstance(Assembly.GetExecutingAssembly().ToString(), $"BecomeSifu.UserControls.{tab.Header}").Unwrap();
                         tab.Content = control;
                     }
                 }
@@ -92,19 +94,22 @@ namespace BecomeSifu.Controls
                 foreach (PropertyInfo pI in bottomTabs)
                 {
                     string name = pI.Name;
-                    if (!name.Contains("Defenses") && pI.PropertyType.ToString().Contains("Dictionary"))
+                    if (!name.Contains("Perk"))
                     {
-                        TabItem bottomTab = new TabItem
+                        if (!name.Contains("Defenses") && pI.PropertyType.ToString().Contains("List"))
                         {
-                            Header = name,
-                        };
-                        if (Dojos.Dojo[0].IsBoxing && name.Contains("Kicks"))
-                        {
-                            bottomTab.Header = "To The Body";
+                            TabItem bottomTab = new TabItem
+                            {
+                                Header = name,
+                            };
+                            if (PageHolder.MainWindow.State.Dojo[0].IsBoxing && name.Contains("Kicks"))
+                            {
+                                bottomTab.Header = "To The Body";
+                            }
+                            UserControl control = (UserControl)Activator.CreateInstance(Assembly.GetExecutingAssembly().ToString(), $"BecomeSifu.UserControls.Attacks{name}").Unwrap();
+                            bottomTab.Content = control;
+                            attackTabs.Items.Add(bottomTab);
                         }
-                        UserControl control = (UserControl)Activator.CreateInstance("BecomeSifu, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", $"BecomeSifu.UserControls.Attacks{name}").Unwrap();
-                        bottomTab.Content = control;
-                        attackTabs.Items.Add(bottomTab);
                     }
                 }
                 LogIt.Write($"Created bottom tabs and content");

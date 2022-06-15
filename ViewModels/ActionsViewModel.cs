@@ -1,19 +1,20 @@
-﻿using BecomeSifu.Objects;
-using GalaSoft.MvvmLight.Command;
+﻿using BecomeSifu.Abstracts;
+using BecomeSifu.Controls;
+using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Input;
+
 using System.Windows.Media;
 
 namespace BecomeSifu.ViewModels
 {
     public class ActionsViewModel : ViewModelBase
     {
-        public ICommand PunchesLevelUpCommand => new RelayCommand(() => Punches.TryLevelUp(this));
-        public ICommand KicksLevelUpCommand => new RelayCommand(() => Kicks.TryLevelUp(this));
-        public ICommand DefensesLevelUpCommand => new RelayCommand(() => Defenses.TryLevelUp(this));
-        public ICommand SpecialsLevelUpCommand => new RelayCommand(() => Specials.TryLevelUp(this));
+        public CommandAbstract PunchesLevelUpCommand => new RelayCommand(x => Punches.TryLevelUp(this));
+        public CommandAbstract KicksLevelUpCommand => new RelayCommand(x => Kicks.TryLevelUp(this));
+        public CommandAbstract DefensesLevelUpCommand => new RelayCommand(x => Defenses.TryLevelUp(this));
+        public CommandAbstract SpecialsLevelUpCommand => new RelayCommand(x => Specials.TryLevelUp(this));
 
 
         private SolidColorBrush _BackgroundColor;
@@ -84,6 +85,13 @@ namespace BecomeSifu.ViewModels
         {
             get => _Learned;
             set => SetProperty(ref _Learned, value);
+        }
+
+        private bool _Learning;
+        public bool Learning
+        {
+            get => _Learning;
+            set => SetProperty(ref _Learning, value);
         }
 
         private int _LevelInt;

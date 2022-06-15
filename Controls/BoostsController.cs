@@ -36,30 +36,30 @@ namespace BecomeSifu.Controls
         {
             await Task.Run(() =>
             {
-                foreach (ActionsViewModel punch in Dojos.Punches)
+                foreach (ActionsViewModel punch in PageHolder.MainWindow.State.Punches)
                 {
-                    if(punch.Learned && punch.ExpToNext <= Dojos.Dojo[0].Exp)
+                    if(punch.Learned && punch.ExpToNext <= PageHolder.MainWindow.State.Dojo[0].Exp)
                     {
                         Punches.TryLevelUp(punch);
                     }
                 }
-                foreach (ActionsViewModel kick in Dojos.Kicks)
+                foreach (ActionsViewModel kick in PageHolder.MainWindow.State.Kicks)
                 {
-                    if (kick.Learned && kick.ExpToNext <= Dojos.Dojo[0].Exp)
+                    if (kick.Learned && kick.ExpToNext <= PageHolder.MainWindow.State.Dojo[0].Exp)
                     {
                         Kicks.TryLevelUp(kick);
                     }
                 }
-                foreach (ActionsViewModel special in Dojos.Specials)
+                foreach (ActionsViewModel special in PageHolder.MainWindow.State.Specials)
                 {
-                    if (special.Learned && special.ExpToNext <= Dojos.Dojo[0].Exp)
+                    if (special.Learned && special.ExpToNext <= PageHolder.MainWindow.State.Dojo[0].Exp)
                     {
                         Specials.TryLevelUp(special);
                     }
                 }
-                foreach (ActionsViewModel def in Dojos.Defenses)
+                foreach (ActionsViewModel def in PageHolder.MainWindow.State.Defenses)
                 {
-                    if (def.Learned && def.ExpToNext <= Dojos.Dojo[0].Exp)
+                    if (def.Learned && def.ExpToNext <= PageHolder.MainWindow.State.Dojo[0].Exp)
                     {
                         Defenses.TryLevelUp(def);
                     }

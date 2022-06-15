@@ -1,6 +1,9 @@
-﻿using BecomeSifu.FightObjects;
+﻿using BecomeSifu.Abstracts;
+using BecomeSifu.FightObjects;
+using BecomeSifu.Interfaces;
 using BecomeSifu.Logging;
 using BecomeSifu.Objects;
+using BecomeSifu.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +35,7 @@ namespace BecomeSifu.Controls
             try
             {
                 return Assembly.GetExecutingAssembly().GetTypes()
-                        .Where(t => t.Name != "IFights" && t.Name != "AllFights" && t.Namespace == typeof(IFights).Namespace && t.BaseType.Name == "AllFights")
+                        .Where(t => t.Name != "AllFights" && t.Namespace == typeof(AllFights).Namespace && t.BaseType.Name == "AllFightsAbstract")
                         .ToList();
             }
             catch (Exception e)
@@ -48,7 +51,8 @@ namespace BecomeSifu.Controls
             {
                 foreach (Type type in types)
                 {
-                    Dojos.AddFight((IFights)Activator.CreateInstance(type.Assembly.ToString(), type.FullName).Unwrap());
+                    PageHolder.MainWindow.State.AddFightVM((FightsViewModelAbstract)Activator.CreateInstance(typeof(IFightsViewModel).Assembly.ToString(), "BecomeSifu.ViewModels." + type.Name + "ViewModel").Unwrap());
+                    PageHolder.MainWindow.State.AddFight((AllFightsAbstract)Activator.CreateInstance(type.Assembly.ToString(), type.FullName).Unwrap());
                 }
             }
             catch (Exception e)

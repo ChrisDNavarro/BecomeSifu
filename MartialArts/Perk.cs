@@ -1,23 +1,23 @@
-﻿using BecomeSifu.Controls;
+﻿using BecomeSifu.Abstracts;
+using BecomeSifu.Controls;
 using BecomeSifu.Objects;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
-using System.Windows.Input;
+
 
 namespace BecomeSifu.MartialArts
 {
     public class Perk
     {
-        public ICommand PickThisOne => new RelayCommand(() => StorePerk());
+        public CommandAbstract PickThisOne => new RelayCommand(x => StorePerk());
 
         private void StorePerk()
         {
             Stored = true;
-            Dojos.Dojo[0].Perks.Refresh();
+            PageHolder.MainWindow.State.Dojo[0].Perks.Refresh();
             PageHolder.MainWindow.Setup();
         }
 
@@ -45,6 +45,7 @@ namespace BecomeSifu.MartialArts
                 Visible = Visibility.Visible;
             }
         }
+        public Perk() { }
 
 
 

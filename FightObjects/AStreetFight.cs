@@ -1,57 +1,53 @@
 ﻿using BecomeSifu.Logging;
 using BecomeSifu.Objects;
-using GalaSoft.MvvmLight.Command;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media;
+using BecomeSifu.Controls;
+using BecomeSifu.Abstracts;
 
 namespace BecomeSifu.FightObjects
 {
-    public class AStreetFight : AllFights, IFights
+    public class AStreetFight : AllFightsAbstract
     {
-        public ICommand StartFighting => new RelayCommand(() => Begin());
-
-        public new bool IsActive = true;
+        public CommandAbstract StartFighting => new RelayCommand(x => Begin());
 
         public AStreetFight()
         {
-            Wins = 0;
-            Health = ((decimal)Wins + 1) * 1000;
-            Attack = ((decimal)Wins + 1) * 100;
-            HealthString = Health.ConvertToString();
-            AttackString = Attack.ConvertToString();
-            FightName = "Street Fight";
-            Background = new SolidColorBrush(Colors.Silver);
+
+            PageHolder.MainWindow.State.FightsVMs[0].Wins = 0;
+            PageHolder.MainWindow.State.FightsVMs[0].Health = ((decimal)PageHolder.MainWindow.State.FightsVMs[0].Wins + 1) * 1000;
+            PageHolder.MainWindow.State.FightsVMs[0].Attack = ((decimal)PageHolder.MainWindow.State.FightsVMs[0].Wins + 1) * 100;
+            PageHolder.MainWindow.State.FightsVMs[0].HealthString = PageHolder.MainWindow.State.FightsVMs[0].Health.ConvertToString();
+            PageHolder.MainWindow.State.FightsVMs[0].AttackString = PageHolder.MainWindow.State.FightsVMs[0].Attack.ConvertToString();
+            PageHolder.MainWindow.State.FightsVMs[0].FightName = "Street Fight";
+            PageHolder.MainWindow.State.FightsVMs[0].Background = new SolidColorBrush(Colors.Silver);
         }
 
         public void Won(int win)
         {
             try
             {
-                
-                Wins += win;
-                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {Wins} wins");
-                Health = ((decimal)Wins + 1) * 1000;
-                Attack = ((decimal)Wins + 1) * 100;
-                HealthString = Health.ConvertToString();
-                AttackString = Attack.ConvertToString();
+                PageHolder.MainWindow.State.FightsVMs[0].Wins += win;
+                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {PageHolder.MainWindow.State.FightsVMs[1].Wins} wins");
+                PageHolder.MainWindow.State.FightsVMs[0].Health = ((decimal)PageHolder.MainWindow.State.FightsVMs[0].Wins + 1) * 1000;
+                PageHolder.MainWindow.State.FightsVMs[0].Attack = ((decimal)PageHolder.MainWindow.State.FightsVMs[0].Wins + 1) * 100;
+                PageHolder.MainWindow.State.FightsVMs[0].HealthString = PageHolder.MainWindow.State.FightsVMs[0].Health.ConvertToString();
+                PageHolder.MainWindow.State.FightsVMs[0].AttackString = PageHolder.MainWindow.State.FightsVMs[0].Attack.ConvertToString();
                 LogIt.Write($"Reset Healt and attack for enemy.");
                 if (win == 1)
                 {
-                    Dojos.Dojo[0].EnergyGainMultiplier += .01M;
+                    PageHolder.MainWindow.State.Dojo[0].EnergyGainMultiplier += .01M;
                 }
-                if (Wins == 5)
+                if (PageHolder.MainWindow.State.FightsVMs[0].Wins == 5)
                 {
-                    Dojos.Dojo[0].CanAutoMeditate = Visibility.Visible;
-                    Dojos.Dojo.Refresh();
+                    PageHolder.MainWindow.State.Dojo[0].CanAutoMeditate = Visibility.Visible;
+                    PageHolder.MainWindow.State.Dojo.Refresh();
                 }
 
 
-                Dojos.Fights.Refresh();
+                PageHolder.MainWindow.State.Fights.Refresh();
             }
             catch (Exception e)
             {
@@ -59,14 +55,14 @@ namespace BecomeSifu.FightObjects
                 throw;
             }
         }
-        public async void Begin()
+        public override async void Begin()
         {
             try
             {
                 bool first = Convert.ToBoolean(RNG.Next(0, 2));
                 LogIt.Write($"--------------FIGHT----------------");
                 LogIt.Write($"Starting Street Fight");
-                Won(await Task.Run(() => Fight()));
+                Won(await Task.Run(() => Fight(PageHolder.MainWindow.State.FightsVMs[0].Health, PageHolder.MainWindow.State.FightsVMs[0].Attack)));
             }
             catch (Exception e)
             {

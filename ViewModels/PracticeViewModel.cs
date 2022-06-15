@@ -1,11 +1,11 @@
-﻿using BecomeSifu.Controls;
+﻿using BecomeSifu.Abstracts;
+using BecomeSifu.Controls;
 using BecomeSifu.Objects;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
-using System.Windows.Input;
+
 using System.Windows.Media.Animation;
 using WpfAnimatedGif;
 
@@ -13,15 +13,15 @@ namespace BecomeSifu.ViewModels
 {
     public class PracticeViewModel : ViewModelBase
     {
-        public ICommand PracticeClick => new RelayCommand(() => Dojos.Dojo[0].Practice());
+        public CommandAbstract PracticeClick => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].Practice());
 
-        public ICommand MeditateClick => new RelayCommand(() => Dojos.Dojo[0].Meditation());
+        public CommandAbstract MeditateClick => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].Meditation());
 
-        public ICommand AutoPracticeCheck => new RelayCommand(() => Dojos.Dojo[0].StartStopAutoPractice());
+        public CommandAbstract AutoPracticeCheck => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].StartStopAutoPractice());
 
-        public ICommand AutoMeditateCheck => new RelayCommand(() => Dojos.Dojo[0].StartStopAutoMeditate());
+        public CommandAbstract AutoMeditateCheck => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].StartStopAutoMeditate());
 
-        public ICommand StartStopMeditationCommand => new RelayCommand(() => Dojos.Dojo[0].StartStopMeditation());
+        public CommandAbstract StartStopMeditationCommand => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].StartStopMeditation());
 
 
 

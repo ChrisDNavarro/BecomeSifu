@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "BecomeSifu/1.0.0": {
+      "BecomeSifu/0.0.1": {
         "dependencies": {
           "MvvmLightLibs": "5.4.1.1",
           "System.ObjectModel": "4.3.0",
@@ -147,7 +147,7 @@
     }
   },
   "libraries": {
-    "BecomeSifu/1.0.0": {
+    "BecomeSifu/0.0.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

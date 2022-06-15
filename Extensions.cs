@@ -23,7 +23,7 @@ namespace BecomeSifu
 
         public static void Refresh<T>(this ObservableCollection<T> value)
         {
-            CollectionViewSource.GetDefaultView(value).Refresh();
+            //CollectionViewSource.GetDefaultView(value).Refresh();
         }
 
         public static void UpdateActives()
@@ -31,69 +31,69 @@ namespace BecomeSifu
             try
             {
 
-                for (int i = 0; i < Dojos.Punches.Count; i++)
+                for (int i = 0; i < PageHolder.MainWindow.State.Punches.Count; i++)
                 {
-                    Dojos.Punches[i].Enabled = i > 0
-                        ? Dojos.Punches[i].Learned
-                            ? Dojos.Dojo[0].Exp >= Dojos.Punches[i].ExpToNext
-                            : Dojos.Punches[i-1].LevelInt >= 5
-                                ? Dojos.Dojo[0].Energy >= Dojos.Punches[i].ExpToNext
+                    PageHolder.MainWindow.State.Punches[i].Enabled = i > 0
+                        ? PageHolder.MainWindow.State.Punches[i].Learned
+                            ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Punches[i].ExpToNext
+                            : PageHolder.MainWindow.State.Punches[i-1].LevelInt >= 5
+                                ? PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Punches[i].ExpToNext
                                 : false
-                        : Dojos.Punches[i].Learned
-                            ? Dojos.Dojo[0].Exp >= Dojos.Punches[i].ExpToNext
-                            : Dojos.Dojo[0].Energy >= Dojos.Punches[i].ExpToNext;
+                        : PageHolder.MainWindow.State.Punches[i].Learned
+                            ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Punches[i].ExpToNext
+                            : PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Punches[i].ExpToNext;
                 }
-                for (int i = 0; i < Dojos.Kicks.Count; i++)
+                for (int i = 0; i < PageHolder.MainWindow.State.Kicks.Count; i++)
                 {
-                    Dojos.Kicks[i].Enabled = i > 0
-                        ? Dojos.Kicks[i].Learned
-                            ? Dojos.Dojo[0].Exp >= Dojos.Kicks[i].ExpToNext
-                            : Dojos.Kicks[i - 1].LevelInt >= 5
-                                ? Dojos.Dojo[0].Energy >= Dojos.Kicks[i].ExpToNext
+                    PageHolder.MainWindow.State.Kicks[i].Enabled = i > 0
+                        ? PageHolder.MainWindow.State.Kicks[i].Learned
+                            ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Kicks[i].ExpToNext
+                            : PageHolder.MainWindow.State.Kicks[i - 1].LevelInt >= 5
+                                ? PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Kicks[i].ExpToNext
                                 : false
-                        : Dojos.Kicks[i].Learned
-                            ? Dojos.Dojo[0].Exp >= Dojos.Kicks[i].ExpToNext
-                            : Dojos.Dojo[0].Energy >= Dojos.Kicks[i].ExpToNext;
+                        : PageHolder.MainWindow.State.Kicks[i].Learned
+                            ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Kicks[i].ExpToNext
+                            : PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Kicks[i].ExpToNext;
                 }
-                for (int i = 0; i < Dojos.Specials.Count; i++)
+                for (int i = 0; i < PageHolder.MainWindow.State.Specials.Count; i++)
                 {
-                    if (Dojos.Dojo[0].Perks[1].Active)
+                    if (PageHolder.MainWindow.State.Dojo[0].Perks[1].Active)
                     {
-                        if (Dojos.Kicks[0].Learned)
+                        if (PageHolder.MainWindow.State.Kicks[0].Learned)
                         {
-                            Dojos.Specials[i].Enabled = i > 0
-                            ? Dojos.Specials[i].Learned
-                                ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
-                                : Dojos.Specials[i - 1].LevelInt >= 5
-                                    ? Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
+                            PageHolder.MainWindow.State.Specials[i].Enabled = i > 0
+                            ? PageHolder.MainWindow.State.Specials[i].Learned
+                                ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Specials[i].ExpToNext
+                                : PageHolder.MainWindow.State.Specials[i - 1].LevelInt >= 5
+                                    ? PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Specials[i].ExpToNext
                                     : false
-                            : Dojos.Specials[i].Learned
-                                ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
-                                : Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext;
+                            : PageHolder.MainWindow.State.Specials[i].Learned
+                                ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Specials[i].ExpToNext
+                                : PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Specials[i].ExpToNext;
                         }
                     }
                     else
                     {
-                        Dojos.Specials[i].Enabled = i > Dojos.Fights[2].Wins
-                            ? Dojos.Specials[i].Learned
-                                ? Dojos.Dojo[0].Exp >= Dojos.Specials[i].ExpToNext
-                                : Dojos.Dojo[0].Energy >= Dojos.Specials[i].ExpToNext
+                        PageHolder.MainWindow.State.Specials[i].Enabled = i > PageHolder.MainWindow.State.FightsVMs[2].Wins
+                            ? PageHolder.MainWindow.State.Specials[i].Learned
+                                ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Specials[i].ExpToNext
+                                : PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Specials[i].ExpToNext
                             : false;
                     }
                 }
-                for (int i = 0; i < Dojos.Defenses.Count; i++)
+                for (int i = 0; i < PageHolder.MainWindow.State.Defenses.Count; i++)
                 {
-                    if (Dojos.Kicks[4].Learned || Dojos.Punches[4].Learned)
+                    if (PageHolder.MainWindow.State.Kicks[4].Learned || PageHolder.MainWindow.State.Punches[4].Learned)
                     {
-                        Dojos.Defenses[i].Enabled = i > 0
-                            ? Dojos.Defenses[i].Learned
-                                ? Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext
-                                : Dojos.Defenses[i - 1].LevelInt >= 5
-                                    ? Dojos.Dojo[0].Energy >= Dojos.Defenses[i].ExpToNext
+                        PageHolder.MainWindow.State.Defenses[i].Enabled = i > 0
+                            ? PageHolder.MainWindow.State.Defenses[i].Learned
+                                ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Defenses[i].ExpToNext
+                                : PageHolder.MainWindow.State.Defenses[i - 1].LevelInt >= 5
+                                    ? PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Defenses[i].ExpToNext
                                     : false
-                            : Dojos.Defenses[i].Learned
-                                ? Dojos.Dojo[0].Exp >= Dojos.Defenses[i].ExpToNext
-                                : Dojos.Dojo[0].Energy >= Dojos.Defenses[i].ExpToNext;
+                            : PageHolder.MainWindow.State.Defenses[i].Learned
+                                ? PageHolder.MainWindow.State.Dojo[0].Exp >= PageHolder.MainWindow.State.Defenses[i].ExpToNext
+                                : PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Defenses[i].ExpToNext;
                     }
                 }
             }
@@ -106,38 +106,38 @@ namespace BecomeSifu
 
         public static void UpdateBoostedEXP()
         {
-            foreach (ActionsViewModel punch in Dojos.Punches)
+            foreach (ActionsViewModel punch in PageHolder.MainWindow.State.Punches)
             {
                 if (punch.Learned)
                 {
-                    punch.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(punch.Step, punch.LevelInt);
+                    punch.ExpToNext = PageHolder.MainWindow.State.Dojo[0].AttacksExpToNext(punch.Step, punch.LevelInt);
                     punch.ExpString = punch.ExpToNext.ConvertToString();
                     punch.LevelUp = $"Level Up \r\n{punch.ExpString} Exp";
                 }
             }
-            foreach (ActionsViewModel kick in Dojos.Kicks)
+            foreach (ActionsViewModel kick in PageHolder.MainWindow.State.Kicks)
             {
                 if (kick.Learned)
                 {
-                    kick.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(kick.Step, kick.LevelInt);
+                    kick.ExpToNext = PageHolder.MainWindow.State.Dojo[0].AttacksExpToNext(kick.Step, kick.LevelInt);
                     kick.ExpString = kick.ExpToNext.ConvertToString();
                     kick.LevelUp = $"Level Up \r\n{kick.ExpString} Exp";
                 }
             }
-            foreach (ActionsViewModel special in Dojos.Specials)
+            foreach (ActionsViewModel special in PageHolder.MainWindow.State.Specials)
             {
                 if (special.Learned)
                 {
-                    special.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(special.Step, special.LevelInt);
+                    special.ExpToNext = PageHolder.MainWindow.State.Dojo[0].AttacksExpToNext(special.Step, special.LevelInt);
                     special.ExpString = special.ExpToNext.ConvertToString();
                     special.LevelUp = $"Level Up \r\n{special.ExpString} Exp";
                 }
             }
-            foreach (ActionsViewModel def in Dojos.Defenses)
+            foreach (ActionsViewModel def in PageHolder.MainWindow.State.Defenses)
             {
                 if (def.Learned)
                 {
-                    def.ExpToNext = Dojos.Dojo[0].AttacksExpToNext(def.Step, def.LevelInt);
+                    def.ExpToNext = PageHolder.MainWindow.State.Dojo[0].AttacksExpToNext(def.Step, def.LevelInt);
                     def.ExpString = def.ExpToNext.ConvertToString();
                     def.LevelUp = $"Level Up \r\n{def.ExpString} Exp";
                 }
@@ -153,10 +153,10 @@ namespace BecomeSifu
                     : exp < 1000
                     ? exp.ToString("#.##")
                     : exp < 1000000
-                    ? (exp / 1000).ToString("#.##") + "k"
+                    ? (Math.Truncate(100 * (exp / 1000)) / 100).ToString() + "k"
                     : exp < 1000000000
-                    ? (exp / 1000000).ToString("#.##") + "M"
-                    : (exp / 1000000000).ToString("#.##") + "B";
+                    ? (Math.Truncate(100 * (exp / 1000000)) / 100).ToString() + "M"
+                    : (Math.Truncate(100 * (exp / 1000000000)) / 100).ToString() + "B";
         }
 
         public static void SendMessage(string message)
@@ -182,9 +182,9 @@ namespace BecomeSifu
         {
             try
             {
-                var assembly = Assembly.GetExecutingAssembly();
+                Assembly assembly = Assembly.GetExecutingAssembly();
                 string resourceName = assembly.GetManifestResourceNames()
-                                        .Single(str => str.EndsWith($"{file}.txt"));
+                                        .Single(str => str.Contains($"{file}.txt"));
 
 
                 string result;

@@ -1,51 +1,54 @@
 ﻿using BecomeSifu.Logging;
 using BecomeSifu.Objects;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Windows.Media;
+using BecomeSifu.Abstracts;
+using BecomeSifu.Controls;
 
 namespace BecomeSifu.FightObjects
 {
-    public class DMaster : AllFights , IFights
+    public class DMaster : AllFightsAbstract
     {
-        public ICommand StartFighting => new RelayCommand(() => Begin());
+        public CommandAbstract StartFighting => new RelayCommand(x => Begin());
         public DMaster()
         {
-            Wins = 0;
-            Health = ((decimal)Wins + 1) * 1000000;
-            Attack = ((decimal)Wins + 1) * 100000;
-            HealthString = Health.ConvertToString();
-            AttackString = Attack.ConvertToString();
-            FightName = "Master";
-            Background = new SolidColorBrush(Colors.LightSteelBlue);
+            PageHolder.MainWindow.State.FightsVMs[3].Wins = 0;
+            PageHolder.MainWindow.State.FightsVMs[3].Health = ((decimal)PageHolder.MainWindow.State.FightsVMs[3].Wins + 1) * 1000000;
+            PageHolder.MainWindow.State.FightsVMs[3].Attack = ((decimal)PageHolder.MainWindow.State.FightsVMs[3].Wins + 1) * 100000;
+            PageHolder.MainWindow.State.FightsVMs[3].HealthString = PageHolder.MainWindow.State.FightsVMs[3].Health.ConvertToString();
+            PageHolder.MainWindow.State.FightsVMs[3].AttackString = PageHolder.MainWindow.State.FightsVMs[3].Attack.ConvertToString();
+            PageHolder.MainWindow.State.FightsVMs[3].FightName = "Master";
+            PageHolder.MainWindow.State.FightsVMs[3].Background = new SolidColorBrush(Colors.LightSteelBlue);
         }
         public void Won(int win)
         {
             try
             {
-                Wins += win;
-                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {Wins} wins");
-                Health = ((decimal)Wins + 1) * 1000000;
-                Attack = ((decimal)Wins + 1) * 100000;
-                HealthString = Health.ConvertToString();
-                AttackString = Attack.ConvertToString();
+                PageHolder.MainWindow.State.FightsVMs[3].Wins += win;
+                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {PageHolder.MainWindow.State.FightsVMs[3].Wins} wins");
+                PageHolder.MainWindow.State.FightsVMs[3].Health = ((decimal)PageHolder.MainWindow.State.FightsVMs[3].Wins + 1) * 1000000;
+                PageHolder.MainWindow.State.FightsVMs[3].Attack = ((decimal)PageHolder.MainWindow.State.FightsVMs[3].Wins + 1) * 100000;
+                PageHolder.MainWindow.State.FightsVMs[3].HealthString = PageHolder.MainWindow.State.FightsVMs[3].Health.ConvertToString();
+                PageHolder.MainWindow.State.FightsVMs[3].AttackString = PageHolder.MainWindow.State.FightsVMs[3].Attack.ConvertToString();
                 LogIt.Write($"Reset Healt and attack for enemy.");
-                Dojos.Dojo[0].ExpGainMultiplier += .1M;
-                if (Wins > 0 && Wins % 5 == 0)
+                PageHolder.MainWindow.State.Dojo[0].ExpGainMultiplier += .1M;
+                if (PageHolder.MainWindow.State.FightsVMs[3].Wins > 0 && PageHolder.MainWindow.State.FightsVMs[3].Wins % 5 == 0)
                 {
-                    Dojos.Fights[4].IsActive = true;
-                    if (Wins / 5 == 1)
+                    PageHolder.MainWindow.State.FightsVMs[4].IsActive = true;
+                    if (PageHolder.MainWindow.State.FightsVMs[3].Wins / 5 == 1)
                     {
                         Extensions.CreateMessage("GrandMaster", true);
                     }
                 }
-                IsActive = false;
+                if (PageHolder.MainWindow.State.FightsVMs[2].Wins / 5 > PageHolder.MainWindow.State.FightsVMs[3].Wins)
+                {
+                    PageHolder.MainWindow.State.FightsVMs[3].IsActive = false;
+                }
 
-                Dojos.Fights.Refresh();
+                PageHolder.MainWindow.State.Fights.Refresh();
             }
             catch (Exception e)
             {
@@ -53,14 +56,14 @@ namespace BecomeSifu.FightObjects
                 throw;
             }
         }
-        public async void Begin()
+        public override async void Begin()
         {
             try
             {
                 bool first = Convert.ToBoolean(RNG.Next(0, 2));
                 LogIt.Write($"--------------FIGHT----------------");
                 LogIt.Write($"Starting Master Fight");
-                Won(await Task.Run(() => Fight()));
+                Won(await Task.Run(() => Fight(PageHolder.MainWindow.State.FightsVMs[3].Health, PageHolder.MainWindow.State.FightsVMs[3].Attack)));
             }
             catch (Exception e)
             {

@@ -7,8 +7,6 @@ using BecomeSifu;
 using BecomeSifu.Objects;
 using System.Threading.Tasks;
 using System.Timers;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using System.Threading;
 using System.Windows;
 using System.Collections.ObjectModel;
@@ -29,11 +27,11 @@ namespace BecomeSifu.MartialArts
 
         private bool Bonuses;
 
-        public Dictionary<int, string> Punches { get; } = new Dictionary<int, string>();
-        public Dictionary<int, string> Specials { get; } = new Dictionary<int, string>();
-        public Dictionary<int, string> Kicks { get; } = new Dictionary<int, string>();
-        public Dictionary<int, string> Defenses { get; } = new Dictionary<int, string>();
-        public ObservableCollection<Perk> Perks { get; } = new ObservableCollection<Perk>();
+        public List<string> Punches { get; set; } = new List<string>();
+        public List<string> Specials { get; set; } = new List<string>();
+        public List<string> Kicks { get; set; } = new List<string>();
+        public List<string> Defenses { get; set; } = new List<string>();
+        public ObservableCollection<Perk> Perks { get; set; } = new ObservableCollection<Perk>();
         public bool Maxed { get; set; }
 
         public void UpdateBonuses(List<int> bonuses)
@@ -55,7 +53,7 @@ namespace BecomeSifu.MartialArts
                 {
                     Bonuses = true;
                 }
-                Dojos.Dojo.Refresh();
+                PageHolder.MainWindow.State.Dojo.Refresh();
                 LogIt.Write();
             }
             catch (Exception e)
@@ -193,28 +191,28 @@ namespace BecomeSifu.MartialArts
             {
                 int maxed = 0;
 
-                foreach (ActionsViewModel punch in Dojos.Punches)
+                foreach (ActionsViewModel punch in PageHolder.MainWindow.State.Punches)
                 {
                     if (punch.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (ActionsViewModel kick in Dojos.Kicks)
+                foreach (ActionsViewModel kick in PageHolder.MainWindow.State.Kicks)
                 {
                     if (kick.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (ActionsViewModel special in Dojos.Specials)
+                foreach (ActionsViewModel special in PageHolder.MainWindow.State.Specials)
                 {
                     if (special.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (ActionsViewModel def in Dojos.Defenses)
+                foreach (ActionsViewModel def in PageHolder.MainWindow.State.Defenses)
                 {
                     if (def.LevelInt == 500)
                     {
@@ -222,7 +220,7 @@ namespace BecomeSifu.MartialArts
                     }
                 }
                 LogIt.Write();
-                return maxed == Dojos.Punches.Count + Dojos.Kicks.Count + Dojos.Specials.Count + Dojos.Defenses.Count;
+                return maxed == PageHolder.MainWindow.State.Punches.Count + PageHolder.MainWindow.State.Kicks.Count + PageHolder.MainWindow.State.Specials.Count + PageHolder.MainWindow.State.Defenses.Count;
             }
             catch (Exception e)
             {
@@ -244,7 +242,7 @@ namespace BecomeSifu.MartialArts
                     MeditateOption = Visibility.Collapsed;
                     MeditateTimer.Stop();
                     AutoMeditate = false;
-                    Dojos.Dojo.Refresh();
+                    PageHolder.MainWindow.State.Dojo.Refresh();
                     Extensions.UpdateActives();
                 }
                 else
@@ -253,7 +251,7 @@ namespace BecomeSifu.MartialArts
                     IsMeditating = !IsMeditating;
                     IsMeditatingString = "Stop Meditating";
                     MeditateOption = Visibility.Visible;
-                    Dojos.Dojo.Refresh();
+                    PageHolder.MainWindow.State.Dojo.Refresh();
                     Extensions.UpdateActives();
                 }
             }
@@ -301,7 +299,7 @@ namespace BecomeSifu.MartialArts
                     Repeat = new RepeatBehavior(1);
                 }
 
-                Dojos.Dojo.Refresh();
+                PageHolder.MainWindow.State.Dojo.Refresh();
                 Extensions.UpdateActives();
                 LogIt.Write($"With Perk: '{Perks[5].Name}' set to {Perks[5].Active}");
             }
@@ -324,9 +322,9 @@ namespace BecomeSifu.MartialArts
                         LogIt.Write($"Stop");
                         AutoPractice = !AutoPractice;
                         Rate = "Auto";
-                        Dojos.Dojo.Refresh();
+                        PageHolder.MainWindow.State.Dojo.Refresh();
                         Timer.Stop();
-                        Dojos.Dojo.Refresh();
+                        PageHolder.MainWindow.State.Dojo.Refresh();
                     }
                     else
                     {
@@ -335,9 +333,9 @@ namespace BecomeSifu.MartialArts
                         Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
                         Timer.Tick += Timer_Tick;
                         Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * AutoSpeedMultiplier));
-                        Dojos.Dojo.Refresh();
+                        PageHolder.MainWindow.State.Dojo.Refresh();
                         Timer.Start();
-                        Dojos.Dojo.Refresh();
+                        PageHolder.MainWindow.State.Dojo.Refresh();
                     }
                 }
                 catch (Exception e)
@@ -372,9 +370,9 @@ namespace BecomeSifu.MartialArts
                         LogIt.Write($"Stop");
                         AutoMeditate = !AutoMeditate;
                         Rate = "Auto";
-                        Dojos.Dojo.Refresh();
+                        PageHolder.MainWindow.State.Dojo.Refresh();
                         MeditateTimer.Stop();
-                        Dojos.Dojo.Refresh();
+                        PageHolder.MainWindow.State.Dojo.Refresh();
                     }
                     else
                     {
@@ -383,7 +381,7 @@ namespace BecomeSifu.MartialArts
                         Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
                         MeditateTimer.Tick += MeditateTimer_Tick;
                         MeditateTimer.Interval = TimeSpan.FromMilliseconds((double)(1000 * AutoSpeedMultiplier));
-                        Dojos.Dojo.Refresh();
+                        PageHolder.MainWindow.State.Dojo.Refresh();
                         MeditateTimer.Start();
                     }
                 }
@@ -421,9 +419,9 @@ namespace BecomeSifu.MartialArts
         {
             try
             {
-                foreach (ActionsViewModel defense in Dojos.Defenses)
+                foreach (ActionsViewModel defense in PageHolder.MainWindow.State.Defenses)
                 {
-                    DefenseGain = defense.Step * Convert.ToDecimal(defense.LevelInt) * 10;
+                    DefenseGain += defense.Step * Convert.ToDecimal(defense.LevelInt) * .1M;
                 }
                 LogIt.Write();
             }
@@ -441,9 +439,9 @@ namespace BecomeSifu.MartialArts
                 decimal total = 0;
                 if (Perks[2].Active)
                 {
-                    foreach (ActionsViewModel kick in Dojos.Kicks)
+                    foreach (ActionsViewModel kick in PageHolder.MainWindow.State.Kicks)
                     {
-                        foreach (ActionsViewModel punch in Dojos.Punches)
+                        foreach (ActionsViewModel punch in PageHolder.MainWindow.State.Punches)
                         {
                             total += kick.LevelInt != 0
                                 ? total += punch.Step * punch.LevelInt * 2M * .004M * kick.LevelInt
@@ -453,11 +451,11 @@ namespace BecomeSifu.MartialArts
                 }
                 else
                 {
-                    foreach (ActionsViewModel punch in Dojos.Punches)
+                    foreach (ActionsViewModel punch in PageHolder.MainWindow.State.Punches)
                     {
                         total += punch.Step * punch.LevelInt;
                     }
-                    foreach (ActionsViewModel kick in Dojos.Kicks)
+                    foreach (ActionsViewModel kick in PageHolder.MainWindow.State.Kicks)
                     {
                         if (Perks[0].Active)
                         {
@@ -469,7 +467,7 @@ namespace BecomeSifu.MartialArts
                         }
                     }
                 }
-                foreach (ActionsViewModel special in Dojos.Specials)
+                foreach (ActionsViewModel special in PageHolder.MainWindow.State.Specials)
                 {
                     total += special.Step * 10 * special.LevelInt;
                 }
@@ -553,7 +551,7 @@ namespace BecomeSifu.MartialArts
             TotalLevels++;
             Energy -= energyCost;
             EnergyString = Energy.ConvertToString();
-            Dojos.Dojo.Refresh();
+            PageHolder.MainWindow.State.Dojo.Refresh();
         }
 
         public void SpendExp(decimal expCost)
@@ -561,7 +559,7 @@ namespace BecomeSifu.MartialArts
             TotalLevels++;
             Exp -= expCost;
             ExpString = Exp.ConvertToString();
-            Dojos.Dojo.Refresh();
+            PageHolder.MainWindow.State.Dojo.Refresh();
         }
     }
 }

@@ -6,12 +6,15 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
+
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+
+using BecomeSifu.Controls;
+using System.Xml.Serialization;
 
 namespace BecomeSifu.Pages
 {
@@ -20,11 +23,12 @@ namespace BecomeSifu.Pages
     /// </summary>
     public partial class Meditate : UserControl
     {
+
         public Meditate()
         {
             InitializeComponent();
-            Dojos.Dojo[0].MeditateTimer = new DispatcherTimer();
-            MeditateIC.ItemsSource = Dojos.Practice;
+            PageHolder.MainWindow.State.Dojo[0].MeditateTimer = new DispatcherTimer();
+            MeditateIC.ItemsSource = PageHolder.MainWindow.State.Practice;
         }
     }
 }

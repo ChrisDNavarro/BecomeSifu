@@ -12,31 +12,35 @@ using BecomeSifu.FightObjects;
 using BecomeSifu.Controls;
 using System.Windows;
 using BecomeSifu.ViewModels;
+using BecomeSifu.Abstracts;
 
 namespace BecomeSifu.Objects
 
 {
-    public static class Dojos
+    public class Dojos
     {
-        public static ObservableCollection<ActionsViewModel> Punches = new ObservableCollection<ActionsViewModel>();
+        public ObservableCollection<ActionsViewModel> Punches = new ObservableCollection<ActionsViewModel>();
 
-        public static ObservableCollection<ActionsViewModel> Kicks = new ObservableCollection<ActionsViewModel>();
+        public ObservableCollection<ActionsViewModel> Kicks = new ObservableCollection<ActionsViewModel>();
 
-        public static ObservableCollection<ActionsViewModel> Specials = new ObservableCollection<ActionsViewModel>();
+        public ObservableCollection<ActionsViewModel> Specials = new ObservableCollection<ActionsViewModel>();
 
-        public static ObservableCollection<ActionsViewModel> Defenses = new ObservableCollection<ActionsViewModel>();
+        public ObservableCollection<ActionsViewModel> Defenses = new ObservableCollection<ActionsViewModel>();
 
-        public static ObservableCollection<IFights> Fights = new ObservableCollection<IFights>();
+        public ObservableCollection<AllFightsAbstract> Fights = new ObservableCollection<AllFightsAbstract>();
 
-        public static ObservableCollection<IDojo> Dojo = new ObservableCollection<IDojo>();
+        public ObservableCollection<FightsViewModelAbstract> FightsVMs = new ObservableCollection<FightsViewModelAbstract>();
 
-        public static ObservableCollection<EmptyCupControl> Cup = new ObservableCollection<EmptyCupControl>();
+        public ObservableCollection<ArtsAbstract> Dojo = new ObservableCollection<ArtsAbstract>();
 
-        public static ObservableCollection<PracticeViewModel> Practice = new ObservableCollection<PracticeViewModel>();
+        public ObservableCollection<EmptyCupControl> Cup = new ObservableCollection<EmptyCupControl>();
+
+        public ObservableCollection<PracticeViewModel> Practice = new ObservableCollection<PracticeViewModel>();
+
+        public DateTime Closed { get; set; }
 
 
-
-        public static void PickDojo(IDojo dojo)
+        public void PickDojo(ArtsAbstract dojo)
         {
             if (string.IsNullOrEmpty(PageHolder.MainWindow.OldDojo))
             {
@@ -71,37 +75,42 @@ namespace BecomeSifu.Objects
             PageHolder.MainWindow.Client.UpdateBonuses();
         }
 
-        public static void AddPunch(ActionsViewModel newPunch)
+        public void AddPunch(ActionsViewModel newPunch)
         {
             Punches.Add(newPunch);
         }
 
-        public static void AddKick(ActionsViewModel newKick)
+        public void AddKick(ActionsViewModel newKick)
         {
             Kicks.Add(newKick);
         }
 
-        public static void AddSpecial(ActionsViewModel newSpecial)
+        public void AddSpecial(ActionsViewModel newSpecial)
         {
             Specials.Add(newSpecial);
         }
 
-        public static void AddDefense(ActionsViewModel newDefense)
+        public void AddDefense(ActionsViewModel newDefense)
         {
             Defenses.Add(newDefense);
         }
 
-        public static void AddFight(IFights fight)
+        public void AddFight(AllFightsAbstract fight)
         {
             Fights.Add(fight);
         }
 
-        public static void AddCup(EmptyCupControl cup)
+        public void AddFightVM(FightsViewModelAbstract fight)
+        {
+            FightsVMs.Add(fight);
+        }
+
+        public void AddCup(EmptyCupControl cup)
         {
             Cup.Add(cup);
         }
 
-        public static void CleanOut()
+        public void CleanOut()
         {
             Punches.Clear();
             Kicks.Clear();

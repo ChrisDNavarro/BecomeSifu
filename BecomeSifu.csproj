@@ -56,8 +56,8 @@
     <EmbeddedResource Include="Messages\Master.txt" />
     <EmbeddedResource Include="Messages\Specials.txt" />
     <EmbeddedResource Include="Messages\Street Fight.txt" />
-    <EmbeddedResource Include="Messages\Tae Kwon Do Championship.txt" />
-    <EmbeddedResource Include="Messages\Tae Kwon Do Specials.txt" />
+    <EmbeddedResource Include="Messages\Championship Tae Kwon Do.txt" />
+    <EmbeddedResource Include="Messages\Specials Tae Kwon Do.txt" />
     <EmbeddedResource Include="Messages\The Basics.txt" />
     <EmbeddedResource Include="Messages\To The Body.txt" />
     <EmbeddedResource Include="Messages\Tournament.txt" />

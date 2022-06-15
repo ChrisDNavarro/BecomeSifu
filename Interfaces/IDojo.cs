@@ -1,21 +1,22 @@
-﻿using System;
+﻿using BecomeSifu.Abstracts;
+using BecomeSifu.MartialArts;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 
-namespace BecomeSifu.MartialArts
+namespace BecomeSifu.Interfaces
 {
     public interface IDojo
     {
-        Dictionary<int, string> Punches { get; }
-        Dictionary<int, string> Kicks { get; }
-        Dictionary<int, string> Specials { get; }
-        Dictionary<int, string> Defenses { get; }
+        List<string> Punches { get; }
+        List<string> Kicks { get; }
+        List<string> Specials { get; }
+        List<string> Defenses { get; }
         ObservableCollection<Perk> Perks { get; }
         bool IsBoxing { get; }
         bool CurrentArt { get; set; }
@@ -26,12 +27,12 @@ namespace BecomeSifu.MartialArts
         decimal AttacksExpToNext(int step, int level);
         decimal EnergyToUnlock(int step);
 
-        ICommand PracticeClick { get; }
-        ICommand MeditateClick { get; }
-        ICommand AutoPracticeCheck { get; }
+        CommandAbstract PracticeClick { get; }
+        CommandAbstract MeditateClick { get; }
+        CommandAbstract AutoPracticeCheck { get; }
 
-        ICommand AutoMeditateCheck { get; }
-        ICommand StartStopMeditationCommand { get; }
+        CommandAbstract AutoMeditateCheck { get; }
+        CommandAbstract StartStopMeditationCommand { get; }
 
         void Practice();
         void CalculateAll();

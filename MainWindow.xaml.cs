@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -8,11 +9,11 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 using BecomeSifu.Controls;
 using BecomeSifu.Logging;
 using BecomeSifu.MartialArts;
@@ -30,13 +31,17 @@ namespace BecomeSifu
         public string OldDojo { get; set; }
         public BecomeSifuClient Client { get; set; }
         public bool Maxed { get; set; }
+        public Dojos State { get; set; }
+        public bool Saved { get; set; }
 
         public List<int> ActivePerks = new List<int>();
         public MainWindow()
         {
             InitializeComponent();
+            State = new Dojos();
             LogIt.Write("***********************************************************************");
             LogIt.Write("***********************************************************************");
+
             Setup();
         }
 
@@ -62,14 +67,14 @@ namespace BecomeSifu
                 {
                     foreach (int perkID in PageHolder.MainWindow.ActivePerks)
                     {
-                        if (!Dojos.Dojo[0].Perks[perkID].Stored)
+                        if (!PageHolder.MainWindow.State.Dojo[0].Perks[perkID].Stored)
                         {
                             PageHolder.MainWindow.ActivePerks.RemoveAt(PageHolder.MainWindow.ActivePerks.IndexOf(perkID));
                         }
                     }
                 }
 
-                Dojos.CleanOut();
+                State.CleanOut();
 
                 PageHolder.MainWindow = this;
                 PageHolder.MainClient = new MainClient();
@@ -97,6 +102,7 @@ namespace BecomeSifu
                 PageHolder.MainClient.Height = ContentArea.Height;
                 PageHolder.MainClient.Width = ContentArea.Width;
                 ContentArea.Content = PageHolder.MainClient;
+                
                 Client = new BecomeSifuClient(Bonuses);
                 LogIt.Write();
             }
@@ -104,6 +110,20 @@ namespace BecomeSifu
             {
                 LogIt.Write($"Error Caught: {e}");
                 throw;
+            }
+        }
+
+        private void LoadState()
+        {
+            string[] files = Directory.GetFiles(@$"c:\Program Files (x86)\BecomeSifu\save", $@".bsifu");
+            if (files != null)
+            {
+                foreach (string file in files)
+                {
+                    XmlSerializer loader = new XmlSerializer(typeof(Dojos));
+                    FileStream f = File.Open(file, FileMode.Open);
+                    State = (Dojos)loader.Deserialize(f);
+                }
             }
         }
 
@@ -126,6 +146,8 @@ namespace BecomeSifu
 
         private void BecomeSifu_Closed(object sender, EventArgs e)
         {
+            State.Closed = DateTime.UtcNow;
+            _ = new SaveState();
             Application.Current.Shutdown();
         }
     }

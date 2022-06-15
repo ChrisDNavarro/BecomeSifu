@@ -1,25 +1,25 @@
-﻿using BecomeSifu.Controls;
+﻿using BecomeSifu.Abstracts;
+using BecomeSifu.Controls;
 using BecomeSifu.Logging;
 using BecomeSifu.Objects;
-using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Windows.Input;
+
 
 namespace BecomeSifu.MartialArts
 {
-    public class Karate : Arts, IDojo
+    public class Karate : ArtsAbstract
     {
-        public ICommand PracticeClick => new RelayCommand(() => Practice());
+        public override CommandAbstract PracticeClick => new RelayCommand(x => Practice());
 
-        public ICommand MeditateClick => new RelayCommand(() => Meditation());
+        public override CommandAbstract MeditateClick => new RelayCommand(x => Meditation());
 
-        public ICommand AutoPracticeCheck => new RelayCommand(() => StartStopAutoPractice());
+        public override CommandAbstract AutoPracticeCheck => new RelayCommand(x => StartStopAutoPractice());
 
-        public ICommand AutoMeditateCheck => new RelayCommand(() => StartStopAutoMeditate());
+        public override CommandAbstract AutoMeditateCheck => new RelayCommand(x => StartStopAutoMeditate());
 
-        public ICommand StartStopMeditationCommand => new RelayCommand(() => StartStopMeditation());
+        public override CommandAbstract StartStopMeditationCommand => new RelayCommand(x => StartStopMeditation());
 
         private List<string> _PunchesList = new List<string>{
              "Jab Punch",
@@ -67,22 +67,10 @@ namespace BecomeSifu.MartialArts
         {
             try
             {
-                for (int i = 0; i < _PunchesList.Count; i++)
-                {
-                    Punches[i] = _PunchesList[i];
-                }
-                for (int i = 0; i < _KicksList.Count; i++)
-                {
-                    Kicks[i] = _KicksList[i];
-                }
-                for (int i = 0; i < _SpecialsList.Count; i++)
-                {
-                    Specials[i] = _SpecialsList[i];
-                }
-                for (int i = 0; i < _DefensesList.Count; i++)
-                {
-                    Defenses[i] = _DefensesList[i];
-                }
+                Punches = _PunchesList;
+                Kicks = _KicksList;
+                Specials = _SpecialsList;
+                Defenses = _DefensesList;
                 for (int i = 0; i < Perk.Count; i++)
                 {
                     Perks.Add(new Perk(i, false));
@@ -97,7 +85,7 @@ namespace BecomeSifu.MartialArts
             }
         }
 
-        public bool IsBoxing { get; } = false;
+        public override bool IsBoxing { get; } = false;
 
         public override decimal EnergyToUnlock(int step)
         {

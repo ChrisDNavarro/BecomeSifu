@@ -6,12 +6,14 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
+
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using BecomeSifu.Controls;
+using System.Xml.Serialization;
 
 namespace BecomeSifu.Pages
 {
@@ -20,11 +22,12 @@ namespace BecomeSifu.Pages
     /// </summary>
     public partial class Practice : UserControl
     {
+
         public Practice()
         {
             InitializeComponent();
-            Dojos.Dojo[0].Timer = new DispatcherTimer();
-            PracticeIC.ItemsSource = Dojos.Practice;
+            PageHolder.MainWindow.State.Dojo[0].Timer = new DispatcherTimer();
+            PracticeIC.ItemsSource = PageHolder.MainWindow.State.Practice;
         }
     }
 }
