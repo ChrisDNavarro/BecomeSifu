@@ -102,7 +102,7 @@ namespace BecomeSifu.Controls
                             {
                                 Header = name,
                             };
-                            if (PageHolder.MainWindow.State.Dojo[0].IsBoxing && name.Contains("Kicks"))
+                            if (PageHolder.MainWindow.DojoState.Dojo[0].IsBoxing && name.Contains("Kicks"))
                             {
                                 bottomTab.Header = "To The Body";
                             }

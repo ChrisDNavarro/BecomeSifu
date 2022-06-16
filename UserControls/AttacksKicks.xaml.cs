@@ -25,7 +25,7 @@ namespace BecomeSifu.UserControls
         public AttacksKicks()
         {
             InitializeComponent();
-            KicksIC.ItemsSource = PageHolder.MainWindow.State.Kicks;
+            KicksIC.ItemsSource = PageHolder.MainWindow.DojoState.Kicks;
         }
 
         

@@ -8,6 +8,5 @@ namespace BecomeSifu.Interfaces
 {
     public interface IFights
     {
-        void Begin();
     }
 }

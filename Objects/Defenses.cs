@@ -16,7 +16,7 @@ namespace BecomeSifu.Objects
         {
             ActionsViewModel defense = new ActionsViewModel();
             defense.Name = name;
-            if (PageHolder.MainWindow.State.Dojo[0].IsBoxing)
+            if (PageHolder.MainWindow.DojoState.Dojo[0].IsBoxing)
             {
                 defense.Step = step + 3;
             }
@@ -28,22 +28,22 @@ namespace BecomeSifu.Objects
             defense.LevelInt = 0;
             defense.Level = "Lvl " + (defense.LevelInt + 1).ToString();
 
-            defense.ExpToNext = PageHolder.MainWindow.State.Dojo[0].EnergyToUnlock(defense.Step);
+            defense.ExpToNext = PageHolder.MainWindow.DojoState.Dojo[0].EnergyToUnlock(defense.Step);
             defense.ExpString = defense.ExpToNext.ConvertToString();
             defense.LevelUp = $"Learn\r\n{defense.ExpString} Eng";
 
             if (step % 2 != 0)
             {
-                defense.BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
-                defense.ForegroundColor = new SolidColorBrush(Colors.DimGray);
+                defense.BackgroundColor = Colors.LightSteelBlue;
+                defense.ForegroundColor = Colors.DimGray;
             }
             else
             {
-                defense.ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
-                defense.BackgroundColor = new SolidColorBrush(Colors.Silver);
+                defense.ForegroundColor = Colors.RoyalBlue;
+                defense.BackgroundColor = Colors.Silver;
             }
 
-            PageHolder.MainWindow.State.AddDefense(defense);
+            PageHolder.MainWindow.DojoState.AddDefense(defense);
         }
 
         public static void TryLevelUp(ActionsViewModel defense)
@@ -52,21 +52,21 @@ namespace BecomeSifu.Objects
             {
                 if (!defense.Learned)
                 {
-                    if (PageHolder.MainWindow.State.Dojo[0].Energy >= defense.ExpToNext)
+                    if (PageHolder.MainWindow.DojoState.Dojo[0].Energy >= defense.ExpToNext)
                     {
                         LogIt.Write($"Learning {defense.Name}");
                         defense.Learned = true;
                         defense.Learning = true;
-                        PageHolder.MainWindow.State.Dojo[0].SpendEnergy(defense.ExpToNext);
+                        PageHolder.MainWindow.DojoState.Dojo[0].SpendEnergy(defense.ExpToNext);
                         CompleteLevelUp(defense);
                     }
                 }
                 else
                 {
-                    if (PageHolder.MainWindow.State.Dojo[0].Exp >= defense.ExpToNext && !defense.MaxLevel)
+                    if (PageHolder.MainWindow.DojoState.Dojo[0].Exp >= defense.ExpToNext && !defense.MaxLevel)
                     {
                         LogIt.Write($"Leveling up {defense.Name}");
-                        PageHolder.MainWindow.State.Dojo[0].SpendExp(defense.ExpToNext);
+                        PageHolder.MainWindow.DojoState.Dojo[0].SpendExp(defense.ExpToNext);
                         CompleteLevelUp(defense);
                     }
                 }
@@ -105,19 +105,19 @@ namespace BecomeSifu.Objects
                         LogIt.Write($"{defense.Name} has reached Max Level");
                         defense.MaxLevel = true;
                         defense.LevelUp = "Max Level";
-                        PageHolder.MainWindow.State.Defenses.Refresh();
+                        
                     }
                     else
                     {
-                        defense.ExpToNext = PageHolder.MainWindow.State.Dojo[0].AttacksExpToNext(defense.Step, defense.LevelInt);
+                        defense.ExpToNext = PageHolder.MainWindow.DojoState.Dojo[0].AttacksExpToNext(defense.Step, defense.LevelInt);
                         defense.ExpString = defense.ExpToNext.ConvertToString();
                         defense.Level = "Lvl " + defense.LevelInt.ToString();
                         defense.LevelUp = $"Level Up \r\n{defense.ExpString} Exp";
                     }
 
-                    PageHolder.MainWindow.State.Dojo[0].CalculateAll();
-                    PageHolder.MainWindow.State.Dojo.Refresh();
-                    PageHolder.MainWindow.State.Defenses.Refresh();
+                    PageHolder.MainWindow.DojoState.Dojo[0].CalculateAll();
+                    
+                    
                     Extensions.UpdateActives();
 
                 }

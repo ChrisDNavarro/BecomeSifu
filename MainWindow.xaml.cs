@@ -19,6 +19,7 @@ using BecomeSifu.Logging;
 using BecomeSifu.MartialArts;
 using BecomeSifu.Objects;
 using BecomeSifu.Pages;
+using Newtonsoft.Json;
 
 namespace BecomeSifu
 {
@@ -31,14 +32,13 @@ namespace BecomeSifu
         public string OldDojo { get; set; }
         public BecomeSifuClient Client { get; set; }
         public bool Maxed { get; set; }
-        public Dojos State { get; set; }
-        public bool Saved { get; set; }
+        public Dojos DojoState { get; set; }
 
         public List<int> ActivePerks = new List<int>();
         public MainWindow()
         {
             InitializeComponent();
-            State = new Dojos();
+            DojoState = new Dojos();
             LogIt.Write("***********************************************************************");
             LogIt.Write("***********************************************************************");
 
@@ -67,24 +67,32 @@ namespace BecomeSifu
                 {
                     foreach (int perkID in PageHolder.MainWindow.ActivePerks)
                     {
-                        if (!PageHolder.MainWindow.State.Dojo[0].Perks[perkID].Stored)
+                        if (!PageHolder.MainWindow.DojoState.Dojo[0].Perks[perkID].Stored)
                         {
                             PageHolder.MainWindow.ActivePerks.RemoveAt(PageHolder.MainWindow.ActivePerks.IndexOf(perkID));
                         }
                     }
                 }
-
-                State.CleanOut();
+                if (!string.IsNullOrEmpty(OldDojo))
+                {
+                    DojoState.CleanOut();
+                }
 
                 PageHolder.MainWindow = this;
                 PageHolder.MainClient = new MainClient();
                 PageHolder.DojoPicker = new DojoPicker();
                 PageHolder.MessagePopUp = new MessagePopUp();
 
-
-                PageHolder.DojoPicker.Height = ContentArea.Height;
-                PageHolder.DojoPicker.Width = ContentArea.Width;
-                ContentArea.Content = PageHolder.DojoPicker;
+                if (!File.Exists(State.SavePath))
+                {
+                    PageHolder.DojoPicker.Height = ContentArea.Height;
+                    PageHolder.DojoPicker.Width = ContentArea.Width;
+                    ContentArea.Content = PageHolder.DojoPicker;
+                }
+                else
+                {
+                    LoadState();
+                }
                 LogIt.Write();
             }
             catch (Exception e)
@@ -102,8 +110,9 @@ namespace BecomeSifu
                 PageHolder.MainClient.Height = ContentArea.Height;
                 PageHolder.MainClient.Width = ContentArea.Width;
                 ContentArea.Content = PageHolder.MainClient;
-                
-                Client = new BecomeSifuClient(Bonuses);
+                Client = !File.Exists(State.SavePath)
+                    ? new BecomeSifuClient(Bonuses, false) 
+                    : new BecomeSifuClient(Bonuses, true);
                 LogIt.Write();
             }
             catch (Exception e)
@@ -115,16 +124,54 @@ namespace BecomeSifu
 
         private void LoadState()
         {
-            string[] files = Directory.GetFiles(@$"c:\Program Files (x86)\BecomeSifu\save", $@".bsifu");
+            
+            string[] files = Directory.GetFiles(@$"c:\Program Files (x86)\BecomeSifu\save\", $@"*.bsifu");
             if (files != null)
             {
                 foreach (string file in files)
                 {
-                    XmlSerializer loader = new XmlSerializer(typeof(Dojos));
-                    FileStream f = File.Open(file, FileMode.Open);
-                    State = (Dojos)loader.Deserialize(f);
+                    Type[] types = Assembly.GetExecutingAssembly().GetTypes()
+                .Where(t => !t.FullName.Contains("<") && t.Namespace.Contains("BecomeSifu") &&
+                            (t.Namespace.Contains("Abstracts") ||
+                            t.Namespace.Contains("ViewModels") ||
+                            t.Namespace.Contains("MartialArts")))
+                .ToArray();
+                    XmlSerializer loader = new XmlSerializer(typeof(Dojos), types);
+                    FileStream f;
+                    try
+                    {
+                         f = File.Open(file, FileMode.Open);
+                    }
+                    catch (Exception e)
+                    {
+                        LogIt.Write($"Error Caught: {e}");
+                        throw;
+                    }
+                    DojoState = (Dojos)loader.Deserialize(f);
+                    f.Close();
                 }
             }
+
+            if (string.IsNullOrEmpty(PageHolder.MainWindow.OldDojo))
+            {
+                PageHolder.MainWindow.OldDojo = DojoState.Dojo[0].ToString();
+            }
+            else
+            {
+                if (PageHolder.MainWindow.OldDojo == DojoState.Dojo[0].ToString())
+                {
+                    PageHolder.MainWindow.BonusesCollection(1, EmptyCupControl.DefeatedGrandMaster);
+                }
+                else
+                {
+                    PageHolder.MainWindow.BonusesCollection(2, EmptyCupControl.DefeatedGrandMaster);
+                }
+
+                PageHolder.MainWindow.OldDojo = DojoState.Dojo[0].ToString();
+            }
+
+            Start();            
+            BecomeSifuClient.UpdateBonuses();
         }
 
         public void StorePerk()
@@ -146,8 +193,8 @@ namespace BecomeSifu
 
         private void BecomeSifu_Closed(object sender, EventArgs e)
         {
-            State.Closed = DateTime.UtcNow;
-            _ = new SaveState();
+            DojoState.Closed = DateTime.UtcNow;
+            State.Save();
             Application.Current.Shutdown();
         }
     }

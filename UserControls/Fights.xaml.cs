@@ -25,7 +25,7 @@ namespace BecomeSifu.UserControls
         public Fights()
         {
             InitializeComponent();
-            FightsIC.ItemsSource = PageHolder.MainWindow.State.FightsVMs;
+            FightsIC.ItemsSource = PageHolder.MainWindow.DojoState.FightsVMs;
         }
     }
 }

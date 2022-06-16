@@ -13,24 +13,24 @@ namespace BecomeSifu.FightObjects
 {
     public class AllFights
     {        
-        public Random RNG = new Random();
-        private decimal FighterHealth;
+        public static Random RNG = new Random();
+        private static decimal FighterHealth;
 
-        public async Task<int> Fight(decimal health, decimal attack)
+        public static async Task<int> Fight(decimal health, decimal attack)
         {
             await Task.Run(async () =>
             {
                 try
                 {
-                    FighterHealth = PageHolder.MainWindow.State.Dojo[0].Health;
+                    FighterHealth = PageHolder.MainWindow.DojoState.Dojo[0].Health;
                     int round = 0;
                     while (FighterHealth > 0 && health > 0)
                     {
                         round++;
                         LogIt.Write($"Round {round}: Hero: {FighterHealth} Enemy {health}");
-                        decimal z = decimal.Subtract(decimal.Multiply(decimal.Divide(decimal.Add(3.1M, (decimal)RNG.NextDouble()), 4M), attack), PageHolder.MainWindow.State.Dojo[0].Defense);
+                        decimal z = decimal.Subtract(decimal.Multiply(decimal.Divide(decimal.Add(3.1M, (decimal)RNG.NextDouble()), 4M), attack), PageHolder.MainWindow.DojoState.Dojo[0].Defense);
                         FighterHealth -= z;
-                        health -= PageHolder.MainWindow.State.Dojo[0].Attack * (1 + PageHolder.MainWindow.State.Dojo[0].AttackSpeedModifier);
+                        health -= PageHolder.MainWindow.DojoState.Dojo[0].Attack * (1 + PageHolder.MainWindow.DojoState.Dojo[0].AttackSpeedModifier);
                         await Task.Delay(10);
                     }
                 }
@@ -44,7 +44,7 @@ namespace BecomeSifu.FightObjects
             return EvaluateFight(health);
         }
 
-        private int EvaluateFight(decimal health)
+        private static int EvaluateFight(decimal health)
         {            
             try
             {

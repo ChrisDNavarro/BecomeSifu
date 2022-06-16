@@ -26,7 +26,7 @@ namespace BecomeSifu.UserControls
         public AttacksSpecials()
         {
             InitializeComponent();
-            SpecialsIC.ItemsSource = PageHolder.MainWindow.State.Specials;
+            SpecialsIC.ItemsSource = PageHolder.MainWindow.DojoState.Specials;
         }
     }
 }

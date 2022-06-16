@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using System.Xml.Serialization;
 using BecomeSifu.Abstracts;
 using BecomeSifu.Controls;
 using BecomeSifu.Logging;
@@ -94,7 +94,7 @@ namespace BecomeSifu.MartialArts
         {
             try
             {
-                foreach (ActionsViewModel defense in PageHolder.MainWindow.State.Defenses)
+                foreach (ActionsViewModel defense in PageHolder.MainWindow.DojoState.Defenses)
                 {
                     DefenseGain += defense.Step * Convert.ToDecimal(defense.LevelInt) * .09M;
                 }

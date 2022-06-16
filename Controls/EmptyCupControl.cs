@@ -12,15 +12,47 @@ namespace BecomeSifu.Controls
     public class EmptyCupControl
     {
         public static bool DefeatedGrandMaster { get; set; }
-        public bool Emptied { get; set; }
-        public CommandAbstract EmptyYourCup => new RelayCommand(x => PageHolder.MainWindow.State.Cup[0].EmptyingCup());
-        public ImageSource Imagesource { get; set; } =
-                        new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsEmpty.png"));
-        public string CurrentBonus { get; set; } = "No Bonus";
-        public string ButtonName { get; set; } = "Locked";
-        public bool ButtonActive { get; set; }
+        public static bool Emptied { get; set; }
+        
+        public static string Imagesource { set 
+            {
+                PageHolder.MainWindow.DojoState.Cup[0].ImageSource = value;
+            } 
+        }
+        private static string _CurrentBonus = "No Bonus";
+        public static string CurrentBonus
+        {
+            get => _CurrentBonus;
+            set
+            {
+                _CurrentBonus = value;
+                PageHolder.MainWindow.DojoState.Cup[0].CurrentBonus = value;
+            }
+        }
 
-        public void EmptyingCup()
+        private static string _ButtonName = "First, fill your cup.";
+        public static string ButtonName
+        {
+            get => _ButtonName;
+            set 
+            {
+                _ButtonName = value;
+                PageHolder.MainWindow.DojoState.Cup[0].ButtonName = value;
+            }
+        }
+
+        private bool _ButtonActive;
+        public bool ButtonActive
+        {
+            get => _ButtonActive;
+            set
+            {
+                _ButtonActive = value;
+                PageHolder.MainWindow.DojoState.Cup[0].ButtonActive = value;
+            }
+        }
+
+        public static void EmptyingCup()
         {
             try
             {
@@ -29,7 +61,7 @@ namespace BecomeSifu.Controls
                     ButtonName = "Empty Your Cup";
                     Emptied = false;
                     LogIt.Write($"Selection confirmed");
-                    if (PageHolder.MainWindow.State.Dojo[0].CheckForMaxed())
+                    if (PageHolder.MainWindow.DojoState.Dojo[0].CheckForMaxed())
                     {
                         
                         LogIt.Write($"Skills are Maxed, Continuing to Perk selection");
@@ -46,7 +78,7 @@ namespace BecomeSifu.Controls
                     LogIt.Write($"Confirming Selection for EmptyCup");
                     ButtonName = "Are You Sure?";
                     Emptied = true;
-                    PageHolder.MainWindow.State.Cup.Refresh();
+                    
                 }
             }
             catch (Exception e)
@@ -56,7 +88,7 @@ namespace BecomeSifu.Controls
             }
         }
 
-        public void UpdateBonuses(List<int> bonuses)
+        public static void UpdateBonuses(List<int> bonuses)
         {
             try
             {
@@ -83,7 +115,7 @@ namespace BecomeSifu.Controls
                 {
 
                     bonusUpdates.AppendLine($@"You earn {50 * bonusOne}% more experience per practice.");
-                    Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsHalf.png"));
+                    Imagesource = @"pack://application:,,,/Resources/CupIsHalf.png";
                     bonusUpdates.AppendLine("");
                     LogIt.Write($"Displaying Bonus One entry: You earn {50 * bonusOne}% more experience per practice.");
                 }
@@ -91,12 +123,14 @@ namespace BecomeSifu.Controls
                 if (bonusTwo > 0)
                 {
                     bonusUpdates.AppendLine($@"Attacks and Defenses cast {10 * bonusTwo}% less Energy to learn. ");
-                    Imagesource = new BitmapImage(new Uri(@"pack://application:,,,/Resources/CupIsHalf.png"));
+                    Imagesource = @"pack://application:,,,/Resources/CupIsHalf.png";
                     LogIt.Write($"Displaying Bonus One entry: Attacks and Defenses cast {10 * bonusTwo}% less Energy to learn.");
                 }
 
-                CurrentBonus = bonusUpdates.ToString();
-                PageHolder.MainWindow.State.Cup.Refresh();
+                CurrentBonus = string.IsNullOrEmpty(bonusUpdates.ToString())
+                    ? "No Bonus"
+                    : bonusUpdates.ToString();
+                
             }
             catch (Exception e)
             {

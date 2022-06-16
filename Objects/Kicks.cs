@@ -19,7 +19,7 @@ namespace BecomeSifu.Objects
         {
             ActionsViewModel kick = new ActionsViewModel();
             kick.Name = name;
-            if (PageHolder.MainWindow.State.Dojo[0].IsBoxing)
+            if (PageHolder.MainWindow.DojoState.Dojo[0].IsBoxing)
             {
                 kick.Step = 10;
             }
@@ -31,23 +31,23 @@ namespace BecomeSifu.Objects
             kick.LevelInt = 0;
             kick.Level = "Lvl " + kick.LevelInt.ToString();
 
-            kick.ExpToNext = PageHolder.MainWindow.State.Dojo[0].EnergyToUnlock(kick.Step);
+            kick.ExpToNext = PageHolder.MainWindow.DojoState.Dojo[0].EnergyToUnlock(kick.Step);
             kick.ExpString = kick.ExpToNext.ConvertToString();
             kick.LevelUp = $"Learn\r\n{kick.ExpString} Eng";
 
             if (kick.Step % 2 == 0)
             {
-                kick.BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
-                kick.ForegroundColor = new SolidColorBrush(Colors.DimGray);
+                kick.BackgroundColor = Colors.LightSteelBlue;
+                kick.ForegroundColor = Colors.DimGray;
             }
             else
             {
-                kick.ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
-                kick.BackgroundColor = new SolidColorBrush(Colors.Silver);
+                kick.ForegroundColor = Colors.RoyalBlue;
+                kick.BackgroundColor = Colors.Silver;
             }
 
 
-            PageHolder.MainWindow.State.AddKick(kick);
+            PageHolder.MainWindow.DojoState.AddKick(kick);
         }
 
         public static void TryLevelUp(ActionsViewModel kick)
@@ -56,39 +56,38 @@ namespace BecomeSifu.Objects
             {
                 if (!kick.Learned)
                 {
-                    if (PageHolder.MainWindow.State.Dojo[0].Energy >= kick.ExpToNext)
+                    if (PageHolder.MainWindow.DojoState.Dojo[0].Energy >= kick.ExpToNext)
                     {
                         LogIt.Write($"Learning {kick.Name}");
                         kick.Learned = true;
                         kick.Learning = true;
                         if (kick.Step == 1)
                         {
-                            if (PageHolder.MainWindow.State.Dojo[0].Perks[1].Active)
+                            if (PageHolder.MainWindow.DojoState.Dojo[0].Perks[1].Active)
                             {
-                                PageHolder.MainWindow.State.Specials[0].Enabled = true;
-                                PageHolder.MainWindow.State.Specials.Refresh();
+                                PageHolder.MainWindow.DojoState.Specials[0].Enabled = true;
+                                
                                 Extensions.CreateMessage("Specials Tae Kwon Do", false);
                             }
-                            PageHolder.MainWindow.State.FightsVMs[1].IsActive = true;
-                            PageHolder.MainWindow.State.Fights.Refresh();
+                            PageHolder.MainWindow.DojoState.FightsVMs[1].IsActive = true;
                             Extensions.CreateMessage("Tournament", true);
                         }
-                        if (kick.Step == 5 && !PageHolder.MainWindow.State.Defenses[0].Learned)
+                        if (kick.Step == 5 && !PageHolder.MainWindow.DojoState.Defenses[0].Learned)
                         {
-                            PageHolder.MainWindow.State.Defenses[0].Enabled = true;
-                            PageHolder.MainWindow.State.Defenses.Refresh();
+                            PageHolder.MainWindow.DojoState.Defenses[0].Enabled = true;
+
                             Extensions.CreateMessage("Defense", true);
                         }
-                        PageHolder.MainWindow.State.Dojo[0].SpendEnergy(kick.ExpToNext);
+                        PageHolder.MainWindow.DojoState.Dojo[0].SpendEnergy(kick.ExpToNext);
                         CompleteLevelUp(kick);
                     }
                 }
                 else
                 {
-                    if (PageHolder.MainWindow.State.Dojo[0].Exp >= kick.ExpToNext && !kick.MaxLevel)
+                    if (PageHolder.MainWindow.DojoState.Dojo[0].Exp >= kick.ExpToNext && !kick.MaxLevel)
                     {
                         LogIt.Write($"Leveling up {kick.Name}");
-                        PageHolder.MainWindow.State.Dojo[0].SpendExp(kick.ExpToNext);
+                        PageHolder.MainWindow.DojoState.Dojo[0].SpendExp(kick.ExpToNext);
                         CompleteLevelUp(kick);
                     }
                 }
@@ -128,7 +127,7 @@ namespace BecomeSifu.Objects
                         Extensions.SendMessage($"kick.{kick.Name} has reached Max Level");
                         kick.MaxLevel = true;
                         kick.LevelUp = "Max Level";
-                        PageHolder.MainWindow.State.Kicks.Refresh();
+                        
                     }
                     else
                     {
@@ -139,8 +138,8 @@ namespace BecomeSifu.Objects
                         kick.LevelUp = $"Level Up \r\n{kick.ExpString} Exp";
                     }
 
-                    PageHolder.MainWindow.State.Dojo.Refresh();
-                    PageHolder.MainWindow.State.Kicks.Refresh();                    
+                    
+                                        
                 }
                 else
                 {
@@ -157,10 +156,10 @@ namespace BecomeSifu.Objects
 
         public static void LevelUpExp(ActionsViewModel kick)
         {
-            kick.ExpToNext = PageHolder.MainWindow.State.Dojo[0].AttacksExpToNext(kick.Step, kick.LevelInt);
+            kick.ExpToNext = PageHolder.MainWindow.DojoState.Dojo[0].AttacksExpToNext(kick.Step, kick.LevelInt);
             kick.ExpString = kick.ExpToNext.ConvertToString();
             Extensions.UpdateActives();
-            PageHolder.MainWindow.State.Kicks.Refresh();            
+                        
         }
 
     }

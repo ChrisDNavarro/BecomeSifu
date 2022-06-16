@@ -13,29 +13,37 @@ using BecomeSifu.Controls;
 using System.Windows;
 using BecomeSifu.ViewModels;
 using BecomeSifu.Abstracts;
+using System.Xml.Serialization;
 
 namespace BecomeSifu.Objects
 
 {
     public class Dojos
     {
-        public ObservableCollection<ActionsViewModel> Punches = new ObservableCollection<ActionsViewModel>();
+        
+        public List<ArtsAbstract> Dojo { get; set; } = new List<ArtsAbstract>();
 
-        public ObservableCollection<ActionsViewModel> Kicks = new ObservableCollection<ActionsViewModel>();
+        
+        public List<PracticeViewModel> Practice { get; set; } = new List<PracticeViewModel>();
 
-        public ObservableCollection<ActionsViewModel> Specials = new ObservableCollection<ActionsViewModel>();
+        
+        public List<EmptyCupViewModel> Cup { get; set; } = new List<EmptyCupViewModel>();
 
-        public ObservableCollection<ActionsViewModel> Defenses = new ObservableCollection<ActionsViewModel>();
+        
+        public List<FightsViewModelAbstract> FightsVMs { get; set; } = new List<FightsViewModelAbstract>();
 
-        public ObservableCollection<AllFightsAbstract> Fights = new ObservableCollection<AllFightsAbstract>();
+       
+        public List<ActionsViewModel> Punches { get; set; } = new List<ActionsViewModel>();
 
-        public ObservableCollection<FightsViewModelAbstract> FightsVMs = new ObservableCollection<FightsViewModelAbstract>();
+        
+        public List<ActionsViewModel> Kicks { get; set; } = new List<ActionsViewModel>();
 
-        public ObservableCollection<ArtsAbstract> Dojo = new ObservableCollection<ArtsAbstract>();
+        
+        public List<ActionsViewModel> Specials { get; set; } = new List<ActionsViewModel>();
 
-        public ObservableCollection<EmptyCupControl> Cup = new ObservableCollection<EmptyCupControl>();
+        
+        public List<ActionsViewModel> Defenses { get; set; } = new List<ActionsViewModel>();
 
-        public ObservableCollection<PracticeViewModel> Practice = new ObservableCollection<PracticeViewModel>();
 
         public DateTime Closed { get; set; }
 
@@ -69,10 +77,10 @@ namespace BecomeSifu.Objects
 
             Dojo.Add(dojo);
             Practice.Add(new PracticeViewModel());
-            AddCup(new EmptyCupControl());
+            AddCup(new EmptyCupViewModel());
             PageHolder.MainWindow.Start();
             PageHolder.MainWindow.Client.StartingMessages();
-            PageHolder.MainWindow.Client.UpdateBonuses();
+            BecomeSifuClient.UpdateBonuses();
         }
 
         public void AddPunch(ActionsViewModel newPunch)
@@ -95,17 +103,12 @@ namespace BecomeSifu.Objects
             Defenses.Add(newDefense);
         }
 
-        public void AddFight(AllFightsAbstract fight)
-        {
-            Fights.Add(fight);
-        }
-
         public void AddFightVM(FightsViewModelAbstract fight)
         {
             FightsVMs.Add(fight);
         }
 
-        public void AddCup(EmptyCupControl cup)
+        public void AddCup(EmptyCupViewModel cup)
         {
             Cup.Add(cup);
         }
@@ -118,15 +121,6 @@ namespace BecomeSifu.Objects
             Defenses.Clear();
             Dojo.Clear();
             Cup.Clear();
-            Fights.Clear();
-
-            Punches.Refresh();
-            Kicks.Refresh();
-            Specials.Refresh();
-            Defenses.Refresh();
-            Dojo.Refresh();
-            Cup.Refresh();
-            Fights.Refresh();
         }
 
     }

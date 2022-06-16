@@ -25,7 +25,7 @@ namespace BecomeSifu.UserControls
         public Defense()
         {
             InitializeComponent();
-            DefensesIC.ItemsSource = PageHolder.MainWindow.State.Defenses;
+            DefensesIC.ItemsSource = PageHolder.MainWindow.DojoState.Defenses;
         }
     }
 }

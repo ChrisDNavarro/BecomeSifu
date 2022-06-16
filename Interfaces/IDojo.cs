@@ -57,47 +57,27 @@ namespace BecomeSifu.Interfaces
 
         decimal Energy { get; set; }
         decimal EnergyGain { get; set; }
-        string EnergyString { get; set; }
-        string EnergyGainString { get; set; }
         decimal EnergyMeditationGain { get; set; }
-        string EnergyMeditationGainString { get; set; }
 
         decimal Exp { get; set; }
         decimal ExpGain { get; set; }
-        string ExpString { get; set; }
-        string ExpGainString { get; set; }
 
         decimal Attack { get; set; }
         decimal AttackGain { get; set; }
-        string AttackString { get; set; }
-        string AttackGainString { get; set; }
 
 
         decimal Defense { get; set; }
         decimal DefenseGain { get; set; }
-        string DefenseString { get; set; }
-        string DefenseGainString { get; set; }
 
         decimal Health { get; set; }
         decimal HealthGain { get; set; }
-        string HealthString { get; set; }
-        string HealthGainString { get; set; }
 
-        bool IsMeditating { get; set; }
-        Visibility MeditateOption { get; set; }
-        string IsMeditatingString { get; set; }
-        bool AutoMeditate { get; set; }
-        bool AutoPractice { get; set; }
-        Visibility CanAutoMeditate { get; set; }
-        Visibility CanAutoPractice { get; set; }
+        
         decimal AutoSpeedMultiplier { get; set; }
         decimal EnergyGainMultiplier { get; set; }
         decimal ExpGainMultiplier { get; set; }
-        string Rate { get; set; }
         DispatcherTimer Timer { get; set; }
         DispatcherTimer MeditateTimer { get; set; }
-
-        RepeatBehavior Repeat { get; set; }
 
     }
 }

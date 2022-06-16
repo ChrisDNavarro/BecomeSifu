@@ -27,8 +27,8 @@ namespace BecomeSifu.Pages
         public Meditate()
         {
             InitializeComponent();
-            PageHolder.MainWindow.State.Dojo[0].MeditateTimer = new DispatcherTimer();
-            MeditateIC.ItemsSource = PageHolder.MainWindow.State.Practice;
+            PageHolder.MainWindow.DojoState.Dojo[0].MeditateTimer = new DispatcherTimer();
+            MeditateIC.ItemsSource = PageHolder.MainWindow.DojoState.Practice;
         }
     }
 }

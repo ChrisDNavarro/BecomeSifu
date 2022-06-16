@@ -53,7 +53,7 @@ namespace BecomeSifu.MartialArts
                 {
                     Bonuses = true;
                 }
-                PageHolder.MainWindow.State.Dojo.Refresh();
+                
                 LogIt.Write();
             }
             catch (Exception e)
@@ -118,27 +118,27 @@ namespace BecomeSifu.MartialArts
         {
             try
             {
-                if (!IsMeditating)
+                if (!PageHolder.MainWindow.DojoState.Practice[0].IsMeditating)
                 {
                     CalculateEnergyGain();
                     Energy += EnergyGain;
-                    EnergyString = Energy.ConvertToString();
-                    EnergyGainString = EnergyGain.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].EnergyString = Energy.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].EnergyGainString = EnergyGain.ConvertToString();
 
                     CalculateExpGain();
                     Exp += ExpGain;
-                    ExpString = Exp.ConvertToString();
-                    ExpGainString = ExpGain.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].ExpString = Exp.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].ExpGainString = ExpGain.ConvertToString();
 
                     CalculateAttackGain();
                     Attack += AttackGain;
-                    AttackString = Attack.ConvertToString();
-                    AttackGainString = AttackGain.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].AttackString = Attack.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].AttackGainString = AttackGain.ConvertToString();
 
                     CalculateDefenseGain();
                     Defense += DefenseGain;
-                    DefenseString = Defense.ConvertToString();
-                    DefenseGainString = DefenseGain.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].DefenseString = Defense.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].DefenseGainString = DefenseGain.ConvertToString();
 
                     Extensions.UpdateActives();
                     LogIt.Write();
@@ -160,22 +160,22 @@ namespace BecomeSifu.MartialArts
             try
             {
                 CalculateEnergyGain();
-                EnergyGainString = EnergyGain.ConvertToString();
+                PageHolder.MainWindow.DojoState.Practice[0].EnergyGainString = EnergyGain.ConvertToString();
 
                 CalculateMeditationEnergyGain();
-                EnergyMeditationGainString = EnergyMeditationGain.ConvertToString();
+                PageHolder.MainWindow.DojoState.Practice[0].EnergyMeditationGainString = EnergyMeditationGain.ConvertToString();
 
                 CalculateExpGain();
-                ExpGainString = ExpGain.ConvertToString();
+                PageHolder.MainWindow.DojoState.Practice[0].ExpGainString = ExpGain.ConvertToString();
 
                 CalculateAttackGain();
-                AttackGainString = AttackGain.ConvertToString();
+                PageHolder.MainWindow.DojoState.Practice[0].AttackGainString = AttackGain.ConvertToString();
 
                 CalculateDefenseGain();
-                DefenseGainString = DefenseGain.ConvertToString();
+                PageHolder.MainWindow.DojoState.Practice[0].DefenseGainString = DefenseGain.ConvertToString();
 
                 CalculateHealthGain();
-                HealthGainString = HealthGain.ConvertToString();
+                PageHolder.MainWindow.DojoState.Practice[0].HealthGainString = HealthGain.ConvertToString();
                 LogIt.Write();
             }
             catch (Exception e)
@@ -191,28 +191,28 @@ namespace BecomeSifu.MartialArts
             {
                 int maxed = 0;
 
-                foreach (ActionsViewModel punch in PageHolder.MainWindow.State.Punches)
+                foreach (ActionsViewModel punch in PageHolder.MainWindow.DojoState.Punches)
                 {
                     if (punch.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (ActionsViewModel kick in PageHolder.MainWindow.State.Kicks)
+                foreach (ActionsViewModel kick in PageHolder.MainWindow.DojoState.Kicks)
                 {
                     if (kick.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (ActionsViewModel special in PageHolder.MainWindow.State.Specials)
+                foreach (ActionsViewModel special in PageHolder.MainWindow.DojoState.Specials)
                 {
                     if (special.LevelInt == 500)
                     {
                         maxed++;
                     }
                 }
-                foreach (ActionsViewModel def in PageHolder.MainWindow.State.Defenses)
+                foreach (ActionsViewModel def in PageHolder.MainWindow.DojoState.Defenses)
                 {
                     if (def.LevelInt == 500)
                     {
@@ -220,7 +220,7 @@ namespace BecomeSifu.MartialArts
                     }
                 }
                 LogIt.Write();
-                return maxed == PageHolder.MainWindow.State.Punches.Count + PageHolder.MainWindow.State.Kicks.Count + PageHolder.MainWindow.State.Specials.Count + PageHolder.MainWindow.State.Defenses.Count;
+                return maxed == PageHolder.MainWindow.DojoState.Punches.Count + PageHolder.MainWindow.DojoState.Kicks.Count + PageHolder.MainWindow.DojoState.Specials.Count + PageHolder.MainWindow.DojoState.Defenses.Count;
             }
             catch (Exception e)
             {
@@ -234,24 +234,24 @@ namespace BecomeSifu.MartialArts
         {
             try
             {
-                if (IsMeditating)
+                if (PageHolder.MainWindow.DojoState.Practice[0].IsMeditating)
                 {
                     LogIt.Write($"Stop");
-                    IsMeditating = !IsMeditating;
-                    IsMeditatingString = "Start Meditating";
-                    MeditateOption = Visibility.Collapsed;
+                    PageHolder.MainWindow.DojoState.Practice[0].IsMeditating = !PageHolder.MainWindow.DojoState.Practice[0].IsMeditating;
+                    PageHolder.MainWindow.DojoState.Practice[0].IsMeditatingString = "Start Meditating";
+                    PageHolder.MainWindow.DojoState.Practice[0].MeditateOption = Visibility.Collapsed;
                     MeditateTimer.Stop();
-                    AutoMeditate = false;
-                    PageHolder.MainWindow.State.Dojo.Refresh();
+                    PageHolder.MainWindow.DojoState.Practice[0].AutoMeditate = false;
+                    
                     Extensions.UpdateActives();
                 }
                 else
                 {
                     LogIt.Write($"Start");
-                    IsMeditating = !IsMeditating;
-                    IsMeditatingString = "Stop Meditating";
-                    MeditateOption = Visibility.Visible;
-                    PageHolder.MainWindow.State.Dojo.Refresh();
+                    PageHolder.MainWindow.DojoState.Practice[0].IsMeditating = !PageHolder.MainWindow.DojoState.Practice[0].IsMeditating;
+                    PageHolder.MainWindow.DojoState.Practice[0].IsMeditatingString = "Stop Meditating";
+                    PageHolder.MainWindow.DojoState.Practice[0].MeditateOption = Visibility.Visible;
+                    
                     Extensions.UpdateActives();
                 }
             }
@@ -269,37 +269,37 @@ namespace BecomeSifu.MartialArts
 
                 if (Perks[5].Active)
                 {
-                    Repeat = RepeatBehavior.Forever;
+                    PageHolder.MainWindow.DojoState.Practice[0].Repeat = RepeatBehavior.Forever;
                     CalculateHealthGain();
                     Health += HealthGain * 1.5M;
-                    HealthString = Health.ConvertToString();
-                    HealthGainString = (HealthGain * 1.5M).ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].HealthString = Health.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].HealthGainString = (HealthGain * 1.5M).ConvertToString();
 
                     CalculateMeditationEnergyGain();
                     Energy += EnergyMeditationGain * 1.5M;
-                    EnergyString = Energy.ConvertToString();
-                    EnergyMeditationGainString = (EnergyMeditationGain * 1.5M).ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].EnergyString = Energy.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].EnergyMeditationGainString = (EnergyMeditationGain * 1.5M).ConvertToString();
 
-                    Repeat = new RepeatBehavior(1);
+                    PageHolder.MainWindow.DojoState.Practice[0].Repeat = new RepeatBehavior(1);
                 }
                 else
                 {
-                    Repeat = RepeatBehavior.Forever;
+                    PageHolder.MainWindow.DojoState.Practice[0].Repeat = RepeatBehavior.Forever;
 
                     CalculateHealthGain();
                     Health += HealthGain;
-                    HealthString = Health.ConvertToString();
-                    HealthGainString = HealthGain.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].HealthString = Health.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].HealthGainString = HealthGain.ConvertToString();
 
                     CalculateMeditationEnergyGain();
                     Energy += EnergyMeditationGain;
-                    EnergyString = Energy.ConvertToString();
-                    EnergyMeditationGainString = EnergyMeditationGain.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].EnergyString = Energy.ConvertToString();
+                    PageHolder.MainWindow.DojoState.Practice[0].EnergyMeditationGainString = EnergyMeditationGain.ConvertToString();
 
-                    Repeat = new RepeatBehavior(1);
+                    PageHolder.MainWindow.DojoState.Practice[0].Repeat = new RepeatBehavior(1);
                 }
 
-                PageHolder.MainWindow.State.Dojo.Refresh();
+                
                 Extensions.UpdateActives();
                 LogIt.Write($"With Perk: '{Perks[5].Name}' set to {Perks[5].Active}");
             }
@@ -317,25 +317,25 @@ namespace BecomeSifu.MartialArts
                 try
                 {
 
-                    if (AutoPractice)
+                    if (PageHolder.MainWindow.DojoState.Practice[0].AutoPractice)
                     {
                         LogIt.Write($"Stop");
-                        AutoPractice = !AutoPractice;
-                        Rate = "Auto";
-                        PageHolder.MainWindow.State.Dojo.Refresh();
+                        PageHolder.MainWindow.DojoState.Practice[0].AutoPractice = !PageHolder.MainWindow.DojoState.Practice[0].AutoPractice;
+                        PageHolder.MainWindow.DojoState.Practice[0].Rate = "Auto";
+                        
                         Timer.Stop();
-                        PageHolder.MainWindow.State.Dojo.Refresh();
+                        
                     }
                     else
                     {
                         LogIt.Write($"Start");
-                        AutoPractice = !AutoPractice;
-                        Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
+                        PageHolder.MainWindow.DojoState.Practice[0].AutoPractice = !PageHolder.MainWindow.DojoState.Practice[0].AutoPractice;
+                        PageHolder.MainWindow.DojoState.Practice[0].Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
                         Timer.Tick += Timer_Tick;
                         Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * AutoSpeedMultiplier));
-                        PageHolder.MainWindow.State.Dojo.Refresh();
+                        
                         Timer.Start();
-                        PageHolder.MainWindow.State.Dojo.Refresh();
+                        
                     }
                 }
                 catch (Exception e)
@@ -348,7 +348,7 @@ namespace BecomeSifu.MartialArts
 
         public void Timer_Tick(object source, EventArgs e)
         {
-            if (!IsMeditating)
+            if (!PageHolder.MainWindow.DojoState.Practice[0].IsMeditating)
             {
                 Practice();
             }
@@ -365,23 +365,23 @@ namespace BecomeSifu.MartialArts
             {
                 try
                 {
-                    if (AutoMeditate)
+                    if (PageHolder.MainWindow.DojoState.Practice[0].AutoMeditate)
                     {
                         LogIt.Write($"Stop");
-                        AutoMeditate = !AutoMeditate;
-                        Rate = "Auto";
-                        PageHolder.MainWindow.State.Dojo.Refresh();
+                        PageHolder.MainWindow.DojoState.Practice[0].AutoMeditate = !PageHolder.MainWindow.DojoState.Practice[0].AutoMeditate;
+                        PageHolder.MainWindow.DojoState.Practice[0].Rate = "Auto";
+                        
                         MeditateTimer.Stop();
-                        PageHolder.MainWindow.State.Dojo.Refresh();
+                        
                     }
                     else
                     {
                         LogIt.Write($"Start");
-                        AutoMeditate = !AutoMeditate;
-                        Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
+                        PageHolder.MainWindow.DojoState.Practice[0].AutoMeditate = !PageHolder.MainWindow.DojoState.Practice[0].AutoMeditate;
+                        PageHolder.MainWindow.DojoState.Practice[0].Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
                         MeditateTimer.Tick += MeditateTimer_Tick;
                         MeditateTimer.Interval = TimeSpan.FromMilliseconds((double)(1000 * AutoSpeedMultiplier));
-                        PageHolder.MainWindow.State.Dojo.Refresh();
+                        
                         MeditateTimer.Start();
                     }
                 }
@@ -419,7 +419,7 @@ namespace BecomeSifu.MartialArts
         {
             try
             {
-                foreach (ActionsViewModel defense in PageHolder.MainWindow.State.Defenses)
+                foreach (ActionsViewModel defense in PageHolder.MainWindow.DojoState.Defenses)
                 {
                     DefenseGain += defense.Step * Convert.ToDecimal(defense.LevelInt) * .1M;
                 }
@@ -439,9 +439,9 @@ namespace BecomeSifu.MartialArts
                 decimal total = 0;
                 if (Perks[2].Active)
                 {
-                    foreach (ActionsViewModel kick in PageHolder.MainWindow.State.Kicks)
+                    foreach (ActionsViewModel kick in PageHolder.MainWindow.DojoState.Kicks)
                     {
-                        foreach (ActionsViewModel punch in PageHolder.MainWindow.State.Punches)
+                        foreach (ActionsViewModel punch in PageHolder.MainWindow.DojoState.Punches)
                         {
                             total += kick.LevelInt != 0
                                 ? total += punch.Step * punch.LevelInt * 2M * .004M * kick.LevelInt
@@ -451,11 +451,11 @@ namespace BecomeSifu.MartialArts
                 }
                 else
                 {
-                    foreach (ActionsViewModel punch in PageHolder.MainWindow.State.Punches)
+                    foreach (ActionsViewModel punch in PageHolder.MainWindow.DojoState.Punches)
                     {
                         total += punch.Step * punch.LevelInt;
                     }
-                    foreach (ActionsViewModel kick in PageHolder.MainWindow.State.Kicks)
+                    foreach (ActionsViewModel kick in PageHolder.MainWindow.DojoState.Kicks)
                     {
                         if (Perks[0].Active)
                         {
@@ -467,7 +467,7 @@ namespace BecomeSifu.MartialArts
                         }
                     }
                 }
-                foreach (ActionsViewModel special in PageHolder.MainWindow.State.Specials)
+                foreach (ActionsViewModel special in PageHolder.MainWindow.DojoState.Specials)
                 {
                     total += special.Step * 10 * special.LevelInt;
                 }
@@ -550,16 +550,16 @@ namespace BecomeSifu.MartialArts
             TotalSteps++;
             TotalLevels++;
             Energy -= energyCost;
-            EnergyString = Energy.ConvertToString();
-            PageHolder.MainWindow.State.Dojo.Refresh();
+            PageHolder.MainWindow.DojoState.Practice[0].EnergyString = Energy.ConvertToString();
+            
         }
 
         public void SpendExp(decimal expCost)
         {
             TotalLevels++;
             Exp -= expCost;
-            ExpString = Exp.ConvertToString();
-            PageHolder.MainWindow.State.Dojo.Refresh();
+            PageHolder.MainWindow.DojoState.Practice[0].ExpString = Exp.ConvertToString();
+            
         }
     }
 }

@@ -28,36 +28,36 @@ namespace BecomeSifu.Pages
 
         private void Energy_Click(object sender, RoutedEventArgs e)
         {
-            PageHolder.MainWindow.State.Dojo[0].Energy += 1000000000;
-            PageHolder.MainWindow.State.Dojo[0].EnergyString = PageHolder.MainWindow.State.Dojo[0].Energy.ConvertToString();
+            PageHolder.MainWindow.DojoState.Dojo[0].Energy += 1000000000;
+            PageHolder.MainWindow.DojoState.Practice[0].EnergyString = PageHolder.MainWindow.DojoState.Dojo[0].Energy.ConvertToString();
             Extensions.UpdateActives();
         }
 
         private void Exp_Click(object sender, RoutedEventArgs e)
         {
-            PageHolder.MainWindow.State.Dojo[0].Exp += 1000000000;
-            PageHolder.MainWindow.State.Dojo[0].ExpString = PageHolder.MainWindow.State.Dojo[0].Exp.ConvertToString();
+            PageHolder.MainWindow.DojoState.Dojo[0].Exp += 1000000000;
+            PageHolder.MainWindow.DojoState.Practice[0].ExpString = PageHolder.MainWindow.DojoState.Dojo[0].Exp.ConvertToString();
             Extensions.UpdateActives();
         }
 
         private void Attack_Click(object sender, RoutedEventArgs e)
         {
-            PageHolder.MainWindow.State.Dojo[0].Attack += 1000000;
-            PageHolder.MainWindow.State.Dojo[0].AttackString = PageHolder.MainWindow.State.Dojo[0].Attack.ConvertToString();
+            PageHolder.MainWindow.DojoState.Dojo[0].Attack += 1000000;
+            PageHolder.MainWindow.DojoState.Practice[0].AttackString = PageHolder.MainWindow.DojoState.Dojo[0].Attack.ConvertToString();
             Extensions.UpdateActives();
         }
 
         private void Defense_Click(object sender, RoutedEventArgs e)
         {
-            PageHolder.MainWindow.State.Dojo[0].Defense += 1000000;
-            PageHolder.MainWindow.State.Dojo[0].DefenseString = PageHolder.MainWindow.State.Dojo[0].Defense.ConvertToString();
+            PageHolder.MainWindow.DojoState.Dojo[0].Defense += 1000000;
+            PageHolder.MainWindow.DojoState.Practice[0].DefenseString = PageHolder.MainWindow.DojoState.Dojo[0].Defense.ConvertToString();
             Extensions.UpdateActives();
         }
 
         private void Health_Click(object sender, RoutedEventArgs e)
         {
-            PageHolder.MainWindow.State.Dojo[0].Health += 1000000;
-            PageHolder.MainWindow.State.Dojo[0].HealthString = PageHolder.MainWindow.State.Dojo[0].Health.ConvertToString();
+            PageHolder.MainWindow.DojoState.Dojo[0].Health += 1000000;
+            PageHolder.MainWindow.DojoState.Practice[0].HealthString = PageHolder.MainWindow.DojoState.Dojo[0].Health.ConvertToString();
             Extensions.UpdateActives();
         }
     }

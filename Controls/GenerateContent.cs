@@ -21,7 +21,7 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                List<string> punches = PageHolder.MainWindow.State.Dojo[0].Punches;
+                List<string> punches = PageHolder.MainWindow.DojoState.Dojo[0].Punches;
                 foreach (string key in punches)
                 {
                     new Punches(key, punches.IndexOf(key));
@@ -39,7 +39,7 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                List<string> kicks = PageHolder.MainWindow.State.Dojo[0].Kicks;
+                List<string> kicks = PageHolder.MainWindow.DojoState.Dojo[0].Kicks;
                 foreach (string key in kicks)
                 {
                     new Kicks(key, kicks.IndexOf(key));
@@ -57,7 +57,7 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                List<string> specials = PageHolder.MainWindow.State.Dojo[0].Specials;
+                List<string> specials = PageHolder.MainWindow.DojoState.Dojo[0].Specials;
                 foreach (string key in specials)
                 {
                     new Specials(key, specials.IndexOf(key));
@@ -75,7 +75,7 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                List<string> Defenses = PageHolder.MainWindow.State.Dojo[0].Defenses;
+                List<string> Defenses = PageHolder.MainWindow.DojoState.Dojo[0].Defenses;
                 foreach (string key in Defenses)
                 {
                     new Defenses(key, Defenses.IndexOf(key));

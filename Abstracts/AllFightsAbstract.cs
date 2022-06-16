@@ -8,6 +8,5 @@ namespace BecomeSifu.Abstracts
 {
     public abstract class AllFightsAbstract : AllFights, IFights
     {
-        public abstract void Begin();
     }
 }

@@ -26,8 +26,8 @@ namespace BecomeSifu.Pages
         public Practice()
         {
             InitializeComponent();
-            PageHolder.MainWindow.State.Dojo[0].Timer = new DispatcherTimer();
-            PracticeIC.ItemsSource = PageHolder.MainWindow.State.Practice;
+            PageHolder.MainWindow.DojoState.Dojo[0].Timer = new DispatcherTimer();
+            PracticeIC.ItemsSource = PageHolder.MainWindow.DojoState.Practice;
         }
     }
 }

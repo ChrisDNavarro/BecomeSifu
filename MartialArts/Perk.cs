@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
-
+using System.Xml.Serialization;
 
 namespace BecomeSifu.MartialArts
 {
@@ -17,10 +17,11 @@ namespace BecomeSifu.MartialArts
         private void StorePerk()
         {
             Stored = true;
-            PageHolder.MainWindow.State.Dojo[0].Perks.Refresh();
+            PageHolder.MainWindow.DojoState.Dojo[0].Perks.Refresh();
             PageHolder.MainWindow.Setup();
         }
 
+        [XmlIgnore]
         public List<string> PerksList = new List<string>{
              "Kicks generate 50% more attack power.",
             "All Specials available after learning first kick.",

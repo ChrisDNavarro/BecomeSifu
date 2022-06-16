@@ -18,6 +18,6 @@ namespace BecomeSifu.Interfaces
         string AttackString { get; set; }
         bool IsActive { get; set; }
         string FightName { get; set; }
-        SolidColorBrush Background { get; set; }
+        Color Background { get; set; }
     }
 }

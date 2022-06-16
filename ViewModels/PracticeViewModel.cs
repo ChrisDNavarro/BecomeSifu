@@ -13,15 +13,15 @@ namespace BecomeSifu.ViewModels
 {
     public class PracticeViewModel : ViewModelBase
     {
-        public CommandAbstract PracticeClick => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].Practice());
+        public CommandAbstract PracticeClick => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].Practice());
 
-        public CommandAbstract MeditateClick => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].Meditation());
+        public CommandAbstract MeditateClick => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].Meditation());
 
-        public CommandAbstract AutoPracticeCheck => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].StartStopAutoPractice());
+        public CommandAbstract AutoPracticeCheck => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].StartStopAutoPractice());
 
-        public CommandAbstract AutoMeditateCheck => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].StartStopAutoMeditate());
+        public CommandAbstract AutoMeditateCheck => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].StartStopAutoMeditate());
 
-        public CommandAbstract StartStopMeditationCommand => new RelayCommand(x => PageHolder.MainWindow.State.Dojo[0].StartStopMeditation());
+        public CommandAbstract StartStopMeditationCommand => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].StartStopMeditation());
 
 
 

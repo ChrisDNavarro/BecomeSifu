@@ -6,6 +6,33 @@
                 xmlns:local="clr-namespace:BecomeSifu.Pages"
                 mc:Ignorable="d" 
                 d:DesignHeight="300" d:DesignWidth="200" Background="Silver">
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="MyButton2">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="MediumAquamarine" />
+            <Setter Property="Foreground" Value="MediumBlue" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="MyContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="Green"/>
+                    <Setter Property="Foreground" Value="DeepPink"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <ItemsControl x:Name="CupIC">
             <ItemsControl.ItemTemplate>
@@ -39,17 +66,17 @@
                                 </RadialGradientBrush>
                             </Rectangle.Fill>
                         </Rectangle>
-                        <Image x:Name="CupImage" Source="{Binding Imagesource}" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity="1">
+                        <Image x:Name="CupImage" Source="{Binding ImageIgnorable}" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity="1">
                             <Image.Effect>
                                 <BlurEffect Radius="10"/>
                             </Image.Effect>
                         </Image>
-                        <Image Source="{Binding Imagesource}" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity="1">
+                        <Image Source="{Binding ImageIgnorable}" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity="1">
                             <Image.Effect>
                                 <BlurEffect Radius="3"/>
                             </Image.Effect>
                         </Image>
-                        <Button x:Name="EmptyCupButton" Content="{Binding ButtonName}"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Black" RenderTransformOrigin="0.5,0.5" Command="{Binding EmptyYourCup}" IsEnabled="{Binding ButtonActive}">
+                        <Button x:Name="EmptyCupButton" Content="{Binding ButtonName}"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Blue" RenderTransformOrigin="0.5,0.5" Command="{Binding EmptyYourCup}" IsEnabled="{Binding ButtonActive}" Style="{StaticResource MyButton2}">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                     <GradientStop Color="LightBlue"/>

@@ -22,7 +22,7 @@ namespace BecomeSifu.Objects
             punch.LevelInt = 0;
             punch.Level = "Lvl " + punch.LevelInt.ToString();
 
-            punch.ExpToNext = PageHolder.MainWindow.State.Dojo[0].EnergyToUnlock(punch.Step);
+            punch.ExpToNext = PageHolder.MainWindow.DojoState.Dojo[0].EnergyToUnlock(punch.Step);
             punch.ExpString = punch.ExpToNext.ConvertToString();
             punch.LevelUp = $"Learn\r\n{punch.ExpString} Eng";
 
@@ -33,16 +33,16 @@ namespace BecomeSifu.Objects
 
             if (punch.Step % 2 == 0)
             {
-                punch.BackgroundColor = new SolidColorBrush(Colors.LightSteelBlue);
-                punch.ForegroundColor = new SolidColorBrush(Colors.DimGray);
+                punch.BackgroundColor = Colors.LightSteelBlue;
+                punch.ForegroundColor = Colors.DimGray;
             }
             else
             {
-                punch.ForegroundColor = new SolidColorBrush(Colors.RoyalBlue);
-                punch.BackgroundColor = new SolidColorBrush(Colors.Silver);
+                punch.ForegroundColor = Colors.RoyalBlue;
+                punch.BackgroundColor = Colors.Silver;
             }
 
-            PageHolder.MainWindow.State.AddPunch(punch);
+            PageHolder.MainWindow.DojoState.AddPunch(punch);
         }
 
         public static void TryLevelUp(ActionsViewModel punch)
@@ -51,30 +51,29 @@ namespace BecomeSifu.Objects
             {
                 if (!punch.Learned)
                 {
-                    if (PageHolder.MainWindow.State.Dojo[0].Energy >= punch.ExpToNext)
+                    if (PageHolder.MainWindow.DojoState.Dojo[0].Energy >= punch.ExpToNext)
                     {
                         LogIt.Write($"Learning {punch.Name}");
                         punch.Learned = true;
                         punch.Learning = true;
 
-                        PageHolder.MainWindow.State.Dojo[0].SpendEnergy(punch.ExpToNext);
+                        PageHolder.MainWindow.DojoState.Dojo[0].SpendEnergy(punch.ExpToNext);
 
                         if (punch.Step == 1)
                         {
-                            if (PageHolder.MainWindow.State.Dojo[0].Energy >= PageHolder.MainWindow.State.Kicks[0].ExpToNext)
+                            if (PageHolder.MainWindow.DojoState.Dojo[0].Energy >= PageHolder.MainWindow.DojoState.Kicks[0].ExpToNext)
                             {
-                                PageHolder.MainWindow.State.Kicks[0].Enabled = true;
-                                PageHolder.MainWindow.State.Kicks.Refresh();
+                                PageHolder.MainWindow.DojoState.Kicks[0].Enabled = true;
+                                
                             }
-                            PageHolder.MainWindow.State.FightsVMs[0].IsActive = true;
-                            PageHolder.MainWindow.State.Fights.Refresh();
+                            PageHolder.MainWindow.DojoState.FightsVMs[0].IsActive = true;
                             Extensions.CreateMessage("Kicks", false);
                             Extensions.CreateMessage("Street Fight", true);
                         }
-                        if (punch.Step == 5 && !PageHolder.MainWindow.State.Defenses[0].Learned)
+                        if (punch.Step == 5 && !PageHolder.MainWindow.DojoState.Defenses[0].Learned)
                         {
-                            PageHolder.MainWindow.State.Defenses[0].Enabled = true;
-                            PageHolder.MainWindow.State.Defenses.Refresh();
+                            PageHolder.MainWindow.DojoState.Defenses[0].Enabled = true;
+
                             Extensions.CreateMessage("Defense", true);
                         }
                         CompleteLevelUp(punch);
@@ -82,10 +81,10 @@ namespace BecomeSifu.Objects
                 }
                 else
                 {
-                    if (PageHolder.MainWindow.State.Dojo[0].Exp >= punch.ExpToNext && !punch.MaxLevel)
+                    if (PageHolder.MainWindow.DojoState.Dojo[0].Exp >= punch.ExpToNext && !punch.MaxLevel)
                     {
                         LogIt.Write($"Leveling up {punch.Name}");
-                        PageHolder.MainWindow.State.Dojo[0].SpendExp(punch.ExpToNext);
+                        PageHolder.MainWindow.DojoState.Dojo[0].SpendExp(punch.ExpToNext);
                         CompleteLevelUp(punch);
                     }
                 }
@@ -125,7 +124,7 @@ namespace BecomeSifu.Objects
                         Extensions.SendMessage($"{punch.Name} has reached Max Level");
                         punch.MaxLevel = true;
                         punch.LevelUp = "Max Level";
-                        PageHolder.MainWindow.State.Punches.Refresh();
+                        
                     }
                     else
                     {
@@ -136,12 +135,9 @@ namespace BecomeSifu.Objects
 
                     
 
-                    PageHolder.MainWindow.State.Dojo[0].CalculateAll();
+                    PageHolder.MainWindow.DojoState.Dojo[0].CalculateAll();
 
-                    PageHolder.MainWindow.State.Dojo.Refresh();
                     
-
-                    PageHolder.MainWindow.State.Punches.Refresh();
 
                     Extensions.UpdateActives();
                 }
@@ -162,10 +158,9 @@ namespace BecomeSifu.Objects
         {
             if (viewModel.Learned)
             {
-                viewModel.ExpToNext = PageHolder.MainWindow.State.Dojo[0].AttacksExpToNext(viewModel.Step, viewModel.LevelInt);
+                viewModel.ExpToNext = PageHolder.MainWindow.DojoState.Dojo[0].AttacksExpToNext(viewModel.Step, viewModel.LevelInt);
                 viewModel.ExpString = viewModel.ExpToNext.ConvertToString();
                 Extensions.UpdateActives();
-                PageHolder.MainWindow.State.Punches.Refresh();
             }
         }
 

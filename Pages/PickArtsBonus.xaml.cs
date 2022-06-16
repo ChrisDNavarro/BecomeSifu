@@ -25,7 +25,7 @@ namespace BecomeSifu.Pages
         public PickArtsBonus()
         {
             InitializeComponent();
-            PerkIC.ItemsSource = PageHolder.MainWindow.State.Dojo[0].Perks;
+            PerkIC.ItemsSource = PageHolder.MainWindow.DojoState.Dojo[0].Perks;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using System.Windows.Media;
+using System.Xml.Serialization;
 
 namespace BecomeSifu.ViewModels
 {
@@ -18,18 +19,30 @@ namespace BecomeSifu.ViewModels
 
 
         private SolidColorBrush _BackgroundColor;
-        public SolidColorBrush BackgroundColor
+        public Color BackgroundColor
+        {
+            get => _BackgroundColor.Color;
+            set => SetProperty(ref _BackgroundColor, new SolidColorBrush(value));
+        }
+        [XmlIgnore]
+        public SolidColorBrush BackgroundIgnorable
         {
             get => _BackgroundColor;
-            set => SetProperty(ref _BackgroundColor, value);
         }
 
         private SolidColorBrush _ForegroundColor;
-        public SolidColorBrush ForegroundColor
+        public Color ForegroundColor
+        {
+            get => _ForegroundColor.Color;
+            set => SetProperty(ref _ForegroundColor, new SolidColorBrush(value));
+        }
+        
+        [XmlIgnore]
+        public SolidColorBrush ForegroundIgnorable
         {
             get => _ForegroundColor;
-            set => SetProperty(ref _ForegroundColor, value);
         }
+
 
         private string _Name;
         public string Name

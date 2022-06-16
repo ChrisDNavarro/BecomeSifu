@@ -51,8 +51,8 @@ namespace BecomeSifu.Controls
             {
                 foreach (Type type in types)
                 {
-                    PageHolder.MainWindow.State.AddFightVM((FightsViewModelAbstract)Activator.CreateInstance(typeof(IFightsViewModel).Assembly.ToString(), "BecomeSifu.ViewModels." + type.Name + "ViewModel").Unwrap());
-                    PageHolder.MainWindow.State.AddFight((AllFightsAbstract)Activator.CreateInstance(type.Assembly.ToString(), type.FullName).Unwrap());
+                    PageHolder.MainWindow.DojoState.AddFightVM((FightsViewModelAbstract)Activator.CreateInstance(typeof(FightsViewModelAbstract).Assembly.ToString(), "BecomeSifu.ViewModels." + type.Name + "ViewModel").Unwrap());
+                    AllFightsAbstract create = (AllFightsAbstract)Activator.CreateInstance(type.Assembly.ToString(), type.FullName).Unwrap();
                 }
             }
             catch (Exception e)

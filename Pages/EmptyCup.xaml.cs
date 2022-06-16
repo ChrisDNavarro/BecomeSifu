@@ -25,7 +25,7 @@ namespace BecomeSifu.Pages
         public EmptyCup()
         {
             InitializeComponent();
-            CupIC.ItemsSource = PageHolder.MainWindow.State.Cup;
+            CupIC.ItemsSource = PageHolder.MainWindow.DojoState.Cup;
         }
     }
 }

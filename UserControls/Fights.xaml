@@ -26,7 +26,7 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding Background}" Grid.ColumnSpan="8" Grid.RowSpan="2"/>
+                        <Rectangle Fill="{Binding BackgroundIgnorable}" Grid.ColumnSpan="8" Grid.RowSpan="2"/>
                         <Image Grid.Column="1" gif:ImageBehavior.AnimatedSource="{Binding FightGif}" gif:ImageBehavior.RepeatBehavior="1" Grid.ColumnSpan="7" Height="35"/>
                         <Button Content="{Binding FightName}" Margin="5,5,0,5" Width="100" Grid.RowSpan="2" IsEnabled="{Binding IsActive}" Command="{Binding StartFighting}"/>
                         <Label Content="Attack Power:" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>

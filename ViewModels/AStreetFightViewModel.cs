@@ -5,12 +5,13 @@ using System.Text;
 
 using BecomeSifu.Controls;
 using BecomeSifu.Abstracts;
+using BecomeSifu.FightObjects;
 
 namespace BecomeSifu.ViewModels
 {
     public class AStreetFightViewModel : FightsViewModelAbstract
     {
-        public override CommandAbstract StartFighting => new RelayCommand(x => PageHolder.MainWindow.State.Fights[0].Begin());
+        public override CommandAbstract StartFighting => new RelayCommand(x => AStreetFight.Begin());
 
 
         private string _FightName;

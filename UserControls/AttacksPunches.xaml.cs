@@ -25,7 +25,7 @@ namespace BecomeSifu.UserControls
         public AttacksPunches()
         {
             InitializeComponent();
-            PunchesIC.ItemsSource = PageHolder.MainWindow.State.Punches;
+            PunchesIC.ItemsSource = PageHolder.MainWindow.DojoState.Punches;
         }
     }
 }

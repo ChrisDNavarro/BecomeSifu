@@ -66,7 +66,7 @@ namespace BecomeSifu.Pages
                     {
                         PageHolder.MainWindow.ActivePerks.Add(1);
                     }
-                    PageHolder.MainWindow.State.PickDojo(new Taekwondo());
+                    PageHolder.MainWindow.DojoState.PickDojo(new Taekwondo());
                     break;
                 case "boxing":
                     if (!PageHolder.MainWindow.ActivePerks.Contains(2))
@@ -77,7 +77,7 @@ namespace BecomeSifu.Pages
                     {
                         PageHolder.MainWindow.ActivePerks.Add(3);
                     }
-                    PageHolder.MainWindow.State.PickDojo(new Boxing());
+                    PageHolder.MainWindow.DojoState.PickDojo(new Boxing());
                     break;
                 case "karate":
                     if (!PageHolder.MainWindow.ActivePerks.Contains(4))
@@ -88,7 +88,7 @@ namespace BecomeSifu.Pages
                     {
                         PageHolder.MainWindow.ActivePerks.Add(5);
                     }
-                    PageHolder.MainWindow.State.PickDojo(new Karate());
+                    PageHolder.MainWindow.DojoState.PickDojo(new Karate());
                     break;
                 default:
                     break;
