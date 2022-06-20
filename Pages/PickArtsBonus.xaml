@@ -7,22 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="832" d:DesignWidth="800">
     <UserControl.Background>
-        <RadialGradientBrush RadiusX="0.6" RadiusY="0.7">
-            <RadialGradientBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.3"/>
-                    <SkewTransform AngleY="80" AngleX="-50" CenterY="0.5" CenterX="0.3"/>
-                    <RotateTransform CenterY="0.5" CenterX="0.3"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </RadialGradientBrush.RelativeTransform>
-            <GradientStop Color="Black"/>
-            <GradientStop Color="Black" Offset="0.801"/>
-            <GradientStop Color="SteelBlue" Offset="0.125"/>
-            <GradientStop Color="Black" Offset="0.281"/>
-            <GradientStop Color="SteelBlue" Offset="0.525"/>
-            <GradientStop Color="SteelBlue" Offset="1"/>
-        </RadialGradientBrush>
+        <ImageBrush ImageSource="/Resources/Background.png" Stretch="UniformToFill" TileMode="Tile"/>
     </UserControl.Background>
     <Grid>
         <Grid.RowDefinitions>

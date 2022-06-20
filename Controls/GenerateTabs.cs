@@ -3,6 +3,7 @@ using BecomeSifu.Interfaces;
 using BecomeSifu.Logging;
 using BecomeSifu.MartialArts;
 using BecomeSifu.Objects;
+using BecomeSifu.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,11 +85,7 @@ namespace BecomeSifu.Controls
         {
             try
             {
-
-                TabControl attackTabs = new TabControl
-                {
-                    TabStripPlacement = Dock.Bottom,
-                };
+                BottomTabs bottoms = new BottomTabs();
 
                 List<PropertyInfo> bottomTabs = typeof(IDojo).GetProperties().ToList();
                 foreach (PropertyInfo pI in bottomTabs)
@@ -108,13 +105,13 @@ namespace BecomeSifu.Controls
                             }
                             UserControl control = (UserControl)Activator.CreateInstance(Assembly.GetExecutingAssembly().ToString(), $"BecomeSifu.UserControls.Attacks{name}").Unwrap();
                             bottomTab.Content = control;
-                            attackTabs.Items.Add(bottomTab);
+                            bottoms.Tabs.Items.Add(bottomTab);
                         }
                     }
                 }
                 LogIt.Write($"Created bottom tabs and content");
 
-                tab.Content = attackTabs;
+                tab.Content = bottoms;
             }
             catch (Exception e)
             {

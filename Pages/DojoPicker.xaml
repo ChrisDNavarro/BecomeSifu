@@ -5,24 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.Pages" DataContext="{Binding RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d" 
-             d:DesignHeight="832" d:DesignWidth="800">
+             d:DesignHeight="832" d:DesignWidth="800" RenderTransformOrigin="0.5,0.5">
     <UserControl.Background>
-        <RadialGradientBrush RadiusX="0.6" RadiusY="0.7">
-            <RadialGradientBrush.RelativeTransform>
-                <TransformGroup>
-                    <ScaleTransform CenterY="0.5" CenterX="0.3"/>
-                    <SkewTransform AngleY="80" AngleX="-50" CenterY="0.5" CenterX="0.3"/>
-                    <RotateTransform CenterY="0.5" CenterX="0.3"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </RadialGradientBrush.RelativeTransform>
-            <GradientStop Color="Black"/>
-            <GradientStop Color="Black" Offset="0.801"/>
-            <GradientStop Color="SteelBlue" Offset="0.125"/>
-            <GradientStop Color="Black" Offset="0.281"/>
-            <GradientStop Color="SteelBlue" Offset="0.525"/>
-            <GradientStop Color="SteelBlue" Offset="1"/>
-        </RadialGradientBrush>
+        <ImageBrush ImageSource="/Resources/Background.png" Stretch="UniformToFill" TileMode="Tile"/>
     </UserControl.Background>
 
     <Grid>
@@ -36,11 +21,11 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
-        
+
         <Image x:Name ="TKDTrigrams" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/TKDTrigrams.png" Stretch="Fill" Opacity="0.25" Visibility="Collapsed" />
         <Image x:Name ="KarateLogo" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/KarateGate.png" Stretch="Fill" Opacity="0.25" StretchDirection="Both" Margin="-218,-186,-208,-217" Visibility="Collapsed"/>
         <Image x:Name ="BoxingRing" Grid.ColumnSpan="3" Grid.RowSpan="3" Source="/Resources/BoxingRing.png" Stretch="Fill" Opacity="0.25" StretchDirection="Both" Visibility="Collapsed"/>
-        
+
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -58,8 +43,8 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="TaeKwonDo" Content="TaeKwonDo" Grid.Row="2" HorizontalAlignment="Center" MinWidth="100" Click="Button_Click" Background="#3F4682B4" FontWeight="Bold" Foreground="White" BorderBrush="#FF090000" MouseEnter="TaeKwonDo_MouseEnter" MouseLeave="TaeKwonDo_MouseLeave"/>
             <Button x:Name="Boxing" Content="Boxing" Grid.Row="2" Grid.Column="2" HorizontalAlignment="Center" MinWidth="100" Click="Button_Click" MouseEnter="Boxing_MouseEnter" MouseLeave="Boxing_MouseLeave" Background="#3F4682B4" FontWeight="Bold" Foreground="White" BorderBrush="#FF090000"/>
-            <Button x:Name="Karate" Content="Karate" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" MinWidth="100" Click="Button_Click" MouseEnter="Karate_MouseEnter" MouseLeave="Karate_MouseLeave" Background="#3F4682B4" FontWeight="Bold" Foreground="White" BorderBrush="#FF090000"/>             
-            
+            <Button x:Name="Karate" Content="Karate" Grid.Row="2" Grid.Column="4" HorizontalAlignment="Center" MinWidth="100" Click="Button_Click" MouseEnter="Karate_MouseEnter" MouseLeave="Karate_MouseLeave" Background="#3F4682B4" FontWeight="Bold" Foreground="White" BorderBrush="#FF090000"/>
+
         </Grid>
         <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="73" Foreground="Black" FontWeight="Bold">
             <TextBlock.Effect>
@@ -73,12 +58,12 @@
             <TextBlock.Effect>
                 <BlurEffect Radius="5"/>
             </TextBlock.Effect><Run Text="{Binding SelectMessage}"/></TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="73" Foreground="AliceBlue" FontWeight="Bold">
+        <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="73" Foreground="AliceBlue" FontWeight="Bold">
             <TextBlock.Effect>
                 <BlurEffect Radius="2"/>
             </TextBlock.Effect><Run Text="{Binding SelectMessage}"/></TextBlock>
 
         <TextBlock x:Name="DojoDescriptionLabel" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap"/>
-        
+
     </Grid>
 </UserControl>

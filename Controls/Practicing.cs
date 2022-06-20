@@ -20,8 +20,6 @@ namespace BecomeSifu.Controls
         public decimal EnergyGain { get; set; }
         public decimal EnergyMeditationGain { get; set; }
 
-        private string _EnergyGainString = "0";
-
         public decimal Exp { get; set; }
         public decimal ExpGain { get; set; }
 

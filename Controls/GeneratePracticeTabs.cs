@@ -35,7 +35,8 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                tab.Header = "Pratice";
+                TextBlock tbk = new TextBlock() { Text = "Practice", Foreground = new SolidColorBrush(Colors.AliceBlue), FontWeight = FontWeights.Bold };
+                tab.Header = tbk;
                 tab.Content = new Practice();
                 return tab;
             }
@@ -50,7 +51,8 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                tab.Header = "Meditation";
+                TextBlock tbk = new TextBlock() { Text = "Meditate", Foreground = new SolidColorBrush(Colors.AliceBlue), FontWeight = FontWeights.Bold };
+                tab.Header = tbk;
                 tab.Content = new Meditate();
                 return tab;
             }
@@ -64,7 +66,8 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                tab.Header = "Cup Of Knowledge";
+                TextBlock tbk = new TextBlock() { Text = "Cup Of Knowledge", Foreground = new SolidColorBrush(Colors.AliceBlue), FontWeight = FontWeights.Bold };
+                tab.Header = tbk;
                 tab.Content = new EmptyCup();
                 return tab;
             }

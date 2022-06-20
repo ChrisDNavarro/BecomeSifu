@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using BecomeSifu.Logging;
 using BecomeSifu.ViewModels;
 using System.Windows.Media.Animation;
+using WpfAnimatedGif;
 
 namespace BecomeSifu.MartialArts
 {
@@ -141,6 +142,14 @@ namespace BecomeSifu.MartialArts
                     PageHolder.MainWindow.DojoState.Practice[0].DefenseGainString = DefenseGain.ConvertToString();
 
                     Extensions.UpdateActives();
+
+                    if (!PageHolder.MainWindow.DojoState.Practice[0].AutoPractice && !PageHolder.MainWindow.DojoState.Practice[0].Practicing )
+                    {
+                        PageHolder.MainWindow.DojoState.Practice[0].Practicing = true;
+                        PageHolder.MainWindow.DojoState.Practice[0].Practiced = RepeatBehavior.Forever;
+                        PageHolder.MainWindow.DojoState.Practice[0].Practiced = new RepeatBehavior(1);
+                    }
+
                     LogIt.Write();
                 }
                 else
@@ -322,7 +331,7 @@ namespace BecomeSifu.MartialArts
                         LogIt.Write($"Stop");
                         PageHolder.MainWindow.DojoState.Practice[0].AutoPractice = !PageHolder.MainWindow.DojoState.Practice[0].AutoPractice;
                         PageHolder.MainWindow.DojoState.Practice[0].Rate = "Auto";
-                        
+                        PageHolder.MainWindow.DojoState.Practice[0].Practiced = new RepeatBehavior(1);
                         Timer.Stop();
                         
                     }
@@ -333,7 +342,7 @@ namespace BecomeSifu.MartialArts
                         PageHolder.MainWindow.DojoState.Practice[0].Rate = (1 / AutoSpeedMultiplier).ConvertToString() + " click(s)/s";
                         Timer.Tick += Timer_Tick;
                         Timer.Interval = TimeSpan.FromMilliseconds((double)(1000 * AutoSpeedMultiplier));
-                        
+                        PageHolder.MainWindow.DojoState.Practice[0].Practiced = RepeatBehavior.Forever;
                         Timer.Start();
                         
                     }

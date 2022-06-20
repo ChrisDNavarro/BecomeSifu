@@ -34,6 +34,7 @@
     <None Remove="Messages\To The Body.txt" />
     <None Remove="Messages\Tournament.txt" />
     <None Remove="Messages\You have chosen well.txt" />
+    <None Remove="Resources\Background.png" />
     <None Remove="Resources\BoxingRing.png" />
     <None Remove="Resources\CupIsEmpty.png" />
     <None Remove="Resources\CupIsFull.png" />
@@ -77,6 +78,7 @@
     <Resource Include="Animations\meditate.gif" />
     <Resource Include="Animations\meditate2.gif" />
     <Resource Include="Animations\streetfightwin.gif" />
+    <Resource Include="Resources\Background.png" />
     <Resource Include="Resources\BoxingRing.png" />
     <Resource Include="Resources\CupIsEmpty.png" />
     <Resource Include="Resources\CupIsFull.png" />

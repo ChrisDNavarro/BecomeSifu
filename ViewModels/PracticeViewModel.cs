@@ -5,8 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
-
+using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.Xml.Serialization;
 using WpfAnimatedGif;
 
 namespace BecomeSifu.ViewModels
@@ -22,6 +24,8 @@ namespace BecomeSifu.ViewModels
         public CommandAbstract AutoMeditateCheck => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].StartStopAutoMeditate());
 
         public CommandAbstract StartStopMeditationCommand => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].StartStopMeditation());
+
+        
 
 
 
@@ -170,6 +174,31 @@ namespace BecomeSifu.ViewModels
             set => SetProperty(ref _Repeat, value);
         }
 
+        private RepeatBehavior _Practiced = new RepeatBehavior(1);
+        public RepeatBehavior Practiced
+        {
+            get => _Practiced;
+            set => SetProperty(ref _Practiced, value);
+        }
+
+        private ImageSource _Source = new BitmapImage(new Uri("pack://application:,,,/Animations/Kicks.gif"));
+        public string Source
+        {
+            set => SetProperty(ref _Source, new BitmapImage(new Uri("pack://application:,,," + value)));
+        }
+
+        [XmlIgnore]
+        public ImageSource SourceIgnorable
+        {
+            get => _Source;
+        }
+
+        private bool _Practicing;
+        public bool Practicing
+        {
+            get => _Practicing;
+            set => SetProperty(ref _Practicing, value);
+        }
 
     }
 }

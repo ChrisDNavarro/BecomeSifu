@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using WpfAnimatedGif;
 using BecomeSifu.Logging;
 using System.Windows.Media.Animation;
+using BecomeSifu.Pages;
 
 namespace BecomeSifu.Controls
 {
@@ -27,7 +28,9 @@ namespace BecomeSifu.Controls
             try
             {
                 Tabs = PageHolder.MainClient.ActionTabControl.Items;
-                PracticeTabs = PageHolder.MainClient.PracticeTabControl.Items;
+                var x = (TabItem)PageHolder.MainClient.PracticeTabHolder.Items[0];
+                var y = (TabControl)x.Content;
+                PracticeTabs = y.Items;
                 AdvancedTabs = PageHolder.MainClient.AdvancedTabControl.Items;
 
                 if (!fromsaved)
@@ -37,6 +40,8 @@ namespace BecomeSifu.Controls
                     _ = new GenerateContent();
                     LogIt.Write($"Generated Content");
                 }
+
+                
                 _ = new GenerateTabs(Tabs);
                 LogIt.Write($"Generated Tabs");
                 _ = new GeneratePracticeTabs(PracticeTabs);
@@ -44,13 +49,10 @@ namespace BecomeSifu.Controls
                 _ = new GenerateAdvancedTabs(AdvancedTabs);
                 LogIt.Write($"Generated Advanced Tabs");
 
+                PageHolder.MainClient.BackgrounGif.Content = new PracticeGif();
 
-                var gif = new BitmapImage();
-                gif.BeginInit();
-                gif.UriSource = new Uri("pack://application:,,,/Animations/Kicks.gif");
-                gif.EndInit();
-                ImageBehavior.SetAnimatedSource(PageHolder.MainClient.Aniamtion, gif);
-                ImageBehavior.SetRepeatBehavior(PageHolder.MainClient.Aniamtion, RepeatBehavior.Forever);
+
+
                 LogIt.Write($"Started Animation");
 
                 Bonuses = bonuses;
