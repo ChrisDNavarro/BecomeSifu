@@ -3,6 +3,7 @@ using BecomeSifu.Controls;
 using BecomeSifu.Objects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Media;
@@ -15,6 +16,7 @@ namespace BecomeSifu.ViewModels
 {
     public class PracticeViewModel : ViewModelBase
     {
+       
         public CommandAbstract PracticeClick => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].Practice());
 
         public CommandAbstract MeditateClick => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].Meditation());
@@ -23,9 +25,7 @@ namespace BecomeSifu.ViewModels
 
         public CommandAbstract AutoMeditateCheck => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].StartStopAutoMeditate());
 
-        public CommandAbstract StartStopMeditationCommand => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].StartStopMeditation());
-
-        
+        public CommandAbstract StartStopMeditationCommand => new RelayCommand(x => PageHolder.MainWindow.DojoState.Dojo[0].StartStopMeditation());       
 
 
 
@@ -181,10 +181,11 @@ namespace BecomeSifu.ViewModels
             set => SetProperty(ref _Practiced, value);
         }
 
-        private ImageSource _Source = new BitmapImage(new Uri("pack://application:,,,/Animations/Kicks.gif"));
+        private ImageSource _Source;
         public string Source
         {
-            set => SetProperty(ref _Source, new BitmapImage(new Uri("pack://application:,,," + value)));
+            get => _Source.ToString().Substring(_Source.ToString().LastIndexOf('/') + 1);
+            set => SetProperty(ref _Source, new BitmapImage(new Uri("pack://application:,,,/Animations/" + value)), "SourceIgnorable", true);
         }
 
         [XmlIgnore]
@@ -198,6 +199,29 @@ namespace BecomeSifu.ViewModels
         {
             get => _Practicing;
             set => SetProperty(ref _Practicing, value);
+        }
+
+
+        private Visibility _TKD = Visibility.Collapsed;
+        public Visibility TKD
+        {
+            get => _TKD;
+            set => SetProperty(ref _TKD, value);
+        }
+
+        private Visibility _BXG = Visibility.Collapsed;
+        public Visibility BXG
+        {
+            get => _BXG;
+            set => SetProperty(ref _BXG, value);
+        }
+
+
+        private Visibility _KTE = Visibility.Collapsed;
+        public Visibility KTE
+        {
+            get => _KTE;
+            set => SetProperty(ref _KTE, value);
         }
 
     }

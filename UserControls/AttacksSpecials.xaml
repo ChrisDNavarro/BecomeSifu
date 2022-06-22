@@ -5,23 +5,54 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="LightSteelBlue">
+             d:DesignHeight="450" d:DesignWidth="800"  >
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="MyButton2">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="#60000000"/>
+            <Setter Property="Foreground" Value="AliceBlue"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="MyContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#40000000"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <ItemsControl x:Name="SpecialsIC" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="200" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding BackgroundIgnorable}" Grid.ColumnSpan="4"/>
-                        <Label Content="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Margin="25,0,0,0" FontWeight="Bold" Foreground="{Binding ForegroundIgnorable}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Level}" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="25,0,0,0 "/>
-                        <Button Grid.Column="2" Content="{Binding LevelUp}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,5,25,5" IsEnabled="{Binding Enabled}" HorizontalContentAlignment="Center" Command="{Binding SpecialsLevelUpCommand}"/>
-                    </Grid>
+                    <Border BorderBrush="{Binding BackgroundIgnorable}" BorderThickness="0,0,0,1" Background="#40000000">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Content="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Margin="25,0,0,0" FontWeight="Bold" Foreground="LightSkyBlue">
+                                <Label.Effect>
+                                    <DropShadowEffect BlurRadius="5" ShadowDepth="0"/>
+                                </Label.Effect>
+                            </Label>
+                            <Label Content="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Margin="25,0,0,0" FontWeight="Bold" Foreground="LightSkyBlue"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Level}" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="25,0,0,0 " Foreground="AliceBlue"/>
+                            <Button Grid.Column="2" Content="{Binding LevelUp}" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,5,25,5" IsEnabled="{Binding Enabled}" HorizontalContentAlignment="Center" Command="{Binding SpecialsLevelUpCommand}" Style="{StaticResource MyButton2}"/>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

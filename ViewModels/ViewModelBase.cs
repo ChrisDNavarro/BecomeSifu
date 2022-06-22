@@ -20,5 +20,15 @@ namespace BecomeSifu.ViewModels
             }
             return false;
         }
+        protected bool SetProperty<T>(ref T field, T newValue, string propertyName, bool difProp)
+        {
+            if (!EqualityComparer<T>.Default.Equals(field, newValue))
+            {
+                field = newValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                return true;
+            }
+            return false;
+        }
     }
 }

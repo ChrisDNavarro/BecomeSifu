@@ -446,15 +446,20 @@ namespace BecomeSifu.MartialArts
             try
             {
                 decimal total = 0;
-                if (Perks[2].Active)
+                if (Perks[6].Active)
                 {
                     foreach (ActionsViewModel kick in PageHolder.MainWindow.DojoState.Kicks)
                     {
                         foreach (ActionsViewModel punch in PageHolder.MainWindow.DojoState.Punches)
                         {
-                            total += kick.LevelInt != 0
-                                ? total += punch.Step * punch.LevelInt * 2M * .004M * kick.LevelInt
-                                : total += punch.Step * punch.LevelInt * 2M;
+                            if (kick.LevelInt == 0)
+                            {
+                                total += punch.Step * punch.LevelInt * 2M;
+                            }
+                            else
+                            {
+                                total += punch.Step * punch.LevelInt * 2M * .004M * kick.LevelInt;
+                            }
                         }
                     }
                 }
@@ -462,7 +467,14 @@ namespace BecomeSifu.MartialArts
                 {
                     foreach (ActionsViewModel punch in PageHolder.MainWindow.DojoState.Punches)
                     {
-                        total += punch.Step * punch.LevelInt;
+                        if (Perks[2].Active)
+                        {
+                            total += punch.Step * punch.LevelInt * 2M;
+                        }
+                        else
+                        {
+                            total += punch.Step * punch.LevelInt;
+                        }
                     }
                     foreach (ActionsViewModel kick in PageHolder.MainWindow.DojoState.Kicks)
                     {

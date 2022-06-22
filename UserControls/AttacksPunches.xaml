@@ -5,23 +5,134 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="Silver">
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="MyButton2">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background" Value="#60000000"/>
+            <Setter Property="Foreground" Value="AliceBlue"/>
+            <Setter Property="BorderBrush" Value="AliceBlue"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="MyContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#40000000"/>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Border x:Name="rectangle"
+                            SnapsToDevicePixels="True"
+                            Background="Transparent"
+                            Opacity="1"
+                            CornerRadius="4"
+                            BorderBrush="silver"
+                            BorderThickness="1"                            
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="rectangle" Property="Opacity" Value="1" />
+                                <Setter TargetName="rectangle" Property="Background" Value="#604682b4" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ScrollStyle" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+
+            <Setter Property="Width" Value="14"/>
+            <Setter Property="Margin" Value="-14 0 0 0" />
+            <Setter Property="MinWidth" Value="{Binding Height, RelativeSource={RelativeSource Self}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="Bg" SnapsToDevicePixels="true">
+
+                            <Border Padding="0 4">
+                                <Track x:Name="PART_Track"
+                        IsDirectionReversed="true"
+                        IsEnabled="{TemplateBinding IsMouseOver}"
+                        Width="8"
+                        HorizontalAlignment="Center"
+                           >
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageUpCommand}" />
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Opacity="0" Command="{x:Static ScrollBar.PageDownCommand}" />
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb Style="{StaticResource ScrollBarThumb  }" />
+                                    </Track.Thumb>
+                                </Track>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="ScrollViewerControlTemplate" TargetType="{x:Type ScrollViewer}">
+            <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Rectangle x:Name="Corner" Grid.Column="1" Fill="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" Grid.Row="1"/>
+                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="0" Margin="{TemplateBinding Padding}" Grid.Row="0"/>
+                <ScrollBar Style="{StaticResource ScrollStyle}" x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Grid.Row="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}"/>
+                <ScrollBar Style="{StaticResource ScrollStyle}" x:Name="PART_HorizontalScrollBar" AutomationProperties.AutomationId="HorizontalScrollBar" Cursor="Arrow" Grid.Column="0" Maximum="{TemplateBinding ScrollableWidth}" Minimum="0" Orientation="Horizontal" Grid.Row="1" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}"/>
+            </Grid>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" Template="{StaticResource ScrollViewerControlTemplate}">
         <ItemsControl x:Name="PunchesIC" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
+                    <Border BorderBrush="{Binding BackgroundIgnorable}" BorderThickness="0,0,0,1" Background="#40000000">
+                        <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200" />
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding BackgroundIgnorable}" Grid.ColumnSpan="4"/>
-                        <Label Content="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Margin="25,0,0,0" FontWeight="Bold" Foreground="{Binding ForegroundIgnorable}"/>
-                        <TextBlock Grid.Column="1" Text="{Binding Level}" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="25,0,0,0 "/>
-                        <Button Grid.Column="2" Content="{Binding LevelUp}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,5,25,5" IsEnabled="{Binding Enabled}" HorizontalContentAlignment="Center" Command="{Binding PunchesLevelUpCommand}"/>
-                    </Grid> 
+                            <Label Content="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Margin="25,0,0,0" FontWeight="Bold" Foreground="LightSkyBlue">
+                                <Label.Effect>
+                                    <DropShadowEffect BlurRadius="5" ShadowDepth="0"/>
+                                </Label.Effect>
+                            </Label>
+                            <Label Content="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Margin="25,0,0,0" FontWeight="Bold" Foreground="LightSkyBlue"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Level}" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="25,0,0,0 " Foreground="AliceBlue"/>
+                            <Button Grid.Column="2" Content="{Binding LevelUp}" Width="75" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,5,25,5" IsEnabled="{Binding Enabled}" HorizontalContentAlignment="Center" Command="{Binding PunchesLevelUpCommand}" Style="{StaticResource MyButton2}"/>                        
+                    </Grid>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>                        
         </ItemsControl>

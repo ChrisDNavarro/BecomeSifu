@@ -3,17 +3,64 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:local="clr-namespace:BecomeSifu.UserControls"
              xmlns:gif="http://wpfanimatedgif.codeplex.com" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="LightSteelBlue">
+             d:DesignHeight="450" d:DesignWidth="800" >
+    <UserControl.Resources>
+        <Style TargetType="Button" x:Key="MyButton2">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="LightSteelBlue"/>
+                        <GradientStop Color="LightSteelBlue" Offset="1"/>
+                        <GradientStop Color="#60000000" Offset="0.391"/>
+                        <GradientStop Color="#60000000" Offset="0.691"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="AliceBlue"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter x:Name="MyContentPresenter"
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#60000000"/>
+                                            <GradientStop Color="#60000000" Offset="1"/>
+                                            <GradientStop Color="LightSteelBlue" Offset="0.391"/>
+                                            <GradientStop Color="LightSteelBlue" Offset="0.691"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Opacity" Value=".5"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <ItemsControl x:Name="FightsIC" >
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
+                    <Border BorderBrush="{Binding BackgroundIgnorable}" BorderThickness="0,0,0,1" Background="#40000000">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
@@ -26,16 +73,16 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Rectangle Fill="{Binding BackgroundIgnorable}" Grid.ColumnSpan="8" Grid.RowSpan="2"/>
-                        <Image Grid.Column="1" gif:ImageBehavior.AnimatedSource="{Binding FightGif}" gif:ImageBehavior.RepeatBehavior="1" Grid.ColumnSpan="7" Height="35"/>
-                        <Button Content="{Binding FightName}" Margin="5,5,0,5" Width="100" Grid.RowSpan="2" IsEnabled="{Binding IsActive}" Command="{Binding StartFighting}"/>
-                        <Label Content="Attack Power:" Grid.Row="1" Grid.Column="1" FontWeight="Bold"/>
-                        <Label Content="{Binding AttackString}" Grid.Row="1"  Grid.Column="2"/>
-                        <Label Content="Health:" Grid.Column="3" Grid.Row="1"  FontWeight="Bold"/>
-                        <Label Content="{Binding HealthString}" Grid.Row="1"  Grid.Column="4" />
-                        <Label Content="Wins:" Grid.Column="5" Grid.Row="1"  FontWeight="Bold"/>
-                        <Label Content="{Binding Wins}" Grid.Row="1"  Grid.Column="6" />
+                            <Image Grid.Column="1" gif:ImageBehavior.AnimatedSource="{Binding FightGif}" gif:ImageBehavior.RepeatBehavior="{Binding Fighting}" gif:ImageBehavior.AnimationCompleted="DoneFighting" Grid.ColumnSpan="7" Height="50" Grid.RowSpan="2" Margin="-70,-5,0,0"/>
+                            <Button Content="{Binding FightName}" Margin="5,5,0,5" Width="100" Grid.RowSpan="3" IsEnabled="{Binding IsActive}" Command="{Binding StartFighting}" Style="{StaticResource MyButton2}" Foreground="{Binding ForegroundIgnorable}"/>
+                            <Label Content="Attack Power:" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Foreground="AliceBlue"/>
+                            <Label Content="{Binding AttackString}" Grid.Row="2"  Grid.Column="2" Foreground="AliceBlue"/>
+                            <Label Content="Health:" Grid.Column="3" Grid.Row="2"  FontWeight="Bold" Foreground="AliceBlue"/>
+                            <Label Content="{Binding HealthString}" Grid.Row="2"  Grid.Column="4" Foreground="AliceBlue" />
+                            <Label Content="Wins:" Grid.Column="5" Grid.Row="2"  FontWeight="Bold" Foreground="AliceBlue"/>
+                            <Label Content="{Binding Wins}" Grid.Row="2"  Grid.Column="6" Foreground="AliceBlue" />
                     </Grid>
+                    </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>

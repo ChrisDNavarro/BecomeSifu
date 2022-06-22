@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.Pages"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="200" Background="Silver">
+             d:DesignHeight="300" d:DesignWidth="200" Background="#50000000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -14,11 +14,56 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="Energy" Content="1,000,000,000 added to Energy" Margin="5,5" Click="Energy_Click" />
-        <Button x:Name="Exp" Grid.Row="1" Content ="1,000,000,000 added to Exp" Margin="5,5" Click="Exp_Click" />
-        <Button x:Name="Attack" Grid.Row="2" Content="1,000,000 added to Attack" Margin="5,5" Click="Attack_Click" />
-        <Button x:Name="Defense" Grid.Row="3" Content="1,000,000 added to Defense" Margin="5,5" Click="Defense_Click" />
-        <Button x:Name="Health" Grid.Row="4" Content="1,000,000 added to Health" Margin="5,5" Click="Health_Click" />
+        <Button x:Name="Energy" Content="1,000,000,000 added to Energy" Margin="30,20" Click="Energy_Click" Foreground="AliceBlue" FontWeight="bold" BorderBrush="AliceBlue" BorderThickness="1">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightSteelBlue"/>
+                    <GradientStop Color="LightSteelBlue" Offset="1"/>
+                    <GradientStop Color="#60000000" Offset="0.391"/>
+                    <GradientStop Color="#60000000" Offset="0.691"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Exp" Grid.Row="1" Content ="1,000,000,000 added to Exp" Margin="30,20" Click="Exp_Click" Foreground="AliceBlue" BorderBrush="AliceBlue" BorderThickness="1">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightSteelBlue"/>
+                    <GradientStop Color="LightSteelBlue" Offset="1"/>
+                    <GradientStop Color="#60000000" Offset="0.391"/>
+                    <GradientStop Color="#60000000" Offset="0.691"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Attack" Grid.Row="2" Content="1,000,000 added to Attack" Margin="30,20" Click="Attack_Click" Foreground="AliceBlue" BorderBrush="AliceBlue" BorderThickness="1">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightSteelBlue"/>
+                    <GradientStop Color="LightSteelBlue" Offset="1"/>
+                    <GradientStop Color="#60000000" Offset="0.391"/>
+                    <GradientStop Color="#60000000" Offset="0.691"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Defense" Grid.Row="3" Content="1,000,000 added to Defense" Margin="30,20" Click="Defense_Click" Foreground="AliceBlue" BorderBrush="AliceBlue" BorderThickness="1">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightSteelBlue"/>
+                    <GradientStop Color="LightSteelBlue" Offset="1"/>
+                    <GradientStop Color="#60000000" Offset="0.391"/>
+                    <GradientStop Color="#60000000" Offset="0.691"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="Health" Grid.Row="4" Content="1,000,000 added to Health" Margin="30,20" Click="Health_Click" Foreground="AliceBlue" BorderBrush="AliceBlue" BorderThickness="1">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="LightSteelBlue"/>
+                    <GradientStop Color="LightSteelBlue" Offset="1"/>
+                    <GradientStop Color="#60000000" Offset="0.391"/>
+                    <GradientStop Color="#60000000" Offset="0.691"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 
 </UserControl>

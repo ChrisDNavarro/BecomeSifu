@@ -77,6 +77,10 @@ namespace BecomeSifu.Pages
                     {
                         PageHolder.MainWindow.ActivePerks.Add(3);
                     }
+                    if (!PageHolder.MainWindow.ActivePerks.Contains(6))
+                    {
+                        PageHolder.MainWindow.ActivePerks.Add(6);
+                    }
                     PageHolder.MainWindow.DojoState.PickDojo(new Boxing());
                     break;
                 case "karate":

@@ -5,13 +5,23 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
                 xmlns:local="clr-namespace:BecomeSifu.Pages"
                 mc:Ignorable="d" 
-                d:DesignHeight="300" d:DesignWidth="200" Background="Silver">
+                d:DesignHeight="295" d:DesignWidth="200" Background="#40000000">
     <UserControl.Resources>
         <Style TargetType="Button" x:Key="MyButton2">
             <Setter Property="OverridesDefaultStyle" Value="True" />
-            <Setter Property="Background" Value="MediumAquamarine" />
-            <Setter Property="Foreground" Value="MediumBlue" />
-
+            <Setter Property="Background">
+                <Setter.Value>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="LightSteelBlue"/>
+                            <GradientStop Color="LightSteelBlue" Offset="1"/>
+                            <GradientStop Color="#60000000" Offset="0.391"/>
+                            <GradientStop Color="#60000000" Offset="0.691"/>
+                        </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="BorderBrush" Value="AliceBlue"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="AliceBlue"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -21,79 +31,66 @@
                                           HorizontalAlignment="Center" 
                                           VerticalAlignment="Center"/>
                         </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#60000000"/>
+                                            <GradientStop Color="#60000000" Offset="1"/>
+                                            <GradientStop Color="LightSteelBlue" Offset="0.391"/>
+                                            <GradientStop Color="LightSteelBlue" Offset="0.691"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Opacity" Value=".5"/>
+                                <Setter Property="BorderBrush" Value="Black"/>
+                                <Setter Property="BorderThickness" Value="1"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-
-            <Style.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Background" Value="Green"/>
-                    <Setter Property="Foreground" Value="DeepPink"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <Border BorderBrush="RoyalBlue" BorderThickness="1">
         <ItemsControl x:Name="CupIC">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
                         <Grid.RowDefinitions >
                             <RowDefinition Height="100"/>
-                            <RowDefinition Height ="120"/>
+                            <RowDefinition Height ="110"/>
                             <RowDefinition Height="75"/>
                         </Grid.RowDefinitions>
-                        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="0"/>
-                        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="1"/>
-                        <Border BorderBrush="RoyalBlue" BorderThickness="1" Grid.Row="2"/>
-                        <Rectangle Grid.Row="0">
-                            <Rectangle.Fill>
-                                <RadialGradientBrush RadiusX="0.6" RadiusY="0.7">
-                                    <RadialGradientBrush.RelativeTransform>
-                                        <TransformGroup>
-                                            <ScaleTransform CenterY="0.7" CenterX="0.1"/>
-                                            <SkewTransform AngleY="80" CenterY="0.3" CenterX="1" AngleX="300"/>
-                                            <RotateTransform CenterY="0.1" CenterX="0.8"/>
-                                            <TranslateTransform/>
-                                        </TransformGroup>
-                                    </RadialGradientBrush.RelativeTransform>
-                                    <GradientStop Color="Silver"/>
-                                    <GradientStop Color="Silver" Offset="0.801"/>
-                                    <GradientStop Color="SteelBlue" Offset="0.125"/>
-                                    <GradientStop Color="Silver" Offset="0.281"/>
-                                    <GradientStop Color="SteelBlue" Offset="0.525"/>
-                                    <GradientStop Color="SteelBlue" Offset="1"/>
-                                </RadialGradientBrush>
-                            </Rectangle.Fill>
-                        </Rectangle>
-                        <Image x:Name="CupImage" Source="{Binding ImageIgnorable}" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity="1">
+                        <Border BorderBrush="RoyalBlue" BorderThickness="0,1,0,0" Grid.Row="2"/>
+
+
+                        <Image x:Name="CupImage" Source="{Binding ImageIgnorable}" VerticalAlignment="Bottom" Margin="0,0,0,-70" Opacity="1">
                             <Image.Effect>
-                                <BlurEffect Radius="10"/>
+                                <BlurEffect Radius="10" />
                             </Image.Effect>
                         </Image>
-                        <Image Source="{Binding ImageIgnorable}" VerticalAlignment="Bottom" Margin="0,0,0,-20" Opacity="1">
+                        <Image Source="{Binding ImageIgnorable}" VerticalAlignment="Bottom" Margin="0,0,0,-70" Opacity="1">
                             <Image.Effect>
                                 <BlurEffect Radius="3"/>
                             </Image.Effect>
                         </Image>
-                        <Button x:Name="EmptyCupButton" Content="{Binding ButtonName}"  Grid.Row="1" Margin="5,10,5,10" FontSize="20" FontWeight="Bold" BorderBrush="Blue" Foreground="Blue" RenderTransformOrigin="0.5,0.5" Command="{Binding EmptyYourCup}" IsEnabled="{Binding ButtonActive}" Style="{StaticResource MyButton2}">
-                            <Button.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="LightBlue"/>
-                                    <GradientStop Color="LightSteelBlue" Offset="1"/>
-                                    <GradientStop Color="SteelBlue" Offset="0.391"/>
-                                </LinearGradientBrush>
-                            </Button.Background>
+                        <Button x:Name="EmptyCupButton" Content="{Binding ButtonName}" Grid.Row="1" Margin="25,50,25,10" FontSize="20" FontWeight="Bold" Command="{Binding EmptyYourCup}" IsEnabled="{Binding ButtonActive}" Style="{StaticResource MyButton2}">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="5"/>
+                            </Button.Effect>
                         </Button>
-                        <TextBlock Text="{Binding CurrentBonus}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Left" Foreground="Black">
+                        <TextBlock Text="{Binding CurrentBonus}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Left" Foreground="LightSkyBlue">
                             <TextBlock.Effect>
                                 <BlurEffect Radius="2"/>
                             </TextBlock.Effect>
                         </TextBlock>
-                        <TextBlock Text="{Binding CurrentBonus}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Left" Foreground="Blue"/>
+                        <TextBlock Text="{Binding CurrentBonus}" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" TextAlignment="Left" Foreground="LightSkyBlue"/>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
-    </ScrollViewer>
+    </Border>
 </UserControl>

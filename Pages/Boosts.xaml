@@ -6,26 +6,26 @@
              xmlns:local="clr-namespace:BecomeSifu.Pages"
              xmlns:Controls="clr-namespace:BecomeSifu.Controls" x:Class="BecomeSifu.Pages.Boosts"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="200" Background="Silver">
+             d:DesignHeight="300" d:DesignWidth="200" Background="#40000000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" BorderBrush="RoyalBlue" BorderThickness="1"/>
-        <Border Grid.Row="1" BorderBrush="RoyalBlue" BorderThickness="1" />
+        <Border Grid.Row="0" BorderBrush="DarkGray" BorderThickness="1"/>
+        <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="1" />
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <RadioButton Tag="1" Content="1x" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" IsChecked="true" Foreground="RoyalBlue" />
-            <RadioButton Tag="10" Content="10x" Grid.Column="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" Foreground="RoyalBlue" />
-            <RadioButton Tag="100" Content="100x" Grid.Column="2" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" Foreground="RoyalBlue" />
+            <RadioButton Tag="1" Content="1x" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" IsChecked="true" Foreground="LightSkyBlue" />
+            <RadioButton Tag="10" Content="10x" Grid.Column="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" Foreground="LightSkyBlue" />
+            <RadioButton Tag="100" Content="100x" Grid.Column="2" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="RadioButton_Checked" Foreground="LightSkyBlue" />
         </Grid>
-        <CheckBox Content="Auto Level Up" Grid.Row="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="RoyalBlue"/>
+        <CheckBox Content="Auto Level Up" Grid.Row="1" Margin="1,5" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" Foreground="LightSkyBlue"/>
 
     </Grid>
 </UserControl>

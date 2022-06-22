@@ -25,12 +25,13 @@ namespace BecomeSifu.MartialArts
         public List<string> PerksList = new List<string>{
              "Kicks generate 50% more attack power.",
             "All Specials available after learning first kick.",
-            "Punches generate 100& more attack power.",
+            "Punches generate 100% more attack power.",
             "Every level in specials increases attack speed by .04% (100% at max).",
             "Every Attack generates 10% more attack power.",
-            "Increase Mediation gains by 50%"
+            "Increase Mediation gains by 50%",
+            "Learn to go to the body, increases attack power gained."
         };
-        public static int Count { get; } = 6;
+        public static int Count { get; } = 7;
 
         public string Name { get; set; }
         public Visibility Visible { get; set; } = Visibility.Collapsed;

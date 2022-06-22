@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -29,10 +30,12 @@ namespace BecomeSifu.Controls
 
                 foreach (Type type in types)
                 {
+                    TextBlock tbk = new TextBlock() { Text = type.Name, Foreground = new SolidColorBrush(Colors.AliceBlue), FontWeight = FontWeights.Bold };
                     TabItem tabItem = new TabItem();
                     if (type.Name.Contains("Attacks"))
                     {
-                        tabItem.Header = "Attacks";
+                        tbk.Text = "Attacks";
+                        tabItem.Header = tbk;
                         if (!Attacks)
                         {
                             Tabs.Add(tabItem);
@@ -41,7 +44,7 @@ namespace BecomeSifu.Controls
                     }
                     else
                     {
-                        tabItem.Header = type.Name;
+                        tabItem.Header = tbk;
                         Tabs.Add(tabItem);
                     }
 
@@ -62,13 +65,14 @@ namespace BecomeSifu.Controls
             {
                 foreach (TabItem tab in Tabs)
                 {
-                    if (tab.Header.ToString().Contains("Attacks"))
+                    TextBlock tabName = (TextBlock)tab.Header;
+                    if (tabName.Text.Contains("Attacks"))
                     {
                         BuildBottomTabs(tab);
                     }
                     else
                     {
-                        UserControl control = (UserControl)Activator.CreateInstance(Assembly.GetExecutingAssembly().ToString(), $"BecomeSifu.UserControls.{tab.Header}").Unwrap();
+                        UserControl control = (UserControl)Activator.CreateInstance(Assembly.GetExecutingAssembly().ToString(), $"BecomeSifu.UserControls.{tabName.Text}").Unwrap();
                         tab.Content = control;
                     }
                 }
@@ -95,14 +99,14 @@ namespace BecomeSifu.Controls
                     {
                         if (!name.Contains("Defenses") && pI.PropertyType.ToString().Contains("List"))
                         {
-                            TabItem bottomTab = new TabItem
-                            {
-                                Header = name,
-                            };
+                            TextBlock tbk = new TextBlock() { Text = name, Foreground = new SolidColorBrush(Colors.AliceBlue), FontWeight = FontWeights.Bold };
+                            TabItem bottomTab = new TabItem();
                             if (PageHolder.MainWindow.DojoState.Dojo[0].IsBoxing && name.Contains("Kicks"))
                             {
-                                bottomTab.Header = "To The Body";
+                                tbk.Text = "To The Body";
                             }
+
+                            bottomTab.Header = tbk;                            
                             UserControl control = (UserControl)Activator.CreateInstance(Assembly.GetExecutingAssembly().ToString(), $"BecomeSifu.UserControls.Attacks{name}").Unwrap();
                             bottomTab.Content = control;
                             bottoms.Tabs.Items.Add(bottomTab);

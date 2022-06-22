@@ -4,9 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BecomeSifu.Pages"
-             xmlns:gif="http://wpfanimatedgif.codeplex.com" 
-             mc:Ignorable="d" 
-             d:DesignHeight="832" d:DesignWidth="700">
+             Height="832" Width="700">
     <UserControl.Background>
         <ImageBrush ImageSource="/Resources/Background.png" Stretch="UniformToFill" TileMode="Tile"/>
     </UserControl.Background>
@@ -35,6 +33,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
+        
         <Popup x:Name="MessagePopUp" Placement="Center" MinWidth="749" MinHeight="777"  IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" Grid.ColumnSpan="2" Grid.RowSpan="2" MouseUp="MessagePopUp_MouseUp">
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -46,7 +45,52 @@
                 <TextBlock x:Name="Message" Background="#AA4682B4" Foreground="AliceBlue" Padding="5" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="50,50 "/>
             </Grid>
         </Popup>
-        <ContentControl x:Name="BackgrounGif" Width="400" Height="325" />
+
+       
+        <Image x:Name ="TKDTrigrams" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Resources/TKDTrigrams.png" Stretch="Fill" Opacity="0.25" Visibility="Collapsed" />
+        <Image x:Name ="KarateLogo" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Resources/KarateGate.png" Stretch="Fill" Opacity="0.25" StretchDirection="Both" Margin="-218,-186,-208,-217" Visibility="Collapsed"/>
+        <Image x:Name ="BoxingRing" Grid.ColumnSpan="2" Grid.RowSpan="2" Source="/Resources/BoxingRing.png" Stretch="Fill" Opacity="0.25" StretchDirection="Both" Visibility="Collapsed"/>
+
+        <TabControl x:Name="BackgrounGif" Width="440" Height="325" Background="#00000000" BorderThickness="0">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}, Path=Items.Count}" Value="1">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Grid>
+                                    <Border 
+                                                Name="Border"
+                                                Background="Transparent"
+                                                BorderBrush="Silver"
+                                                Margin="1,1"
+                                                BorderThickness="1,1,1,1">
+                                        <ContentPresenter x:Name="ContentSite"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"                                                    
+                                                    ContentSource="Header"
+                                                    Margin="12,2,12,2"
+                                                    RecognizesAccessKey="True"/>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter Property="Panel.ZIndex" Value="100" />
+                                        <Setter TargetName="Border" Property="Background" Value="Transparent" />
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="2" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.ItemContainerStyle>
+        </TabControl>
+
         <TabControl x:Name="PracticeTabHolder" Grid.Row="0" Grid.Column="1" Width="300" Height="332" Background="#00FFFFFF">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">                    
@@ -94,73 +138,101 @@
                 </TabControl>
             </TabItem>
         </TabControl>
-        <TabControl x:Name="ActionTabControl" Grid.Row="1" Grid.Column="0" Height="450" Width="450" Background="#00FFFFFF" >
+
+        <TabControl x:Name="ActionTabHolder" Grid.Row="1" Grid.Column="0" Height="450" Width="450" Background="#00FFFFFF">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type TabItem}">
-                                <Grid>
-                                    <Border 
-                                                Name="Border"
-                                                Margin="0,0,-4,0" 
-                                                Background="#00FFFFFF"
-                                                BorderBrush="black" 
-                                                BorderThickness="1,1,1,1">
-                                        <ContentPresenter x:Name="ContentSite"
-                                                    VerticalAlignment="Center"
-                                                    HorizontalAlignment="Center"                                                    
-                                                    ContentSource="Header"
-                                                    Margin="12,2,12,2"
-                                                    RecognizesAccessKey="True"/>
-                                    </Border>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Panel.ZIndex" Value="100" />
-                                        <Setter TargetName="Border" Property="Background" Value="#50FFFFFF" />
-                                        <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}, Path=Items.Count}" Value="1">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </TabControl.ItemContainerStyle>
+            <TabItem>
+                <TabControl x:Name="ActionTabControl"  Background="#00FFFFFF" >
+                    <TabControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                        <Grid>
+                                            <Border 
+                                                    Name="Border"
+                                                    Margin="1,1" 
+                                                    Background="#00FFFFFF"
+                                                    BorderBrush="Silver" 
+                                                    BorderThickness="1,1,1,1">
+                                                <ContentPresenter x:Name="ContentSite"
+                                                        VerticalAlignment="Center"
+                                                        HorizontalAlignment="Center"                                                    
+                                                        ContentSource="Header"
+                                                        Margin="12,2,12,2"
+                                                        RecognizesAccessKey="True"/>
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Panel.ZIndex" Value="100" />
+                                                <Setter TargetName="Border" Property="Background" Value="#00FFFFFF" />
+                                                <Setter TargetName="Border" Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.ItemContainerStyle>
+                </TabControl>
+            </TabItem>
         </TabControl>
-        <TabControl x:Name="AdvancedTabControl" Grid.Row="1" Grid.Column="1" TabStripPlacement="Top"  Height="450" Background="#00FFFFFF">
+
+        <TabControl x:Name="AdvancedTabHolder" Grid.Row="1" Grid.Column="1" Height="450" Background="#00FFFFFF">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate TargetType="{x:Type TabItem}">
-                                <Grid>
-                                    <Border 
-                                                Name="Border"
-                                                Margin="0,0,-4,0" 
-                                                Background="#00FFFFFF"
-                                                BorderBrush="black" 
-                                                BorderThickness="1,1,1,1">
-                                        <ContentPresenter x:Name="ContentSite"
-                                                    VerticalAlignment="Center"
-                                                    HorizontalAlignment="Center"                                                    
-                                                    ContentSource="Header"
-                                                    Margin="12,2,12,2"
-                                                    RecognizesAccessKey="True"/>
-                                    </Border>
-                                </Grid>
-                                <ControlTemplate.Triggers>
-                                    <Trigger Property="IsSelected" Value="True">
-                                        <Setter Property="Panel.ZIndex" Value="100" />
-                                        <Setter TargetName="Border" Property="Background" Value="#50FFFFFF" />
-                                        <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
-                                    </Trigger>
-                                </ControlTemplate.Triggers>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type TabControl}}, Path=Items.Count}" Value="1">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </TabControl.ItemContainerStyle>
+            <TabItem>
+                <TabControl x:Name="AdvancedTabControl" Background="#00FFFFFF">
+                    <TabControl.ItemContainerStyle>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                        <Grid>
+                                            <Border 
+                                                        Name="Border"
+                                                        Margin="1,1" 
+                                                        Background="#00FFFFFF"
+                                                        BorderBrush="silver" 
+                                                        BorderThickness="1,1,1,1">
+                                                <ContentPresenter x:Name="ContentSite"
+                                                            VerticalAlignment="Center"
+                                                            HorizontalAlignment="Center"                                                    
+                                                            ContentSource="Header"
+                                                            Margin="12,2,12,2"
+                                                            RecognizesAccessKey="True"/>
+                                            </Border>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Panel.ZIndex" Value="100" />
+                                                <Setter TargetName="Border" Property="Background" Value="#00FFFFFF" />
+                                                <Setter TargetName="Border" Property="BorderThickness" Value="2" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.ItemContainerStyle>
+                </TabControl>
+            </TabItem>
         </TabControl>
     </Grid>
 </UserControl>

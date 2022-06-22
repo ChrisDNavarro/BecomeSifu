@@ -43,6 +43,7 @@ namespace BecomeSifu.Objects
 
         
         public List<ActionsViewModel> Defenses { get; set; } = new List<ActionsViewModel>();
+        
 
 
         public DateTime Closed { get; set; }
@@ -76,11 +77,17 @@ namespace BecomeSifu.Objects
             }
 
             Dojo.Add(dojo);
-            Practice.Add(new PracticeViewModel());
+            AddPractice(new PracticeViewModel(), dojo.ToString());
             AddCup(new EmptyCupViewModel());
             PageHolder.MainWindow.Start();
             PageHolder.MainWindow.Client.StartingMessages();
             BecomeSifuClient.UpdateBonuses();
+        }
+
+        private void AddPractice(PracticeViewModel practiceViewModel, string dojo)
+        {
+            practiceViewModel.Source = $"{dojo.Substring(dojo.LastIndexOf('.') + 1)}.gif";
+            Practice.Add(practiceViewModel);
         }
 
         public void AddPunch(ActionsViewModel newPunch)

@@ -15,10 +15,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Animations\Kicks.gif" />
+    <None Remove="Animations\Boxing.gif" />
+    <None Remove="Animations\Championshiplose.gif" />
+    <None Remove="Animations\Championshipwin.gif" />
+    <None Remove="Animations\grandmasterlose.gif" />
+    <None Remove="Animations\grandmasterwin.gif" />
+    <None Remove="Animations\Karate.gif" />
+    <None Remove="Animations\masterlose.gif" />
+    <None Remove="Animations\masterwin.gif" />
     <None Remove="Animations\meditate.gif" />
     <None Remove="Animations\meditate2.gif" />
+    <None Remove="Animations\null.gif" />
+    <None Remove="Animations\streetfightlose.gif" />
     <None Remove="Animations\streetfightwin.gif" />
+    <None Remove="Animations\Taekwondo.gif" />
+    <None Remove="Animations\tournamentlost.gif" />
+    <None Remove="Animations\tournamentwin.gif" />
     <None Remove="Messages\Championship.txt" />
     <None Remove="Messages\Defense.txt" />
     <None Remove="Messages\Empty Your Cup.txt" />
@@ -74,10 +86,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Animations\Kicks.gif" />
+    <Resource Include="Animations\Boxing.gif" />
+    <Resource Include="Animations\Championshiplose.gif" />
+    <Resource Include="Animations\Championshipwin.gif" />
+    <Resource Include="Animations\grandmasterlose.gif" />
+    <Resource Include="Animations\grandmasterwin.gif" />
+    <Resource Include="Animations\Karate.gif" />
+    <Resource Include="Animations\null.gif" />
+    <Resource Include="Animations\Taekwondo.gif" />
+    <Resource Include="Animations\masterlose.gif" />
+    <Resource Include="Animations\masterwin.gif" />
     <Resource Include="Animations\meditate.gif" />
     <Resource Include="Animations\meditate2.gif" />
+    <Resource Include="Animations\streetfightlose.gif" />
     <Resource Include="Animations\streetfightwin.gif" />
+    <Resource Include="Animations\tournamentlost.gif" />
+    <Resource Include="Animations\tournamentwin.gif" />
     <Resource Include="Resources\Background.png" />
     <Resource Include="Resources\BoxingRing.png" />
     <Resource Include="Resources\CupIsEmpty.png" />

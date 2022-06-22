@@ -3,7 +3,9 @@ using BecomeSifu.Pages;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace BecomeSifu.Controls
 {
@@ -28,7 +30,8 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                tab.Header = "Boosts";
+                TextBlock tbk = new TextBlock() { Text = "Boosts", Foreground = new SolidColorBrush(Colors.AliceBlue), FontWeight = FontWeights.Bold };
+                tab.Header = tbk;
                 tab.Content = new Boosts();
                 return tab;
             }
@@ -42,7 +45,8 @@ namespace BecomeSifu.Controls
         {
             try
             {
-                tab.Header = "Debug";
+                TextBlock tbk = new TextBlock() { Text = "Debug", Foreground = new SolidColorBrush(Colors.AliceBlue), FontWeight = FontWeights.Bold };
+                tab.Header = tbk;
                 tab.Content = new Debug();
                 return tab;
             }

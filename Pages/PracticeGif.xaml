@@ -13,9 +13,9 @@
             <DataTemplate>
                 <Grid>
                     <Image gif:ImageBehavior.AnimatedSource="{Binding SourceIgnorable}" gif:ImageBehavior.RepeatBehavior="{Binding Practiced}" 
-                           gif:ImageBehavior.AnimationCompleted="UpdatePracticing" Stretch="UniformToFill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="-75,0,0,0" >
+                           gif:ImageBehavior.AnimationCompleted="UpdatePracticing" Margin="0, -70, 0 , 0" >
                         <Image.Effect>
-                             <BlurEffect Radius="50"/>
+                             <BlurEffect Radius="30"/>
                         </Image.Effect>
                     </Image>
                 </Grid>

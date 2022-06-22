@@ -53,7 +53,9 @@ namespace BecomeSifu
                                 : false
                         : PageHolder.MainWindow.DojoState.Kicks[i].Learned
                             ? PageHolder.MainWindow.DojoState.Dojo[0].Exp >= PageHolder.MainWindow.DojoState.Kicks[i].ExpToNext
-                            : PageHolder.MainWindow.DojoState.Dojo[0].Energy >= PageHolder.MainWindow.DojoState.Kicks[i].ExpToNext;
+                            : PageHolder.MainWindow.DojoState.Punches[i].Learned
+                                ? PageHolder.MainWindow.DojoState.Dojo[0].Energy >= PageHolder.MainWindow.DojoState.Kicks[i].ExpToNext
+                                : false;
                 }
                 for (int i = 0; i < PageHolder.MainWindow.DojoState.Specials.Count; i++)
                 {
@@ -83,7 +85,7 @@ namespace BecomeSifu
                 }
                 for (int i = 0; i < PageHolder.MainWindow.DojoState.Defenses.Count; i++)
                 {
-                    if (PageHolder.MainWindow.DojoState.Kicks[4].Learned || PageHolder.MainWindow.DojoState.Punches[4].Learned)
+                    if ((!PageHolder.MainWindow.DojoState.Dojo[0].IsBoxing && PageHolder.MainWindow.DojoState.Kicks[4].Learned) || PageHolder.MainWindow.DojoState.Punches[4].Learned)
                     {
                         PageHolder.MainWindow.DojoState.Defenses[i].Enabled = i > 0
                             ? PageHolder.MainWindow.DojoState.Defenses[i].Learned

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TabControl x:Name="Tabs"   TabStripPlacement="Bottom" Background="Transparent" Foreground="AliceBlue">
+        <TabControl x:Name="Tabs"   TabStripPlacement="Bottom" Background="Transparent" BorderThickness="0" Foreground="AliceBlue">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">
                     <Setter Property="Template">
@@ -16,7 +16,7 @@
                                 <Grid>
                                     <Border 
                                                 Name="Border"
-                                                Margin="0,0,-4,0" 
+                                                Margin="1.1" 
                                                 Background="Transparent"
                                                 BorderBrush="Silver" 
                                                 BorderThickness="1,1,1,1">
@@ -32,8 +32,8 @@
                                 <ControlTemplate.Triggers>
                                     <Trigger Property="IsSelected" Value="True">
                                         <Setter Property="Panel.ZIndex" Value="100" />
-                                        <Setter TargetName="Border" Property="Background" Value="#50FFFFFF" />
-                                        <Setter TargetName="Border" Property="BorderThickness" Value="1,1,1,0" />
+                                        <Setter TargetName="Border" Property="Background" Value="transparent" />
+                                        <Setter TargetName="Border" Property="BorderThickness" Value="2" />
                                     </Trigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>

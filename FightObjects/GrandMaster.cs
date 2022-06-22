@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 
 namespace BecomeSifu.FightObjects
 {
@@ -22,26 +23,39 @@ namespace BecomeSifu.FightObjects
             PageHolder.MainWindow.DojoState.FightsVMs[4].AttackString = PageHolder.MainWindow.DojoState.FightsVMs[4].Attack.ConvertToString();
             PageHolder.MainWindow.DojoState.FightsVMs[4].FightName = this.GetType().Name;
             PageHolder.MainWindow.DojoState.FightsVMs[4].BackgroundColor = Colors.Silver;
+            PageHolder.MainWindow.DojoState.FightsVMs[4].ForegroundColor = Colors.Orange;
         }
         public static void Won(int win)
         {
             try
             {
-                PageHolder.MainWindow.DojoState.FightsVMs[4].Wins += win;
-                LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {PageHolder.MainWindow.DojoState.FightsVMs[4].Wins} wins");
-                PageHolder.MainWindow.DojoState.FightsVMs[4].Health = ((decimal)PageHolder.MainWindow.DojoState.FightsVMs[4].Wins + 1) * 10000000;
-                PageHolder.MainWindow.DojoState.FightsVMs[4].Attack = ((decimal)PageHolder.MainWindow.DojoState.FightsVMs[4].Wins + 1) * 1000000;
-                PageHolder.MainWindow.DojoState.FightsVMs[4].HealthString = PageHolder.MainWindow.DojoState.FightsVMs[4].Health.ConvertToString();
-                PageHolder.MainWindow.DojoState.FightsVMs[4].AttackString = PageHolder.MainWindow.DojoState.FightsVMs[4].Attack.ConvertToString();
-                LogIt.Write($"Reset Healt and attack for enemy.");
-                if(win == 1)
+                if (PageHolder.MainWindow.DojoState.FightsVMs[4].Fought)
                 {
-                    EmptyCupControl.DefeatedGrandMaster = true;
-                }
+                    PageHolder.MainWindow.DojoState.FightsVMs[4].Wins += win;
+                    LogIt.Write($"Finalizing Results: fight complete with {win} wins for a total of {PageHolder.MainWindow.DojoState.FightsVMs[4].Wins} wins");
+                    PageHolder.MainWindow.DojoState.FightsVMs[4].Health = ((decimal)PageHolder.MainWindow.DojoState.FightsVMs[4].Wins + 1) * 10000000;
+                    PageHolder.MainWindow.DojoState.FightsVMs[4].Attack = ((decimal)PageHolder.MainWindow.DojoState.FightsVMs[4].Wins + 1) * 1000000;
+                    PageHolder.MainWindow.DojoState.FightsVMs[4].HealthString = PageHolder.MainWindow.DojoState.FightsVMs[4].Health.ConvertToString();
+                    PageHolder.MainWindow.DojoState.FightsVMs[4].AttackString = PageHolder.MainWindow.DojoState.FightsVMs[4].Attack.ConvertToString();
+                    LogIt.Write($"Reset Healt and attack for enemy.");
+                    if (win == 1)
+                    {
+                        PageHolder.MainWindow.DojoState.FightsVMs[4].Gif = $"grandmasterwin.gif";
+                        PageHolder.MainWindow.DojoState.FightsVMs[4].Fighting = new RepeatBehavior(1);
+                        PageHolder.MainWindow.DojoState.FightsVMs[4].Fought = false;
+                        EmptyCupControl.DefeatedGrandMaster = true;
+                    }
+                    else
+                    {
+                        PageHolder.MainWindow.DojoState.FightsVMs[4].Gif = $"grandmasterwin.gif";
+                        PageHolder.MainWindow.DojoState.FightsVMs[4].Fighting = new RepeatBehavior(1);
+                        PageHolder.MainWindow.DojoState.FightsVMs[4].Fought = false;
+                    }
 
-                if (PageHolder.MainWindow.DojoState.FightsVMs[3].Wins / 5 > PageHolder.MainWindow.DojoState.FightsVMs[4].Wins)
-                {
-                    PageHolder.MainWindow.DojoState.FightsVMs[4].IsActive = false;
+                    if (PageHolder.MainWindow.DojoState.FightsVMs[3].Wins / 5 > PageHolder.MainWindow.DojoState.FightsVMs[4].Wins)
+                    {
+                        PageHolder.MainWindow.DojoState.FightsVMs[4].IsActive = false;
+                    }
                 }
             }
             catch (Exception e)
