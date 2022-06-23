@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows;
@@ -108,36 +111,93 @@ namespace BecomeSifu.Pages
         {
             KarateLogo.Visibility = Visibility.Visible;
             SelectMessage = "Select this Dojo";
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string resourceName = assembly.GetManifestResourceNames()
+                                    .Single(str => str.Contains($"KTEDescription.txt"));
+
+
+            string result;
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                result = reader.ReadToEnd();
+            }
+
+            DojoDescriptionRect.Fill = new SolidColorBrush(Color.FromArgb(20, 00, 00, 00));
+            DojoDescriptionLabel.Text = result;
         }
 
         private void Karate_MouseLeave(object sender, MouseEventArgs e)
         {
             KarateLogo.Visibility = Visibility.Hidden;
             SelectMessage = "Become Sifu";
+
+            DojoDescriptionRect.Fill = new SolidColorBrush(Color.FromArgb(00, 00, 00, 00));
+            DojoDescriptionLabel.Text = null;
         }
 
         private void Boxing_MouseEnter(object sender, MouseEventArgs e)
         {
             BoxingRing.Visibility = Visibility.Visible;
             SelectMessage = "Select this Gym";
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string resourceName = assembly.GetManifestResourceNames()
+                                    .Single(str => str.Contains($"BXGDescription.txt"));
+
+
+            string result;
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                result = reader.ReadToEnd();
+            }
+
+            DojoDescriptionRect.Fill = new SolidColorBrush(Color.FromArgb(20, 00, 00, 00));
+            DojoDescriptionLabel.Text = result;
         }
 
         private void Boxing_MouseLeave(object sender, MouseEventArgs e)
         {
             BoxingRing.Visibility = Visibility.Hidden;
             SelectMessage = "Become Sifu";
+
+            DojoDescriptionRect.Fill = new SolidColorBrush(Color.FromArgb(00, 00, 00, 00));
+            DojoDescriptionLabel.Text = null;
         }
 
         private void TaeKwonDo_MouseEnter(object sender, MouseEventArgs e)
         {
             TKDTrigrams.Visibility = Visibility.Visible;
             SelectMessage = "Select this Dojang";
+
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string resourceName = assembly.GetManifestResourceNames()
+                                    .Single(str => str.Contains($"TKDDescription.txt"));
+
+
+            string result;
+
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                result = reader.ReadToEnd();
+            }
+
+            DojoDescriptionRect.Fill = new SolidColorBrush(Color.FromArgb(20, 00, 00, 00));
+            DojoDescriptionLabel.Text = result;
         }
 
         private void TaeKwonDo_MouseLeave(object sender, MouseEventArgs e)
         {
             TKDTrigrams.Visibility = Visibility.Hidden;
             SelectMessage = "Become Sifu";
+
+            DojoDescriptionRect.Fill = new SolidColorBrush(Color.FromArgb(00, 00, 00, 00));
+            DojoDescriptionLabel.Text = null;
         }
     }
 }

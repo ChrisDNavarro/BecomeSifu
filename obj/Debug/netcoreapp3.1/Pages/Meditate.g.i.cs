@@ -62,7 +62,7 @@ namespace BecomeSifu.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BecomeSifu;component/pages/meditate.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V0.0.1.0;component/pages/meditate.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\Meditate.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

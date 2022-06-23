@@ -63,7 +63,7 @@ namespace BecomeSifu.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BecomeSifu;component/usercontrols/fights.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V0.0.1.0;component/usercontrols/fights.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UserControls\Fights.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

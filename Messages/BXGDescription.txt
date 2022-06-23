@@ -1,0 +1,13 @@
+Boxing is a combat sport that involves fighting with fists. Traditionally, boxing has also 
+been referred to as “pugilism,” which literally means, “fist fight.” Fights take place in 
+an area called a “ring,” and consist of timed rounds. Winners are decided by points or by
+knocking out an opponent. A referee runs the fight inside the ring while judges outside the 
+ring ultimately decide who wins the match.
+
+Pros:
+- Punches generate 100% more Attack.
+- Each level of Special moves learned increases attack speed.
+- To the Body increases Attack .4% per level (Maxing at 100%)
+
+Cons:
+- Less Punches, No Kicks

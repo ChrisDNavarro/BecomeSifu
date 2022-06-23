@@ -5,13 +5,21 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>BecomeSifu.ico</ApplicationIcon>
-    <Company>CloudNavarro</Company>
+    <Company>CloudNAvarroa</Company>
     <Authors>CloudNavarro</Authors>
     <Version>0.0.1</Version>
     <PackageIcon>BecomeSifu.ico</PackageIcon>
     <PackageIconUrl />
     <SignAssembly>false</SignAssembly>
     <StartupObject>BecomeSifu.App</StartupObject>
+    <AssemblyName />
+    <RootNamespace>BecomeSifu</RootNamespace>
+    <AssemblyVersion>0.0.2</AssemblyVersion>
+    <!--<FileVersion>0.0.0.*</FileVersion>-->
+    <Deterministic>false</Deterministic>
+    <Product>BecomeSifu</Product>
+    <Copyright>2022</Copyright>
+    <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
@@ -31,11 +39,13 @@
     <None Remove="Animations\Taekwondo.gif" />
     <None Remove="Animations\tournamentlost.gif" />
     <None Remove="Animations\tournamentwin.gif" />
+    <None Remove="Messages\BXGDescription.txt" />
     <None Remove="Messages\Championship.txt" />
     <None Remove="Messages\Defense.txt" />
     <None Remove="Messages\Empty Your Cup.txt" />
     <None Remove="Messages\GrandMaster.txt" />
     <None Remove="Messages\Kicks.txt" />
+    <None Remove="Messages\KTEDescription.txt" />
     <None Remove="Messages\Let us Begin.txt" />
     <None Remove="Messages\Master.txt" />
     <None Remove="Messages\Specials.txt" />
@@ -43,6 +53,7 @@
     <None Remove="Messages\Tae Kwon Do Championship.txt" />
     <None Remove="Messages\Tae Kwon Do Specials.txt" />
     <None Remove="Messages\The Basics.txt" />
+    <None Remove="Messages\TKDDescription.txt" />
     <None Remove="Messages\To The Body.txt" />
     <None Remove="Messages\Tournament.txt" />
     <None Remove="Messages\You have chosen well.txt" />
@@ -60,11 +71,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Messages\BXGDescription.txt" />
     <EmbeddedResource Include="Messages\Championship.txt" />
     <EmbeddedResource Include="Messages\Defense.txt" />
     <EmbeddedResource Include="Messages\Empty Your Cup.txt" />
     <EmbeddedResource Include="Messages\GrandMaster.txt" />
     <EmbeddedResource Include="Messages\Kicks.txt" />
+    <EmbeddedResource Include="Messages\KTEDescription.txt" />
     <EmbeddedResource Include="Messages\Let us Begin.txt" />
     <EmbeddedResource Include="Messages\Master.txt" />
     <EmbeddedResource Include="Messages\Specials.txt" />
@@ -72,13 +85,13 @@
     <EmbeddedResource Include="Messages\Championship Tae Kwon Do.txt" />
     <EmbeddedResource Include="Messages\Specials Tae Kwon Do.txt" />
     <EmbeddedResource Include="Messages\The Basics.txt" />
+    <EmbeddedResource Include="Messages\TKDDescription.txt" />
     <EmbeddedResource Include="Messages\To The Body.txt" />
     <EmbeddedResource Include="Messages\Tournament.txt" />
     <EmbeddedResource Include="Messages\You have chosen well.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.ObjectModel" Version="4.3.0" />
     <PackageReference Include="System.Threading.Timer" Version="4.3.0" />

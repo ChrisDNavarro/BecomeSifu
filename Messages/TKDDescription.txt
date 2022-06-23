@@ -1,0 +1,10 @@
+Taekwondo is a Korean form of martial arts characterized by punching and kicking techniques, 
+with emphasis on head-height kicks, spinning jump kicks, and fast kicking techniques. The literal 
+translation for tae kwon do is "kicking," "punching," and "the art or way of."
+
+Pros:
+- Kicks generate 50% more Attack
+- All Special attacks are available after learning the first kick.
+
+Cons:
+- Generate 10% less defense

@@ -63,7 +63,8 @@
                 <BlurEffect Radius="2"/>
             </TextBlock.Effect><Run Text="{Binding SelectMessage}"/></TextBlock>
 
-        <TextBlock x:Name="DojoDescriptionLabel" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap"/>
+        <Rectangle x:Name="DojoDescriptionRect" Grid.Row="2" Grid.ColumnSpan="3"/>
+        <TextBlock x:Name="DojoDescriptionLabel" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" TextWrapping="Wrap" Foreground="ALiceBlue"  FontSize="14"/>
 
     </Grid>
 </UserControl>

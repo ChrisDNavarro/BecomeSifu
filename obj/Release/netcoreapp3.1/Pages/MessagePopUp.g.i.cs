@@ -61,7 +61,7 @@ namespace BecomeSifu.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BecomeSifu;component/pages/messagepopup.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V0.0.2;component/pages/messagepopup.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\MessagePopUp.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

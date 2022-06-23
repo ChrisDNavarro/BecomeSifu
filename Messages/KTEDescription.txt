@@ -1,0 +1,12 @@
+Karate is a martial art developed in the Ryukyu Kingdom. It developed from the indigenous Ryukyuan
+martial arts (called te (手), "hand"; tii in Okinawan) under the influence of Chinese martial arts, 
+particularly Fujian White Crane. Karate is now predominantly a striking art using punching, kicking,
+ knee strikes, elbow strikes and open-hand techniques such as knife-hands, spear-hands and 
+palm-heel strikes.
+
+Pros:
+- Every Attack skill generates 10% more Attack
+- Earn 50% more gains from Meditation.
+
+Cons:
+- Learning new moves requires 50% more Energy

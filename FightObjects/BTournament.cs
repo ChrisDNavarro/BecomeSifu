@@ -84,7 +84,7 @@ namespace BecomeSifu.FightObjects
             }
         }
 
-        public static new async void Begin()
+        public static async void Begin()
         {
             try
             {
