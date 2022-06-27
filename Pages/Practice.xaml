@@ -50,7 +50,7 @@
                                     </LinearGradientBrush>
                             </Button.Background>
                         </Button>
-                        <Button x:Name="PracticeCheckBox" Foreground="LightSkyBlue" Content="{Binding Rate}" VerticalContentAlignment="Top" BorderBrush="Transparent" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"   Background="#20000000" Margin="0,2,0,10"
+                        <Button x:Name="PracticeCheckBox" Foreground="LightSkyBlue" Content="{Binding Rate}" VerticalContentAlignment="Top" BorderBrush="Transparent" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"   Background="#20000000" Margin="0,2,0,5"
                                           Command="{Binding AutoPracticeCheck}" />
                     </Grid>
 

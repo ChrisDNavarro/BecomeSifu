@@ -61,7 +61,7 @@ namespace BecomeSifu.UserControls {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V0.0.2;component/usercontrols/defense.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V0.0.3;component/usercontrols/defense.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\UserControls\Defense.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

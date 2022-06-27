@@ -20,6 +20,12 @@
     <Compile Update="Pages\EmptyCup.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Pages\LoadSavePage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Pages\Options.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Pages\PickArtsBonus.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -74,6 +80,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\EmptyCup.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\LoadSavePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Options.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\PickArtsBonus.xaml">

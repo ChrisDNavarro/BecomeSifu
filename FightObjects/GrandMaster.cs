@@ -52,7 +52,7 @@ namespace BecomeSifu.FightObjects
                         PageHolder.MainWindow.DojoState.FightsVMs[4].Fought = false;
                     }
 
-                    if (PageHolder.MainWindow.DojoState.FightsVMs[3].Wins / 5 > PageHolder.MainWindow.DojoState.FightsVMs[4].Wins)
+                    if (PageHolder.MainWindow.DojoState.FightsVMs[3].Wins / 5 <= PageHolder.MainWindow.DojoState.FightsVMs[4].Wins)
                     {
                         PageHolder.MainWindow.DojoState.FightsVMs[4].IsActive = false;
                     }

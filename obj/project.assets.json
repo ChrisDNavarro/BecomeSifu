@@ -184,6 +184,18 @@
           "ref/netstandard1.2/System.Threading.Timer.dll": {}
         }
       },
+      "ToggleSwitch/1.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp3.1/ToggleSwitch.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/ToggleSwitch.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      },
       "WpfAnimatedGif/2.0.2": {
         "type": "package",
         "compile": {
@@ -1160,6 +1172,20 @@
         "system.threading.timer.nuspec"
       ]
     },
+    "ToggleSwitch/1.2.0": {
+      "sha512": "Rhv4kXlH8Zo8Hb5ZEBECwONAF9HKmYyz1AR5RFyOrU5trbyyu1FCjDQ9E1Njo8ocsfYdjzbsdxgYYEQ3Oh9v9w==",
+      "type": "package",
+      "path": "toggleswitch/1.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net46/ToggleSwitch.dll",
+        "lib/netcoreapp3.1/ToggleSwitch.dll",
+        "toggleswitch.1.2.0.nupkg.sha512",
+        "toggleswitch.nuspec"
+      ]
+    },
     "WpfAnimatedGif/2.0.2": {
       "sha512": "B0j9SqtThyHVTiOPvu6yR+39Te0g3o+7Jjb+qEm7+Iz1HRqbE5/4QV+ntHWOYYBPOUFr9x1mdzGl/EzWP+nKiA==",
       "type": "package",
@@ -1186,6 +1212,7 @@
       "Newtonsoft.Json >= 13.0.1",
       "System.ObjectModel >= 4.3.0",
       "System.Threading.Timer >= 4.3.0",
+      "ToggleSwitch >= 1.2.0",
       "WpfAnimatedGif >= 2.0.2"
     ]
   },
@@ -1195,13 +1222,13 @@
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
-    "version": "0.0.1",
+    "version": "0.0.2",
     "restore": {
-      "projectUniqueName": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
+      "projectUniqueName": "C:\\1234\\BecomeSifu\\BecomeSifu.csproj",
       "projectName": "BecomeSifu",
-      "projectPath": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
+      "projectPath": "C:\\1234\\BecomeSifu\\BecomeSifu.csproj",
       "packagesPath": "C:\\Users\\cn250039\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\obj\\",
+      "outputPath": "C:\\1234\\BecomeSifu\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -1247,6 +1274,10 @@
           "System.Threading.Timer": {
             "target": "Package",
             "version": "[4.3.0, )"
+          },
+          "ToggleSwitch": {
+            "target": "Package",
+            "version": "[1.2.0, )"
           },
           "WpfAnimatedGif": {
             "target": "Package",

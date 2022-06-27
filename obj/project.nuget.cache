@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+fC2OUjRUBzza30xbMo+Iy0eUji6rWf1klCn1jPBREKu8JixvCS69c/cnpYlpT3MQsjM2sU7OBuOyrIwc+rQ4w==",
+  "dgSpecHash": "I0j0xeE/3a15ezolvl8W9+4ik9J5R90fzKOmMwIuAInYQGcKt/4X2tccDgtLpxsSax23l9TziOQyNeK6bf3zAw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
+  "projectFilePath": "C:\\1234\\BecomeSifu\\BecomeSifu.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\cn250039\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\cn250039\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
@@ -20,6 +20,7 @@
     "C:\\Users\\cn250039\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\cn250039\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\cn250039\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
+    "C:\\Users\\cn250039\\.nuget\\packages\\toggleswitch\\1.2.0\\toggleswitch.1.2.0.nupkg.sha512",
     "C:\\Users\\cn250039\\.nuget\\packages\\wpfanimatedgif\\2.0.2\\wpfanimatedgif.2.0.2.nupkg.sha512"
   ],
   "logs": []

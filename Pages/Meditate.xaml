@@ -21,28 +21,18 @@
                         
                         <Border BorderBrush="DarkGray" BorderThickness="0,0,0,1" Grid.Row="1"/>
                         <Border BorderBrush="DarkGray" BorderThickness="0,0,0,1" Grid.Row="2"/>
-
-                        <Button Content="{Binding IsMeditatingString}" FontWeight="Bold" FontSize="20" Grid.Row="0" Margin="5,5" BorderBrush="AliceBlue" Foreground="AliceBlue" Command="{Binding StartStopMeditationCommand}">
-                            <Button.Background>
-                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                                    <GradientStop Color="LightSteelBlue"/>
-                                    <GradientStop Color="LightSteelBlue" Offset="1"/>
-                                    <GradientStop Color="#60000000" Offset="0.391"/>
-                                    <GradientStop Color="#60000000" Offset="0.691"/>
-                                </LinearGradientBrush>
-                            </Button.Background>
-                        </Button>
-
-
-                        <Grid Grid.Row="1" Visibility="{Binding MeditateOption}">
+                        <Grid Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="105"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            <Rectangle Fill="MidnightBlue"/>
-                            <Rectangle Fill="Black" Opacity=".6"/>
-                            <Image x:Name="MeditateAnimation1" Grid.Row="0" gif:ImageBehavior.AnimatedSource="../Animations/meditate2.gif" gif:ImageBehavior.RepeatBehavior="{Binding Repeat}"/>
+                            
+                            <Image x:Name="MeditateAnimation1" Grid.Row="0" Opacity=".8" Stretch="Fill" gif:ImageBehavior.AnimatedSource="../Animations/meditate3.gif" gif:ImageBehavior.RepeatBehavior="{Binding Repeat}">
+                                <Image.Effect>
+                                    <BlurEffect Radius="5"/>
+                                </Image.Effect>
+                            </Image>
                             <Button Content="Meditate" FontWeight="Bold" FontSize="20" Grid.Row="1" Margin="5,5" BorderBrush="Black" Foreground="AliceBlue" Command="{Binding MeditateClick}">
                                 <Button.Background>
                                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

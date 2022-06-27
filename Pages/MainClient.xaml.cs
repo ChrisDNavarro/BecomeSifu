@@ -38,6 +38,8 @@ namespace BecomeSifu.Pages
                     //   on its own
                     MessagePopUp.HorizontalOffset = offset + .01;
                     MessagePopUp.HorizontalOffset = offset;
+                    NavigationPopup.HorizontalOffset = offset + .01;
+                    NavigationPopup.HorizontalOffset = offset;
                 };
                 // Also handle the window being resized (so the popup's position stays
                 //  relative to its target element if the target element moves upon 
@@ -47,6 +49,8 @@ namespace BecomeSifu.Pages
                     var offset = MessagePopUp.HorizontalOffset;
                     MessagePopUp.HorizontalOffset = offset + .011;
                     MessagePopUp.HorizontalOffset = offset;
+                    NavigationPopup.HorizontalOffset = offset + .01;
+                    NavigationPopup.HorizontalOffset = offset;
                 };
             }
         }

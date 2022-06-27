@@ -6,11 +6,12 @@ leveled up with Experience gained through Practice.
 
 Practice:
 Practicing increases your stats according to learned skills and skill levels. Practice is performed
-by clicking the practice button. Practice increases your Energy, Experience, Attack, and Defense.
+by clicking the practice button. Practice increases your Energy, Experience, Attack, and Defense. When
+auto practicing, you cannot auto Meditate.
 
 Meditation:
-Meditation increase your Energy and Health according to learned skills and skill levels. When Meditating,
-you cannot practice, and mediations is the only way to increase you health.
+Meditation increase your Energy and Health according to learned skills and skill levels. When auto meditating,
+you cannot auto practice, and mediations is the only way to increase you health.
 
 Stats:
 

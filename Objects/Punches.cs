@@ -64,6 +64,10 @@ namespace BecomeSifu.Objects
                             if (PageHolder.MainWindow.DojoState.Dojo[0].Energy >= PageHolder.MainWindow.DojoState.Kicks[0].ExpToNext)
                             {
                                 PageHolder.MainWindow.DojoState.Kicks[0].Enabled = true;
+                                if (PageHolder.MainWindow.DojoState.Dojo[0].Perks[6].Active)
+                                {
+                                    PageHolder.MainWindow.DojoState.FightsVMs[1].IsActive = true;
+                                }
                                 
                             }
                             PageHolder.MainWindow.DojoState.FightsVMs[0].IsActive = true;

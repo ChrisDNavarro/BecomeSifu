@@ -73,6 +73,11 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
+                            <Rectangle Grid.Column="1" Fill="#20FFFFFF" Grid.ColumnSpan="7" Height="50" Grid.RowSpan="2">
+                                <Rectangle.Effect>
+                                    <BlurEffect Radius="50"/>
+                                </Rectangle.Effect>
+                            </Rectangle>
                             <Image Grid.Column="1" gif:ImageBehavior.AnimatedSource="{Binding FightGif}" gif:ImageBehavior.RepeatBehavior="{Binding Fighting}" gif:ImageBehavior.AnimationCompleted="DoneFighting" Grid.ColumnSpan="7" Height="50" Grid.RowSpan="2" Margin="-70,-5,0,0"/>
                             <Button Content="{Binding FightName}" Margin="5,5,0,5" Width="100" Grid.RowSpan="3" IsEnabled="{Binding IsActive}" Command="{Binding StartFighting}" Style="{StaticResource MyButton2}" Foreground="{Binding ForegroundIgnorable}"/>
                             <Label Content="Attack Power:" Grid.Row="2" Grid.Column="1" FontWeight="Bold" Foreground="AliceBlue"/>

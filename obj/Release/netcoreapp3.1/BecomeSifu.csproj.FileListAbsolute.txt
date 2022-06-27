@@ -1,4 +1,3 @@
-C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.csproj.AssemblyReference.cache
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Release\netcoreapp3.1\MainWindow.g.cs
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Boosts.g.cs
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Release\netcoreapp3.1\Pages\BottomTabs.g.cs
@@ -53,3 +52,64 @@ C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Rel
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.dll
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.pdb
 C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.genruntimeconfig.cache
+C:\Users\cn250039\OneDrive - NCR Corporation\Documents\GitHub\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.csproj.AssemblyReference.cache
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.exe
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.deps.json
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.runtimeconfig.json
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.runtimeconfig.dev.json
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.dll
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.pdb
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\Newtonsoft.Json.dll
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\WpfAnimatedGif.dll
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\MainWindow.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Boosts.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\BottomTabs.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Debug.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\DojoPicker.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\EmptyCup.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\MainClient.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Meditate.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\MessagePopUp.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\PickArtsBonus.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Practice.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\PracticeGif.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\AttacksKicks.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\AttacksPunches.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\AttacksSpecials.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\Defense.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\Fights.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\App.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu_MarkupCompile.cache
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu_MarkupCompile.lref
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\MainWindow.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Boosts.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\BottomTabs.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Debug.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\DojoPicker.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\EmptyCup.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\MainClient.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Meditate.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\MessagePopUp.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\PickArtsBonus.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Practice.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\PracticeGif.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\AttacksKicks.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\AttacksPunches.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\AttacksSpecials.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\Defense.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\UserControls\Fights.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.g.resources
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.GeneratedMSBuildEditorConfig.editorconfig
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.AssemblyInfoInputs.cache
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.AssemblyInfo.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.csproj.CoreCompileInputs.cache
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.csproj.CopyComplete
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.dll
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.pdb
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.genruntimeconfig.cache
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\BecomeSifu.csproj.AssemblyReference.cache
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\ToggleSwitch.dll
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\LoadSavePage.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Options.g.cs
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\LoadSavePage.baml
+C:\1234\BecomeSifu\obj\Release\netcoreapp3.1\Pages\Options.baml

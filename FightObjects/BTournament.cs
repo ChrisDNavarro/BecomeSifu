@@ -49,7 +49,7 @@ namespace BecomeSifu.FightObjects
                     }
                     else
                     {
-                        PageHolder.MainWindow.DojoState.FightsVMs[1].Gif = $"tournamentlose.gif";
+                        PageHolder.MainWindow.DojoState.FightsVMs[1].Gif = $"tournamentlost.gif";
                         PageHolder.MainWindow.DojoState.FightsVMs[1].Fighting = new RepeatBehavior(1);
                         PageHolder.MainWindow.DojoState.FightsVMs[1].Fought = false;
                     }

@@ -24,7 +24,7 @@ namespace BecomeSifu.Controls
         private ItemCollection AdvancedTabs;
         private ItemCollection GifTab;
         private static List<int> Bonuses = new List<int>();
-        public BecomeSifuClient(List<int> bonuses, bool fromsaved)
+        public BecomeSifuClient(List<int> bonuses)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace BecomeSifu.Controls
                 AdvancedTabs = AdT.Items;
                 GifTab = PageHolder.MainClient.BackgrounGif.Items;
 
-                if (!fromsaved)
+                if (!PageHolder.MainWindow.Load)
                 {
                     _ = new GenerateFights();
                     LogIt.Write($"Generated Fights");

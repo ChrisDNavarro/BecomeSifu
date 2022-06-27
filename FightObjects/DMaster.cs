@@ -61,7 +61,7 @@ namespace BecomeSifu.FightObjects
                         }
                     }
 
-                    if (PageHolder.MainWindow.DojoState.FightsVMs[2].Wins / 5 > PageHolder.MainWindow.DojoState.FightsVMs[3].Wins)
+                    if (PageHolder.MainWindow.DojoState.FightsVMs[2].Wins / 5 <= PageHolder.MainWindow.DojoState.FightsVMs[3].Wins)
                     {
                         PageHolder.MainWindow.DojoState.FightsVMs[3].IsActive = false;
                     }

@@ -21,7 +21,6 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Ink;
 using System.Windows.Input;
-using System.Windows.Interactivity;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -63,7 +62,7 @@ namespace BecomeSifu.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BecomeSifu;component/pages/practicegif.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V0.0.3;component/pages/practicegif.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\PracticeGif.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

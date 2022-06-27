@@ -28,6 +28,8 @@ namespace BecomeSifu
     /// </summary>
     public partial class MainWindow : Window
     {
+        public bool Save { get; set; }
+        public bool Load { get; set; }
         private List<int> Bonuses = new List<int>();
         public string OldDojo { get; set; }
         public BecomeSifuClient Client { get; set; }
@@ -82,6 +84,7 @@ namespace BecomeSifu
                 PageHolder.MainClient = new MainClient();
                 PageHolder.DojoPicker = new DojoPicker();
                 PageHolder.MessagePopUp = new MessagePopUp();
+                PageHolder.LoadSavePage = new LoadSavePage();
 
                 if (!File.Exists(State.SavePath))
                 {
@@ -91,7 +94,9 @@ namespace BecomeSifu
                 }
                 else
                 {
-                    LoadState();
+                    PageHolder.LoadSavePage.Height = ContentArea.Height;
+                    PageHolder.LoadSavePage.Width = ContentArea.Width;
+                    ContentArea.Content = PageHolder.LoadSavePage;
                 }
                 LogIt.Write();
             }
@@ -110,9 +115,7 @@ namespace BecomeSifu
                 PageHolder.MainClient.Height = ContentArea.Height;
                 PageHolder.MainClient.Width = ContentArea.Width;
                 ContentArea.Content = PageHolder.MainClient;
-                Client = !File.Exists(State.SavePath)
-                    ? new BecomeSifuClient(Bonuses, false) 
-                    : new BecomeSifuClient(Bonuses, true);
+                Client = new BecomeSifuClient(Bonuses);
                 LogIt.Write();
             }
             catch (Exception e)
@@ -122,7 +125,7 @@ namespace BecomeSifu
             }
         }
 
-        private void LoadState()
+        public void LoadState()
         {
             
             string[] files = Directory.GetFiles(@$"c:\Program Files (x86)\BecomeSifu\save\", $@"*.bsifu");
@@ -194,7 +197,10 @@ namespace BecomeSifu
         private void BecomeSifu_Closed(object sender, EventArgs e)
         {
             DojoState.Closed = DateTime.UtcNow;
-            State.Save();
+            if (Save)
+            {
+                State.Save();
+            }
             Application.Current.Shutdown();
         }
     }

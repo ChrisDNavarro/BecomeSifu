@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj": {}
+    "C:\\1234\\BecomeSifu\\BecomeSifu.csproj": {}
   },
   "projects": {
-    "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj": {
-      "version": "0.0.1",
+    "C:\\1234\\BecomeSifu\\BecomeSifu.csproj": {
+      "version": "0.0.2",
       "restore": {
-        "projectUniqueName": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
+        "projectUniqueName": "C:\\1234\\BecomeSifu\\BecomeSifu.csproj",
         "projectName": "BecomeSifu",
-        "projectPath": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\BecomeSifu.csproj",
+        "projectPath": "C:\\1234\\BecomeSifu\\BecomeSifu.csproj",
         "packagesPath": "C:\\Users\\cn250039\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\cn250039\\OneDrive - NCR Corporation\\Documents\\GitHub\\BecomeSifu\\obj\\",
+        "outputPath": "C:\\1234\\BecomeSifu\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -57,6 +57,10 @@
             "System.Threading.Timer": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "ToggleSwitch": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             },
             "WpfAnimatedGif": {
               "target": "Package",

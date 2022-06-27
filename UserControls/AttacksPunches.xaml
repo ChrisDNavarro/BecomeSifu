@@ -24,7 +24,7 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="#40000000"/>
-                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Foreground" Value="DimGray"/>
                                 <Setter Property="BorderBrush" Value="Black"/>
                             </Trigger>
                         </ControlTemplate.Triggers>

@@ -116,6 +116,13 @@ namespace BecomeSifu.ViewModels
             set => SetProperty(ref _IsMeditating, value);
         }
 
+        private bool _IsPracticing;
+        public bool IsPracticing
+        {
+            get => _IsPracticing;
+            set => SetProperty(ref _IsPracticing, value);
+        }
+
 
         private Visibility _MeditateOption = Visibility.Collapsed;
         public Visibility MeditateOption

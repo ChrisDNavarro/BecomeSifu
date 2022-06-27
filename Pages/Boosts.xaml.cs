@@ -17,9 +17,7 @@ using System.Windows.Threading;
 
 namespace BecomeSifu.Pages
 {
-    /// <summary>
-    /// Interaction logic for Advances.xaml
-    /// </summary>
+   
     public partial class Boosts : UserControl
     {
         public Boosts()

@@ -12,6 +12,7 @@ namespace BecomeSifu.Controls
         public static MessagePopUp MessagePopUp { get; set; }
         public static DojoPicker DojoPicker { get; set; }
         public static PickArtsBonus PickArtsBonus { get; set; }
+        public static LoadSavePage LoadSavePage { get; set; }
 
     }
 }

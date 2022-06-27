@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BecomeSifu"
         mc:Ignorable="d"
-        Title="BecomeSifu" Height="825" Width="765" Closed="BecomeSifu_Closed">
+        Title="BecomeSifu" Height="825" Width="765" Closed="BecomeSifu_Closed" ResizeMode="CanMinimize" Background="Black">
     
     <Grid>
         <ContentControl x:Name="ContentArea" />

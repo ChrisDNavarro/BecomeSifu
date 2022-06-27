@@ -18,6 +18,8 @@ namespace BecomeSifu.Controls
                 advancedTabs.Add(BoostsTab(new TabItem()));
                 LogIt.Write($"Added Boosts Tab");
                 advancedTabs.Add(DebugTab(new TabItem()));
+                advancedTabs.Add(OptionsTab(new TabItem()));
+                LogIt.Write($"Added Options Tab");
             }
             catch (Exception e)
             {
@@ -56,5 +58,23 @@ namespace BecomeSifu.Controls
                 throw;
             }
         }
+
+        private TabItem OptionsTab(TabItem tab)
+        {
+            try
+            {
+                TextBlock tbk = new TextBlock() { Text = "Options", Foreground = new SolidColorBrush(Colors.AliceBlue), FontWeight = FontWeights.Bold };
+                tab.Header = tbk;
+                tab.Content = new Options();
+                return tab;
+            }
+            catch (Exception e)
+            {
+                LogIt.Write($"Error catch: {e}");
+                throw;
+            }
+        }
+
+
     }
 }

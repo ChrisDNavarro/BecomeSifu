@@ -56,9 +56,14 @@ namespace BecomeSifu.FightObjects
 
                     if (PageHolder.MainWindow.DojoState.FightsVMs[2].Wins == 1)
                     {
+                        if (!PageHolder.MainWindow.DojoState.Dojo[0].Perks[1].Active)
+                        {
+                            Extensions.CreateMessage("Specials", true);
+                        }
                         PageHolder.MainWindow.DojoState.Cup[0].ButtonActive = true;
                         PageHolder.MainWindow.DojoState.Cup[0].ButtonName = "Empty Your Cup";
                         PageHolder.MainWindow.DojoState.Cup[0].ImageSource = @"pack://application:,,,/Resources/CupIsFull.png";
+                        Extensions.CreateMessage("Empty Your Cup", true);
                     }
 
                     if (PageHolder.MainWindow.DojoState.FightsVMs[2].Wins > 0 && PageHolder.MainWindow.DojoState.FightsVMs[2].Wins % 5 == 0)
@@ -67,15 +72,17 @@ namespace BecomeSifu.FightObjects
                         {
                             PageHolder.MainWindow.DojoState.Specials[(PageHolder.MainWindow.DojoState.FightsVMs[2].Wins / 5) - 1].Enabled = true;
 
-                            Extensions.CreateMessage("Specials", true);
+                            
                         }
+
                         PageHolder.MainWindow.DojoState.FightsVMs[3].IsActive = true;
+
                         if (PageHolder.MainWindow.DojoState.FightsVMs[2].Wins / 5 == 1)
                         {
-                            Extensions.CreateMessage("Master", true);
+                            Extensions.CreateMessage("MasterX", true);
                         }
                     }
-                    if (PageHolder.MainWindow.DojoState.FightsVMs[1].Wins / 5 > PageHolder.MainWindow.DojoState.FightsVMs[2].Wins)
+                    if (PageHolder.MainWindow.DojoState.FightsVMs[1].Wins / 5 <= PageHolder.MainWindow.DojoState.FightsVMs[2].Wins)
                     {
                         PageHolder.MainWindow.DojoState.FightsVMs[2].IsActive = false;
                     }
