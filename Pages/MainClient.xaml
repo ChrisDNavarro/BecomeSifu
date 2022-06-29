@@ -46,7 +46,7 @@
             </Grid>
         </Popup>
 
-        <Popup x:Name="NavigationPopup" Placement="Center" MinWidth="749" MinHeight="777"  IsOpen="True" AllowsTransparency="True" PopupAnimation="Fade" Grid.ColumnSpan="2" Grid.RowSpan="2">
+        <Popup x:Name="NavigationPopup" Placement="Center" MinWidth="749" MinHeight="777"  IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -57,11 +57,11 @@
                     <Rectangle.Clip>
                         <CombinedGeometry GeometryCombineMode="Exclude">
                             <CombinedGeometry.Geometry1>
-                                <RectangleGeometry Rect="0,0,749,777"/>
+                                <RectangleGeometry Rect="0,0,750,787"/>
                             </CombinedGeometry.Geometry1>
                             <CombinedGeometry.Geometry2>
-                                <RectangleGeometry Rect="100,100,100,100" />
-                            </CombinedGeometry.Geometry2>
+                                <RectangleGeometry Rect="450,327,300,500" />
+                            </CombinedGeometry.Geometry2>                            
                         </CombinedGeometry>
                     </Rectangle.Clip>
                 </Rectangle>
