@@ -67,6 +67,7 @@ namespace BecomeSifu.Objects
                                 if (PageHolder.MainWindow.DojoState.Dojo[0].Perks[6].Active)
                                 {
                                     PageHolder.MainWindow.DojoState.FightsVMs[1].IsActive = true;
+                                    Extensions.CreateMessage("Tournament", true);
                                 }
                                 
                             }

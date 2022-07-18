@@ -34,17 +34,21 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
-        <Popup x:Name="MessagePopUp" Placement="Center" MinWidth="749" MinHeight="777"  IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" Grid.ColumnSpan="2" Grid.RowSpan="2" MouseUp="MessagePopUp_MouseUp">
+        <Canvas x:Name="MessagePopUp" Grid.ColumnSpan="2" Grid.RowSpan="2" MouseUp="MessagePopUp_MouseUp" Background="#50000000" >
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Rectangle Grid.RowSpan="3" Grid.ColumnSpan="3" Fill="#AA000000"/>
-                <TextBlock x:Name="Message" Background="#AA4682B4" Foreground="AliceBlue" Padding="5" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="50,50 "/>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="Message"  Text="TEST TEST TEST" Background="#AA4682B4" Foreground="AliceBlue" Padding="5" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Margin="50,50 "/>
             </Grid>
-        </Popup>
+        </Canvas>
 
         <Popup x:Name="NavigationPopup" Placement="Center" MinWidth="749" MinHeight="777"  IsOpen="False" AllowsTransparency="True" PopupAnimation="Fade" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <Grid Grid.Row="1" Grid.Column="1">

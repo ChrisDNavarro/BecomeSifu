@@ -61,7 +61,7 @@ namespace BecomeSifu.Pages {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V0.0.3;component/pages/emptycup.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/BecomeSifu;V0.0.4;component/pages/emptycup.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\Pages\EmptyCup.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

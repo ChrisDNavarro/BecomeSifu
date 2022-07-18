@@ -1,7 +1,7 @@
-Each school of Martial Arts has it's one set of Attack Skills and Defense Skills. All schools,
-however, require that skills be learned in a certain as to provide a proper foundation as you increase
-your mastery. Skills are learned using Energy gained through Practice and Mediation, and can be 
-leveled up with Experience gained through Practice.
+Each school of Martial Arts has it's own set of Attack Skills and Defense Skills. All schools,
+however, require that skills be learned in a certain order to provide a proper foundation as 
+you increase your mastery. Skills are learned using Energy gained through Practice and Mediation, 
+and can be leveled up with Experience gained through Practice.
 
 
 Practice:

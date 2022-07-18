@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>BecomeSifu.ico</ApplicationIcon>
+    <ApplicationIcon>BecomeSifu2.ico</ApplicationIcon>
     <Company>CloudNAvarroa</Company>
     <Authors>CloudNavarro</Authors>
     <Version>0.0.2</Version>
@@ -14,13 +14,13 @@
     <StartupObject>BecomeSifu.App</StartupObject>
     <AssemblyName />
     <RootNamespace>BecomeSifu</RootNamespace>
-    <AssemblyVersion>0.0.3</AssemblyVersion>
+    <AssemblyVersion>0.0.4</AssemblyVersion>
     <!--<FileVersion>0.0.0.*</FileVersion>-->
     <Deterministic>false</Deterministic>
     <Product>BecomeSifu</Product>
     <Copyright>2022</Copyright>
     <NeutralLanguage>en-US</NeutralLanguage>
-    <FileVersion>0.0.3</FileVersion>
+    <FileVersion>0.0.4</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

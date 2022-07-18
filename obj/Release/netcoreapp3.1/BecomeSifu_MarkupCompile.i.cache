@@ -1,5 +1,5 @@
 ﻿BecomeSifu
-0.0.3
+0.0.4
 
 winexe
 C#
@@ -16,5 +16,5 @@ C:\1234\BecomeSifu\App.xaml
 1951672910488
 MainWindow.xaml;Pages\Boosts.xaml;Pages\BottomTabs.xaml;Pages\Debug.xaml;Pages\DojoPicker.xaml;Pages\EmptyCup.xaml;Pages\LoadSavePage.xaml;Pages\MainClient.xaml;Pages\Meditate.xaml;Pages\MessagePopUp.xaml;Pages\Options.xaml;Pages\PickArtsBonus.xaml;Pages\Practice.xaml;Pages\PracticeGif.xaml;UserControls\AttacksKicks.xaml;UserControls\AttacksPunches.xaml;UserControls\AttacksSpecials.xaml;UserControls\Defense.xaml;UserControls\Fights.xaml;
 
-True
+False
 

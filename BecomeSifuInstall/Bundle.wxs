@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:bal="http://schemas.microsoft.com/wix/BalExtension">
+  
+	<Bundle Name="BecomeSifu" Version="1.0.0.0" Manufacturer="CloudNavarro" UpgradeCode="4d53a3fa-52cf-464f-81e0-a11a94ffae83" IconSourceFile ="C:\BecomeSifu2.ico" >
+    <BootstrapperApplicationRef Id="WixStandardBootstrapperApplication.HyperlinkLicense" >
+      <Payload SourceFile="C:\BecomeSifu2.ico"/>
+      <bal:WixStandardBootstrapperApplication
+        LicenseUrl="https://guyincube13.wixsite.com/cloudnavarro"
+        LogoFile="C:\BecomeSifu2.ico"
+        ThemeFile="Resources\Theme.xml"
+        LocalizationFile="Resources\Theme.wxl"
+            />
+    </BootstrapperApplicationRef>
+
+		<Chain>
+      <MsiPackage Name="BecomeSifuSetup" 
+                  SourceFile=
+									"C:\1234\BecomeSifu\BecomeSifuSetup\bin\Release\BecomeSifuSetup.msi" />
+		</Chain>
+	</Bundle>
+</Wix>

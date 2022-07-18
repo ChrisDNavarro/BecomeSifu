@@ -69,7 +69,6 @@ namespace BecomeSifu.Objects
                                 
                                 Extensions.CreateMessage("Specials Tae Kwon Do", false);
                             }
-                            PageHolder.MainWindow.DojoState.FightsVMs[1].IsActive = true;
                             Extensions.CreateMessage("Tournament", true);
                         }
                         if (kick.Step == 5 && !PageHolder.MainWindow.DojoState.Defenses[0].Learned)
@@ -77,6 +76,10 @@ namespace BecomeSifu.Objects
                             PageHolder.MainWindow.DojoState.Defenses[0].Enabled = true;
 
                             Extensions.CreateMessage("Defense", true);
+                        }
+                        if (!PageHolder.MainWindow.DojoState.FightsVMs[1].IsActive)
+                        {
+                            PageHolder.MainWindow.DojoState.FightsVMs[1].IsActive = true;
                         }
                         PageHolder.MainWindow.DojoState.Dojo[0].SpendEnergy(kick.ExpToNext);
                         CompleteLevelUp(kick);

@@ -1,0 +1,2 @@
+C:\BecomeSifu2.ico
+C:\1234\BecomeSifu\BecomeSifuSetup\bin\Release\BecomeSifuSetup.msi

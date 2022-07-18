@@ -163,21 +163,21 @@ namespace BecomeSifu
 
         public static void SendMessage(string message)
         {
-            PageHolder.MainClient.Message.Text = message;
-            PageHolder.MainClient.MessagePopUp.IsOpen = true;
+            //PageHolder.MainClient.Message.Text = message;
+            //PageHolder.MainClient.MessagePopUp.IsOpen = true;
         }
 
         public static void SendNextMessage()
         {
-            PageHolder.MainClient.MessagePopUp.IsOpen = false;
-            if (NextMessage.Count > 0)
-            {
-                if (!string.IsNullOrEmpty(NextMessage[0]))
-                {
-                    SendMessage(NextMessage[0]);
-                    NextMessage.RemoveAt(0);
-                }
-            }
+            //PageHolder.MainClient.MessagePopUp.IsOpen = false;
+            //if (NextMessage.Count > 0)
+            //{
+            //    if (!string.IsNullOrEmpty(NextMessage[0]))
+            //    {
+            //        SendMessage(NextMessage[0]);
+            //        NextMessage.RemoveAt(0);
+            //    }
+            //}
         }
 
         public static void CreateMessage(string file, bool send)

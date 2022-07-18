@@ -1,0 +1,6 @@
+obj\Release\Bundle.wixobj
+C:\1234\BecomeSifu\BecomeSifuInstall\bin\Release\BecomeSifuInstall.exe
+C:\1234\BecomeSifu\BecomeSifuInstall\bin\Release\BecomeSifuInstall.wixpdb
+obj\Release\BecomeSifuInstall.wixproj.BindContentsFileList.txt
+obj\Release\BecomeSifuInstall.wixproj.BindOutputsFileList.txt
+obj\Release\BecomeSifuInstall.wixproj.BindBuiltOutputsFileList.txt

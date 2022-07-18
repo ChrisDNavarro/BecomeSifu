@@ -1,0 +1,6 @@
+C:\1234\BecomeSifu\BecomeSifuSetup\bin\Release\BecomeSIfuSetup.msi
+C:\1234\BecomeSifu\BecomeSifuSetup\bin\Release\BecomeSIfuSetup.wixpdb
+obj\Release\Product.wixobj
+obj\Release\BecomeSIfuSetup.wixproj.BindContentsFileListnull.txt
+obj\Release\BecomeSIfuSetup.wixproj.BindOutputsFileListnull.txt
+obj\Release\BecomeSIfuSetup.wixproj.BindBuiltOutputsFileListnull.txt

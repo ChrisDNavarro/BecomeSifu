@@ -1,0 +1,5 @@
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.dll
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.exe
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.pdb
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\BecomeSifu.runtimeconfig.json
+C:\1234\BecomeSifu\bin\Release\netcoreapp3.1\WpfAnimatedGif.dll

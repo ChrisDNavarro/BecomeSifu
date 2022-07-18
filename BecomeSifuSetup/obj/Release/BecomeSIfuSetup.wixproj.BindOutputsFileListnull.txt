@@ -1,0 +1,2 @@
+C:\1234\BecomeSifu\BecomeSifuSetup\bin\Release\BecomeSIfuSetup.msi
+C:\1234\BecomeSifu\BecomeSifuSetup\bin\Release\BecomeSIfuSetup.wixpdb

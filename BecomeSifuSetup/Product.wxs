@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define BecomeSifu_TargetDir=$(var.BecomeSifu.TargetDir)?>
+  <Product Id="*" Name="BecomeSifu" Language="1033" Version="0.0.0.1" Manufacturer="CloudNavarro" UpgradeCode="475fe020-f744-4a37-8da4-0515424a9d30">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perUser" />
+
+    <MediaTemplate EmbedCab="yes" />
+
+    <MajorUpgrade Schedule="afterInstallInitialize" AllowDowngrades="no" DowngradeErrorMessage="No downgrades" AllowSameVersionUpgrades="yes" />
+
+    <Feature Id="ProductFeature" Title="BecomeSifuInstaller" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+
+    <Icon Id="BecomeSifu2.ico" SourceFile="C:\BecomeSifu2.ico" />
+    <Property Id="ARPPRODUCTION" Value="BecomeSifu2.ico" />
+
+  </Product>
+
+
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="ARD" Name="BecomeSifu">
+          <Directory Id="GUI" Name="Bin" />
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  
+  <Fragment>
+    <ComponentGroup Id="ProductComponents">
+      <Component Id="BecomeSifu.exe" Directory="GUI" Guid="0262b543-1d50-4f1f-881f-382894aeb2b9">
+        <File Id="BecomeSifu.exe" Source="$(var.BecomeSifu_TargetDir)BecomeSifu.exe" KeyPath="yes" Checksum="yes" />
+      </Component>
+      <Component Id="BecomeSifu.pdb" Directory="GUI" Guid="0a350c2b-bec7-4361-a14e-b83a2f2ea53c">
+        <File Id="BecomeSifu.pdb" Source="$(var.BecomeSifu_TargetDir)BecomeSifu.pdb" KeyPath="yes" />
+      </Component>
+      <Component Id="BecomeSifu" Directory="ARD" Guid="c8db815d-c6dc-4abc-ad3d-e415585706fd">
+        <CreateFolder />
+        <Shortcut Name="BecomeSifu" Id="PES" Target="[GUI]BecomeSifu.exe" Directory="ARD">
+        </Shortcut>
+      </Component>
+      <Component Id="BecomeSifu.runtimeconfig.json" Directory="GUI" Guid="969fe593-2c22-4112-b6f0-203270bf5f4d">
+        <File Id="BecomeSifu.runtimeconfig.json" Name="BecomeSifu.runtimeconfig.json" Source="$(var.BecomeSifu_TargetDir)BecomeSifu.runtimeconfig.json" />
+      </Component>
+      <Component Id="BecomeSifu.dll" Directory="GUI" Guid="0309e81a-0d17-430b-b066-9b0fe4f3e1fb">
+        <File Id="BecomeSifu.dll" Name="BecomeSifu.dll" Source="$(var.BecomeSifu_TargetDir)BecomeSifu.dll" />
+      </Component>
+      <Component Id="WpfAnimatedGif.dll" Directory="GUI" Guid="28efeda1-5cf8-486d-b1a2-a1e21b5f37d8">
+        <File Id="WpfAnimatedGif.dll" Name="WpfAnimatedGif.dll" Source="$(var.BecomeSifu_TargetDir)WpfAnimatedGif.dll" />
+      </Component>
+    </ComponentGroup>
+    <CustomAction Id="EXECUTE_AFTER_FINALIZE" Execute="immediate" Impersonate="no" Return="asyncNoWait" FileKey="BecomeSifu.exe" ExeCommand="" />
+
+    <InstallExecuteSequence>
+      <Custom Action="EXECUTE_AFTER_FINALIZE" After="InstallFinalize">
+        NOT Installed
+
+      </Custom>
+    </InstallExecuteSequence>
+  </Fragment>
+</Wix>
